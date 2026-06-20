@@ -89,7 +89,7 @@ monetizing an existing demand base rather than expanding it.
 ## World Model Bounds
 
 - **Max active beliefs per category:** ~50–100
-- **Total active beliefs across all 18 lenses:** configurable via `cortex_config.yaml`
+- **Total active beliefs across all 18 lenses:** configurable via `credo_config.yaml`
 - **Decay trigger:** 90 days since last confirming document (configurable)
 - **Archive, not delete:** Contradicted and decayed beliefs are archived, not erased. History is preserved.
 

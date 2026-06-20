@@ -1,6 +1,6 @@
 # The Four-Prompt Architecture
 
-Cortex runs on four prompts that form a closed loop. None are static templates. They are generated from the user's setup conversation and adapt to the document type and business domain.
+Credo runs on four prompts that form a closed loop. None are static templates. They are generated from the user's setup conversation and adapt to the document type and business domain.
 
 ---
 
@@ -21,7 +21,7 @@ Cortex runs on four prompts that form a closed loop. None are static templates. 
 
 ### What It Produces
 
-The **master memory goal** — a compact, structured statement of what this instance of Cortex is trying to understand. This file is loaded into context for every subsequent Prompt 3 pass.
+The **master memory goal** — a compact, structured statement of what this instance of Credo is trying to understand. This file is loaded into context for every subsequent Prompt 3 pass.
 
 **Example master memory goal:**
 ```

@@ -1,7 +1,7 @@
-# Cortex Configuration
+# Credo Configuration
 # One file controls the entire system. Change parameters here and the workflow adapts automatically.
 
-cortex_config:
+credo_config:
 
   # ─── TOKEN LIMITS ──────────────────────────────────────────────────────────
   # Documents above this limit are split into chunks for the belief extraction loop.

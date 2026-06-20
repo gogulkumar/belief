@@ -1,6 +1,6 @@
 # Ingestion Pipeline
 
-How a document enters Cortex and becomes belief updates in the world model.
+How a document enters Credo and becomes belief updates in the world model.
 
 ## The Seven-Task Sequence
 
@@ -24,7 +24,7 @@ The raw extract is written to **L3 (Raw Archive)**. This is the only time L3 is 
 
 ### Task 2 — Select Belief Prompts
 
-**Input:** `cortex_config.yaml` → `categories_active` list  
+**Input:** `credo_config.yaml` → `categories_active` list  
 **Output:** Ordered list of belief reasoning prompts to run
 
 The system loads the system prompts for all active categories. Typically all 18 run, but the config allows selective activation for performance or focus.

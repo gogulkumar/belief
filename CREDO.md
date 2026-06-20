@@ -1,4 +1,4 @@
-# Cortex — Full Specification
+# Credo — Full Specification
 
 *Business Belief Intelligence: How an AI system accumulates business understanding the way a senior analyst does — across any document, any business, any dimension.*
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 01 — What Is Cortex
+## 01 — What Is Credo
 
 ### The Problem Every AI System Has
 
@@ -14,9 +14,9 @@ Every agent you build — ODIN, THOR, Fury — operates on what is in its contex
 
 The missing layer is this: how does an AI system accumulate understanding over time the way a human expert does? Not retrieve — understand. Not search — remember. Not summarize — believe.
 
-### What Cortex Is
+### What Credo Is
 
-Cortex is a business belief intelligence system. It reads any document — decks, transcripts, reports, audio, PDFs, markdown — and builds a living model of how a business operates. Not what any single document says. The pattern of behavior visible only across many documents over time.
+Credo is a business belief intelligence system. It reads any document — decks, transcripts, reports, audio, PDFs, markdown — and builds a living model of how a business operates. Not what any single document says. The pattern of behavior visible only across many documents over time.
 
 It does not store facts. It accumulates beliefs. And beliefs are different.
 
@@ -30,17 +30,17 @@ It does not store facts. It accumulates beliefs. And beliefs are different.
 
 A senior analyst who has been in the room for ten months does not remember every slide. They hold a mental model of how the business behaves. They know what is seasonal and what is structural. They know when a number looks wrong. They know where to look when they need evidence.
 
-Cortex builds that mental model — from any document, for any business, across any dimension — and keeps it current as new documents arrive.
+Credo builds that mental model — from any document, for any business, across any dimension — and keeps it current as new documents arrive.
 
 ### Where This Matters for AI Engineering
 
-Every enterprise AI deployment today is stateless. RAG retrieves facts but does not hold beliefs. It does not track trajectories. It does not notice when the story changes. Cortex is the layer that sits above RAG and below the agent — the reasoning layer that turns document retrieval into business understanding.
+Every enterprise AI deployment today is stateless. RAG retrieves facts but does not hold beliefs. It does not track trajectories. It does not notice when the story changes. Credo is the layer that sits above RAG and below the agent — the reasoning layer that turns document retrieval into business understanding.
 
-**Three systems that change with Cortex**
+**Three systems that change with Credo**
 
-- **ODIN** — currently queries Hyperion blind. With Cortex beliefs in context it knows Q3 always has a one-time EBITDA distortion, that a cost center runs 15% above plan historically. SQL becomes calibrated not just correct.
-- **THOR** — currently uses static voice profiles. With Cortex narrative memory it knows Scott has grown more cautious on margin guidance and Ariane shifted from growth to efficiency framing six months ago. Scripts reflect evolving voice not frozen profiles.
-- **Evals** — currently check SQL accuracy. With Cortex you can check whether an answer reflects what is actually true about the business. A new kind of eval that does not exist without a belief layer.
+- **ODIN** — currently queries Hyperion blind. With Credo beliefs in context it knows Q3 always has a one-time EBITDA distortion, that a cost center runs 15% above plan historically. SQL becomes calibrated not just correct.
+- **THOR** — currently uses static voice profiles. With Credo narrative memory it knows Scott has grown more cautious on margin guidance and Ariane shifted from growth to efficiency framing six months ago. Scripts reflect evolving voice not frozen profiles.
+- **Evals** — currently check SQL accuracy. With Credo you can check whether an answer reflects what is actually true about the business. A new kind of eval that does not exist without a belief layer.
 
 ---
 
@@ -214,7 +214,7 @@ When a document exceeds the token limit it is processed in chunks. Each chunk pr
 
 ## 05 — The Prompt Architecture
 
-There are four prompts in Cortex. None are static templates. They are generated from the user's setup conversation and adapt to the document type and business domain.
+There are four prompts in Credo. None are static templates. They are generated from the user's setup conversation and adapt to the document type and business domain.
 
 | Prompt | When It Runs | What It Does |
 |--------|-------------|--------------|
@@ -231,7 +231,7 @@ The 18 belief reasoning system prompts each implement Prompt 3 for one specific 
 
 ### Why Cowork
 
-Cortex is a multi-step, multi-tool, file-in file-out workflow that runs across many documents over time. It has a loop inside a loop — the chunk loop inside the document loop. It passes files between tasks. It has a configurable parameter that changes how many iterations it runs. That is too complex for a single conversation. It needs a persistent task runner with file access.
+Credo is a multi-step, multi-tool, file-in file-out workflow that runs across many documents over time. It has a loop inside a loop — the chunk loop inside the document loop. It passes files between tasks. It has a configurable parameter that changes how many iterations it runs. That is too complex for a single conversation. It needs a persistent task runner with file access.
 
 ### The Seven Task Sequence
 
@@ -253,23 +253,23 @@ Cortex is a multi-step, multi-tool, file-in file-out workflow that runs across m
 
 A smart tool answers questions correctly. An intelligent system understands the context those questions live in. The difference is the belief layer — the accumulated understanding that makes every query smarter than the last.
 
-### The Three Things Cortex Enables That Nothing Else Does
+### The Three Things Credo Enables That Nothing Else Does
 
 **01 — Contextual reasoning over time**
-Every agent today is context-blind at session start. Cortex gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business not just syntactically correct.
+Every agent today is context-blind at session start. Credo gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business not just syntactically correct.
 
 **02 — Belief-grounded evaluation**
-Current evals check output format and SQL accuracy. Cortex enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model. That is a quality bar that does not exist without this layer.
+Current evals check output format and SQL accuracy. Credo enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model. That is a quality bar that does not exist without this layer.
 
 **03 — Portable business understanding**
-When you upgrade a model or rebuild a system the understanding currently lives nowhere — it has to be re-engineered from scratch. With Cortex the world model is portable. A new model inherits the business understanding immediately. The investment compounds instead of resetting.
+When you upgrade a model or rebuild a system the understanding currently lives nowhere — it has to be re-engineered from scratch. With Credo the world model is portable. A new model inherits the business understanding immediately. The investment compounds instead of resetting.
 
 ### The Honest Risk
 
-This only matters if belief quality is high. If Cortex produces generic beliefs that any finance system would generate — it adds complexity without value. The belief quality comes entirely from the prompt engineering. The 18 system prompts, the questioning agent, the fact-to-belief gate, the worked examples — that is the hard part. And it is what makes Cortex specific rather than generic.
+This only matters if belief quality is high. If Credo produces generic beliefs that any finance system would generate — it adds complexity without value. The belief quality comes entirely from the prompt engineering. The 18 system prompts, the questioning agent, the fact-to-belief gate, the worked examples — that is the hard part. And it is what makes Credo specific rather than generic.
 
 ### The Acceptance Criterion
 
-Give Cortex 10 months of HCOM business review decks. Read the resulting world model. If a senior HCOM analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
+Give Credo 10 months of HCOM business review decks. Read the resulting world model. If a senior HCOM analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*

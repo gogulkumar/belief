@@ -1,4 +1,4 @@
-# Prompt Evaluation — Cortex Belief Reasoning System
+# Prompt Evaluation — Credo Belief Reasoning System
 
 *What was assessed, what was found, what was changed, and why.*
 
@@ -6,7 +6,7 @@
 
 ## The Aim of the Application — Restated Clearly
 
-Cortex exists to answer one question that no current AI system answers:
+Credo exists to answer one question that no current AI system answers:
 
 **How does an AI agent accumulate business understanding over time the way a trained analyst does — so that every interaction it has is informed by what it has learned across months of documents, not just what is in the current session?**
 
