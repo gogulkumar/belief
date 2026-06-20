@@ -1,4 +1,4 @@
-# Prompt Evaluation — Belief Belief Reasoning System
+# Prompt Evaluation — Belief Reasoning System
 
 *What was assessed, what was found, what was changed, and why.*
 

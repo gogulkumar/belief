@@ -5,53 +5,76 @@ another, where the leads and lags are, where feedback loops form, where
 leverage builds or breaks. Not levels. Relationships and timing.
 
 ## What A Belief Is Here
+
 A belief describes a causal or structural relationship — a cause, an
-effect, and a direction of influence that holds across time.
+effect, and a direction. It must be falsifiable and specific to this
+business, not a generic dynamic that any business in this sector shares.
 
 Good: "Investment in customer acquisition precedes revenue recovery by
 one to two periods, revealing a meaningful lag between spending and
-return. The business cannot be read quarter to quarter without
-accounting for this delay."
+return that the business cannot read quarter to quarter without
+accounting for."
 Not a belief: "Sales and marketing spend rose 18% this quarter."
 
+A first document can produce a dynamics belief at confidence 0.20 if a
+causal relationship is clearly visible. You do not need prior confirmation.
+You need a clear cause-effect pair that a future document could contradict.
+If a unit reveals multiple causal relationships — create separate beliefs
+for each. Do not compress them into one belief joined by "while" or "and."
+
 ## What This Memory Does Not Hold
-Isolated results with no causal partner. Any observation where you
-cannot name both a cause and an effect. Single-period data.
+
+Isolated results with no causal partner. Observations that require "while",
+"with", or "and" to join unrelated dynamics — those must be split into
+separate beliefs. Generic dynamics that apply to any business in this
+sector without distinction.
 
 ## How To Reason
-Ask: does this reveal how one part of the business moves another — a
-lead, a lag, a loop, a constraint? You need at least two connected
-observations across time, not one result. Watch for:
-- Spend in one area that reliably precedes results in another
-- Operational changes that show up in financials one or two periods later
-- Volume changes that move cost structure in a delayed or non-linear way
-- Customer behavior patterns that precede commercial outcomes
 
-Most documents describe what happened. Stay silent unless you can see
-the relationship — the cause, the effect, and the direction.
+Ask: does this reveal how one part of the business moves another?
+Can I name a cause, an effect, and a direction?
+
+Falsifiability test: could a future document show the lag disappearing,
+the loop breaking, the leverage reversing? If no — not a belief.
+Distinctiveness test: is this causal relationship specific to this
+business or true of any business in this sector? If the latter — skip.
+
+If a unit reveals two separate cause-effect pairs — two beliefs, not one.
+A belief about cost leading revenue is separate from a belief about
+customer retention preceding commercial outcomes.
 
 ## When You Stay Silent
-When a document describes an outcome without implying what caused it
-or what it will affect. When the relationship, if visible, is already
-a high-confidence belief.
+
+When a unit describes outcomes with no causal implication.
+When the dynamic is too generic to be distinctive to this business.
+When you cannot isolate a clear cause and a clear effect.
 
 ## Guardrails
-Dynamic beliefs are the hardest to earn and the easiest to fabricate
-from coincidence. Require two documents showing the same causal
-relationship before confidence exceeds 0.40. A single co-movement is
-not a belief — it is a hypothesis.
+
+Dynamic beliefs are the hardest to earn and easiest to fabricate from
+coincidence. Ask before adding: is this one causal relationship or two
+joined by "and"? If two — split them. Require the cause and the effect
+to be explicitly visible, not inferred from a single number moving.
 
 ## Examples
-1 — Silent: "Operating costs rose 9% on headcount and infrastructure."
-A level reported, no relationship visible. Silent.
-2 — Confirm: Belief "Cost pressure appears one to two periods before
-revenue weakness, suggesting organizational strain deteriorates ahead
-of top-line signals" (conf 0.58, ev 3). Document: overhead grew 16% vs
-revenue 5%, framed as planned investment. Pattern matches prior periods.
-Confirm → 0.66, ev 4.
-3 — New: Document shows that customer retention improvements in Q1 were
-followed by higher spend per customer in Q2 across the last three annual
-cycles. New belief: "Customer retention improvements are a leading
-indicator of revenue-per-customer expansion by roughly one quarter —
-the relationship has held across three cycles." Conf 0.20, ev 1,
-direction Improving.
+
+1 — Silent: "Operating costs rose 9% on headcount and infrastructure
+investment." A level reported, no causal relationship visible. Silent.
+
+2 — Confirm: Belief "Overhead growth appears one to two periods before
+revenue weakness, suggesting organizational strain deteriorates ahead of
+top-line signals" (conf 0.58, ev 3). Document: support functions grew 16%
+vs revenue 5%, framed as planned investment. Pattern matches prior periods.
+→ conf 0.66, ev 4.
+
+3 — New seed belief: Document shows for the first time that customer
+retention improvements in a period were followed by higher spend per
+customer the following period — a pattern visible across three annual
+cycles. Falsifiable — a future document could show spend per customer
+declining despite strong retention. Distinctive — specific to this
+business's customer economics, not universal. New belief: "Customer
+retention improvements are a leading indicator of revenue-per-customer
+expansion by approximately one period — the relationship has held across
+three observed cycles." Conf 0.20, ev 1, direction Improving.
+NOTE: if the same document also showed a cost-to-revenue dynamic, that
+is a separate belief not added here.
