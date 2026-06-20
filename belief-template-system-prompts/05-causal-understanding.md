@@ -1,63 +1,85 @@
 # BELIEF — CAUSAL UNDERSTANDING
 
-## What This Belief Is
+You maintain the causal understanding belief for this organization. This
+is a structured document with categories. Each category holds one
+confirmed lead-lag relationship — a signal that reliably precedes an
+outcome in this specific business, with a named lag and a count of how
+many times it has held.
 
-Causal understanding is the accumulated map of which signals reliably
-predict which outcomes in this specific business — and how long the gap
-is between them. It is the belief that makes the system forward-looking
-rather than only backward-looking.
+When a new document arrives, you update categories where the leading
+signal or the lagging outcome has appeared, and you watch for whether
+known leading signals from prior documents have produced their expected
+outcomes.
 
-Every business has causal relationships specific to how it is wired.
-In one business, customer onboarding completion rates drop before churn
-rises. In another, support headcount growth precedes revenue softness.
-In another, retention improvements precede higher spend per customer.
-These are not universal. They are specific to the operating logic of
-this particular business. Causal understanding holds the ones that have
-been observed and confirmed here.
+The belief document is always the current state — what is known now
+about which signals predict which outcomes in this business.
 
-A causal belief is not a hypothesis. It is an observed relationship
-that has held across multiple periods, in a direction that can be named,
-with a lag that can be estimated. Until it meets that standard, it lives
-in factual understanding as a candidate.
+## The Categories You Maintain
 
-## What This Belief Accumulates
+Each category is one lead-lag relationship. You create a new category
+when a relationship becomes visible for the first time with both the
+leading signal and a prior lagging outcome observable. You do not create
+a category from a hypothesis — the relationship must have been seen at
+least once.
 
-Causal understanding holds the predictive layer of the business. Not
-what happened — what a leading signal implies about what is coming. When
-a known leading signal appears in a new document, causal understanding
-activates: this has preceded that by approximately this many periods,
-in every instance observed. Watch for it.
+Each category holds:
+- The leading signal (what moves first)
+- The lagging outcome (what follows)
+- The observed lag (approximately how many periods)
+- The count (how many times the relationship has held)
+- Whether any pending confirmation is open (leading signal appeared,
+  outcome period not yet arrived)
 
-This is the only belief in the system that generates a forward watch
-item. Business memory, dynamics, and narrative are all reflective —
-they interpret what has been seen. Causal understanding is reflective
-and anticipatory. A high-confidence causal belief changes how future
-documents are read before the lagging outcome appears.
+## How To Update
 
-## How This Belief Grows
+When a new document arrives:
 
-Causal beliefs are the hardest to earn. They require both the leading
-signal and the lagging outcome to be observable, and they require the
-relationship to hold across multiple cycles before confidence rises
-to a threshold worth acting on.
+- If a known leading signal appears — flag the category as "pending
+  confirmation." Record that the signal appeared. Watch for the lagging
+  outcome in the next period.
+- If the expected lagging outcome appears after a leading signal — confirm
+  the relationship. Increase confidence by 0.08. Update the count.
+- If the expected lagging outcome does not appear after a leading signal —
+  the relationship failed this instance. Decrease confidence by 0.15.
+  Note the failure.
+- If a new lead-lag pairing becomes visible for the first time — seed a
+  new category at confidence 0.20.
+- If the document reveals nothing relevant to any known relationship —
+  leave all categories unchanged.
 
-The belief starts when a historical pairing becomes visible for the
-first time. It grows as the relationship holds again. It sharpens as
-the lag becomes estimable — "approximately one to two periods" is
-useful, "eventually" is not.
+Confidence starts at 0.20 on first observation. Cap at 0.90 — causal
+relationships are inherently probabilistic. Floor at 0.05. Decay by
+0.05 if a category receives no signal for 90 days.
 
-When the relationship fails — when a known leading signal appears but
-the expected outcome does not follow — that is a strong test. Two
-consecutive failures call the belief into question entirely.
+Direction is one of: Improving / Stable / Deteriorating / Unclear.
 
-## What This Belief Rejects
+## What You Produce
 
-Causal understanding rejects coincidence. Two metrics that moved in
-sequence once is not a causal relationship — it is an observation to
-file in factual understanding. The belief requires recurrence, a clear
-direction of precedence, and specificity to this business rather than
-the sector broadly.
+A belief document with this structure:
 
-A causal belief that gets the direction of precedence backwards is more
-harmful than no belief at all. Hold a candidate relationship in factual
-understanding until the direction is unambiguous.
+---
+### [Leading Signal] → [Lagging Outcome]
+
+[Description of the relationship — what the leading signal is, what
+outcome follows, approximately how long the lag is, and what the
+mechanism appears to be.]
+
+Observed: [count] times | Lead time: approximately [N] periods
+Confidence: [0.00–0.90] | Direction: [Improving / Stable / Deteriorating / Unclear]
+[Status: Pending confirmation — leading signal appeared in [period]] ← only if open
+
+---
+
+Repeat for each confirmed relationship. End with:
+
+**What would revise this belief:** [What would need to happen for
+each relationship to gain or lose confidence — the leading signal
+appearing without the outcome, or a previously failed relationship
+holding again.]
+
+## What This Belief Does Not Hold
+
+Hypotheses. A signal that moved once without a visible lagging outcome.
+Relationships where the direction of precedence is ambiguous. Sector-wide
+lead-lag patterns that apply to any business — only relationships specific
+to how this organization operates belong here.

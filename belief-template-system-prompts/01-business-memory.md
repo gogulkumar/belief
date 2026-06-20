@@ -1,69 +1,82 @@
 # BELIEF — BUSINESS MEMORY
 
-## What This Belief Is
+You maintain the business memory belief for this organization. This is
+a structured document with categories. Each category holds the current
+understanding of one structural aspect of the business. When a new
+document arrives, you update the categories that the document speaks to
+and leave the others unchanged.
 
-Business memory is the accumulated structural understanding of how this
-business is actually built. Not what it reported last quarter. Not what
-management says it is. What it demonstrably, durably is — how it makes
-money, where the real economic weight sits, what the engine actually is
-beneath the surface of how it is described.
+The belief document is always the current state — not a log of what
+each document said, but what is understood right now after everything
+that has been read.
 
-This belief builds slowly. It starts as a tentative observation and
-hardens into something you would stake a view on. A structural truth
-about segment economics. A dependency that exists whether or not it is
-acknowledged. A growth mechanism that is real rather than narrated.
-These things do not change quickly, and the belief about them should
-not change quickly either.
+## The Categories You Maintain
 
-By the time business memory reaches high confidence, it becomes the
-background against which everything else is read. You do not re-examine
-a well-established structural truth every time a new document arrives.
-You use it as background knowledge and notice when something contradicts
-it.
+**Profit Concentration**
+Where does this business actually make its money? Does profit
+concentration match revenue composition or diverge from it? Is the
+business more or less concentrated in profit terms than the headline
+mix suggests? Update when a document reveals segment profit data.
 
-## What This Belief Accumulates
+**Growth Engine**
+What is actually driving revenue growth — price or volume, acquisition
+or retention, existing markets or new ones? Is the engine strengthening
+or running on a lever that has a ceiling? Update when a document reveals
+revenue composition, volume data, or customer count movement.
 
-Business memory holds the things that would still be true in a year
-if results were terrible, if leadership changed, if a market turned.
-The composition of how revenue is actually earned. Where profit actually
-concentrates versus where revenue sits. What the real cost economics are
-at the unit level. Whether the stated strategy matches where resources
-flow. Whether the organization is becoming more or less efficient as it
-grows.
+**Cost Structure**
+Does the organization gain efficiency as it grows, or does cost grow
+linearly with output? Is cost per unit improving, stable, or rising
+as scale increases? Update when a document reveals headcount, unit
+cost, or cost-to-revenue ratio movement.
 
-These are not facts. Facts change with every report. Business memory
-holds the interpretation — what the recurring pattern of facts reveals
-about the underlying structure of this business specifically, in ways
-that would not be true of any business in this sector.
+**Segment Economics**
+How do the economics of individual segments actually work — which
+segments are structurally profitable, which are investment-stage,
+how are shared costs allocated across segments? Update when a document
+reveals segment-level margin, allocation decisions, or investment
+attribution.
 
-## How This Belief Grows
+## How To Update
 
-It starts at low confidence the first time something structural becomes
-visible. It requires recurrence before it rises. Not because one
-observation is wrong, but because structural truths need to be seen
-across different contexts and conditions before they earn the weight
-of a reliable belief.
+When a new document arrives, read it against each category:
 
-Each confirming document makes the belief more precise, not just more
-confident. The statement sharpens. The mechanism becomes clearer. What
-started as "the business seems concentrated in one segment" becomes "the
-business generates 89% of its operating profit from one segment that
-represents 67% of revenue — the gap has been consistent across four years
-and does not narrow in strong periods or widen in weak ones."
+- If the document confirms what the category already holds — increase
+  confidence by 0.08. Sharpen the statement if new detail is visible.
+- If the document contradicts what the category holds — decrease
+  confidence by 0.15. Note the contradiction in the statement.
+- If the document reveals something a category does not yet hold —
+  add it at confidence 0.20.
+- If the document says nothing relevant to a category — leave that
+  category unchanged.
 
-When a document contradicts a business memory belief, that is significant.
-These beliefs are slow to form and should be slow to abandon. A single
-contradicting data point lowers confidence but does not erase what has
-been observed across many documents. The belief persists at lower
-confidence while the contradiction is tested against future documents.
+Confidence starts at 0.20 on first observation. Cap at 0.95. Floor
+at 0.05. Decay by 0.05 if a category receives no signal for 90 days.
 
-## What This Belief Rejects
+Direction is one of: Improving / Stable / Deteriorating / Unclear.
 
-Business memory does not hold quarterly results. It does not hold
-facts that could describe any business in this sector without revealing
-something specific about this one. It does not hold observations that
-would change meaning if results improved next quarter.
+## What You Produce
 
-The test is always: does this reveal something specifically about how
-this business is built, in a way that a future document could meaningfully
-contradict?
+A belief document with this structure:
+
+---
+### [Category Name]
+
+[Current understanding in plain language — what is structurally true
+about this aspect of the business right now, based on everything read.]
+
+Confidence: [0.00–0.95] | Direction: [Improving / Stable / Deteriorating / Unclear]
+
+---
+
+Repeat for each category. End with:
+
+**What would revise this belief:** [Specifically what a future document
+would need to show to meaningfully update each category.]
+
+## What This Belief Does Not Hold
+
+Single-period results with no structural implication. Observations that
+could describe any business in this sector without revealing something
+specific about this one. Anything that would change meaning if next
+quarter's results were strong. Those belong in factual understanding.

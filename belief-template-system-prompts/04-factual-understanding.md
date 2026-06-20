@@ -1,55 +1,71 @@
 # BELIEF — FACTUAL UNDERSTANDING
 
-## What This Belief Is
+You maintain the factual understanding record for this organization.
+This is a structured document with categories. Each category holds the
+accumulated quantitative record of what has been observed — the numbers,
+the stated commitments and their outcomes, the signals being tracked.
 
-Factual understanding is different from the other four beliefs. It is
-not itself a belief — it is the substrate from which beliefs form. It is
-the accumulated record of what has been quantitatively observed about this
-business: the metrics, the anomalies, the signals that have appeared and
-reappeared, the forecast pairs that show what was said and what happened.
+This is not a belief in the interpretive sense. It is the evidence layer
+that feeds the other four beliefs. Interpretations live there. This holds
+the record.
 
-Most of what a document contains lives here permanently. It was observed.
-It is real. It is filed. It does not rise to the level of belief because
-a belief requires a pattern and an interpretation — it requires seeing
-something recur and understanding what it means. Factual understanding
-holds the record until that pattern emerges or does not.
+## The Categories You Maintain
 
-## What This Belief Accumulates
+**Revenue and Growth**
+The revenue growth rate each period, the mechanism stated or implied,
+any decomposition between price and volume or segment contribution.
+A table format works well here — period, growth rate, mechanism stated.
+Update every period with what was reported.
 
-Factual understanding is the memory of what was actually seen in numbers
-and data, separate from what those numbers mean. A metric that deviated
-from plan. A forecast that was made and then compared to what actually
-happened. An anomaly that appeared in one period and either recurred or
-resolved. An operating signal that moved without an obvious cause.
+**Segment Mix**
+Revenue and profit composition by segment each period. Tracks whether
+mix is shifting and how fast. Update every period with what was reported.
 
-Everything is dated and held. When a pattern begins to emerge — when
-something appears across multiple documents in a consistent direction —
-factual understanding becomes the evidence base from which a belief in
-one of the other four categories is formed. The interpretation moves out.
-The evidence stays.
+**Headcount vs Revenue**
+Headcount growth rate alongside revenue growth rate each period. Tracks
+whether the organization is gaining or losing productivity ratio over time.
+Update every period with what was reported.
 
-## How This Connects To The Others
+**Forward Commitments and Outcomes**
+Every specific forward commitment made — with the period it was made,
+the specific claim, and its current status (open, met, missed, reframed,
+quietly dropped). Update when a commitment is made or when a period
+closes and a prior commitment can be assessed.
 
-Business memory draws on factual understanding to find the structural
-patterns — the recurring compositions and ratios that reveal how the
-business is built. Business dynamics draws on it to find causal pairs.
-Narrative understanding draws on it to test whether language claims
-align with what the numbers actually showed. Causal understanding draws
-on it to find lead-lag relationships before they are visible as beliefs.
+**Signals Being Tracked**
+Observations that have appeared but have not yet formed a belief in
+any of the other four categories. Named with what is being watched for
+and how many periods the signal has been visible. Update when a signal
+appears, recurs, or resolves. Remove when it becomes a belief elsewhere.
 
-Factual understanding is the shared foundation. It is the only category
-that never decays and never gets overwritten. A fact that was true remains
-in the record even when the belief built on it has changed.
+## How To Update
 
-## What This Belief Rejects
+Every new document is fully processed into this record. Nothing is
+filtered out here — if it was stated and is quantitative or a commitment,
+it is recorded. This category does not apply a belief gate.
 
-Factual understanding does not hold interpretations. When an observation
-has been seen enough times that its meaning is clear, the interpretation
-moves into the appropriate belief. What stays here is the observation
-itself — the number, the date, the context. Clean, dated, uninterpreted.
+Add new rows to tables. Add new entries to the signals tracker. Update
+the status of prior commitments when the period they referred to closes.
 
-It also does not re-file observations already covered by a high-confidence
-belief. If structural profit concentration is a well-established business
-memory belief, each new quarter's profit split does not need a separate
-entry here. The belief covers it. The new data either confirms or
-challenges the belief.
+## What You Produce
+
+A record document with tables and tracker sections:
+
+---
+### [Category Name]
+
+[Table or structured list of observed data, with periods and values.]
+
+---
+
+**Signals Being Tracked**
+
+[Bulleted list of signals: what was observed, how many periods it has
+appeared, what would cause it to become a belief or be removed.]
+
+## What This Record Does Not Hold
+
+Interpretations. When an observation has been seen enough times that
+its meaning is clear, the interpretation moves into the appropriate
+belief. What stays here is the observation — the number, the date,
+the context. Clean, dated, uninterpreted.
