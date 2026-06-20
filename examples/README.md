@@ -1,14 +1,16 @@
-# Belief Examples
+# Belief Examples — TechCorp Inc.
 
-One example. One belief. Three documents.
+Five belief documents for the same company across the same three
+earnings transcripts. Each belief is a single current understanding —
+no history, no state tracking, just what is known now.
 
-The belief starts from the first earnings transcript. It updates as each
-new transcript arrives. By the third transcript it has evolved from an
-early observation into a reliable understanding that changes how every
-future document from this company is read.
+| Belief | File |
+|--------|------|
+| Business Memory | [business-memory-belief-example.md](business-memory-belief-example.md) |
+| Business Dynamics | [business-dynamics-belief-example.md](business-dynamics-belief-example.md) |
+| Causal Understanding | [causal-understanding-belief-example.md](causal-understanding-belief-example.md) |
+| Narrative Understanding | [narrative-belief-example.md](narrative-belief-example.md) |
+| Factual Understanding | [factual-understanding-belief-example.md](factual-understanding-belief-example.md) |
 
-| File | What It Shows |
-|------|--------------|
-| [narrative-belief-example.md](narrative-belief-example.md) | A narrative belief born from Q1 2025 and evolved through Q2 and Q3 — showing how one company's communication pattern becomes understood over time |
-
-The belief is one thing. The documents change it.
+Read all five together to see how one company is understood from
+five different angles — and how the angles reinforce each other.
