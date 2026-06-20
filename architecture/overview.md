@@ -1,8 +1,8 @@
-# Architecture Overview — Credo in the AI Stack
+# Architecture Overview — Belief in the AI Stack
 
-## Where Credo Sits
+## Where Belief Sits
 
-Credo is not a retrieval system, a chat interface, or a database. It is the **reasoning layer** that sits above RAG and below the agent.
+Belief is not a retrieval system, a chat interface, or a database. It is the **reasoning layer** that sits above RAG and below the agent.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -12,7 +12,7 @@ Credo is not a retrieval system, a chat interface, or a database. It is the **re
                        │  belief context loaded at session start
                        ▼
 ┌─────────────────────────────────────────────────────────┐
-│                   CREDO LAYER                          │
+│                   BELIEF LAYER                          │
 │         World Model (L1) — 50–100 active beliefs        │
 │         18 belief reasoning sub-lenses                  │
 │         Fact-to-belief gate · Update arithmetic         │
@@ -31,21 +31,21 @@ Credo is not a retrieval system, a chat interface, or a database. It is the **re
 └─────────────────────────────────────────────────────────┘
 ```
 
-## How Agents Use Credo
+## How Agents Use Belief
 
-Agents do not query Credo at runtime. The world model is **loaded into context at session start** — the same way a human analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
+Agents do not query Belief at runtime. The world model is **loaded into context at session start** — the same way a human analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
 
 ### ODIN (Financial Query Agent)
-Without Credo: queries Hyperion blind — syntactically correct SQL, contextually naive answers.
-With Credo: knows Q3 always has a one-time EBITDA distortion. Knows a cost center runs 15% above plan historically. SQL becomes calibrated, not just correct.
+Without Belief: queries Hyperion blind — syntactically correct SQL, contextually naive answers.
+With Belief: knows Q3 always has a one-time EBITDA distortion. Knows a cost center runs 15% above plan historically. SQL becomes calibrated, not just correct.
 
 ### THOR (Narrative / Comms Agent)
-Without Credo: uses static voice profiles frozen at setup.
-With Credo: knows Scott has grown more cautious on margin guidance. Knows Ariane shifted from growth to efficiency framing six months ago. Scripts reflect evolving voice.
+Without Belief: uses static voice profiles frozen at setup.
+With Belief: knows Scott has grown more cautious on margin guidance. Knows Ariane shifted from growth to efficiency framing six months ago. Scripts reflect evolving voice.
 
 ### Evals
-Without Credo: checks SQL accuracy and output format.
-With Credo: checks whether an answer reflects what is actually true about the business. A new category of evaluation that cannot exist without a belief layer.
+Without Belief: checks SQL accuracy and output format.
+With Belief: checks whether an answer reflects what is actually true about the business. A new category of evaluation that cannot exist without a belief layer.
 
 ## The Four-Component Model
 
