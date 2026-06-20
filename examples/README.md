@@ -1,11 +1,8 @@
 # Belief Examples
 
-One company. All five belief types. One document.
+Each file is one belief type applied to one company. A company will have
+as many belief files as belief types being tracked — one file each.
 
-| File | What it shows |
-|------|--------------|
-| [google-belief.md](google-belief.md) | Alphabet (Google) across Q1 2024 · Q2 2024 · Q4 2024 · Q2 2025 earnings transcripts — Business Memory, Business Dynamics, Causal Understanding, Narrative Understanding, Factual Understanding in one evolving belief. |
-
-Read it as one thing. The five belief types are five angles on the same
-organization. Each angle sees something the others cannot. Together they
-are the belief.
+| File | Belief Type | Company | Source |
+|------|------------|---------|--------|
+| [google-narrative-belief.md](google-narrative-belief.md) | Narrative Understanding | Alphabet (Google) | Q1 2024 · Q2 2024 · Q4 2024 · Q2 2025 earnings transcripts |
