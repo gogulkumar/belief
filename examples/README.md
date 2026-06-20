@@ -1,24 +1,27 @@
 # Belief Examples
 
-This folder shows what accumulated belief looks like in practice —
-how the world model builds up over time as more documents are read,
-and how individual beliefs change as evidence confirms, contradicts,
-or decays them.
+This folder shows the five belief lenses in action — a document chunk
+goes in, the lens reasons through it, and the world model update comes
+out. The examples show not just what beliefs look like but how the
+reasoning from evidence to belief actually works.
 
-## What You Will Find Here
+## Files
 
 | File | What It Shows |
 |------|--------------|
-| [world-model-after-5-documents.md](world-model-after-5-documents.md) | The full world model of one business after five documents — what has been learned, what is still uncertain, what has been filed vs believed |
-| [belief-evolution-single-belief.md](belief-evolution-single-belief.md) | One belief tracked across six document reads — how confidence moves, how the statement sharpens, what caused each update |
-| [fact-vs-belief-comparison.md](fact-vs-belief-comparison.md) | The same raw observation shown twice — once filed as a fact (correct), once incorrectly held as a belief — with explanation of the difference |
+| [lens-in-action-business-memory.md](lens-in-action-business-memory.md) | Business Memory lens reading a quarterly review — what it extracts, what it ignores, what it adds to the world model |
+| [lens-in-action-causal-understanding.md](lens-in-action-causal-understanding.md) | Causal Understanding lens identifying a lead-lag relationship across documents — how a hypothesis becomes a belief |
+| [lens-in-action-narrative-understanding.md](lens-in-action-narrative-understanding.md) | Narrative Understanding lens reading the same document as Business Memory — shows how the same text produces different belief types |
+| [world-model-snapshot.md](world-model-snapshot.md) | The accumulated world model after six documents — what all five lenses have built together into one belief store |
+| [fact-vs-belief.md](fact-vs-belief.md) | The same raw observation filed as a fact (correct) vs held as a belief (wrong) — why the difference matters |
 
 ## How To Read These
 
-These are not templates to fill in. They are illustrations of what
-the belief system produces when it is working correctly. Read them
-to calibrate your own judgment about when something earns the status
-of belief vs when it should stay as a tracked fact.
+Each "lens in action" example has three sections:
+1. **The document** — what came in (a real excerpt-style chunk)
+2. **The reasoning** — how the lens evaluated it against the gate tests
+3. **The world model update** — exactly what changed and what stayed silent
 
-The most important thing to notice: most of what a document contains
-does not become a belief. The silence is correct.
+The most important thing to notice: silence is the most common output.
+Most of what a document contains does not pass the gate. That is correct
+behavior, not a failure.
