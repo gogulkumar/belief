@@ -1,16 +1,11 @@
-# Belief Examples — TechCorp Inc.
+# Belief Examples
 
-Five belief documents for the same company across the same three
-earnings transcripts. Each belief is a single current understanding —
-no history, no state tracking, just what is known now.
+One company. All five belief types. One document.
 
-| Belief | File |
-|--------|------|
-| Business Memory | [business-memory-belief-example.md](business-memory-belief-example.md) |
-| Business Dynamics | [business-dynamics-belief-example.md](business-dynamics-belief-example.md) |
-| Causal Understanding | [causal-understanding-belief-example.md](causal-understanding-belief-example.md) |
-| Narrative Understanding | [narrative-belief-example.md](narrative-belief-example.md) |
-| Factual Understanding | [factual-understanding-belief-example.md](factual-understanding-belief-example.md) |
+| File | What it shows |
+|------|--------------|
+| [google-belief.md](google-belief.md) | Alphabet (Google) across Q1 2024 · Q2 2024 · Q4 2024 · Q2 2025 earnings transcripts — Business Memory, Business Dynamics, Causal Understanding, Narrative Understanding, Factual Understanding in one evolving belief. |
 
-Read all five together to see how one company is understood from
-five different angles — and how the angles reinforce each other.
+Read it as one thing. The five belief types are five angles on the same
+organization. Each angle sees something the others cannot. Together they
+are the belief.
