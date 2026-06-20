@@ -1,85 +1,69 @@
 # BELIEF — BUSINESS MEMORY
 
-## What This Belief Captures
+## What This Belief Is
 
-Business memory is the enduring structural understanding of how this
-business is built — not what it reported this period, but what is
-durably true about how it makes money, where its economic weight sits,
-and what the fundamental engine is.
+Business memory is the accumulated structural understanding of how this
+business is actually built. Not what it reported last quarter. Not what
+management says it is. What it demonstrably, durably is — how it makes
+money, where the real economic weight sits, what the engine actually is
+beneath the surface of how it is described.
 
-You are reading for things that would still be true a year from now.
-Structural facts about segment composition. How the business is
-organizationally shaped. What the real economic engine is versus the
-stated one. Where the structural dependencies sit.
+This belief builds slowly. It starts as a tentative observation and
+hardens into something you would stake a view on. A structural truth
+about segment economics. A dependency that exists whether or not it is
+acknowledged. A growth mechanism that is real rather than narrated.
+These things do not change quickly, and the belief about them should
+not change quickly either.
 
-This belief does not care about quarter-to-quarter results. It cares about
-what those results reveal about the underlying architecture of the business
-— the things that would survive a bad quarter, a leadership change, or a
-market shift.
+By the time business memory reaches high confidence, it becomes the
+background against which everything else is read. You do not re-examine
+a well-established structural truth every time a new document arrives.
+You use it as background knowledge and notice when something contradicts
+it.
 
-## What Counts As A Business Memory Belief
+## What This Belief Accumulates
 
-A belief must answer: what is structurally true about how this business
-is built?
+Business memory holds the things that would still be true in a year
+if results were terrible, if leadership changed, if a market turned.
+The composition of how revenue is actually earned. Where profit actually
+concentrates versus where revenue sits. What the real cost economics are
+at the unit level. Whether the stated strategy matches where resources
+flow. Whether the organization is becoming more or less efficient as it
+grows.
 
-Examples of valid beliefs:
-- How revenue is actually composed vs how it is described
-- Where profit is actually generated vs where revenue lives
-- What the real economic dependency of the business is
-- How the organizational structure shapes commercial outcomes
-- What the actual growth engine is — price vs volume, acquisition vs
-  retention, existing markets vs new ones
-- Whether the cost structure gains efficiency as the business scales
-  or grows linearly with it
-- Whether stated strategic priorities match where resources actually go
+These are not facts. Facts change with every report. Business memory
+holds the interpretation — what the recurring pattern of facts reveals
+about the underlying structure of this business specifically, in ways
+that would not be true of any business in this sector.
 
-Examples of what this belief rejects:
-- "Revenue was X this quarter" — a fact, not a belief
-- "The business reported strong results" — not structural
-- "Headcount grew 8%" — a level, not a structural truth
-- Anything that could describe any business in this sector without
-  revealing what is specific about this one
+## How This Belief Grows
 
-## The Gate
+It starts at low confidence the first time something structural becomes
+visible. It requires recurrence before it rises. Not because one
+observation is wrong, but because structural truths need to be seen
+across different contexts and conditions before they earn the weight
+of a reliable belief.
 
-Run three tests before forming a belief:
+Each confirming document makes the belief more precise, not just more
+confident. The statement sharpens. The mechanism becomes clearer. What
+started as "the business seems concentrated in one segment" becomes "the
+business generates 89% of its operating profit from one segment that
+represents 67% of revenue — the gap has been consistent across four years
+and does not narrow in strong periods or widen in weak ones."
 
-**Falsifiability** — can a future document contradict this? If no — not a belief. It is either a fact or so generic it cannot be challenged.
+When a document contradicts a business memory belief, that is significant.
+These beliefs are slow to form and should be slow to abandon. A single
+contradicting data point lowers confidence but does not erase what has
+been observed across many documents. The belief persists at lower
+confidence while the contradiction is tested against future documents.
 
-**Distinctiveness** — does this reveal something specific to this business, or could it describe any business in this sector at this stage? If the latter — skip.
+## What This Belief Rejects
 
-**Durability** — would this still be true in a year if results improved or deteriorated? If no — it belongs in factual understanding, not business memory.
+Business memory does not hold quarterly results. It does not hold
+facts that could describe any business in this sector without revealing
+something specific about this one. It does not hold observations that
+would change meaning if results improved next quarter.
 
-## How Beliefs Update
-
-A first document can create a business memory belief at confidence 0.20.
-You do not need prior confirmation to seed a belief. You need to be
-able to imagine a future document contradicting it.
-
-Confirmed again → +0.08
-Directly contradicted → −0.15
-No signal for 90 days → −0.05 (decay)
-Cap at 0.95, floor at 0.05
-
-## The Split Rule
-
-If a belief requires "while", "with", "where", or "and" to join two
-different structural observations — split it into two beliefs. They can
-be confirmed or contradicted independently, and compressing them hides
-which part of the belief is being updated by new evidence.
-
-Wrong: "The business depends structurally on one segment while also
-showing declining efficiency as it scales."
-Right: Two separate beliefs — one about segment dependency, one about
-scaling efficiency.
-
-## What To Ignore
-
-Anything the business reports consistently without variation — stable
-structural facts that are already high-confidence beliefs require no
-update. Stay silent when a document confirms what is already known at
-high confidence.
-
-Stay silent when a unit reports results without revealing structure.
-Stay silent when the observation passes the falsifiability test but
-fails distinctiveness — too generic to hold.
+The test is always: does this reveal something specifically about how
+this business is built, in a way that a future document could meaningfully
+contradict?

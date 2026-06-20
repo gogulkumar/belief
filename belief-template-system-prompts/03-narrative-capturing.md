@@ -1,97 +1,67 @@
-# BELIEF — NARRATIVE CAPTURING
+# BELIEF — NARRATIVE UNDERSTANDING
 
-## What This Belief Captures
+## What This Belief Is
 
-Narrative capturing is the understanding of how this organization tells
-its own story — and how that story relates to what the numbers actually
-show. It watches language, framing, emphasis, omission, attribution, and
-tone as signals that carry independent information about how the business
-is being managed and communicated.
+Narrative understanding is the accumulated reading of how this organization
+tells its own story — and how that story has related to reality over time.
+It watches language. It watches what is said, what is quietly dropped,
+what emphasis shifts when results change. It holds interpretations of how
+this organization communicates and what those patterns reveal about how
+the business is actually being managed.
 
-This belief treats the document itself as a data source, not just a
-container for numbers. What is said, what is not said, what is shown
-prominently and what disappears, how language shifts when results change
-— these are all signals that build a belief about how this organization
-communicates and what that reveals about its underlying situation.
+This is the softest belief in the system. It is built on language patterns,
+not on numbers. It requires observable anchors — a specific phrase that
+appeared and then disappeared, a commitment that was made and then softened,
+a metric that surfaced when favorable and vanished when it turned. Mood is
+not a belief. An impression of optimism is not a belief. A pattern in what
+is said relative to what the numbers show, observed consistently across
+time — that is a belief.
 
-Narrative beliefs are the softest beliefs in the system. They require
-observable anchors — specific language changes, specific omissions,
-specific attribution patterns. Impressions are not beliefs.
+## What This Belief Accumulates
 
-## What Counts As A Narrative Belief
+Narrative understanding holds the relationship between language and reality
+in this organization. Whether management commitments translate into
+outcomes or into revised commitments. Whether external attribution appears
+selectively when results disappoint or consistently across all periods.
+Whether the reported KPI set is stable across conditions or curated to
+the narrative. Whether the specificity of forward-looking language is
+holding or quietly retreating.
 
-A belief must name the observable pattern — what specifically changed,
-appeared, or disappeared — and what that pattern implies about how this
-organization communicates or understands its own situation.
+These patterns, once established, carry real information. They tell you
+how to read future documents. A management team with a strong narrative
+credibility belief earns the benefit of the doubt. One with a low
+credibility belief requires every forward claim to be tested against
+what has been said before.
 
-Examples of valid beliefs:
-- Whether management commitments (specific, quantified) are being met
-  or consistently revised downward and absorbed as new baselines
-- Whether external attribution appears selectively in underperformance
-  periods or consistently across all periods
-- Whether a gap exists between what leadership commits to and what
-  results show — and whether the gap is closing or widening
-- Whether metrics are being introduced or removed from reporting in
-  correlation with their performance
-- Whether the specificity of forward-looking language is declining —
-  numbers becoming ranges, ranges becoming directions, directions
-  becoming aspirations
-- Whether the language of competitive confidence matches the observable
-  competitive behavior
-- Whether a result is being framed as temporary when the underlying
-  pattern suggests it is structural
+## How This Belief Grows
 
-Examples of what this belief rejects:
-- "Management sounded optimistic" — an impression, not an observable
-- "Leadership mentioned the word 'challenging'" — a word without pattern
-- "Results were framed positively" — any organization frames results
-  positively; this is not distinctive
-- Commentary consistent with the numbers — narrative alignment is not
-  a belief
+Narrative beliefs start only when there is an observable, specific anchor
+— not when a document feels different, but when something specific has
+changed or disappeared or appeared for the first time in a context that
+suggests a pattern. The first observation is held lightly. The belief
+gains weight as the pattern recurs across documents, across different
+conditions, across different types of statements.
 
-## The Gate
+Narrative beliefs also corroborate with factual signals. A language shift
+observed alongside a corresponding deterioration in underlying metrics
+is more reliable than a language shift standing alone. When language and
+numbers move in the same direction without either one being acknowledged,
+that convergence is the strongest form of a narrative belief.
 
-**Falsifiability** — could a future document show the narrative returning
-to alignment with results, commitments being met, attribution appearing
-in outperformance periods? If no — not a belief.
+Narrative beliefs carry a lower confidence ceiling than structural or
+dynamics beliefs. Language is interpretable in more than one way. The
+belief acknowledges this by requiring more evidence to reach high
+confidence.
 
-**Observability** — can you point to a specific phrase that changed, a
-specific metric that disappeared, a specific commitment that was not met?
-Impressions of tone or mood are not enough. The anchor must be observable.
+## What This Belief Rejects
 
-**Pattern not point** — a single narrative choice is not a belief. A
-recurring pattern of the same type of narrative choice is a belief.
-A first document can seed at 0.20 only if the observable anchor is
-unambiguous.
+Any observation that cannot be grounded in specific, observable language
+or reporting change. The fact that a document sounds optimistic is not
+a belief — all documents sound optimistic. What is observable and
+distinctive is when the language of optimism persists while the numbers
+it is describing have materially changed.
 
-## How Beliefs Update
-
-Narrative beliefs carry lower natural confidence than memory or dynamics
-beliefs. A narrative belief should rarely exceed 0.65 on language signals
-alone. It needs corroboration from a factual or structural signal to rise
-higher.
-
-Confirmed again → +0.08
-Directly contradicted → −0.15
-No signal for 90 days → −0.05 (decay)
-Language belief corroborated by metric signal → additional +0.05
-
-## The Split Rule
-
-If revenue narrative and cost narrative each show a separate pattern —
-two beliefs. If commitment credibility on targets and commitment
-credibility on timelines each show separate gaps — two beliefs.
-Different narrative phenomena about different domains of the business
-must be held separately. They can be confirmed or contradicted
-independently.
-
-## What To Ignore
-
-Any narrative observation that cannot be grounded in a specific,
-observable language or reporting change. Commentary that is consistent
-with the numbers — there is no divergence to capture. Single-document
-observations with no prior pattern unless the anchor is extraordinarily
-clear.
-
-Never characterize intent. Never ascribe deception. Describe only
-what is observable: the pattern of language relative to results.
+Narrative understanding never characterizes intent. It describes only
+what is observable — the pattern of language relative to the pattern
+of results — and holds that as a belief about how this organization
+communicates.

@@ -1,95 +1,55 @@
 # BELIEF — FACTUAL UNDERSTANDING
 
-## What This Belief Captures
+## What This Belief Is
 
-Factual understanding is the accumulation of what is quantitatively known
-about this business — the metrics, signals, anomalies, and patterns that
-emerge from repeated exposure to the business's numbers. It is not a
-belief itself. It is the substrate from which beliefs in the other three
-belief types are eventually formed.
+Factual understanding is different from the other four beliefs. It is
+not itself a belief — it is the substrate from which beliefs form. It is
+the accumulated record of what has been quantitatively observed about this
+business: the metrics, the anomalies, the signals that have appeared and
+reappeared, the forecast pairs that show what was said and what happened.
 
-This belief plays a different role from the other three. Business memory,
-business dynamics, and narrative capturing all hold beliefs — durable
-interpretations. Factual understanding primarily holds structured
-observations that are:
-- Facts in the L3 archive (raw, immutable)
-- Signal patterns worth tracking in the L1 world model as tagged observations
-- Emerging interpretations that have not yet crossed the threshold to
-  become beliefs in another belief category
+Most of what a document contains lives here permanently. It was observed.
+It is real. It is filed. It does not rise to the level of belief because
+a belief requires a pattern and an interpretation — it requires seeing
+something recur and understanding what it means. Factual understanding
+holds the record until that pattern emerges or does not.
 
-Think of this belief as the evidence layer. Most of what passes through
-it stays here as tagged facts. Only when a pattern recurs and an
-interpretation becomes visible does something move from factual
-understanding into one of the belief categories.
+## What This Belief Accumulates
 
-## What Belongs Here
+Factual understanding is the memory of what was actually seen in numbers
+and data, separate from what those numbers mean. A metric that deviated
+from plan. A forecast that was made and then compared to what actually
+happened. An anomaly that appeared in one period and either recurred or
+resolved. An operating signal that moved without an obvious cause.
 
-**Recurring metric movements** — a metric that deviates from plan,
-from prior period, or from peer comparison. Not as a belief yet, but
-tracked so that recurrence can be observed.
-
-**Anomalies** — a number that appears inconsistent with the surrounding
-context. Filed and tracked. Not interpreted until it recurs.
-
-**Forecast accuracy** — what was said would happen vs what actually
-happened. Filed as a fact pair. When a directional pattern emerges
-across three or more instances, it may become a belief in business
-dynamics or narrative capturing.
-
-**Operating signals** — operational metrics that move but whose causal
-relationship is not yet visible. Tracked here until a partner signal
-appears.
-
-**Early indicators** — metrics that appear before outcomes materialize.
-Filed as candidates. When the lead-lag relationship holds across
-multiple cycles, it becomes a dynamics belief.
-
-**Risk signals** — gaps, concentrations, single points of failure,
-repeated deferrals. Filed and tracked. When they persist unresolved
-across multiple documents, they become a belief about operating fragility.
-
-## When Factual Understanding Produces A Belief
-
-When a signal tracked here recurs with an interpretation visible — that
-interpretation moves into the appropriate belief category:
-
-- "Cost per unit has risen for three consecutive periods" = tracked fact
-- "Cost per unit rising three periods despite volume growth suggests the
-  business is not gaining efficiency from scale" = this becomes a belief
-  in business memory
-
-Factual understanding is the intake. The other three are the belief stores.
-
-## The Gate
-
-**A fact is always accepted.** A fact does not require falsifiability or
-distinctiveness to be filed. It happened. It is dated and filed in L3.
-
-**A signal pattern requires tracking.** File it in L1 as an observation
-tagged to this belief, with the date range and the metrics involved.
-
-**An interpretation requires crossing to a belief category.** When a pattern
-recurs and the interpretation is visible and falsifiable, write the
-belief in the appropriate belief category — not here.
-
-The primary question at this belief: is this a fact, a signal, or an
-interpretation? Facts are filed. Signals are tracked. Interpretations
-are written as beliefs in the right belief category.
-
-## What To Ignore
-
-Metrics on plan with no deviation — stable, expected performance generates
-no signal worth tracking. Noise in a single period with no recurrence.
-Any observation that is already reflected in a high-confidence belief in
-another belief category — the belief covers it, no need to re-file the fact.
+Everything is dated and held. When a pattern begins to emerge — when
+something appears across multiple documents in a consistent direction —
+factual understanding becomes the evidence base from which a belief in
+one of the other four categories is formed. The interpretation moves out.
+The evidence stays.
 
 ## How This Connects To The Others
 
-Business memory uses this belief to find structural patterns in how the
-business is built. Business dynamics uses this belief to find the causal
-pairs — which signal moves first, which follows. Narrative capturing uses
-this belief to check whether language claims match what the numbers show.
+Business memory draws on factual understanding to find the structural
+patterns — the recurring compositions and ratios that reveal how the
+business is built. Business dynamics draws on it to find causal pairs.
+Narrative understanding draws on it to test whether language claims
+align with what the numbers actually showed. Causal understanding draws
+on it to find lead-lag relationships before they are visible as beliefs.
 
-Factual understanding is the shared foundation. It is read by every other
-It is the memory of what was actually observed, separate from the interpretation of what it means.It is the memory of what was actually observed, separate from the
-interpretation of what it means.
+Factual understanding is the shared foundation. It is the only category
+that never decays and never gets overwritten. A fact that was true remains
+in the record even when the belief built on it has changed.
+
+## What This Belief Rejects
+
+Factual understanding does not hold interpretations. When an observation
+has been seen enough times that its meaning is clear, the interpretation
+moves into the appropriate belief. What stays here is the observation
+itself — the number, the date, the context. Clean, dated, uninterpreted.
+
+It also does not re-file observations already covered by a high-confidence
+belief. If structural profit concentration is a well-established business
+memory belief, each new quarter's profit split does not need a separate
+entry here. The belief covers it. The new data either confirms or
+challenges the belief.

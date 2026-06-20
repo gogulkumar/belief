@@ -1,94 +1,63 @@
 # BELIEF — CAUSAL UNDERSTANDING
 
-## What This Belief Captures
+## What This Belief Is
 
-Causal understanding is the accumulation of which signals reliably predict
-which outcomes in this specific business — the lead-lag map. Not how the
-business behaves broadly (that is business dynamics), but specifically:
-which observable event or metric precedes which consequence, and by
-approximately how long.
+Causal understanding is the accumulated map of which signals reliably
+predict which outcomes in this specific business — and how long the gap
+is between them. It is the belief that makes the system forward-looking
+rather than only backward-looking.
 
-This belief builds a predictive layer on top of factual observations. Where
-factual understanding files what happened, and business dynamics describes
-how the business operates as a system, causal understanding asks: given
-what I see today, what should I expect to see in one or two periods?
+Every business has causal relationships specific to how it is wired.
+In one business, customer onboarding completion rates drop before churn
+rises. In another, support headcount growth precedes revenue softness.
+In another, retention improvements precede higher spend per customer.
+These are not universal. They are specific to the operating logic of
+this particular business. Causal understanding holds the ones that have
+been observed and confirmed here.
 
-## What Counts As A Causal Belief
+A causal belief is not a hypothesis. It is an observed relationship
+that has held across multiple periods, in a direction that can be named,
+with a lag that can be estimated. Until it meets that standard, it lives
+in factual understanding as a candidate.
 
-A belief must name: a leading signal, a lagging outcome, the observable
-lag in this business, and the number of times the relationship has held.
+## What This Belief Accumulates
 
-Good: "Customer onboarding completion rate declining by more than 5 points
-in one period has preceded a churn increase by approximately one to two
-periods in each of the three observed instances."
-Not a belief: "Onboarding completion declined this quarter."
-Not a belief: "Churn might be affected by onboarding."
-Not a belief even: "Onboarding and churn are related." — too vague,
-no lag, no count.
+Causal understanding holds the predictive layer of the business. Not
+what happened — what a leading signal implies about what is coming. When
+a known leading signal appears in a new document, causal understanding
+activates: this has preceded that by approximately this many periods,
+in every instance observed. Watch for it.
 
-A first document can seed a causal belief at 0.20 only if both the leading
-signal and a prior lagging outcome are visible in the same document —
-meaning the document reveals a historical pairing, not just a current
-signal. You cannot form a causal belief from one signal alone with no
-visible outcome yet.
+This is the only belief in the system that generates a forward watch
+item. Business memory, dynamics, and narrative are all reflective —
+they interpret what has been seen. Causal understanding is reflective
+and anticipatory. A high-confidence causal belief changes how future
+documents are read before the lagging outcome appears.
 
-## What This Belief Does Not Hold
+## How This Belief Grows
 
-A single metric moving with no paired outcome. Correlations that apply
-equally across all businesses in this sector — sector-wide lead-lag
-relationships are not causal beliefs about this business. Outcomes
-without a visible leading signal. Causal hypotheses that have not yet
-been observed to hold even once.
+Causal beliefs are the hardest to earn. They require both the leading
+signal and the lagging outcome to be observable, and they require the
+relationship to hold across multiple cycles before confidence rises
+to a threshold worth acting on.
 
-## The Gate
+The belief starts when a historical pairing becomes visible for the
+first time. It grows as the relationship holds again. It sharpens as
+the lag becomes estimable — "approximately one to two periods" is
+useful, "eventually" is not.
 
-**Falsifiability** — could a future document show the leading signal
-moving without the expected outcome following? If yes — falsifiable.
+When the relationship fails — when a known leading signal appears but
+the expected outcome does not follow — that is a strong test. Two
+consecutive failures call the belief into question entirely.
 
-**Specificity of lag** — if you cannot state approximately how many
-periods separate the signal from the outcome, the relationship is not
-observable enough to hold as a belief. "Eventually" is not a lag.
+## What This Belief Rejects
 
-**Count** — causal beliefs must state how many times the relationship
-has held. The count directly informs confidence. One observation seeds
-at 0.20. Three observations bring the relationship to trackable
-reliability. Five or more justify acting on the belief predictively.
+Causal understanding rejects coincidence. Two metrics that moved in
+sequence once is not a causal relationship — it is an observation to
+file in factual understanding. The belief requires recurrence, a clear
+direction of precedence, and specificity to this business rather than
+the sector broadly.
 
-## How Beliefs Update
-
-Seed (one historical pairing visible): 0.20
-Holds again: +0.08
-Leading signal appears but outcome does not follow: −0.15
-(this is a strong test — the relationship failed)
-Leading signal appears but outcome period has not arrived yet: no update,
-flag as "pending confirmation"
-No signal for 90 days: −0.05 decay
-Cap at 0.90 (causal beliefs are inherently probabilistic, not certain)
-
-## The Split Rule
-
-Each lead-lag pair is a separate belief. A relationship between
-onboarding and churn is a different belief from a relationship between
-support ticket volume and retention decline, even if both appear in
-the same document. They can fail independently and must be tracked
-independently.
-
-## How This Belief Connects To The Others
-
-When a causal belief becomes high-confidence (above 0.60), it changes
-how you read future documents. A document that shows the leading signal
-should immediately activate the corresponding causal belief and flag
-it as "pending confirmation" — watching for the lagging outcome in
-the next one or two periods.
-
-This is the only belief in the system that produces a forward-looking
-watch item, not just a backward-looking belief update. When a known
-leading signal appears in a new document, note it: "BD-02 leading signal
-present — watch for lagging outcome in next 1–2 periods."
-
-## What To Ignore
-
-Any co-movement of two metrics where the direction of precedence is
-ambiguous — if you cannot determine which one moves first, file both
-in factual understanding and wait. A causal belief that gets the
-direction backwards is more harmful than no belief at all.
+A causal belief that gets the direction of precedence backwards is more
+harmful than no belief at all. Hold a candidate relationship in factual
+understanding until the direction is unambiguous.

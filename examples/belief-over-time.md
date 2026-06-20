@@ -1,146 +1,126 @@
 # Belief Over Time
 
-One belief. Six documents. How it builds, sharpens, and becomes reliable.
+---
+
+The first time she noticed it, she almost let it go.
+
+The annual report was dense. Revenue slightly below plan. Management
+said the second half had been softer than expected — external conditions,
+demand timing, nothing structural. Next year's guidance landed a little
+below the original target for this year, framed as prudent.
+
+One miss. One reset. She filed it and moved on. Too early to say
+anything with confidence. She had seen businesses miss a year and
+recover cleanly. She noted it: *management reset guidance downward
+after a miss rather than committing to recover it.* Low weight.
+Possibly nothing.
 
 ---
 
-## The Belief Being Tracked: NU-02 (Narrative)
+Six months later she was reading the mid-year review.
 
-*Whether annual targets are consistently missed and reset downward,
-rather than missed and recovered.*
+First half below plan again. Full-year guidance revised down. The
+H2 was going to be strong, management said. Demand was building.
+The fundamentals were sound.
 
----
+She remembered the prior year. The same H2 optimism. The same
+attribution to timing. She did not yet know if this year would
+follow the same path — the year was not over. But the framing
+was identical. The language was identical. She noticed that.
 
-## Cycle 1 — Annual Report
-
-**What the document showed:**
-Full-year revenue 4% below the target set at the start of the year.
-Next year's guidance set 2% below the original Year 1 target, described
-as "a prudent and grounded starting point." The miss was attributed to
-"a softer external environment in the second half."
-
-**Belief decision:**
-One miss, one guidance reset. The combination — external attribution,
-guidance reset rather than recovered — is specific enough to track.
-Cannot confirm a pattern from one document.
-
-**→ Seeded at 0.20. Evidence: 1. Direction: Unclear.**
-
-Belief statement: "Annual targets have been missed and guidance reset
-below the prior target. One observation."
+What she carried forward was heavier now. Not a certainty. But
+a pattern beginning to take shape. *This organization does not
+recover from misses. It resets the baseline and describes the
+reset as discipline.*
 
 ---
 
-## Cycle 2 — Mid-Year Review
+By the time the annual results arrived she was not surprised.
 
-**What the document showed:**
-First half 3% below plan. Full-year guidance revised down from the
-original annual target. Same external attribution framing as Cycle 1.
-H2 recovery committed to — a testable forward claim.
+The H2 recovery did not come. Full year came in below the revised
+target. Next year's guidance was set below this year's original
+target — not below the revised one, below the original. The gap
+had widened. Management called next year "a reset year for rebuilding
+momentum."
 
-**Belief decision:**
-Pattern beginning. Within-year revision plus H2 recovery claim that
-can be closed. The H2 recovery commitment is now a test the belief
-is watching.
+She had watched the language carefully. "Reset year." The miss was
+not being addressed. It was being renamed.
 
-**→ Confidence 0.20 → 0.28. Evidence: 2. Direction: Deteriorating.**
+What had been a tentative observation was now something she would
+stake a view on. She had watched a specific commitment — H2 recovery
+— get made and then quietly abandoned. She had watched guidance
+move in one direction across two years: down. She had watched the
+language shift from specificity ("we will deliver X") to framing
+("this is a reset").
 
-Belief statement updated: "Annual targets revised mid-year with H2
-recovery committed to. Two observations. H2 recovery pending test."
+*The organization absorbs misses as new baselines. Commitments to
+recovery are made and not met. The guidance process is managing
+expectations, not expressing ambition.*
 
----
-
-## Cycle 3 — Annual Report
-
-**What the document showed:**
-The H2 recovery committed to in Cycle 2 did not materialize. Full-year
-6% below the revised mid-year target. Year 3 guidance set 4% below
-the original Year 2 target. Management described Year 3 as "a reset
-year for rebuilding momentum."
-
-**Belief decision:**
-The H2 recovery commitment was a falsifiable test — it failed. Second
-consecutive annual miss-and-reset. The "reset year" language reveals
-the organization is absorbing the miss as intentional, not recovering it.
-
-**→ Confidence 0.28 → 0.52. Evidence: 3. Direction: Deteriorating.**
-
-Belief statement updated: "Annual targets are consistently missed and
-guidance reset downward. Mid-year recovery commitments have not been
-met. Misses are absorbed as new baselines, not recovered."
+She held this now. Not with certainty — she could be wrong, one
+more year of strong delivery would change everything. But with
+enough confidence to let it shape how she read the next document.
 
 ---
 
-## Cycle 4 — Strategy Presentation
+A few months later, a strategy presentation.
 
-**What the document showed:**
-A multi-year roadmap with new specific numeric targets for Year 3.
-No acknowledgment of Year 1 or Year 2 misses. New commitments trackable.
+New leadership taking the stage. A three-year roadmap. Specific
+targets, specific milestones, a clear architecture for how the
+business would grow. It was compelling.
 
-**Belief decision:**
-New commitments made. Not yet tested. No update — watching.
+She noticed something: the prior two years of misses were not
+mentioned. The roadmap started from the present as if the prior
+targets had never existed. New numbers, new commitments, fresh
+confidence.
 
-**→ No change. Confidence: 0.52. Evidence: 3.**
-
----
-
-## Cycle 5 — Mid-Year Review
-
-**What the document showed:**
-First half below plan. The specific numeric targets from the Cycle 4
-strategy presentation have been replaced with "building toward medium-
-term ambitions." No year-end figure restated.
-
-**Belief decision:**
-New element confirmed: targets are not just missed ex-post, they are
-actively withdrawn mid-cycle under pressure. The belief now covers
-both patterns.
-
-**→ Confidence 0.52 → 0.69. Evidence: 5. Direction: Deteriorating.**
-
-Belief statement updated: "Annual targets are consistently missed and
-reset. Specific numeric targets in strategy documents are softened to
-directional language within the same planning cycle, before the period
-they cover has ended. The organization withdraws commitments under
-pressure."
+She did not update her belief. She watched. The new commitments
+were now trackable. She would find out if this organization was
+capable of holding to them or whether the new cycle would look
+like the old one.
 
 ---
 
-## Cycle 6 — Annual Report
+The mid-year review arrived.
 
-**What the document showed:**
-Full-year 5% below the original Year 3 target. Year 4 guidance set
-below Year 3's original target. Commentary: "Year 4 is a year of
-disciplined execution." Third consecutive miss-and-reset.
+First half below the roadmap plan. The specific targets from the
+strategy presentation — numbers she had written down — were no
+longer referenced in the document. In their place: "building toward
+medium-term ambitions." Directional. Non-specific. The targets had
+been softened before the year they covered had finished.
 
-**Belief decision:**
-The pattern has now held across three full years, six documents,
-and multiple types of commitment — annual targets, mid-year guidance,
-and strategy roadmap targets.
+This was new information, and it was not good information. It was
+not just that results were missing targets again. It was that targets
+were being withdrawn before they could be missed. The organization
+was learning to remove the measurement before the failure arrived.
 
-**→ Confidence 0.69 → 0.77. Evidence: 6. Direction: Deteriorating.**
-
-Final belief statement: "Annual targets have been missed and reset
-downward for three consecutive years. Mid-year recovery commitments
-have not been met. Strategy targets are softened to directional
-language before the periods they cover arrive. The guidance process
-manages expectations rather than reflects operational ambition."
+What she believed had become more precise. Not just that misses
+get absorbed — but that specific commitments get softened to
+language that cannot be held accountable, and this happens within
+the planning cycle, not after it closes.
 
 ---
 
-## What This Shows
+By the third annual report, she could describe the pattern in a
+single paragraph.
 
-At Cycle 1 this was a hypothesis at 0.20.
-At Cycle 6 it is one of the highest-confidence beliefs in the world
-model at 0.77.
+Annual targets are set and missed. Mid-year recovery commitments
+are made and not met. Specific numeric targets in strategy documents
+are replaced with directional language before the periods they cover
+arrive. The guidance process manages expectations downward rather
+than reflecting genuine operational ambition. This has been true
+across three years and has not once reversed.
 
-The statement got more precise with each document — not because
-the core idea changed, but because new evidence revealed new
-dimensions (mid-cycle withdrawal, strategy target softening) that
-the original seed did not yet capture.
+She held this belief at high confidence now. Not because she was
+certain — a strong year would change things. But because she had
+watched it play out across enough time, in enough different forms,
+that it had earned the weight she was giving it.
 
-Confidence of 0.77 means: this belief has been confirmed many times
-and never directly contradicted. It is reliable enough to treat as
-background truth when reading future documents. It is not 0.95
-because a future annual report where targets are held and met would
-meaningfully update it.
+When the next document arrived, she would read it knowing this.
+She would read commitments differently. She would read guidance
+differently. She would not be cynical — that is not the point.
+She would be calibrated.
+
+That is what belief does. It does not decide in advance what will
+happen. It tells you what you know, so you can see what is actually
+new.

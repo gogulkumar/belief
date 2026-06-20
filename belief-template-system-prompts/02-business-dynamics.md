@@ -1,86 +1,59 @@
 # BELIEF — BUSINESS DYNAMICS
 
-## What This Belief Captures
+## What This Belief Is
 
-Business dynamics is the understanding of how this business behaves as
-a system over time — how one part moves another, where the leads and
-lags are, where feedback loops form, what causes what, and how long the
-gap is between cause and effect.
+Business dynamics is the accumulated understanding of how this business
+moves as a system. Not what it reported — how one part affects another.
+Where pressure builds and where it releases. How the organization responds
+to growth, to stress, to investment. What the operating logic of this
+business actually is, beneath the stated model.
 
-This belief watches relationships and timing, not levels. A cost number is
-not a dynamic. A cost number that consistently rises one period before
-revenue weakens — that is a dynamic.
+A dynamics belief is not about a result. It is about a relationship.
+A cost that rises before revenue weakens. An investment that converts
+to output with a consistent lag. A feedback loop where good performance
+compounds or where pressure accelerates. These are behavioral patterns —
+specific to this business, not generic to the sector.
 
-The belief built here is a map of causal relationships specific to this
-business. Not how businesses in this sector generally behave, but how
-this one actually moves.
+## What This Belief Accumulates
 
-## What Counts As A Business Dynamics Belief
+Business dynamics holds the causal logic of this business. How inputs
+convert to outputs. Where efficiency builds or erodes under scale.
+Whether the cost structure behaves predictably under revenue pressure.
+How organizational decisions ripple into commercial outcomes. What the
+business does with stress — absorbs it, distributes it, or hides it
+in a different line.
 
-A belief must have: a cause, an effect, and a direction. Without all
-three, it is an observation, not a dynamic belief.
+These are not observations about one period. They are interpretations
+of how the business system is wired — things you can see only by
+watching the same business behave across many different conditions.
 
-Examples of valid beliefs:
-- Which metrics move first and which follow — and the observable lag
-  between them
-- How investment in one area converts into outcome in another — and
-  how long that takes
-- Whether cost growth leads or lags revenue signals in this business
-- Whether the business's stated operating model matches how it actually
-  converts inputs to outputs
-- Where feedback loops exist — where good performance compounds and
-  where pressure accelerates
-- What the organization's capacity signals do before execution problems
-  appear in results
+## How This Belief Grows
 
-Examples of what this belief rejects:
-- "Sales and marketing spend rose 18%" — a level, not a relationship
-- "Results improved this quarter" — an outcome without a causal partner
-- "The business is exposed to macro conditions" — generic, not a
-  relationship specific to this business's operating model
-- Coincidental co-movement of two metrics without a causal mechanism
+Dynamics beliefs are harder to earn than memory beliefs. A structural
+truth about segment composition can be visible in a single document.
+A causal relationship requires watching the cause and the effect across
+multiple periods, multiple conditions, to be confident the relationship
+is real rather than coincidental.
 
-## The Gate
+The belief starts when a causal pair becomes visible for the first time.
+It grows as the relationship holds across different contexts. It sharpens
+as the mechanism becomes clearer — not just that A precedes B, but why,
+and with what consistency, and whether the relationship holds when the
+business is under different kinds of pressure.
 
-**Falsifiability** — could a future document show the lag disappearing,
-the loop breaking, the relationship reversing? If no — not a belief.
+When the relationship breaks — when the expected effect does not follow
+the known cause — that is important information. The belief drops in
+confidence but persists in the record. A broken relationship once is an
+anomaly. A broken relationship twice asks whether what was believed was
+real, or whether the business has changed.
 
-**Distinctiveness** — is this causal relationship specific to this
-business or is it what any business in this sector would show? Generic
-dynamics do not belong here.
+## What This Belief Rejects
 
-**Causal clarity** — can you name what moves first, what follows, and
-approximately how long the gap is? If you cannot, you have observed
-correlation not causation. Hold, don't add.
+Business dynamics does not hold levels. A headcount number is not a
+dynamic. A revenue number is not a dynamic. The relationship between
+them — consistent, directional, across conditions — is a dynamic.
 
-## How Beliefs Update
-
-A first document can seed a dynamics belief at 0.20 if the causal
-relationship is clearly visible. You need the cause-effect pair, not
-just one metric moving. Dynamics beliefs are harder to seed from one
-document than memory beliefs — prefer 0.20 with a note: "one observation,
-needs recurrence."
-
-Confirmed again → +0.08
-Directly contradicted → −0.15
-No signal for 90 days → −0.05 (decay)
-Cap at 0.95, floor at 0.05
-
-## The Split Rule
-
-If a document reveals two separate causal relationships — each gets its
-own belief. A belief about customer retention preceding revenue expansion
-is separate from a belief about headcount growth preceding efficiency
-decline. They can be confirmed or contradicted independently.
-
-Do not join them with "and" or "while" even if they appeared in the
-same document.
-
-## What To Ignore
-
-Single-period co-movement of two metrics with no mechanism visible.
-Dynamics visible in every business in this sector under similar conditions
-— those are sector dynamics, not business-specific beliefs.
-Results without a clear causal partner — an outcome floating without a
-cause is not a dynamic belief, it belongs in factual understanding until
-a causal relationship becomes visible.
+It also rejects observations that are true of any business in this
+sector under similar conditions. What belongs here is the specific
+causal logic of this business — the relationships that are distinctive
+to how this organization is wired.
