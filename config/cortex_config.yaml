@@ -1,0 +1,71 @@
+# Cortex Configuration
+# One file controls the entire system. Change parameters here and the workflow adapts automatically.
+
+cortex_config:
+
+  # ─── TOKEN LIMITS ──────────────────────────────────────────────────────────
+  # Documents above this limit are split into chunks for the belief extraction loop.
+  # Documents below this limit run as a single belief pass.
+  token_limit_per_chunk: 50000
+
+  # ─── ACTIVE BELIEF CATEGORIES ──────────────────────────────────────────────
+  # Add or remove lenses to control which dimensions of belief are maintained.
+  # Running all 18 is the default. Remove lenses to reduce LLM calls and cost.
+  # See belief-template-system-prompts/ for the full prompt for each lens.
+  categories_active:
+    # BUSINESS MEMORY — what is durably true about how the business operates
+    - business_model_structure       # 01
+    - business_dynamics              # 02
+    - growth_engine                  # 03
+    - margin_cost_behavior           # 04
+    - capital_allocation             # 05
+    - operating_scale_leverage       # 06
+    # BI SIGNALS — what is moving, anomalous, or recurring right now
+    - metric_movement_anomaly        # 07
+    - operating_risk                 # 08
+    - forecast_reliability           # 09
+    - balance_sheet_stress           # 10
+    - execution_consistency          # 11
+    - leading_lagging_indicators     # 12
+    # NARRATIVE / STORYLINE — how the story is told vs what the numbers show
+    - narrative_vs_reality           # 13
+    - management_credibility         # 14
+    - external_attribution           # 15
+    - emphasis_omission              # 16
+    - tone_confidence_shift          # 17
+    - competitive_positioning        # 18
+
+  # ─── TEMP BELIEF MAINTENANCE ───────────────────────────────────────────────
+  # When true, runs the maintenance loop between chunks to resolve overlapping,
+  # redundant, drifting, and contradicting beliefs within a single document.
+  # Set to false only for single-chunk documents (faster, no maintenance needed).
+  temp_belief_maintenance: true
+
+  # ─── DECAY SETTINGS ────────────────────────────────────────────────────────
+  # Beliefs not confirmed within this many days begin losing confidence.
+  decay_threshold_days: 90
+
+  # Confidence reduction per decay cycle for unseen beliefs.
+  decay_rate_per_cycle: 0.05
+
+  # Beliefs below this threshold are archived (not deleted).
+  archive_threshold: 0.10
+
+  # ─── WORLD MODEL BOUNDS ────────────────────────────────────────────────────
+  # Maximum number of active beliefs across all categories.
+  # Beliefs are ranked by confidence; lowest are archived first when this is exceeded.
+  world_model_max_beliefs: 100
+
+  # ─── STORAGE PATHS ─────────────────────────────────────────────────────────
+  world_model_path: ./world_model/
+  ledger_path: ./ledger/
+  source_index_path: ./index/
+  raw_archive_path: ./archive/
+
+  # ─── CONFIDENCE ARITHMETIC ─────────────────────────────────────────────────
+  # Standard update values. Match the belief reasoning system prompts.
+  confirm_delta: +0.08
+  contradict_delta: -0.15
+  new_prior_confidence: 0.20
+  confidence_cap: 0.95
+  confidence_floor: 0.05
