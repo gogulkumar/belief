@@ -1,48 +1,68 @@
-# Belief Reasoning System Prompts — Full Library
+# Belief Reasoning Lenses
 
-Eighteen detailed belief reasoning agents, organized under three broad parent buckets. The three buckets are what a user picks first. The sub-lenses are the specific belief memories that live inside each bucket. Every prompt shares the same action structure — gate, silence default, surgical update, direction field, guardrails — and differs only in observation focus and examples.
+Belief is not built by running 18 separate agents. It is built by reading
+every document through four broad lenses, each asking a different kind of
+question about what the business reveals. The lenses do not maintain
+separate memories — they all write into one world model.
 
-Every belief carries a direction — **Improving / Stable / Deteriorating / Unclear** — and the standard update arithmetic: confirm +0.08, contradict −0.15, new prior 0.20, cap 0.95, floor 0.05.
+## The Four Lenses
 
----
+| Lens | File | What It Asks |
+|------|------|-------------|
+| Business Memory | [01-business-memory.md](01-business-memory.md) | What is structurally and durably true about how this business is built? |
+| Business Dynamics | [02-business-dynamics.md](02-business-dynamics.md) | How does one part of this business move another — what causes what, and with what lag? |
+| Narrative Capturing | [03-narrative-capturing.md](03-narrative-capturing.md) | How does the organization tell its story, and how does that story relate to what the numbers show? |
+| Factual Understanding | [04-factual-understanding.md](04-factual-understanding.md) | What has been quantitatively observed, and which observations are building toward a belief? |
 
-## BUSINESS MEMORY — what is durably true about how the business operates
+## How The Lenses Relate
 
-| # | Lens | File |
-|---|------|------|
-| 01 | Business Model & Structure | [01-business-model-and-structure.md](01-business-memory/01-business-model-and-structure.md) |
-| 02 | Business Dynamics | [02-business-dynamics.md](01-business-memory/02-business-dynamics.md) |
-| 03 | Growth Engine | [03-growth-engine.md](01-business-memory/03-growth-engine.md) |
-| 04 | Cost & Efficiency Behavior | [04-cost-and-efficiency-behavior.md](01-business-memory/04-cost-and-efficiency-behavior.md) |
-| 05 | Strategic Priorities & Investment | [05-strategic-priorities-and-investment.md](01-business-memory/05-strategic-priorities-and-investment.md) |
-| 06 | Scale & Organizational Efficiency | [06-scale-and-organizational-efficiency.md](01-business-memory/06-scale-and-organizational-efficiency.md) |
+**Business Memory** holds the slowest-moving beliefs — structural truths
+about how the business is built that survive bad quarters and leadership
+changes. Updated rarely. High stakes.
 
-## BI SIGNALS — what is moving, anomalous, or recurring right now
+**Business Dynamics** holds causal beliefs — how one signal predicts
+another in this specific business. Requires observing the relationship
+across multiple periods before it earns belief status.
 
-| # | Lens | File |
-|---|------|------|
-| 07 | Metric Movement & Anomaly | [07-metric-movement-and-anomaly.md](02-bi-signals/07-metric-movement-and-anomaly.md) |
-| 08 | Operating Risk | [08-operating-risk.md](02-bi-signals/08-operating-risk.md) |
-| 09 | Forecast Reliability | [09-forecast-reliability.md](02-bi-signals/09-forecast-reliability.md) |
-| 10 | People, Talent & Organizational Health | [10-people-talent-and-organizational-health.md](02-bi-signals/10-people-talent-and-organizational-health.md) |
-| 11 | Execution Consistency | [11-execution-consistency.md](02-bi-signals/11-execution-consistency.md) |
-| 12 | Early Warning Signals | [12-early-warning-signals.md](02-bi-signals/12-early-warning-signals.md) |
+**Narrative Capturing** holds the softest beliefs — interpretations of
+how the organization communicates, what it emphasizes and omits, and
+whether stated commitments match outcomes. Lower natural confidence
+ceiling than the other lenses; needs corroboration from factual signals.
 
-## NARRATIVE / STORYLINE — how the story is told and where it diverges from numbers
+**Factual Understanding** is different from the other three — it is the
+intake layer. Most observations stay here as tracked signals. Only when
+a pattern recurs and an interpretation becomes visible does something
+move from this lens into a belief in one of the other three.
 
-| # | Lens | File |
-|---|------|------|
-| 13 | Narrative vs Reality | [13-narrative-vs-reality.md](03-narrative-storyline/13-narrative-vs-reality.md) |
-| 14 | Management Credibility | [14-management-credibility.md](03-narrative-storyline/14-management-credibility.md) |
-| 15 | External Attribution | [15-external-attribution.md](03-narrative-storyline/15-external-attribution.md) |
-| 16 | Emphasis & Omission | [16-emphasis-and-omission.md](03-narrative-storyline/16-emphasis-and-omission.md) |
-| 17 | Tone & Confidence Shift | [17-tone-and-confidence-shift.md](03-narrative-storyline/17-tone-and-confidence-shift.md) |
-| 18 | Competitive Positioning Narrative | [18-competitive-positioning-narrative.md](03-narrative-storyline/18-competitive-positioning-narrative.md) |
+## What The Lenses Share
 
----
+Every belief formed through any lens must pass the same three tests:
 
-## How The Library Is Used
+1. **Falsifiability** — can a future document contradict this?
+2. **Distinctiveness** — is this specific to this business or true of
+   any business in this sector?
+3. **Interpretation** — is this what the evidence means, not just what
+   it says?
 
-A user picks a parent bucket first — Business Memory, BI Signals, or Narrative. Inside that bucket they pick or are guided to a sub-lens, or the questioning agent maps their described focus to the closest one. The chosen prompt's identity paragraph and examples are then adapted to the user's specific business, document type, and cadence captured in setup.
+Silence is the default. Most of what a document contains does not become
+a belief. The lenses are gates, not funnels.
 
-The action structure — gate, silence default, surgical update, direction field, guardrails — is identical across all eighteen. Only the observation focus and examples differ. That is what keeps the system consistent while letting each belief memory reason about exactly the right thing.
+## Update Arithmetic (All Lenses)
+
+| Event | Confidence Change |
+|-------|-----------------|
+| Confirmed | +0.08 |
+| Contradicted | −0.15 |
+| New (first seed) | 0.20 |
+| No signal / 90 days | −0.05 decay |
+| Cap | 0.95 |
+| Floor | 0.05 |
+
+Every belief also carries a direction: **Improving / Stable / Deteriorating / Unclear**
+
+## See Also
+
+- [examples/](../examples/) — what the world model looks like in practice,
+  how a belief evolves across six documents, and how facts differ from beliefs
+- [world-model/schema.md](../world-model/schema.md) — the structure of
+  the belief store that all four lenses write into
