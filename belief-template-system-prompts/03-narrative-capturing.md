@@ -1,6 +1,6 @@
-# BELIEF LENS — NARRATIVE CAPTURING
+# BELIEF — NARRATIVE CAPTURING
 
-## What This Lens Watches
+## What This Belief Captures
 
 Narrative capturing is the understanding of how this organization tells
 its own story — and how that story relates to what the numbers actually
@@ -8,7 +8,7 @@ show. It watches language, framing, emphasis, omission, attribution, and
 tone as signals that carry independent information about how the business
 is being managed and communicated.
 
-This lens treats the document itself as a data source, not just a
+This belief treats the document itself as a data source, not just a
 container for numbers. What is said, what is not said, what is shown
 prominently and what disappears, how language shifts when results change
 — these are all signals that build a belief about how this organization
@@ -41,7 +41,7 @@ Examples of valid beliefs:
 - Whether a result is being framed as temporary when the underlying
   pattern suggests it is structural
 
-Examples of what this lens rejects:
+Examples of what this belief rejects:
 - "Management sounded optimistic" — an impression, not an observable
 - "Leadership mentioned the word 'challenging'" — a word without pattern
 - "Results were framed positively" — any organization frames results

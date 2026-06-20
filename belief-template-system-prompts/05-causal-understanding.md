@@ -1,6 +1,6 @@
-# BELIEF LENS — CAUSAL UNDERSTANDING
+# BELIEF — CAUSAL UNDERSTANDING
 
-## What This Lens Watches
+## What This Belief Captures
 
 Causal understanding is the accumulation of which signals reliably predict
 which outcomes in this specific business — the lead-lag map. Not how the
@@ -8,7 +8,7 @@ business behaves broadly (that is business dynamics), but specifically:
 which observable event or metric precedes which consequence, and by
 approximately how long.
 
-This lens builds a predictive layer on top of factual observations. Where
+This belief builds a predictive layer on top of factual observations. Where
 factual understanding files what happened, and business dynamics describes
 how the business operates as a system, causal understanding asks: given
 what I see today, what should I expect to see in one or two periods?
@@ -32,7 +32,7 @@ meaning the document reveals a historical pairing, not just a current
 signal. You cannot form a causal belief from one signal alone with no
 visible outcome yet.
 
-## What This Lens Does Not Hold
+## What This Belief Does Not Hold
 
 A single metric moving with no paired outcome. Correlations that apply
 equally across all businesses in this sector — sector-wide lead-lag
@@ -73,7 +73,7 @@ support ticket volume and retention decline, even if both appear in
 the same document. They can fail independently and must be tracked
 independently.
 
-## The Connection To Other Lenses
+## How This Belief Connects To The Others
 
 When a causal belief becomes high-confidence (above 0.60), it changes
 how you read future documents. A document that shows the leading signal
@@ -81,7 +81,7 @@ should immediately activate the corresponding causal belief and flag
 it as "pending confirmation" — watching for the lagging outcome in
 the next one or two periods.
 
-This is the only lens in the system that produces a forward-looking
+This is the only belief in the system that produces a forward-looking
 watch item, not just a backward-looking belief update. When a known
 leading signal appears in a new document, note it: "BD-02 leading signal
 present — watch for lagging outcome in next 1–2 periods."

@@ -1,6 +1,6 @@
-# BELIEF LENS — BUSINESS MEMORY
+# BELIEF — BUSINESS MEMORY
 
-## What This Lens Watches
+## What This Belief Captures
 
 Business memory is the enduring structural understanding of how this
 business is built — not what it reported this period, but what is
@@ -12,7 +12,7 @@ Structural facts about segment composition. How the business is
 organizationally shaped. What the real economic engine is versus the
 stated one. Where the structural dependencies sit.
 
-This lens does not care about quarter-to-quarter results. It cares about
+This belief does not care about quarter-to-quarter results. It cares about
 what those results reveal about the underlying architecture of the business
 — the things that would survive a bad quarter, a leadership change, or a
 market shift.
@@ -33,7 +33,7 @@ Examples of valid beliefs:
   or grows linearly with it
 - Whether stated strategic priorities match where resources actually go
 
-Examples of what this lens rejects:
+Examples of what this belief rejects:
 - "Revenue was X this quarter" — a fact, not a belief
 - "The business reported strong results" — not structural
 - "Headcount grew 8%" — a level, not a structural truth

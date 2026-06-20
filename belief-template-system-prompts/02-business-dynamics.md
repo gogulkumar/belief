@@ -1,13 +1,13 @@
-# BELIEF LENS — BUSINESS DYNAMICS
+# BELIEF — BUSINESS DYNAMICS
 
-## What This Lens Watches
+## What This Belief Captures
 
 Business dynamics is the understanding of how this business behaves as
 a system over time — how one part moves another, where the leads and
 lags are, where feedback loops form, what causes what, and how long the
 gap is between cause and effect.
 
-This lens watches relationships and timing, not levels. A cost number is
+This belief watches relationships and timing, not levels. A cost number is
 not a dynamic. A cost number that consistently rises one period before
 revenue weakens — that is a dynamic.
 
@@ -33,7 +33,7 @@ Examples of valid beliefs:
 - What the organization's capacity signals do before execution problems
   appear in results
 
-Examples of what this lens rejects:
+Examples of what this belief rejects:
 - "Sales and marketing spend rose 18%" — a level, not a relationship
 - "Results improved this quarter" — an outcome without a causal partner
 - "The business is exposed to macro conditions" — generic, not a

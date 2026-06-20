@@ -1,26 +1,26 @@
-# BELIEF LENS — FACTUAL UNDERSTANDING
+# BELIEF — FACTUAL UNDERSTANDING
 
-## What This Lens Watches
+## What This Belief Captures
 
 Factual understanding is the accumulation of what is quantitatively known
 about this business — the metrics, signals, anomalies, and patterns that
 emerge from repeated exposure to the business's numbers. It is not a
 belief itself. It is the substrate from which beliefs in the other three
-lenses are eventually formed.
+belief types are eventually formed.
 
-This lens plays a different role from the other three. Business memory,
+This belief plays a different role from the other three. Business memory,
 business dynamics, and narrative capturing all hold beliefs — durable
 interpretations. Factual understanding primarily holds structured
 observations that are:
 - Facts in the L3 archive (raw, immutable)
 - Signal patterns worth tracking in the L1 world model as tagged observations
 - Emerging interpretations that have not yet crossed the threshold to
-  become beliefs in another lens
+  become beliefs in another belief category
 
-Think of this lens as the evidence layer. Most of what passes through
+Think of this belief as the evidence layer. Most of what passes through
 it stays here as tagged facts. Only when a pattern recurs and an
 interpretation becomes visible does something move from factual
-understanding into one of the belief-forming lenses.
+understanding into one of the belief categories.
 
 ## What Belongs Here
 
@@ -51,14 +51,14 @@ across multiple documents, they become a belief about operating fragility.
 ## When Factual Understanding Produces A Belief
 
 When a signal tracked here recurs with an interpretation visible — that
-interpretation moves into the appropriate belief lens:
+interpretation moves into the appropriate belief category:
 
 - "Cost per unit has risen for three consecutive periods" = tracked fact
 - "Cost per unit rising three periods despite volume growth suggests the
   business is not gaining efficiency from scale" = this becomes a belief
   in business memory
 
-The factual lens is the intake. The other three are the belief stores.
+Factual understanding is the intake. The other three are the belief stores.
 
 ## The Gate
 
@@ -66,30 +66,30 @@ The factual lens is the intake. The other three are the belief stores.
 distinctiveness to be filed. It happened. It is dated and filed in L3.
 
 **A signal pattern requires tracking.** File it in L1 as an observation
-tagged to this lens, with the date range and the metrics involved.
+tagged to this belief, with the date range and the metrics involved.
 
-**An interpretation requires crossing to a belief lens.** When a pattern
+**An interpretation requires crossing to a belief category.** When a pattern
 recurs and the interpretation is visible and falsifiable, write the
-belief in the appropriate lens — not here.
+belief in the appropriate belief category — not here.
 
-The primary question at this lens: is this a fact, a signal, or an
+The primary question at this belief: is this a fact, a signal, or an
 interpretation? Facts are filed. Signals are tracked. Interpretations
-are written as beliefs in the right lens.
+are written as beliefs in the right belief category.
 
 ## What To Ignore
 
 Metrics on plan with no deviation — stable, expected performance generates
 no signal worth tracking. Noise in a single period with no recurrence.
 Any observation that is already reflected in a high-confidence belief in
-another lens — the belief covers it, no need to re-file the fact.
+another belief category — the belief covers it, no need to re-file the fact.
 
-## How This Lens Connects To The Others
+## How This Connects To The Others
 
-Business memory uses this lens to find structural patterns in how the
-business is built. Business dynamics uses this lens to find the causal
+Business memory uses this belief to find structural patterns in how the
+business is built. Business dynamics uses this belief to find the causal
 pairs — which signal moves first, which follows. Narrative capturing uses
-this lens to check whether language claims match what the numbers show.
+this belief to check whether language claims match what the numbers show.
 
 Factual understanding is the shared foundation. It is read by every other
-lens. It is the memory of what was actually observed, separate from the
+It is the memory of what was actually observed, separate from the interpretation of what it means.It is the memory of what was actually observed, separate from the
 interpretation of what it means.
