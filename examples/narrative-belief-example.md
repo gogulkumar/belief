@@ -1,118 +1,210 @@
-# Narrative Belief — How It Is Born and How It Evolves
+# Narrative Belief — TechCorp Inc.
 
-This is a belief about how one company communicates. It starts from the
-first earnings transcript and updates as each new transcript arrives.
-The belief is one thing. The documents change it.
-
----
-
-## After Q1 2025 Transcript
-
-**Source:** Q1 2025 Earnings Call
-
-The CEO opened with a clear growth story. International expansion was
-front and center — three new markets, specific revenue targets named,
-a timeline committed to. The tone was assertive. Questions about cost
-pressure were met with "we are investing ahead of demand and the returns
-will be visible in H2." The CFO quantified the H2 recovery expectation
-with a specific number.
-
-**Narrative belief at this point:**
-
-Management communicates with specific forward commitments and quantified
-timelines. H2 recovery has been explicitly committed to with a number
-attached. International expansion is being positioned as the primary
-growth thesis with named markets and a timeline. The tone is confident
-and the specificity is high — claims are testable.
-
-Confidence: low. One document. Direction: unclear — watching whether
-the specificity holds or softens.
+This belief tracks how TechCorp communicates about its own business.
+It is updated each time a new earnings transcript is uploaded.
+The categories below reflect the current accumulated understanding.
 
 ---
 
-## After Q2 2025 Transcript
-
-**Source:** Q2 2025 Earnings Call
-
-H2 recovery was not mentioned by name. When an analyst asked about
-the H2 commitment from Q1, the CFO said "we remain focused on
-delivering a strong back half" — no number, no reference to the
-specific figure given in Q1. International expansion, which had three
-named markets in Q1, was described as "building presence in select
-high-potential geographies." No market names. No timeline.
-
-Cost pressure questions were answered with "we are managing the
-business dynamically in response to the environment."
-
-**Narrative belief now:**
-
-Within one quarter, specific commitments have become directional
-language. The H2 number from Q1 is gone. The international market
-names are gone. The confident forward posture from Q1 has been
-replaced with language that cannot be held to account. This is not
-a tone shift — it is a specificity shift. The organization is removing
-measurable claims while the period they referred to is still open.
-
-Confidence: building. Two documents. Direction: deteriorating.
-
-The belief has shifted from "high specificity, testable claims" to
-"specificity retreating under pressure before the periods it covered
-have closed."
+## STATE AFTER Q1 2025 TRANSCRIPT
 
 ---
 
-## After Q3 2025 Transcript
+### Forward Commitment Pattern
 
-**Source:** Q3 2025 Earnings Call
+Management makes specific, quantified forward commitments. H2 recovery
+was stated with a number. International expansion was committed to with
+named markets and a timeline. Claims are measurable and can be tested
+against future transcripts.
 
-H2 results came in below the implied Q1 commitment. The earnings call
-did not reference the Q1 commitment. Instead, the CEO introduced a new
-frame: "We have made the strategic decision to prioritize sustainable
-growth over near-term metrics." International expansion was described
-as "a long-term journey." No timeline, no named markets, no connection
-to what was said in Q1 or Q2.
-
-When an analyst asked directly whether H2 had delivered as committed
-in Q1, the CFO said "we don't think it's useful to manage to single
-quarter commitments" — the first time this framing had appeared.
-
-**Narrative belief now:**
-
-This organization's communication pattern is now clear. Specific
-commitments are made when the outlook is favorable. As results come
-under pressure, specificity retreats to directionality. When the period
-closes below commitment, the commitment is not acknowledged — it is
-reframed as the wrong way to measure the business. The Q1 number that
-was given confidently is now described as the kind of metric the company
-does not manage to.
-
-The belief is no longer tentative. Three documents have shown the
-same pattern in sequence: confidence → retreat → reframe. The
-narrative is being managed, not updated.
-
-Confidence: high. Three documents. Direction: deteriorating.
-
-The belief has evolved from an early observation about communication
-style into a reliable understanding of how this organization handles
-the gap between what it says and what it delivers.
+Confidence: 0.20 | Direction: Unclear
 
 ---
 
-## What The Belief Is Now
+### Attribution Pattern
 
-*How this organization communicates about its own forward performance:*
+No clear pattern yet. One transcript is not enough to know whether
+the company attributes outcomes externally (macro, competition) or
+internally (execution, strategy). Watching.
 
-Specific, quantified commitments appear when results are expected to
-be strong. As performance comes under pressure, those commitments lose
-their numbers and become directional. When the period closes below
-what was committed, the commitment is not revisited — the framing is
-changed so that the original commitment no longer appears to apply.
+Confidence: 0.05 | Direction: Unclear
 
-This pattern has been consistent across three consecutive quarters.
-It is not about any single statement. It is about how this organization
-relates to its own forward commitments over time.
+---
 
-A future transcript where the CEO opens by revisiting a prior specific
-commitment and addressing it directly — whether met or missed — would
-begin to revise this belief. Until then, every forward commitment made
-in future transcripts should be held lightly.
+### Language Specificity
+
+Language in Q1 is specific — numbers, timelines, named geographies.
+Forward-looking statements carry figures not ranges. Baseline
+established: this is what high-specificity communication looks like
+from this company.
+
+Confidence: 0.20 | Direction: Stable
+
+---
+
+### What Gets Emphasized vs Omitted
+
+International expansion prominently featured. H2 recovery framed as
+certain. Cost pressure questions answered with investment rationale.
+No topics visibly avoided. Baseline established.
+
+Confidence: 0.20 | Direction: Unclear
+
+---
+
+---
+
+## STATE AFTER Q2 2025 TRANSCRIPT
+
+---
+
+### Forward Commitment Pattern
+
+The H2 number from Q1 is gone. When asked directly, the CFO said
+"we remain focused on delivering a strong back half" — no figure.
+International markets, named in Q1, are now "select high-potential
+geographies." Commitments made in Q1 have not been met with a follow-up
+or withdrawn explicitly — they have simply not been restated.
+
+**What changed:** Specific commitments from Q1 have softened to
+directional language within one quarter. The period they referred to
+is still open.
+
+Confidence: 0.36 | Direction: Deteriorating
+
+---
+
+### Attribution Pattern
+
+Cost pressure questions in Q2 were answered with "managing the business
+dynamically in response to the environment." External framing introduced
+for the first time when results came under pressure. One instance —
+not a pattern yet but the direction is notable.
+
+**What changed:** External attribution appeared for the first time in
+a period where guidance was revised downward.
+
+Confidence: 0.20 | Direction: Unclear
+
+---
+
+### Language Specificity
+
+Q1 had numbers and named markets. Q2 has directions and unnamed
+geographies. The specificity has dropped in every category where Q1
+made a concrete claim. Not a gradual softening — a sharp step down
+between the two documents.
+
+**What changed:** Specificity dropped sharply from Q1 baseline across
+all forward-looking categories simultaneously.
+
+Confidence: 0.44 | Direction: Deteriorating
+
+---
+
+### What Gets Emphasized vs Omitted
+
+International expansion, prominently featured in Q1, is now a single
+sentence. H2 recovery, the headline commitment of Q1, is not mentioned
+unprompted — it appeared only when an analyst asked. The emphasis has
+shifted to "operational resilience" and "disciplined investment."
+
+**What changed:** Topics that carried specific commitments in Q1 are
+now de-emphasized or require analyst prompting to surface.
+
+Confidence: 0.36 | Direction: Deteriorating
+
+---
+
+---
+
+## STATE AFTER Q3 2025 TRANSCRIPT
+
+---
+
+### Forward Commitment Pattern
+
+H2 results came in below the Q1 implied commitment. The Q3 call did
+not reference Q1. When an analyst asked, the CFO said: "we don't think
+it's useful to manage to single quarter commitments." The commitment
+was not acknowledged as missed — the framing was changed so it no
+longer applied. A new frame introduced: "sustainable growth over
+near-term metrics."
+
+**What changed:** The pattern is now complete. Q1 — specific commitment
+made. Q2 — commitment quietly dropped. Q3 — commitment reframed as
+the wrong way to measure the business. Three-step cycle confirmed.
+
+Confidence: 0.74 | Direction: Deteriorating
+
+---
+
+### Attribution Pattern
+
+External attribution now appears consistently when results disappoint.
+Q3 introduced "strategic prioritization" as a new framing — underperformance
+recast as intentional choice rather than execution gap. Two of two
+underperformance periods have used external or strategic framing.
+Outperformance periods have not been observed yet to test the other
+direction.
+
+**What changed:** Pattern now confirmed across two consecutive periods
+of pressure. Attribution is selective — present when results disappoint.
+
+Confidence: 0.52 | Direction: Deteriorating
+
+---
+
+### Language Specificity
+
+Three quarters. Q1: specific. Q2: directional. Q3: aspirational.
+"Long-term journey" has replaced named timelines. "High-potential
+geographies" has replaced named markets. "Sustainable growth" has
+replaced revenue figures. The trajectory is consistent and linear —
+each document has been less specific than the one before it.
+
+**What changed:** The specificity decline is no longer a one-quarter
+event. It is a directional trend across three quarters moving in one
+direction without reversal.
+
+Confidence: 0.74 | Direction: Deteriorating
+
+---
+
+### What Gets Emphasized vs Omitted
+
+International expansion has gone from the primary growth thesis (Q1)
+to a long-term journey (Q3) with no milestone. Cost discipline, not
+mentioned as a priority in Q1, is now featured prominently. H2 recovery
+— the headline of Q1 — has not been mentioned unprompted in two
+consecutive transcripts.
+
+**What changed:** The topics that were emphasized in Q1 when commitments
+were high have progressively de-emphasized as those commitments came
+under pressure. A new set of topics has replaced them.
+
+Confidence: 0.66 | Direction: Deteriorating
+
+---
+
+---
+
+## CURRENT BELIEF SUMMARY
+
+TechCorp's narrative pattern is now well understood. Specific commitments
+are made when the forward outlook is favorable. As performance comes
+under pressure, those commitments lose their numbers and become
+directional. When the period closes below commitment, the frame changes
+so the original commitment no longer applies. The specificity of language
+declines linearly quarter over quarter. External and strategic attribution
+appears selectively when results disappoint.
+
+Every forward commitment in future transcripts should be held with
+this belief as context. High-specificity language from this company
+is an early-cycle signal, not a durable anchor.
+
+**What would update this belief:** A transcript where management opens
+by revisiting a prior commitment — acknowledging it directly, whether
+met or missed — and restating a specific measurable target for the
+next period. That would begin to revise the forward commitment pattern
+category upward.
