@@ -99,8 +99,7 @@ BELIEF | {NEW_PRIOR|CONFIRM|CONTRADICT} | business_memory | {document_id} | {per
 
 {2–4 sentences in first person. Name the document and period where you saw this.
 If confirming — say when you first saw it and what this document adds.
-If new — say what made this credible enough to hold.
-State what would change your view.}
+If new — say what made this credible enough to hold.}
 ```
 
 For CONFIRM or CONTRADICT, add the existing belief id as a seventh field.
@@ -129,7 +128,7 @@ BELIEF | NEW_PRIOR | business_memory | Q3_2025_earnings | Q3 2025 | Stable
 
 ## Top-line growth is price-driven with volume flat — the business is monetizing its existing base more than expanding demand
 
-In the Q3 actuals, the finance team surfaced a clear revenue decomposition: price up significantly, volume flat, and commentary confirming this has been the pattern for three quarters. That prior corroboration makes this credible enough to seed at low confidence. I'd revise this if a subsequent period shows volume growth accelerating independently of price.
+In the Q3 actuals, the finance team surfaced a clear revenue decomposition: price up significantly, volume flat, and commentary confirming this has been the pattern for three quarters. That prior corroboration makes this credible enough to seed at low confidence.
 ```
 
 **Example 4 — Confirming an existing belief**
@@ -141,5 +140,5 @@ BELIEF | CONFIRM | business_memory | Q1_2026_earnings | Q1 2026 | Stable | BM_00
 
 ## Top-line growth is price-driven with volume flat — the growth ceiling is closer than the headline rate suggests
 
-I first seeded this belief after two consecutive quarters showed price growing while volume stalled. The Q1 2026 actuals confirm it for the third time, and the CFO has now named it explicitly. The mechanism is clear: the business is extracting more from its existing demand base rather than expanding it. Price-driven growth is a finite lever. I'd revise this belief if a subsequent quarter shows volume growing independently of price.
+I first seeded this belief after two consecutive quarters showed price growing while volume stalled. The Q1 2026 actuals confirm it for the third time, and the CFO has now named it explicitly. The mechanism is clear: the business is extracting more from its existing demand base rather than expanding it. Price-driven growth is a finite lever.
 ```

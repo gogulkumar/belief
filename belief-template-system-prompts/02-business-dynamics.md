@@ -88,7 +88,7 @@ BELIEF | {NEW_PRIOR|CONFIRM|CONTRADICT} | business_dynamics | {document_id} | {p
 ## {one-line falsifiable statement of the causal relationship}
 
 {2–4 sentences in first person. Name the document and period. Name both sides
-of the relationship. Say what would change your view.}
+of the relationship.}
 ```
 
 For CONFIRM or CONTRADICT, add the existing belief id as a seventh field.
@@ -117,7 +117,7 @@ BELIEF | NEW_PRIOR | business_dynamics | Q3_2025_earnings | Q3 2025 | Deteriorat
 
 ## Support headcount growth runs ahead of revenue and is followed by margin compression approximately two quarters later
 
-I first saw support headcount diverge sharply from revenue in Q1 2025 and held it as a candidate. The Q3 actuals show the margin compression I'd expect to follow — arriving roughly two quarters after the headcount gap opened. This is the first time I've seen both sides of this relationship clearly enough to hold it. I'd revise this if the next headcount divergence does not produce the expected margin effect, or if margin recovers without a corresponding headcount correction.
+I first saw support headcount diverge sharply from revenue in Q1 2025 and held it as a candidate. The Q3 actuals show the margin compression I'd expect to follow — arriving roughly two quarters after the headcount gap opened. This is the first time I've seen both sides of this relationship clearly enough to hold it.
 ```
 
 **Example 4 — Contradicting an existing belief**

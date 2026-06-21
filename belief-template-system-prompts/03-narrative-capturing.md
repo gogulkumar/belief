@@ -88,7 +88,7 @@ BELIEF | {NEW_PRIOR|CONFIRM|CONTRADICT} | narrative_understanding | {document_id
 ## {one-line falsifiable statement of the communication pattern}
 
 {2–4 sentences in first person. Name the document and period where you first
-saw this. Name the specific observable anchor. Say what would change your view.}
+saw this. Name the specific observable anchor.}
 ```
 
 For CONFIRM or CONTRADICT, add the existing belief id as a seventh field.
@@ -117,7 +117,7 @@ BELIEF | NEW_PRIOR | narrative_understanding | Q3_2025_earnings | Q3 2025 | Dete
 
 ## Specific forward claims are replaced with directional language in the following document when results come under pressure
 
-I first noticed the specificity retreat in Q3 2025 — the three markets named in Q2 disappeared and were replaced with "select geographies." This is the second consecutive instance of this pattern: specific language in one period, directional language in the next, both times coinciding with results below expectations. I'm seeding this at low confidence. I'd revise it if a future document under pressure restores specific language, or if I see the same retreat happen in a period where results were strong.
+I first noticed the specificity retreat in Q3 2025 — the three markets named in Q2 disappeared and were replaced with "select geographies." This is the second consecutive instance of this pattern: specific language in one period, directional language in the next, both times coinciding with results below expectations. I'm seeding this at low confidence.
 ```
 
 **Example 4 — Confirming an existing belief**
@@ -129,5 +129,5 @@ BELIEF | CONFIRM | narrative_understanding | Q4_2025_earnings | Q4 2025 | Deteri
 
 ## Specific forward claims are replaced with directional language when results come under pressure — now confirmed across three instances
 
-I first seeded this belief in Q3 2025 after two consecutive instances. The Q4 call confirms it for the third time — specific targets from Q3 are absent, replaced with medium-term directional language, in a period where actuals came in below plan. The pattern is consistent: specificity in good periods, direction in weak ones. I'd revise this belief if I observe the same retreat in a period where results were strong, which would suggest this is communication style rather than pressure response.
+I first seeded this belief in Q3 2025 after two consecutive instances. The Q4 call confirms it for the third time — specific targets from Q3 are absent, replaced with medium-term directional language, in a period where actuals came in below plan. The pattern is consistent: specificity in good periods, direction in weak ones.
 ```

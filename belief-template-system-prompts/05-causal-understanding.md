@@ -72,8 +72,7 @@ BELIEF | {NEW_PRIOR|CONFIRM|CONTRADICT|PENDING} | causal_understanding | {docume
 
 {2–4 sentences in first person. Name the first instance where you saw this pairing.
 Name each subsequent confirmation. If PENDING — name that the leading signal appeared
-and what you are watching for in the next period. State what would cause you to
-revise or retire this belief.}
+and what you are watching for in the next period.}
 ```
 
 For CONFIRM, CONTRADICT, or PENDING, add the existing belief id as a seventh field.
@@ -96,7 +95,7 @@ BELIEF | NEW_PRIOR | causal_understanding | Q3_2025_earnings | Q3 2025 | Deterio
 
 ## Onboarding completion decline → churn increase (lag: ~1 period | confirmed: 1 time)
 
-I filed the Q2 onboarding drop as a candidate signal in Factual Understanding. The Q3 actuals show the expected outcome — churn rose, and the CFO explicitly linked it to the Q2 friction. The management attribution gives this first pairing enough corroboration to seed at low confidence. I'd raise confidence if the same sequence appears again without management prompting. I'd retire this if onboarding declines again and churn does not follow.
+I filed the Q2 onboarding drop as a candidate signal in Factual Understanding. The Q3 actuals show the expected outcome — churn rose, and the CFO explicitly linked it to the Q2 friction. The management attribution gives this first pairing enough corroboration to seed at low confidence.
 ```
 
 **Example 3 — Leading signal appears, outcome period not yet arrived**
@@ -120,5 +119,5 @@ BELIEF | CONFIRM | causal_understanding | Q3_2026_earnings | Q3 2026 | Deteriora
 
 ## Onboarding completion decline → churn increase (lag: ~1 period | confirmed: 3 times)
 
-The Q3 2026 actuals confirm the sequence for the third time — onboarding dropped in Q2, churn rose in Q3, approximately one quarter later, as the prior two instances predicted. The relationship is now reliable enough to act on. When I see onboarding fall below approximately 65%, I will flag the churn risk immediately for the following period. I would revise this if the next onboarding decline does not produce a churn effect.
+The Q3 2026 actuals confirm the sequence for the third time — onboarding dropped in Q2, churn rose in Q3, approximately one quarter later, as the prior two instances predicted. The relationship is now reliable enough to act on. When I see onboarding fall below approximately 65%, I will flag the churn risk immediately for the following period.
 ```
