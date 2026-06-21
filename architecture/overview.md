@@ -13,8 +13,7 @@ Belief is not a retrieval system, a chat interface, or a database. It is the **r
                        ▼
 ┌─────────────────────────────────────────────────────────┐
 │                   BELIEF LAYER                          │
-│         World Model (L1) — 50–100 active beliefs        │
-│         18 belief reasoning sub-lenses                  │
+│         World Model (L1) — five belief types            │
 │         Fact-to-belief gate · Update arithmetic         │
 └──────────────────────┬──────────────────────────────────┘
                        │  evidence retrieval
@@ -63,7 +62,7 @@ With Belief: checks whether an answer reflects what is actually true about the b
                     ▼
          ┌──────────────────────┐
          │   BELIEF REASONING   │
-         │   (Prompt 3 × 18)    │
+         │   (Prompt 3 × 5)     │
          │                      │
          │  Chunk + World Model │
          │  + Memory Goal       │
@@ -78,7 +77,6 @@ With Belief: checks whether an answer reflects what is actually true about the b
          │                      │
          │  90-day decay pass   │
          │  Archive < 0.10      │
-         │  Bound to 50–100     │
          └──────────────────────┘
 ```
 
@@ -86,32 +84,32 @@ With Belief: checks whether an answer reflects what is actually true about the b
 
 | Layer | Purpose | Mutability |
 |-------|---------|------------|
-| **L1 — World Model** | Living belief model. Loaded into agent context. | Surgically updated per ingestion cycle |
+| **L1 — World Model** | Living belief model. One file per belief type. Loaded into agent context. | Surgically updated per ingestion cycle |
 | **L2 — Source Index** | One record per document: period, themes, metrics, anomalies. Used to route evidence retrieval. | Append-only |
 | **L3 — Raw Archive** | Original document content verbatim. | Immutable. Written once. |
 | **Ledger** | Append-only audit log of every belief change. | Immutable. Append-only. |
 
-## The 18 Sub-Lenses as Parallel Reasoning Agents
+## The Five Belief Types as Parallel Reasoning Agents
 
-Each of the 18 belief prompts is an independent reasoning agent watching a different dimension of the business. During ingestion, each active lens reads the same document chunk and produces its own surgical updates to its own section of the world model.
+Each of the five belief type prompts is an independent reasoning agent watching a different dimension of the business. During ingestion, each active type reads the same document chunk and produces its own surgical updates to its own section of the world model.
 
 ```
 Document chunk
       │
-      ├──► Lens 01: Business Model & Structure  ──► World Model: business_memory
-      ├──► Lens 03: Growth Engine               ──► World Model: growth_engine
-      ├──► Lens 07: Metric Movement & Anomaly   ──► World Model: bi_signals
-      ├──► Lens 13: Narrative vs Reality        ──► World Model: narrative
-      └──► ... (up to 18 active lenses)
+      ├──► Business Memory      ──► world_model/business_memory.md
+      ├──► Business Dynamics    ──► world_model/business_dynamics.md
+      ├──► Narrative Understanding ► world_model/narrative_understanding.md
+      ├──► Factual Understanding ──► world_model/factual_understanding.md
+      └──► Causal Understanding ──► world_model/causal_understanding.md
 ```
 
-Each lens enforces its own silence default — most inputs produce no update. The value is in what gets filtered out, not just what goes in.
+Each type enforces its own silence default — most inputs produce no update. The value is in what gets filtered out, not just what goes in.
 
 ## Why This Architecture Matters
 
 ### The Silence Default Is Not a Weakness — It Is the Design
 
-Every belief prompt instructs the agent to stay silent unless a durable interpretation is visible. Most documents produce no belief updates across most lenses. This is correct behavior. The rarity of a genuine belief update is what keeps confidence meaningful.
+Every belief prompt instructs the agent to stay silent unless a durable interpretation is visible. Most documents produce no belief updates across most types. This is correct behavior. The rarity of a genuine belief update is what keeps confidence meaningful.
 
 ### Surgical Updates Protect History
 

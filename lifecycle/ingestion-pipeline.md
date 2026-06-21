@@ -6,7 +6,7 @@ How a document enters Belief and becomes belief updates in the world model.
 
 ### Task 1 — Identify Document Type
 
-**Input:** Raw file  
+**Input:** Raw file
 **Output:** Transcription + document type label
 
 The file is inspected and routed to the correct extraction method:
@@ -22,18 +22,18 @@ The raw extract is written to **L3 (Raw Archive)**. This is the only time L3 is 
 
 ---
 
-### Task 2 — Select Belief Prompts
+### Task 2 — Select Belief Types
 
-**Input:** `belief_config.yaml` → `categories_active` list  
-**Output:** Ordered list of belief reasoning prompts to run
+**Input:** `belief_config.yaml` → `belief_types_active` list
+**Output:** Ordered list of belief type prompts to run
 
-The system loads the system prompts for all active categories. Typically all 18 run, but the config allows selective activation for performance or focus.
+The system loads the system prompts for all active belief types. Typically all five run, but the config allows selective activation for performance or focus.
 
 ---
 
 ### Task 3 — Chunk the Transcription
 
-**Input:** Raw transcription from Task 1  
+**Input:** Raw transcription from Task 1
 **Output:** Ordered list of chunks with sequence numbers
 
 - Default chunk size: 50,000 tokens (configurable)
@@ -45,27 +45,27 @@ The system loads the system prompts for all active categories. Typically all 18 
 
 ### Task 4 — Belief Extraction Loop
 
-**Input:** Chunks × active categories × current world model  
-**Output:** Temp belief per active category
+**Input:** Chunks × active belief types × current world model
+**Output:** Temp belief per active belief type
 
-For each category, for each chunk:
+For each belief type, for each chunk:
 
 ```
 Chunk 1:
-  temp_belief[category] = empty
+  temp_belief[type] = empty
   → run belief reasoning prompt
-  → dump all outputs directly into temp_belief[category]
+  → dump all outputs directly into temp_belief[type]
 
 Chunk 2+:
   → run belief reasoning prompt against chunk
-  → compare outputs against temp_belief[category]
+  → compare outputs against temp_belief[type]
   → resolve: confirm / contradict / merge / new / redundant / drifting
-  → update temp_belief[category]
+  → update temp_belief[type]
 ```
 
 The belief reasoning prompt (Prompt 3) receives:
 - The document chunk
-- The current world model for this category
+- The current world model for this belief type
 - The master memory goal
 
 It applies the fact-to-belief gate and makes surgical updates only.
@@ -74,7 +74,7 @@ It applies the fact-to-belief gate and makes surgical updates only.
 
 ### Task 5 — Temp Belief Maintenance
 
-**Input:** Temp belief (post-chunk outputs)  
+**Input:** Temp belief (post-chunk outputs)
 **Output:** Clean temp belief ready for next chunk or finalization
 
 Resolves within-document conflicts before they reach the world model:
@@ -91,8 +91,8 @@ Resolves within-document conflicts before they reach the world model:
 
 ### Task 6 — Document-Level Belief Finalization
 
-**Input:** Clean temp belief per category  
-**Output:** Final document-level belief file per category
+**Input:** Clean temp belief per belief type
+**Output:** Final document-level belief file per belief type
 
 After all chunks are processed, the temp belief is reviewed for coherence. Redundancies are collapsed. Contradictions are marked. The result is the single document-level belief file that will be merged against the world model.
 
@@ -100,7 +100,7 @@ After all chunks are processed, the temp belief is reviewed for coherence. Redun
 
 ### Task 7 — Merge Into World Model
 
-**Input:** Document-level belief + current world model (L1)  
+**Input:** Document-level belief + current world model (L1)
 **Output:** Updated world model + ledger entry
 
 For each belief in the document-level file:
@@ -114,13 +114,13 @@ For each belief in the document-level file:
 
 ## Token Budget Considerations
 
-The belief reasoning pass (Task 4) is the most expensive step. Each chunk × each category × each pass = one LLM call. For a 200k-token document running all 18 lenses:
+The belief reasoning pass (Task 4) is the most expensive step. Each chunk × each belief type × each pass = one LLM call. For a 200k-token document running all five belief types:
 
 - Chunks: 4 (at 50k each)
-- Lenses: 18
-- Calls: ~72 reasoning passes + maintenance passes
+- Belief types: 5
+- Calls: ~20 reasoning passes + maintenance passes
 
-The config allows selective lens activation to reduce cost when only specific dimensions are needed.
+The config allows selective belief type activation to reduce cost when only specific dimensions are needed.
 
 ## Failure Recovery
 

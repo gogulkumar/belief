@@ -6,7 +6,7 @@ Belief runs on four prompts that form a closed loop. None are static templates. 
 
 ## Prompt 1 — Goal Alignment
 
-**Runs:** Once, at system setup  
+**Runs:** Once, at system setup
 **Pattern:** ReAct interview loop — one question at a time
 
 ### What It Discovers
@@ -15,7 +15,7 @@ Belief runs on four prompts that form a closed loop. None are static templates. 
 |----------------|----------------|
 | What business is this? | Belief reasoning is domain-specific |
 | What documents will arrive? | Routes ingestion method and calibrates extraction |
-| What is the observation angle? | Determines which of the 18 lenses are active |
+| Which belief types are active? | Determines which of the five types run on each document |
 | What is the noise? | Teaches the gate to silence known irrelevant signals |
 | What is the wrong-belief cost? | Calibrates how conservative the gate should be |
 
@@ -27,9 +27,9 @@ The **master memory goal** — a compact, structured statement of what this inst
 ```
 Business: Hotels.com (HCOM) within Expedia Group
 Documents: Monthly business review decks, quarterly transcripts, planning documents
-Active lenses: All 18
+Active belief types: All five
 Observation angle: Understand how the business actually behaves vs how it is narrated.
-Watch for structural cost behavior, forecast reliability patterns, and tone shifts in leadership commentary.
+Watch for structural cost behavior, forecast reliability patterns, and tone shifts.
 Known noise: Currency effects already disclosed separately. Seasonal hotel patterns well understood.
 Wrong-belief cost: High. Beliefs feed into ODIN SQL calibration and exec-level reporting.
 ```
@@ -38,7 +38,7 @@ Wrong-belief cost: High. Beliefs feed into ODIN SQL calibration and exec-level r
 
 ## Prompt 2 — Document Intake
 
-**Runs:** On every document upload  
+**Runs:** On every document upload
 **Pattern:** Inspect → route → extract → index
 
 ### What It Does
@@ -69,13 +69,13 @@ Source Index Entry:
 
 ## Prompt 3 — Belief Reasoning
 
-**Runs:** For every chunk × every active belief category  
-**This is the 18 belief reasoning system prompts in this repository**
+**Runs:** For every chunk × every active belief type
+**This is the five belief type system prompts in this repository**
 
 ### What It Receives
 
 1. The document chunk (≤50k tokens)
-2. The current world model for this lens (all active beliefs)
+2. The current world model file for this belief type (all active beliefs)
 3. The master memory goal from Prompt 1
 
 ### What It Does
@@ -91,11 +91,11 @@ Source Index Entry:
 
 The most important instruction in every Prompt 3 is: **stay silent unless a durable interpretation is visible.** Most chunks pass through with zero updates. This is not a failure. This is the gate working correctly.
 
-### Why 18 Separate Prompts
+### Why Five Separate Prompts
 
-A single monolithic prompt watching all 18 dimensions simultaneously produces diluted, generic beliefs. Separate prompts allow each lens to:
-- Maintain its own silence threshold (some lenses require 2 confirming documents before exceeding 0.40; others require 3)
-- Apply its own guardrails (cost behavior is sensitive to one-time items; tone is the softest signal and always carries lower confidence)
+A single monolithic prompt watching all five dimensions simultaneously produces diluted, generic beliefs. Separate prompts allow each belief type to:
+- Maintain its own silence threshold
+- Apply its own guardrails (narrative is the softest signal and carries lower confidence; causal is capped at 0.90)
 - Use domain-specific examples and worked illustrations
 - Reason deeply about one dimension rather than shallowly about all
 
@@ -103,7 +103,7 @@ A single monolithic prompt watching all 18 dimensions simultaneously produces di
 
 ## Prompt 4 — Decay & Maintenance
 
-**Runs:** After every ingestion cycle  
+**Runs:** After every ingestion cycle
 **Pattern:** Audit → decay → archive → report
 
 ### What It Checks
@@ -112,11 +112,11 @@ A single monolithic prompt watching all 18 dimensions simultaneously produces di
 2. Applies confidence decay: −0.05 per cycle for each unseen belief
 3. Archives beliefs that fall below 0.10 (moves to `world_model/archive/`)
 4. Reports which beliefs are in volatility (confidence dropped significantly in recent cycles)
-5. Ensures world model stays bounded at 50–100 active beliefs per category
+5. Ensures world model stays bounded
 
 ### Why Decay Matters
 
-Without decay, stale beliefs accumulate indefinitely. A business changes — a metric that was anomalous becomes normal, a structural pattern resolves. Decay forces the world model to reflect current reality. A belief that was 0.75 and has not been seen in a year should not still be 0.75.
+Without decay, stale beliefs accumulate indefinitely. A business changes — a pattern that was anomalous becomes normal, a structural truth resolves. Decay forces the world model to reflect current reality. A belief that was 0.75 and has not been seen in a year should not still be 0.75.
 
 Decay does not erase. It reduces confidence until the belief is archived. If the pattern returns, a new prior is created — and the archive provides the historical record.
 
@@ -131,7 +131,7 @@ Prompt 1 ──► Master Memory Goal
 Prompt 2 ──► L3 Raw Archive + L2 Source Index
                      │
                      ▼
-Prompt 3 ──► Surgical world model updates (×18 lenses ×N chunks)
+Prompt 3 ──► Surgical world model updates (×5 belief types ×N chunks)
                      │
                      ▼
 Prompt 4 ──► Decay pass + bounded world model

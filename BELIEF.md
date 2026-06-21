@@ -10,7 +10,7 @@
 
 ### The Problem Every AI System Has
 
-Every agent you build — ODIN, THOR, Fury — operates on what is in its context window right now. The moment the session ends the understanding is gone. Next time it starts from zero. That is not intelligence. That is a very fast search engine.
+Every agent you build operates on what is in its context window right now. The moment the session ends the understanding is gone. Next time it starts from zero. That is not intelligence. That is a very fast search engine.
 
 The missing layer is this: how does an AI system accumulate understanding over time the way a human expert does? Not retrieve — understand. Not search — remember. Not summarize — believe.
 
@@ -24,23 +24,14 @@ It does not store facts. It accumulates beliefs. And beliefs are different.
 
 - A fact: Revenue was $2.3B in October.
 - A belief: Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting more from its existing base rather than expanding it.
-- Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs drive intelligent reasoning. Facts just answer lookup queries.
+
+Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs drive intelligent reasoning. Facts just answer lookup queries.
 
 ### The Analyst Analogy
 
 A senior analyst who has been in the room for ten months does not remember every slide. They hold a mental model of how the business behaves. They know what is seasonal and what is structural. They know when a number looks wrong. They know where to look when they need evidence.
 
-Belief builds that mental model — from any document, for any business, across any dimension — and keeps it current as new documents arrive.
-
-### Where This Matters for AI Engineering
-
-Every enterprise AI deployment today is stateless. RAG retrieves facts but does not hold beliefs. It does not track trajectories. It does not notice when the story changes. Belief is the layer that sits above RAG and below the agent — the reasoning layer that turns document retrieval into business understanding.
-
-**Three systems that change with Belief**
-
-- **ODIN** — currently queries Hyperion blind. With Belief beliefs in context it knows Q3 always has a one-time EBITDA distortion, that a cost center runs 15% above plan historically. SQL becomes calibrated not just correct.
-- **THOR** — currently uses static voice profiles. With Belief narrative memory it knows Scott has grown more cautious on margin guidance and Ariane shifted from growth to efficiency framing six months ago. Scripts reflect evolving voice not frozen profiles.
-- **Evals** — currently check SQL accuracy. With Belief you can check whether an answer reflects what is actually true about the business. A new kind of eval that does not exist without a belief layer.
+Belief builds that mental model — from any document, for any business — and keeps it current as new documents arrive.
 
 ---
 
@@ -55,98 +46,66 @@ A belief is a durable, falsifiable interpretation of how a business behaves — 
 - **Durable** — it holds true across time, not just this period
 - **Falsifiable** — a future document can confirm or contradict it
 - **Direction** — Improving, Stable, Deteriorating, or Unclear
-- **Confidence** — a number from 0 to 1 reflecting how strongly it is held
-- **Evidence** — a count of how many documents have confirmed it
-- **Provenance** — every belief traces to the document and unit that created it
-
-### What a Belief Looks Like
-
-```
-GROWTH ENGINE
-Revenue growth is increasingly dependent on pricing rather than volume,
-suggesting the business is extracting more from its existing base rather than expanding it.
-Confidence: 0.74  |  Evidence: 5 documents  |  Direction: Deteriorating
-
-NARRATIVE VS REALITY
-Revenue misses are consistently framed as timing issues, but the same demand weakness
-recurs the following period, suggesting the explanation is structural not temporal.
-Confidence: 0.81  |  Evidence: 7 documents  |  Direction: Deteriorating
-
-BUSINESS DYNAMICS
-Marketing spend increases precede revenue recovery by one to two periods,
-revealing a meaningful lag between investment and return in the growth engine.
-Confidence: 0.63  |  Evidence: 3 documents  |  Direction: Stable
-
-FORECAST RELIABILITY
-H2 revenue plans are consistently set above what the business delivers,
-with actuals landing 5–8% below H2 plan in three of four years.
-Confidence: 0.80  |  Evidence: 6 documents  |  Direction: Deteriorating
-```
+- **Confidence** — a number from 0.05 to 0.95 reflecting how strongly it is held
 
 ### The Four Update States
 
-Every time a new document arrives, each belief in the world model can do one of four things. This is the lifecycle of a belief.
+| State | What Happened | Confidence Change |
+|-------|---------------|-------------------|
+| **New Prior** | No existing belief covers this signal | Seed at 0.20 |
+| **Confirm** | New document supports this belief | +0.08 |
+| **Contradict** | New document challenges this belief | −0.15 |
+| **Decay** | Not seen in 90+ days | −0.05 per cycle |
 
-| State | What Happened | What Changes |
-|-------|---------------|--------------|
-| **Confirmed** | New document supports this belief | Confidence +0.08, Evidence +1, Last seen updated |
-| **Contradicted** | New document challenges this belief | Confidence −0.15, Volatility flagged, Contradiction note appended |
-| **New Prior** | No existing belief covers this signal | New line added at Confidence 0.20, Evidence 1 |
-| **Decayed** | Not seen in 90+ days | Confidence −0.05 per cycle, archived below 0.10 |
+Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
 
 ### The Fact-to-Belief Gate
 
-Not everything in a document becomes a belief. Most things should be ignored. The gate is the filter that separates durable interpretation from noise.
+Not everything in a document becomes a belief. Most things should produce silence. The gate is the filter.
 
-| Gate State | Definition | Action |
-|------------|------------|--------|
-| **Fact Only** | A metric, a date, a quote, a result — with no durable interpretation | Skip it |
-| **Evidence Only** | Supports or challenges an existing belief but cannot create a new one on its own | Update existing belief |
-| **Confirms Pattern** | Strengthens an existing belief without rewriting it | Confirm +0.08 |
-| **Contradicts Pattern** | Challenges an existing belief. Adds contradiction evidence — does not erase history | Contradict −0.15 |
-| **Durable Interpretation** | Implies something durable no existing belief covers. May create one new belief | New prior at 0.20 |
+| Gate State | Action |
+|------------|--------|
+| Fact only — a metric, a date, a result with no durable interpretation | Stay silent |
+| Supports or challenges an existing belief but cannot create a new one | Update existing belief |
+| Strengthens an existing belief without rewriting it | Confirm +0.08 |
+| Challenges an existing belief | Contradict −0.15 |
+| Implies something durable that no existing belief covers | New prior at 0.20 |
+
+**Two gates every belief must pass before being written:**
+
+1. **Falsifiability** — can a future document contradict this?
+2. **Distinctiveness** — is this specific to this business, not any business in this sector?
 
 ---
 
-## 03 — The Three Belief Buckets
+## 03 — The Five Belief Types
 
-All beliefs live under one of three parent buckets. The user picks a bucket first. The system then identifies the right sub-lens within it based on the user's focus. The bucket defines what the agent is watching. The sub-lens defines the exact angle.
+Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one world model — there is no separate memory per belief type.
 
-### BUSINESS MEMORY
-*What is durably true about how this business operates as a system.*
+### Business Memory
+*What is structurally and durably true about how this business is built.*
 
-| # | Sub-Lens | Observation Focus |
-|---|----------|------------------|
-| 01 | Business Model & Structure | What is permanently true about how this business is built and makes money |
-| 02 | Business Dynamics | How the parts of the business affect each other — leads, lags, loops, leverage |
-| 03 | Growth Engine | What actually drives top-line growth and whether it is sustainable |
-| 04 | Cost & Efficiency Behavior | How costs move relative to output and where efficiency builds or breaks |
-| 05 | Strategic Priorities & Investment | Where real resources go vs what is stated as a priority |
-| 06 | Scale & Organizational Efficiency | Whether the organization becomes more or less efficient as it grows |
+Watches simultaneously across: Business Model & Structure, Business Dynamics, Growth Engine, Margin & Cost Behavior, Capital Allocation, Operating Scale & Leverage. The slowest belief to change. Updated rarely; high confidence when confirmed.
 
-### BI SIGNALS
-*What is moving, anomalous, or recurring right now. The live pulse.*
+### Business Dynamics
+*How the business behaves as a system — where pressure builds, where it releases.*
 
-| # | Sub-Lens | Observation Focus |
-|---|----------|------------------|
-| 07 | Metric Movement & Anomaly | What metrics are trending, deviating, or recurring as signals |
-| 08 | Operating Risk | Recurring fragilities that keep appearing unresolved |
-| 09 | Forecast Reliability | Whether plans and guidance are becoming more or less trustworthy |
-| 10 | People, Talent & Organizational Health | Capability, attrition, capacity, and leadership stability patterns |
-| 11 | Execution Consistency | Whether initiatives complete or recycle without resolution |
-| 12 | Early Warning Signals | Which signals reliably appear before the business feels the impact |
+Watches: Cost-Revenue Relationship, Investment to Output Conversion, Volume and Price Dynamics, Feedback Loops, Organizational Response Sequence. How costs behave under pressure. Where efficiency builds or breaks.
 
-### NARRATIVE / STORYLINE
-*How the story is told and where it diverges from the numbers.*
+### Narrative Understanding
+*How the organization tells its story, and what the pattern of language reveals.*
 
-| # | Sub-Lens | Observation Focus |
-|---|----------|------------------|
-| 13 | Narrative vs Reality | Where language diverges from what the numbers show |
-| 14 | Management Credibility | Whether leadership delivers what it commits to |
-| 15 | External Attribution | Whether macro blame is selective or genuine |
-| 16 | Emphasis & Omission | What the documents choose to foreground and what they quietly drop |
-| 17 | Tone & Confidence Shift | How leadership language is changing direction over time |
-| 18 | Competitive Positioning Narrative | How the business describes its own competitive standing and whether that is shifting |
+Watches: Forward Commitment Pattern, Attribution Pattern, Language Specificity, Emphasis and Omission. Requires specific observable language anchors — not impressions. Never characterizes intent.
+
+### Factual Understanding
+*What has actually been observed and measured. The evidence layer.*
+
+Not interpretation — the intake layer. Records revenue figures, growth rates, segment data, operating metrics, forward commitments, and signals being tracked. Most observations stay here. When a pattern recurs and an interpretation becomes visible, it moves into one of the other four belief types.
+
+### Causal Understanding
+*Which signals reliably predict which outcomes, with what lag.*
+
+Each belief is one lead-lag pair: a leading signal, a lagging outcome, the observed lag, the count, and pending status. The only belief type that generates forward watch items — when a known leading signal appears, it is flagged immediately. Cap at 0.90. Requires both signal and outcome to be observed before a belief is written.
 
 ---
 
@@ -156,10 +115,10 @@ All beliefs live under one of three parent buckets. The user picks a bucket firs
 
 | Layer | What It Is | Characteristics |
 |-------|-----------|-----------------|
-| **L1 — World Model** | The living belief model | 50–100 active belief lines per category. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
-| **L2 — Source Index** | One record per document | Stores time period, themes, metrics, narratives, anomalies. Used to find relevant documents for a query without scanning raw content. |
-| **L3 — Raw Archive** | The original document content | Immutable. Written once. Never reprocessed. Source of truth for deep evidence retrieval. |
-| **Ledger** | Append-only audit log | Every document: signals extracted, beliefs affected, changes made. Full audit trail. |
+| **L1 — World Model** | The living belief model | One file per belief type. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
+| **L2 — Source Index** | One record per document | Stores time period, themes, metrics, narratives, anomalies. Used to find relevant documents without scanning raw content. |
+| **L3 — Raw Archive** | The original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
+| **Ledger** | Append-only audit log | Every document: signals extracted, beliefs affected, changes made. |
 
 ### Ingestion Pipeline — When a Document Arrives
 
@@ -170,10 +129,6 @@ DOCUMENT ARRIVES (any format)
 ┌─────────────────────────┐
 │  DOCUMENT TYPE ID       │  pptx / pdf / docx / audio / md
 └─────────────────────────┘
-    │           │         │
-    ▼           ▼         ▼
- VISION        OCR      DIRECT
-(pptx/img)  (scanned)  (text/md)
           │
           ▼  RAW EXTRACT → L3 (once only, never rerun)
           │
@@ -185,7 +140,7 @@ DOCUMENT ARRIVES (any format)
     NO  → chunk loop (50k per chunk)
           │
           ▼
-   CHUNK LOOP (per 50k, per category)
+   FOR EACH BELIEF TYPE (01–05):
    ├─ Chunk 1: temp belief empty → dump all outputs
    └─ Chunk 2+: compare against temp belief
        confirm / contradict / merge / new / redundant / drifting
@@ -193,83 +148,43 @@ DOCUMENT ARRIVES (any format)
           │
           ▼
    MERGE INTO WORLD MODEL (L1)
-   └─ surgical update per category
+   └─ surgical update per belief type
    └─ ledger entry written
    └─ decay pass runs
 ```
-
-### The Temp Belief Maintenance Loop
-
-When a document exceeds the token limit it is processed in chunks. Each chunk produces belief outputs. Those outputs are compared against what the previous chunk already produced — to prevent redundancy, resolve drift, and keep the belief set clean before it gets written to the world model.
-
-| State | What Happened | Resolution |
-|-------|---------------|------------|
-| **Overlapping** | Two chunks produced the same belief in different words | Merge into one |
-| **Redundant** | A chunk produced a belief already held at high confidence | Discard |
-| **Drifting** | A chunk produced a belief similar to but subtly different from an existing one | Flag for review, suggest merge or split |
-| **Contradicting** | A chunk produced a belief that challenges one produced by an earlier chunk of the same document | Hold both, flag tension |
-| **New** | A chunk produced a belief that has no match in the temp set | Add it |
 
 ---
 
 ## 05 — The Prompt Architecture
 
-There are four prompts in Belief. None are static templates. They are generated from the user's setup conversation and adapt to the document type and business domain.
+Four prompts form a closed loop. None are static templates.
 
 | Prompt | When It Runs | What It Does |
 |--------|-------------|--------------|
-| **Prompt 1 — Goal Alignment** | Once | A ReAct interview loop — one question at a time. Discovers the business, the documents, the observation angle, the noise, and the wrong-belief cost. Produces the master memory goal loaded into every subsequent pass. |
-| **Prompt 2 — Document Intake** | Every upload | Inspects the file. Routes to vision, OCR, or direct extract. Executes the intake. Produces the raw extract stored in L3 and the index entry written to L2. |
-| **Prompt 3 — Belief Reasoning** | Every chunk × every active category | The core intelligence prompt. Reads chunk + current world model + memory goal simultaneously. Applies the fact-to-belief gate. Makes surgical updates only. Writes the ledger entry. |
-| **Prompt 4 — Decay & Maintenance** | After every ingestion cycle | Checks beliefs not seen in 90 days. Applies confidence decay. Archives below 0.10. Reports volatility. Keeps the model bounded at 50–100 active beliefs. |
+| **Prompt 1 — Goal Alignment** | Once | ReAct interview loop. Discovers the business, documents, observation angle, known noise. Produces the master memory goal loaded into every subsequent pass. |
+| **Prompt 2 — Document Intake** | Every upload | Inspects the file. Routes to vision, OCR, or direct extract. Writes raw extract to L3 and index entry to L2. |
+| **Prompt 3 — Belief Reasoning** | Every chunk × every active belief type | The core intelligence prompt. Reads chunk + current world model + memory goal simultaneously. Applies the fact-to-belief gate. Makes surgical updates only. |
+| **Prompt 4 — Decay & Maintenance** | After every ingestion cycle | Checks beliefs not seen in 90 days. Applies confidence decay. Archives below 0.10. Keeps the model bounded. |
 
-The 18 belief reasoning system prompts each implement Prompt 3 for one specific sub-lens. Every prompt shares identical action structure — the gate, the silence default, the surgical update logic, the direction field, the guardrails. Only the observation focus and worked examples differ.
-
----
-
-## 06 — The Cowork Application
-
-### Why Cowork
-
-Belief is a multi-step, multi-tool, file-in file-out workflow that runs across many documents over time. It has a loop inside a loop — the chunk loop inside the document loop. It passes files between tasks. It has a configurable parameter that changes how many iterations it runs. That is too complex for a single conversation. It needs a persistent task runner with file access.
-
-### The Seven Task Sequence
-
-| Task | Name | Input → Output |
-|------|------|----------------|
-| 1 | **Identify Document Type** | File → raw transcription + document type label |
-| 2 | **Select Belief Prompts** | Config → ordered list of prompts to run |
-| 3 | **Chunk the Transcription** | Raw text → ordered list of chunks with sequence numbers |
-| 4 | **Belief Extraction Loop** | Chunks × categories → temp belief per category |
-| 5 | **Temp Belief Maintenance** | Temp belief → clean temp belief (overlaps resolved) |
-| 6 | **Document-Level Belief Finalization** | Clean temp → final document-level belief file per category |
-| 7 | **Merge Into World Model** | Document belief + world model → updated world model + ledger entry |
+The five belief type system prompts each implement Prompt 3 for one specific belief type. Every prompt shares identical action structure — the gate, the silence default, the surgical update logic, the direction field, the guardrails. Only the observation focus and worked examples differ.
 
 ---
 
-## 07 — Why This Matters
+## 06 — Why This Matters
 
-### What Separates a Smart Tool from an Intelligent System
-
-A smart tool answers questions correctly. An intelligent system understands the context those questions live in. The difference is the belief layer — the accumulated understanding that makes every query smarter than the last.
-
-### The Three Things Belief Enables That Nothing Else Does
+### Three Things Belief Enables That Nothing Else Does
 
 **01 — Contextual reasoning over time**
-Every agent today is context-blind at session start. Belief gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business not just syntactically correct.
+Every agent today is context-blind at session start. Belief gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business.
 
 **02 — Belief-grounded evaluation**
-Current evals check output format and SQL accuracy. Belief enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model. That is a quality bar that does not exist without this layer.
+Current evals check output format and SQL accuracy. Belief enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model.
 
 **03 — Portable business understanding**
-When you upgrade a model or rebuild a system the understanding currently lives nowhere — it has to be re-engineered from scratch. With Belief the world model is portable. A new model inherits the business understanding immediately. The investment compounds instead of resetting.
-
-### The Honest Risk
-
-This only matters if belief quality is high. If Belief produces generic beliefs that any finance system would generate — it adds complexity without value. The belief quality comes entirely from the prompt engineering. The 18 system prompts, the questioning agent, the fact-to-belief gate, the worked examples — that is the hard part. And it is what makes Belief specific rather than generic.
+When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the world model is portable. A new model inherits the business understanding immediately. The investment compounds.
 
 ### The Acceptance Criterion
 
-Give Belief 10 months of HCOM business review decks. Read the resulting world model. If a senior HCOM analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
+Give Belief 10 months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*

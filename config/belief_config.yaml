@@ -8,32 +8,16 @@ belief_config:
   # Documents below this limit run as a single belief pass.
   token_limit_per_chunk: 50000
 
-  # ─── ACTIVE BELIEF CATEGORIES ──────────────────────────────────────────────
-  # Add or remove lenses to control which dimensions of belief are maintained.
-  # Running all 18 is the default. Remove lenses to reduce LLM calls and cost.
-  # See belief-template-system-prompts/ for the full prompt for each lens.
-  categories_active:
-    # BUSINESS MEMORY — what is durably true about how the business operates
-    - business_model_structure       # 01
-    - business_dynamics              # 02
-    - growth_engine                  # 03
-    - margin_cost_behavior           # 04
-    - capital_allocation             # 05
-    - operating_scale_leverage       # 06
-    # BI SIGNALS — what is moving, anomalous, or recurring right now
-    - metric_movement_anomaly        # 07
-    - operating_risk                 # 08
-    - forecast_reliability           # 09
-    - balance_sheet_stress           # 10
-    - execution_consistency          # 11
-    - leading_lagging_indicators     # 12
-    # NARRATIVE / STORYLINE — how the story is told vs what the numbers show
-    - narrative_vs_reality           # 13
-    - management_credibility         # 14
-    - external_attribution           # 15
-    - emphasis_omission              # 16
-    - tone_confidence_shift          # 17
-    - competitive_positioning        # 18
+  # ─── ACTIVE BELIEF TYPES ───────────────────────────────────────────────────
+  # Add or remove belief types to control which dimensions of belief are maintained.
+  # Running all five is the default. Remove types to reduce LLM calls and cost.
+  # See belief-template-system-prompts/ for the full prompt for each belief type.
+  belief_types_active:
+    - business_memory          # 01 — what is structurally and durably true about this business
+    - business_dynamics        # 02 — how the business behaves as a system
+    - narrative_understanding  # 03 — how the organization tells its story
+    - factual_understanding    # 04 — the evidence layer; feeds all other belief types
+    - causal_understanding     # 05 — which signals reliably predict which outcomes, with what lag
 
   # ─── TEMP BELIEF MAINTENANCE ───────────────────────────────────────────────
   # When true, runs the maintenance loop between chunks to resolve overlapping,
@@ -52,9 +36,9 @@ belief_config:
   archive_threshold: 0.10
 
   # ─── WORLD MODEL BOUNDS ────────────────────────────────────────────────────
-  # Maximum number of active beliefs across all categories.
+  # Maximum number of active beliefs per belief type.
   # Beliefs are ranked by confidence; lowest are archived first when this is exceeded.
-  world_model_max_beliefs: 100
+  world_model_max_beliefs_per_type: 20
 
   # ─── STORAGE PATHS ─────────────────────────────────────────────────────────
   world_model_path: ./world_model/
@@ -68,4 +52,5 @@ belief_config:
   contradict_delta: -0.15
   new_prior_confidence: 0.20
   confidence_cap: 0.95
+  confidence_cap_causal: 0.90    # causal beliefs are probabilistic, not deterministic
   confidence_floor: 0.05
