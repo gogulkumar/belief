@@ -128,3 +128,19 @@ The config allows selective belief type activation to reduce cost when only spec
 - **Temp belief is ephemeral**: discarded after merge. No state to recover between runs.
 - **World model is surgical**: a failed merge does not corrupt existing beliefs. The pre-merge state is unchanged until the write completes.
 - **Ledger is append-only**: no entry is written until Task 7 completes successfully. An absent ledger entry = pipeline did not complete for that document.
+
+---
+
+## Belief Lifecycle — How A Belief Evolves Over Time
+
+A belief is not static. Each new document that arrives is an opportunity to confirm, contradict, or leave unchanged every belief in the world model. The lifecycle rules govern what happens to a belief after it is written.
+
+**Confirming a belief:** When a later document shows the same mechanism independently — not in the same words, not from the same source, but from a different period or a different angle — the belief earns more confidence. The update is written as the story continuing: name the new document, name what it showed, say what it adds to the existing understanding.
+
+**Revising a belief:** When the direction reverses or the mechanism changes, the belief is revised — not retired. The prior understanding is preserved as history; the current understanding is updated to reflect what is now true. A belief whose direction has reversed is different from a belief that has been contradicted.
+
+**Retiring a belief:** When multiple documents contradict a belief, it is retired to the archive. The archive preserves the record of what was believed and when — it is not deleted. A retired belief is available as historical context if the pattern re-emerges.
+
+**Decaying a belief:** A belief not seen in 90 days loses 0.05 confidence per decay cycle. This is not contradiction — it is the absence of evidence. The world moves on. A belief the documents have stopped supporting should not be held at the same confidence as one the documents keep confirming.
+
+These four states — confirm, revise, retire, decay — are managed by Prompt 4 (Decay & Maintenance) after every ingestion cycle, not by the belief reasoning prompts themselves. The belief reasoning prompts only answer one question: what does this document say to the existing belief right now?

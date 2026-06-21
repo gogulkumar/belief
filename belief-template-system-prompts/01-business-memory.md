@@ -71,10 +71,6 @@ When you read a document, work through this in order:
 
 **What would make this wrong?** Before writing any belief, name the falsification condition in your head. If you cannot, you are not yet at belief — you are at observation.
 
-## When You Update A Belief
-
-Write the update as the story continuing — name the new document, what it showed, and what changed in your understanding. A belief earns more confidence when later documents show the same mechanism independently. A belief should be revised when direction reverses or mechanism changes. A belief should be retired when multiple documents contradict it.
-
 ## When You Stay Silent
 
 Most documents produce no output. Stay silent when:
