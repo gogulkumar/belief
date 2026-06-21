@@ -33,6 +33,38 @@ A senior analyst who has been in the room for ten months does not remember every
 
 Belief builds that mental model — from any document, for any business — and keeps it current as new documents arrive.
 
+### The New Hire Who Never Learns
+
+A capable new hire can do the task on day one but gets it wrong — they lack the context that takes months to absorb. Today's AI is that hire, except it never stops being new. Every task starts with no knowledge of how this place works. Belief ends that reset.
+
+### What a Belief Is Not
+
+| Not this | Why a belief is different |
+|---|---|
+| A **fact** to look up | A fact is retrieved and static. A belief is applied as working truth and can change. |
+| A **hardcoded rule** | A rule is frozen at write-time. A belief is expected to drift and is maintained. |
+| **Conversation or agent memory** | That remembers what *you said*. A belief remembers how *the business works*. |
+
+The sharpest distinction is the last one. The field has invested heavily in giving AI memory of conversations and recent sessions. A belief is the other, harder kind — memory of the business itself.
+
+### What a Belief Contains
+
+For a given process, the belief layer captures the understanding an expert applies without thinking:
+
+- **Definitions** — what each term means here (e.g., which definition of "revenue" applies in this room)
+- **Trusted sources** — which system or file is the source of truth; which wins on conflict
+- **What's normal** — expected ranges, so a real anomaly is distinguishable from noise
+- **Process steps** — the sequence the work always follows
+- **Rules and conventions** — how outputs are framed for different stakeholders
+
+### Skills and Beliefs
+
+A skill does the task — pulls the numbers, builds the report. It runs on whatever it can infer about the business at the time.
+
+A belief is the understanding the task is performed *from* — the assumptions behind the doing. Skills take the doing; beliefs take the thinking.
+
+Belief is scoped to the same process a skill already performs. It is not a model of the whole business. Start where a skill is running and capture the thinking behind that one process.
+
 ---
 
 ## 02 — The Belief
@@ -183,8 +215,30 @@ Current evals check output format and SQL accuracy. Belief enables a new kind of
 **03 — Portable business understanding**
 When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the world model is portable. A new model inherits the business understanding immediately. The investment compounds.
 
+### The Business Case
+
+**Saves repetitive thinking, not just repetitive doing.**
+Skills removed the doing once. Beliefs remove the re-thinking — remember, decide, reconcile, frame — every time after. That is what compounds and what actually drives adoption.
+
+**A durable asset, not a rented one.**
+The model is rented and commoditized. The accumulated beliefs are owned and specific to this business. Investment in understanding does not depreciate when the model is swapped.
+
+**The first step of interpretation.**
+Running tasks inside a business is not the same as interpreting a business. Beliefs are the first step of interpretation — they make the system's outputs reflect how the business actually works, not just what was in the prompt.
+
 ### The Acceptance Criterion
 
 Give Belief 10 months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*
+
+---
+
+## 07 — Concept Grounding
+
+This is not a new architecture. It is a named implementation of an established idea.
+
+- In **agent theory**, this is a *belief* in the BDI (Belief-Desire-Intention) sense — something the agent treats as true while acting.
+- In **enterprise AI practice**, the same idea appears under different names: semantic memory, business rules engine, semantic layer, ontology, context layer.
+
+Same underlying concept, different names across fields. Naming it honestly avoids overclaiming and makes it easier to reason about where it fits alongside tools teams already use.

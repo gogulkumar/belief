@@ -25,6 +25,8 @@ It does not store facts. It accumulates **beliefs**.
 | Revenue was $2.3B in October. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
 | Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Drives intelligent reasoning. |
 
+A **skill** does the task — pulls the numbers, builds the report. A **belief** is the understanding the task is performed from. Skills take the doing; beliefs take the thinking.
+
 ---
 
 ## The Five Belief Types
