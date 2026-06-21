@@ -1,6 +1,6 @@
 # Narrative Understanding Belief — Expedia Group
 
-*Source: Q1 2025 · Q2 2025 · Q3 2025 · Q4 2025 · Q1 2026 earnings call summaries*
+*Source: Q1 2025 · Q2 2025 · Q3 2025 · Q4 2025 · Q1 2026 earnings call summaries + Q1 2026 primary transcript (LSEG STREETEVENTS)*
 *Five quarters of earnings communications read as a single evolving pattern.*
 
 ---
@@ -84,3 +84,47 @@ The communication effect of the streak framing: it makes B2B performance difficu
 The B2B counter-narrative also serves a specific function when analysts press on U.S. consumer competitive positioning — a recurring analyst concern across all five quarters. When consumer performance lags competitors, B2B growth is offered as evidence of platform strength that is not visible in the consumer segment alone. The implication is that Expedia's competitive position should be evaluated across both segments. This is a legitimate argument; it is also a consistent deflection from the consumer competitiveness question.
 
 **Confidence: 0.82 | Direction: Stable**
+
+---
+
+### CEO/CFO Language Divergence as a Tension Signal
+
+Within individual calls, the CEO and CFO do not always frame conditions in the same register. Across five quarters, a consistent pattern has emerged: Gorin holds conviction framing while Schenkel holds conditional framing, and the gap between them is wider in quarters where conditions are more uncertain.
+
+The clearest instance appears in Q1 2025. Consumer bookings grew 1%. Gorin stated: *"I'm confident that we're well-positioned to continue delivering for our travelers, partners and shareholders regardless of the demand environment."* Schenkel, in the same call, noted that demand in the US was "softer than expected" and quantified the Canada decline at 30%. Gorin's language is unconditional — "regardless of the demand environment." Schenkel's language is specific and quantified. One speaker is managing confidence; the other is managing the record.
+
+The divergence is not a contradiction between CEO and CFO. It is a structural feature of how Expedia's calls are organized: Gorin holds the strategic conviction frame and Schenkel holds the accountability frame. What changes across quarters is how wide the gap between those two registers is. In quarters where results are strong — Q3 2025, Q4 2025, Q1 2026 — Gorin's conviction frame and Schenkel's accounting frame are closely aligned. Results support both. In Q1 2025, with consumer weakness, the gap is visible: Gorin claims confidence without conditions while Schenkel names specific headwinds with specific numbers.
+
+In Q1 2026, the gap had narrowed substantially. Both Gorin and Schenkel were operating in the same register of strength — consumer business achieved "its highest bookings growth post-COVID," EBITDA margin expanded 6 points, free cash flow $4.1 billion trailing twelve months. Schenkel's closing remarks — "I am confident the company is well positioned to build on this foundation" — are in the same tone as Gorin's strategic language. When both speakers converge in tone, results are strong. When they diverge — Gorin holding conviction while Schenkel quantifies headwinds — that divergence is the signal.
+
+**Confidence: 0.71 | Direction: Stable**
+
+---
+
+### What Analysts Keep Asking That Management Does Not Answer
+
+Across five quarters, certain analyst questions have returned repeatedly without receiving a specific quantitative answer. The persistence of the question is itself a belief — it indicates what the analyst community does not believe has been adequately addressed. The pattern of which questions get deflected, and how, is as informative as the pattern of what gets answered.
+
+The US consumer competitiveness question has been the most persistent unresolved concern across all five quarters. In Q1 2025, Lee Horowitz (Deutsche Bank) pressed on whether B2C could "go negative this year." In Q1 2026, Brian Nowak (Morgan Stanley) asked directly: *"It looks like you may have grown slower than a couple of your peers in the US."* The question has evolved from hypothetical (could it go negative?) to comparative (are you growing slower than peers?). Management's response in Q1 2026 was to reframe the metric: *"US domestic bookings actually accelerated and grew in the mid-teens."* This response shifts from total US bookings (which includes inbound, where Mexico and Middle East advisories suppressed results) to domestic bookings (which excludes inbound headwinds). The reframe is accurate — domestic mid-teens growth is a strong number — and it is also a substitution of a more favorable metric for the one the analyst asked about. Five quarters of the same underlying question suggests the analyst community has not accepted the answer.
+
+The marketing efficiency sustainability question has also recurred. Justin Post (Bank of America) raised it in Q1 2026: *"You're going to lap that step function improvement in the third quarter. Do you think you could still drive marketing improvements as you think about the back half?"* Schenkel acknowledged the lapping dynamic directly but deferred to Q2 for a full-year update. The question will return in Q2 2026. Management has flagged the lapping issue consistently — it is not being hidden — but the specific answer to whether incremental marketing improvements exist beyond the initial cost-cut gains has not been given.
+
+The AI channel conversion quality question first appeared in Q3 2025 when Deepak Mathivanan (Cantor Fitzgerald) asked about lead quality from ChatGPT and Perplexity. The same question returned in Q1 2026. The consistent answer: "it's early days," volume is "still small," "we're encouraged by the mix." No conversion rate, no revenue per booking, no retention rate for AI-sourced customers. The question will continue to be asked because the answer has not advanced in specificity across multiple quarters.
+
+**Confidence: 0.74 | Direction: Stable**
+
+---
+
+### Watch Items for Q2 2026
+
+*These are the specific signals to track in the next quarter's communication based on open questions from the five-quarter belief.*
+
+**AI as organizing frame:** Does the Q2 2026 call maintain AI as the primary organizing principle of the prepared remarks, or does the three-priority structure reassert? If Gorin returns to structuring prepared remarks by priority with AI as a sub-topic, the Q1 2026 shift was a one-quarter experiment. If AI maintains the top-level position, the architectural change is confirmed.
+
+**US consumer competitiveness answer:** Brian Nowak's Q1 2026 question — "you may have grown slower than a couple of your peers in the US" — was deflected to domestic US bookings. Q2 2026 is the quarter to watch for whether Expedia's total US consumer bookings (including inbound) recovers relative to peers, and whether management provides a direct answer to the peer comparison or continues to reframe to a more favorable metric.
+
+**Marketing leverage lapping:** Schenkel explicitly flagged that H2 2026 will lap the cost reductions from H2 2025. Q2 2026 prepared remarks will likely pre-signal what margin expansion looks like when the easy laps are gone. Watch for whether guidance is revised and whether the language shifts from "marketing leverage" to a different efficiency frame.
+
+**AI channel specificity:** Five quarters of "it's early days" on AI channel conversion. Q2 2026 is when answer engine optimization — described as the "fastest-growing channel" in Q1 2026 — should be large enough to carry a metric. Watch for whether any specific conversion, retention, or revenue figure appears for AI-sourced bookings. If Q2 2026 still returns "early days" language, that is itself a confirmed belief about what Expedia chooses not to disclose on this dimension.
+
+**New CFO Derek Andersen's language register:** Scott Schenkel is departing. Derek Andersen will be on the Q2 2026 call. The first call with a new CFO is the best opportunity to detect whether the CEO/CFO language divergence pattern holds with a new speaker in the accountability role, or whether the new CFO adopts the same conviction-versus-accountability split that Schenkel maintained.
