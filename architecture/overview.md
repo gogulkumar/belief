@@ -107,6 +107,32 @@ Each type enforces its own silence default — most inputs produce no update. Th
 
 ## Why This Architecture Matters
 
+### Metric-Layer Anchoring
+
+Beliefs are tied to the behavior of a financial metric over time — not to the document format that surfaced it.
+
+The same business dynamic (e.g., "Loyalty Program Margin Dilution") surfaces whether it is discovered in a text bullet on a business review deck, a calculated cell in a financial model, a row in a database export, or a line item in an SEC filing. The dynamic exists at the data layer, not the presentation layer.
+
+```
+[ RAW BUSINESS METRIC ] ──► e.g., "HCOM Take Rate drops 40 bps"
+              │
+     ┌────────┴────────┐
+     ▼                 ▼
+[ DATA SOURCE ]   [ BELIEF LENS ]
+ .pptx / .xlsx     "A 40 bps drop is consistent with
+ .csv / .pdf        loyalty redemption dilution."
+                        │
+                        ▼
+            [ EXTRACTED BUSINESS DYNAMIC ]
+              "Loyalty Program Margin Dilution"
+```
+
+This means:
+- The belief reasoning prompt reads for metric movement and its interpretation — not for document structure.
+- A belief confirmed in a deck and a belief confirmed in a spreadsheet are treated identically.
+- New document types do not require new belief types — they are routed through the same extraction and reasoning logic after Task 1 (format-specific extraction).
+- The world model is **document-format-agnostic**. Only the extraction method in Task 1 of the ingestion pipeline varies by format.
+
 ### The Silence Default Is Not a Weakness — It Is the Design
 
 Every belief prompt instructs the agent to stay silent unless a durable interpretation is visible. Most documents produce no belief updates across most types. This is correct behavior. The rarity of a genuine belief update is what keeps confidence meaningful.

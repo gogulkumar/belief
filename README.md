@@ -80,6 +80,7 @@ belief/
 │   └── overview.md                         ← system architecture & agent integration
 │
 ├── lifecycle/
+│   ├── seeding.md                          ← Phase 0: Knowledge Dossier and metric-dynamic anchors
 │   └── ingestion-pipeline.md               ← how documents flow through Belief
 │
 ├── world-model/

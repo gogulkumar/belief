@@ -143,6 +143,16 @@ Each belief is one lead-lag pair: a leading signal, a lagging outcome, the obser
 
 ## 04 — The Lifecycle
 
+### Phase 0 — Seeding (Before Documents Arrive)
+
+Before any document is ingested, the belief system should be seeded with a **Knowledge Dossier** — a human-written document capturing the institutional understanding of the business: how it makes money, where costs go, and what the normal operating ranges look like.
+
+The dossier is not processed through the ingestion pipeline. A setup agent extracts candidate beliefs from it and writes them directly into the world model as seeded priors (confidence 0.20). From that point, documents confirm, contradict, or decay those beliefs exactly as they would any other belief.
+
+This step turns the first document the system reads from a cold start into a calibrated one. See [`lifecycle/seeding.md`](../lifecycle/seeding.md) for the full Knowledge Dossier format, Metric-Dynamic Anchor table, and three-level cascade structure.
+
+---
+
 ### Three Layers of Storage
 
 | Layer | What It Is | Characteristics |

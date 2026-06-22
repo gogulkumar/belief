@@ -94,6 +94,22 @@ Causal beliefs carry additional fields for the lead-lag relationship.
 **Bounds:** Floor 0.05 · Cap 0.95 (0.90 for causal beliefs)
 **Archive threshold:** Below 0.10 → moved to `world_model/archive/`
 
+## Belief Scope Levels
+
+Beliefs carry an implicit scope level based on how broadly they apply and how rarely they change. Scope level is not a stored field — it is determined by which belief type holds the belief and how it was worded.
+
+| Level | Scope | Change Rate | Typical Belief Type |
+|-------|-------|-------------|---------------------|
+| **L1 — Global Finance** | Universal accounting and business model mechanics | Rare | Business Memory |
+| **L2 — Brand Scope** | Business model rules specific to this brand | Slow (quarters) | Business Memory, Business Dynamics |
+| **L3 — Domain Metric** | Tolerance thresholds for specific KPIs | Frequent (each cycle) | Factual Understanding, Causal Understanding |
+
+**Revision thresholds scale with scope level.** A single document that appears to contradict a Level 1 belief is more likely an extraction error than a genuine contradiction — flag it rather than contradicting. A Level 3 belief can be revised on a single strong document.
+
+The scope level also determines how the seeded priors from the Knowledge Dossier behave after seeding. Level 1 beliefs seed at 0.20 and rise slowly; Level 3 beliefs can confirm faster because the evidence arrives in almost every document.
+
+---
+
 ## World Model Bounds
 
 - **Max active beliefs per type:** ~20
