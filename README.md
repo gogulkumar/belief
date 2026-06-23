@@ -73,9 +73,6 @@ belief/
 │   ├── 04-factual-understanding.md
 │   └── 05-causal-understanding.md
 │
-├── examples/                               ← belief applied to a real company
-│   └── google-narrative-belief.md          ← Alphabet narrative belief, 4 transcripts
-│
 ├── architecture/
 │   └── overview.md                         ← system architecture & agent integration
 │
