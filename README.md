@@ -84,8 +84,13 @@ belief/
 │   └── schema.md                           ← belief file structure & update arithmetic
 │
 ├── prompts/
+│   ├── belief-doctrine.md                  ← shared doctrine: what a belief is across all prompts
 │   ├── four-prompt-architecture.md         ← the four core Belief prompts explained
-│   └── strategic-blueprint.md              ← Layer 1: the master configuration document
+│   ├── strategic-blueprint.md              ← Layer 1: the master configuration document
+│   ├── 00-document-profile.md             ← Prompt 00: interview agent to build document profile
+│   ├── 01-generate-blueprint.md           ← Prompt 01: produce the Strategic Blueprint
+│   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
+│   └── 06-fact-extractor.md              ← Prompt 06: compile the fact extraction prompt
 │
 └── config/
     └── belief_config.yaml                  ← reference configuration file
@@ -104,6 +109,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 ## Quick Links
 
 - [Full Specification →](BELIEF.md)
+- [Shared Belief Doctrine →](prompts/belief-doctrine.md)
 - [Five Belief Reasoning Prompts →](belief-template-system-prompts/README.md)
 - [Architecture & Agent Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)
