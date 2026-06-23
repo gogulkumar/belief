@@ -71,14 +71,35 @@ Belief is scoped to the same process a skill already performs. It is not a model
 
 ### A Belief Defined
 
-A belief is a durable, falsifiable interpretation of how a business behaves — supported or challenged by evidence across many documents. It is not a fact. It is not a metric. It is not a slide summary. It is the compressed judgment that a trained analyst would carry in their head after months of reading.
+A belief is a durable, falsifiable, actionable interpretation of how a business behaves — supported or challenged by evidence across many documents. It is not a fact. It is not a metric. It is not a slide summary. It is the compressed judgment that a trained analyst would carry in their head after months of reading.
 
 ### What Makes a Belief a Belief
 
 - **Durable** — it holds true across time, not just this period
 - **Falsifiable** — a future document can confirm or contradict it
+- **Actionable** — it tells you what to expect next, and what would constitute a surprise worth investigating
 - **Direction** — Improving, Stable, Deteriorating, or Unclear
 - **Confidence** — a number from 0.05 to 0.95 reflecting how strongly it is held
+
+### Also Not a Belief
+
+Beyond the core distinctions (not a fact, not a rule, not agent memory), a belief is also not:
+
+- A **metric reading** — a specific value at a specific point in time
+- A **one-period observation** — something a single document mentioned that hasn't recurred
+- A **document summary** — what a document said, not what it means
+- An **opinion** about whether performance is good or bad
+- A **projection or forecast** — a belief describes what is, not what is predicted
+
+### The Durability Ladder
+
+A belief passes through maturity stages as more documents are processed:
+
+| Stage | Documents | What It Means |
+|-------|-----------|---------------|
+| **Provisional** | 1 | This observation has the shape of a durable pattern. Explicitly marked as subject to confirmation. |
+| **Confirmed** | 2 | The pattern appeared again independently. The belief is now held with confidence. |
+| **Established** | 3+ | The pattern is structural. Breaking it is meaningful signal, not noise. |
 
 ### The Four Update States
 
@@ -214,6 +235,19 @@ The five belief type system prompts each implement Prompt 3 for one specific bel
 
 ## 06 — Why This Matters
 
+### The Three Use Cases
+
+**01 — Pre-reading a document**
+Before reading the next document, an analyst reads the belief first. It tells them what is already known to be true about how this entity communicates and performs. They walk in with priors, not cold. They read faster, notice more, and ask better questions.
+
+**02 — Anomaly detection**
+The belief sets the normal. When a new document arrives, the question is not "what does this document say?" but "what does this document do differently from what was expected?" Without a precise baseline, anomalies are invisible. With a belief, they surface immediately — not because a rule was triggered, but because the expected state is known.
+
+**03 — Institutional memory transfer**
+A new analyst reads the belief and gets years of behavioral context in minutes. For this to work, the belief must be specific enough to be actionable — not just "the business is seasonal" but specific enough that the analyst knows exactly what to look for in the next document, and what its absence would mean.
+
+---
+
 ### Three Things Belief Enables That Nothing Else Does
 
 **01 — Contextual reasoning over time**
@@ -252,3 +286,24 @@ This is not a new architecture. It is a named implementation of an established i
 - In **enterprise AI practice**, the same idea appears under different names: semantic memory, business rules engine, semantic layer, ontology, context layer.
 
 Same underlying concept, different names across fields. Naming it honestly avoids overclaiming and makes it easier to reason about where it fits alongside tools teams already use.
+
+---
+
+## 08 — Open Design Questions
+
+These are unresolved architectural decisions. They are documented here to prevent them from being re-litigated from scratch each time the system is extended.
+
+**01 — Pattern fingerprint as a fifth belief field**
+Should a dedicated field hold the concrete recurring signals (specific language, structural positions, behavioral markers) that evidence the belief? Currently, a belief states that a pattern exists. A fingerprint would hold what the pattern looks like in enough detail that the next document parser can check for it explicitly. Decision deferred: if enriching the blueprint layer produces fingerprints naturally inside the existing four fields, the fifth field is redundant. If the four fields remain descriptive rather than evidential, it is needed.
+
+**02 — Anomaly detection as a first-class output**
+Should the pipeline produce an explicit anomaly report when a new document breaks an established pattern? Currently the changelog records that a belief changed but not why it changed or what the anomaly was. A dedicated anomaly output would be more actionable for the pre-reading use case.
+
+**03 — Cross-document pattern synthesis**
+The pipeline processes one document at a time. Some patterns only emerge across many documents — seasonal behavior, systematic forecast bias, consistent framing shifts. Should there be a periodic synthesis step that looks across all fact logs simultaneously rather than evolving beliefs one document at a time?
+
+**04 — Explicit durability tiers**
+Should the Provisional / Confirmed / Established stages from the durability ladder be stored as explicit fields in the belief entry, or is the document count implicit in the evidence trail sufficient? Explicit tiers make the stage queryable; implicit tiers keep the format simpler.
+
+**05 — Statement diff in changelog**
+The changelog currently records that a statement changed, not what it said before vs after. Full statement history would enable drift analysis — understanding how the interpretation of a business evolved over time as more documents were read. Not yet implemented.

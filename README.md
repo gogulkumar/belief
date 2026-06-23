@@ -87,7 +87,8 @@ belief/
 │   └── schema.md                           ← belief file structure & update arithmetic
 │
 ├── prompts/
-│   └── four-prompt-architecture.md         ← the four core Belief prompts explained
+│   ├── four-prompt-architecture.md         ← the four core Belief prompts explained
+│   └── strategic-blueprint.md              ← Layer 1: the master configuration document
 │
 └── config/
     └── belief_config.yaml                  ← reference configuration file

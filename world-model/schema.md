@@ -22,12 +22,19 @@ Each belief is one block in its category file. Fields are always present; values
 ```markdown
 ## [BELIEF_ID]
 
-**Statement:** [Durable, falsifiable interpretation of how the business behaves]
+**Statement:** [Durable, falsifiable, actionable interpretation of how the business behaves]
 
 **Confidence:** 0.XX
 **Direction:** Improving | Stable | Deteriorating | Unclear
+**Stage:** Provisional | Confirmed | Established
 **Last Seen:** [Document name or date of most recent confirming document]
 **First Seen:** [Document name or date of originating document]
+
+**Normal Baseline:** [The expected or typical state for this dimension — the reference point
+that makes deviations meaningful. Not what happened — what is normal.]
+
+**Forward Signal:** [What the next document should show if this belief is holding.
+What signal would indicate it is shifting or breaking.]
 
 **Evidence Trail:**
 - [Doc 1] — [brief note on what it showed]
@@ -36,6 +43,12 @@ Each belief is one block in its category file. Fields are always present; values
 **Contradictions:** (if any)
 - [Doc N] — [brief note on what challenged this belief]
 ```
+
+The **Stage** field maps to the durability ladder: Provisional (1 document), Confirmed (2), Established (3+). A Provisional belief is explicitly marked as subject to confirmation. An Established belief requires substantially stronger contradicting evidence before revision.
+
+The **Normal Baseline** is what makes anomaly detection possible. Without it, any number is just a number. With it, a deviation is immediately visible and meaningful.
+
+The **Forward Signal** is what makes the belief actionable. It tells the reader exactly what to look for in the next document — and what its absence would mean.
 
 ### Example
 
@@ -125,6 +138,30 @@ Every Prompt 3 (Belief Reasoning) call receives:
 3. **The master memory goal** — the user-defined observation angle from Prompt 1
 
 It writes back **only the lines that change**. The rest of the world model is untouched.
+
+## Changelog Structure
+
+After every ingestion cycle, `belief_changelog.md` records what changed at the belief level — one entry per belief affected.
+
+```markdown
+## Changelog — [Document Name] — [Timestamp]
+
+- [NEW] BM-005 — "Cost structure has become predominantly fixed above X volume threshold"
+- [UPDATED] BD-002 — Statement revised: evidence from this document changed the interpretation
+- [DEEPENED] CU-001 — Statement held; Forward Signal updated with new leading indicator observed
+- [RETIRED] NU-003 — Pattern not seen in 3+ consecutive documents; archived
+```
+
+| Tag | Meaning |
+|-----|---------|
+| `[NEW]` | A belief added for the first time (Stage: Provisional) |
+| `[UPDATED]` | Statement was revised — new evidence changed the interpretation |
+| `[DEEPENED]` | Statement held; Normal Baseline or Forward Signal was enriched |
+| `[RETIRED]` | Belief archived — evidence no longer supports it after repeated absence |
+
+The changelog is append-only. It records that a statement changed but not the full before/after diff (open design question — see BELIEF.md §08). An absent changelog entry for a document means that document produced no belief updates across any type.
+
+---
 
 ## The Ledger
 
