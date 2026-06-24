@@ -65,7 +65,7 @@ belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
 │
-├── belief-template-system-prompts/         ← the five belief reasoning prompts
+├── belief-template-system-prompts/         ← the five standard belief reasoning prompts
 │   ├── README.md
 │   ├── 01-business-memory.md
 │   ├── 02-business-dynamics.md
@@ -78,10 +78,10 @@ belief/
 │
 ├── lifecycle/
 │   ├── seeding.md                          ← Phase 0: Knowledge Dossier and metric-dynamic anchors
-│   └── ingestion-pipeline.md               ← how documents flow through Belief
+│   └── ingestion-pipeline.md               ← how documents flow through Belief (two phases, eight steps)
 │
 ├── world-model/
-│   └── schema.md                           ← belief file structure & update arithmetic
+│   └── schema.md                           ← belief file structure, update arithmetic, changelog tags
 │
 ├── prompts/
 │   ├── belief-doctrine.md                  ← shared doctrine: what a belief is across all prompts
@@ -92,8 +92,22 @@ belief/
 │   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
 │   └── 06-fact-extractor.md              ← Prompt 06: compile the fact extraction prompt
 │
-└── config/
-    └── belief_config.yaml                  ← reference configuration file
+├── config/
+│   └── belief_config.yaml                  ← reference configuration file
+│
+├── compiled/                               ← generated at setup; one subdirectory per stream
+│   └── {stream_id}/
+│       ├── document_profile.md
+│       ├── strategic_blueprint.md
+│       ├── belief_reasoning_prompt.md
+│       └── fact_extractor_prompt.md
+│
+└── streams/                                ← living data; one subdirectory per stream
+    └── {stream_id}/
+        ├── belief.md                       ← L1 world model (surgically updated)
+        ├── belief_changelog.md             ← append-only audit trail
+        ├── L2_factlogs/                    ← per-document extracted signals
+        └── L3_raw/                         ← immutable transcription archive
 ```
 
 ---

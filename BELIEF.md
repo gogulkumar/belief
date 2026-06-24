@@ -2,7 +2,7 @@
 
 *Business Belief Intelligence: How an AI system accumulates business understanding the way a senior analyst does — across any document, any business, any dimension.*
 
-*Gogul Kumar Mathi · Corporate Finance AI · Expedia Group · 2026*
+*Gogul Kumar Mathi · 2026*
 
 ---
 
@@ -93,13 +93,14 @@ Beyond the core distinctions (not a fact, not a rule, not agent memory), a belie
 
 ### The Durability Ladder
 
-A belief passes through maturity stages as more documents are processed:
+A belief passes through maturity stages as more comparable documents are processed. Do not skip stages.
 
 | Stage | Documents | What It Means |
 |-------|-----------|---------------|
-| **Provisional** | 1 | This observation has the shape of a durable pattern. Explicitly marked as subject to confirmation. |
-| **Confirmed** | 2 | The pattern appeared again independently. The belief is now held with confidence. |
-| **Established** | 3+ | The pattern is structural. Breaking it is meaningful signal, not noise. |
+| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Every first-document entry is Candidate. |
+| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
+| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
+| **Established** | 4+ | The pattern is structural. Breaking it is meaningful signal, not noise. |
 
 ### The Four Update States
 
@@ -220,16 +221,28 @@ DOCUMENT ARRIVES (any format)
 
 ## 05 — The Prompt Architecture
 
-Four prompts form a closed loop. None are static templates.
+Two phases. Stream setup runs once. Document ingestion runs for every document.
 
-| Prompt | When It Runs | What It Does |
-|--------|-------------|--------------|
-| **Prompt 1 — Goal Alignment** | Once | ReAct interview loop. Discovers the business, documents, observation angle, known noise. Produces the master memory goal loaded into every subsequent pass. |
-| **Prompt 2 — Document Intake** | Every upload | Inspects the file. Routes to vision, OCR, or direct extract. Writes raw extract to L3 and index entry to L2. |
-| **Prompt 3 — Belief Reasoning** | Every chunk × every active belief type | The core intelligence prompt. Reads chunk + current world model + memory goal simultaneously. Applies the fact-to-belief gate. Makes surgical updates only. |
-| **Prompt 4 — Decay & Maintenance** | After every ingestion cycle | Checks beliefs not seen in 90 days. Applies confidence decay. Archives below 0.10. Keeps the model bounded. |
+### Phase 1 — Stream Setup (runs once per belief stream)
 
-The five belief type system prompts each implement Prompt 3 for one specific belief type. Every prompt shares identical action structure — the gate, the silence default, the surgical update logic, the direction field, the guardrails. Only the observation focus and worked examples differ.
+| Prompt | What It Does |
+|--------|-------------|
+| **Prompt 00 — Document Profile** | Interview agent. Discovers entity, document types, chosen angle, and prior knowledge. Produces a structured Document Profile. |
+| **Prompt 01 — Strategic Blueprint** | Reads the Document Profile and produces the master configuration document. Defines what a belief means for this entity, this angle, these documents. Answered, not templated. |
+| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. The belief engine uses this prompt at runtime — never the blueprint itself. |
+| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. One compiled extractor per document type. |
+
+### Phase 2 — Document Ingestion (runs for every document)
+
+| Component | What It Does |
+|-----------|-------------|
+| **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
+| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals organized by watch area. Writes fact log to L2. Does not interpret — only captures. |
+| **belief_engine.py** | Reads the fact log and the existing world model using the compiled belief reasoning prompt. Makes surgical updates to `belief.md`. Appends to `belief_changelog.md`. |
+
+The cascade principle: quality injected at setup propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It has no other context — everything it needs is already inside the compiled prompt.
+
+See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the full step-by-step pipeline and runtime contract.
 
 ---
 
@@ -278,7 +291,48 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 ---
 
-## 07 — Concept Grounding
+## 07 — Scope Boundaries
+
+Every step in the pipeline has explicit prohibitions. These are not edge-case warnings — they are the core integrity rules that prevent the system from manufacturing beliefs it has not earned.
+
+### What the Document Profile (Prompt 00) Must Never Do
+
+- Create beliefs. The interview only captures intent.
+- Interpret documents. If documents are available at setup, it profiles them — it does not extract signals.
+- Decide what signals matter. That is the blueprint's job.
+- Invent document characteristics the user did not describe.
+
+### What the Strategic Blueprint (Prompt 01) Must Never Do
+
+- Create beliefs. The blueprint is configuration, not extraction.
+- State what beliefs will exist. It defines what beliefs CAN exist if signals recur — the difference matters.
+- Invent entity vocabulary. If the user did not provide it and the documents did not contain it, it is not in the blueprint.
+- Leave any section generic or templated. Every section must be answered for this entity.
+
+### What the Fact Extractor Must Never Do
+
+- Interpret signals. Capturing is not interpreting. The fact extractor surfaces what the document contains; the belief engine decides what it means.
+- Summarize. A summary is not a fact log. The belief engine needs raw signals.
+- Invent signals the document does not contain. "No signal in this window" is a valid and useful output.
+- Extract signals the blueprint's signal matrix says the document type cannot carry.
+- Create or update beliefs. It reads documents; it does not reason about them.
+
+### What the Belief Engine Must Never Do
+
+- Receive the raw document at runtime. It reads only the compiled belief reasoning prompt, the existing `belief.md`, and the fact log.
+- Receive the blueprint at runtime. Everything it needs from the blueprint is already encoded in the compiled prompt.
+- Invent evidence not present in the fact log. If the fact log does not contain it, the belief engine does not hold it.
+- Write a belief from a single document. A first-document entry is Candidate only — explicitly marked as not yet a belief.
+- Lower confidence precipitously on a single contradicting signal. One document showing tension does not revise an Established belief.
+- Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality.
+
+### The Silence Default
+
+Most documents produce no update. The gate is the mechanism. Rarity of genuine updates is what keeps confidence meaningful. A belief system that updates on everything is a summarizer.
+
+---
+
+## 09 — Concept Grounding
 
 This is not a new architecture. It is a named implementation of an established idea.
 
@@ -289,7 +343,7 @@ Same underlying concept, different names across fields. Naming it honestly avoid
 
 ---
 
-## 08 — Open Design Questions
+## 10 — Open Design Questions
 
 These are unresolved architectural decisions. They are documented here to prevent them from being re-litigated from scratch each time the system is extended.
 
@@ -307,3 +361,6 @@ Should the Provisional / Confirmed / Established stages from the durability ladd
 
 **05 — Statement diff in changelog**
 The changelog currently records that a statement changed, not what it said before vs after. Full statement history would enable drift analysis — understanding how the interpretation of a business evolved over time as more documents were read. Not yet implemented.
+
+**06 — document_mechanics.json wiring**
+The system can maintain a knowledge base of document-type structure by sector (`document_mechanics.json`) — what sections typically appear, in what order, what each section reliably carries. This would allow the interview agent (Prompt 00) and the blueprint compiler (Prompt 01) to pre-populate signal matrix defaults for common document types rather than deriving them from scratch each time. Open question: at what point in the setup flow does this knowledge base get consulted, and how does it interact with user-provided document samples that may deviate from sector norms? Not yet wired into the questioning session.
