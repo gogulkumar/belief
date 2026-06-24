@@ -8,62 +8,66 @@
 
 ## 01 — What Is Belief
 
-### The Problem Every AI System Has
+### The Source
 
-Every agent you build operates on what is in its context window right now. The moment the session ends the understanding is gone. Next time it starts from zero. That is not intelligence. That is a very fast search engine.
+Every organization produces recurring documents as part of how it operates: quarterly business reviews, earnings calls, investor presentations, board decks, operating reports. These are not incidental outputs — they are the formal record of how management interprets performance, explains outcomes, and communicates direction.
 
-The missing layer is this: how does an AI system accumulate understanding over time the way a human expert does? Not retrieve — understand. Not search — remember. Not summarize — believe.
+What those documents contain, beyond the numbers:
+
+- How this team explains performance — what causes they name, in what order, framed how
+- Which metrics they treat as primary versus secondary
+- How emphasis shifts when results disappoint
+- What language recurs, and what language disappears
+- How commitments are explained when they are not met
+
+These behavioral patterns are not visible in any single document. They only emerge after reading many comparable documents from the same entity over time.
+
+### The Analyst Analogy
+
+A senior analyst who has been reading the same business's quarterly reviews for ten months holds a mental model that no one has written down. They know what a normal deck looks like for this business — so they immediately see what is unusual about this one. They know how this management team typically explains a shortfall. They know which commitment is always ambitious and which is typically conservative.
+
+They do not remember every slide. They hold the pattern. That pattern is the belief.
+
+That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
 
 ### What Belief Is
 
-Belief is a business belief intelligence system. It reads any document — decks, transcripts, reports, audio, PDFs, markdown — and builds a living model of how a business operates. Not what any single document says. The pattern of behavior visible only across many documents over time.
+Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of the behavioral patterns inside them.
+
+Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
 It does not store facts. It accumulates beliefs. And beliefs are different.
 
 **Facts vs Beliefs**
 
-- A fact: Revenue was $2.3B in October.
-- A belief: Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting more from its existing base rather than expanding it.
+- A fact: Revenue was $2.3B in Q3.
+- A belief: Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it.
 
-Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs drive intelligent reasoning. Facts just answer lookup queries.
-
-### The Analyst Analogy
-
-A senior analyst who has been in the room for ten months does not remember every slide. They hold a mental model of how the business behaves. They know what is seasonal and what is structural. They know when a number looks wrong. They know where to look when they need evidence.
-
-Belief builds that mental model — from any document, for any business — and keeps it current as new documents arrive.
-
-### The New Hire Who Never Learns
-
-A capable new hire can do the task on day one but gets it wrong — they lack the context that takes months to absorb. Today's AI is that hire, except it never stops being new. Every task starts with no knowledge of how this place works. Belief ends that reset.
+Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs tell you what to expect in the next document — and what would constitute a surprise worth investigating.
 
 ### What a Belief Is Not
 
 | Not this | Why a belief is different |
 |---|---|
 | A **fact** to look up | A fact is retrieved and static. A belief is applied as working truth and can change. |
-| A **hardcoded rule** | A rule is frozen at write-time. A belief is expected to drift and is maintained. |
-| **Conversation or agent memory** | That remembers what *you said*. A belief remembers how *the business works*. |
-
-The sharpest distinction is the last one. The field has invested heavily in giving AI memory of conversations and recent sessions. A belief is the other, harder kind — memory of the business itself.
+| A **document summary** | A summary describes what a document said. A belief describes what the pattern of documents means. |
+| A **metric reading** | A metric is a value at a point in time. A belief is the durable interpretation of how a metric behaves over time. |
+| A **management attribution** | Management saying "efficiency improved because of better process" is reported attribution. The belief is whether that attribution is consistent, how it is framed, and whether the numbers support it. |
 
 ### What a Belief Contains
 
-For a given process, the belief layer captures the understanding an expert applies without thinking:
+A belief captures the understanding that a senior analyst holds implicitly after months of reading:
 
-- **Definitions** — what each term means here (e.g., which definition of "revenue" applies in this room)
-- **Trusted sources** — which system or file is the source of truth; which wins on conflict
-- **What's normal** — expected ranges, so a real anomaly is distinguishable from noise
-- **Process steps** — the sequence the work always follows
-- **Rules and conventions** — how outputs are framed for different stakeholders
+- **What is normal** — expected ranges and behaviors, so deviations are immediately visible
+- **What patterns look like** — the specific recurring forms: language, structure, sequencing, attribution habits
+- **What to expect next** — the forward signal that makes the belief actionable in the next document
+- **What would be a surprise** — the invalidation signal that marks when the pattern has changed
 
 ### Skills and Beliefs
 
 A skill does the task — pulls the numbers, builds the report. It runs on whatever it can infer about the business at the time.
 
-A belief is the understanding the task is performed *from* — the assumptions behind the doing. Skills take the doing; beliefs take the thinking.
-
-Belief is scoped to the same process a skill already performs. It is not a model of the whole business. Start where a skill is running and capture the thinking behind that one process.
+A belief is the understanding the task is performed *from* — the working model behind the doing. Skills take the doing; beliefs take the thinking.
 
 ---
 
