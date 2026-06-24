@@ -97,6 +97,32 @@ This may only be true because the deck template forces that order. A stronger be
 
 ---
 
+## The Dual Nature: Durable AND Provisional
+
+A belief must be durable enough to act from. It should not be abandoned after one contradicting document. But a belief must also be provisional — open to revision when accumulated evidence warrants it.
+
+These two properties are not in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
+
+Nir Eyal in *Beyond Belief* frames this as practical and provisional: the best beliefs offer just enough certainty to act, yet enough flexibility to adapt. A belief that requires ignoring evidence to sustain itself is not a belief — it is a bias that will eventually blind the analyst to what the documents are actually showing.
+
+### Two Kinds of Revision
+
+Not all revision is the same. The system must distinguish between them.
+
+**Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about how the entity attributes performance becomes more confident as more documents confirm it, or weakens as contradicting signals accumulate. Same lens, adjusted view.
+
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The interpretive frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint that has now resolved. What looked like "external attribution" was a temporary choice that has since reversed. The prior evidence trail does not become invalid — it is now understood differently under a new interpretation.
+
+A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
+
+### Beliefs Shape What You See Next
+
+A belief is not merely a record of past patterns. It is an active filter on the next document. It determines what the analyst notices, what looks normal, and what looks like a signal worth investigating. This is why beliefs must be precise and falsifiable — a vague belief produces vague attention. A precise belief — with a named forward signal and a named invalidation signal — produces directed attention: the analyst knows exactly what to look for, and what its absence would mean.
+
+When a belief is well-formed, it makes the next document more readable. When it is outdated, it makes the next document harder to read correctly — because the analyst is looking for confirmation of a frame that no longer fits. This is why the perspective shift must be named as a distinct kind of revision: it is not just the old belief being weakened. It is the entire interpretive lens being updated.
+
+---
+
 ## The Four Levels: Fact, Signal, Pattern, Belief
 
 The system must distinguish these four levels and must not skip between them.

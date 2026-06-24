@@ -199,11 +199,12 @@ After every document, `belief_changelog.md` records what changed — one entry p
 |-----|---------|
 | `[NEW]` | A watch area added for the first time (Stage: Candidate) |
 | `[DEEPENED]` | Statement held; Why Durable, Pattern Fingerprint, or Forward Signal was enriched with new evidence |
-| `[UPDATED]` | Statement was revised — new evidence changed the interpretation |
+| `[UPDATED]` | Statement was revised — new evidence changed the interpretation within the same interpretive frame |
+| `[REFRAMED]` | The interpretive lens itself shifted — what accumulated evidence means is now understood differently. Prior evidence is re-read under a new interpretation. Distinct from [UPDATED]: a reframe changes the frame, not just the statement. Use when contradictions have made the prior frame untenable, not merely weaker. |
 | `[NARROWED]` | Belief scope reduced — the belief now applies more specifically than before |
-| `[TENSION]` | A contradicting signal appeared but is not yet strong enough to revise the belief |
+| `[TENSION]` | A contradicting signal appeared but is not yet strong enough to revise the belief. Multiple consecutive TENSION entries signal that a reframe may be approaching. |
 | `[SILENCE]` | The document covered this watch area but showed no signal — noted but no update |
-| `[RETIRED]` | Belief archived — evidence no longer supports it after repeated absence or strong contradiction |
+| `[RETIRED]` | Belief archived — the pattern ended. Distinct from [REFRAMED]: the pattern is gone, not reinterpreted. |
 | `[NO CHANGE]` | Document processed; no update warranted for this watch area |
 
 The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.

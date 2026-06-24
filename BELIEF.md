@@ -95,6 +95,24 @@ Beyond the core distinctions (not a fact, not a rule, not agent memory), a belie
 - An **opinion** about whether performance is good or bad
 - A **projection or forecast** — a belief describes what is, not what is predicted
 
+### The Dual Nature: Durable AND Provisional
+
+A belief must be durable enough to act from — it should not be abandoned after one contradicting document. But it must also be provisional — open to revision when accumulated evidence warrants it.
+
+These two properties are not in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
+
+Nir Eyal in *Beyond Belief* frames this precisely: the best beliefs are both practical and provisional — they offer just enough certainty to act, yet enough flexibility to adapt. A belief is a firmly held interpretation, open to revision when new evidence arrives. A belief that requires ignoring evidence to sustain itself is not a belief. It is a bias.
+
+### Two Kinds of Belief Revision
+
+Not all revision is the same.
+
+**Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about "external attribution patterns" becomes more confident as three more comparable documents confirm it, or weakens as two consecutive documents show a different framing. The frame itself is stable.
+
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail does not become invalid — it is now understood differently.
+
+A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what a working belief model is designed to produce: accumulated evidence eventually changing not just confidence, but understanding.
+
 ### The Durability Ladder
 
 A belief passes through maturity stages as more comparable documents are processed. Do not skip stages.
@@ -116,6 +134,8 @@ A belief passes through maturity stages as more comparable documents are process
 | **Decay** | Not seen in 90+ days | −0.05 per cycle |
 
 Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
+
+These arithmetic updates handle incremental revision. They do not handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
 
 ### The Fact-to-Belief Gate
 
@@ -329,6 +349,7 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Write a belief from a single document. A first-document entry is Candidate only — explicitly marked as not yet a belief.
 - Lower confidence precipitously on a single contradicting signal. One document showing tension does not revise an Established belief.
 - Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality.
+- Confuse RETIRED with REFRAMED. RETIRED means the pattern ended — the behavior is no longer occurring. REFRAMED means the interpretive lens was wrong — the behavior was occurring but it meant something different than previously understood. When multiple consecutive TENSION signals accumulate, the engine must ask: did the pattern end, or did we misread what the pattern was?
 
 ### The Silence Default
 
