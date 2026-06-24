@@ -25,6 +25,8 @@ It does not store facts. It accumulates **beliefs**.
 | Revenue was $2.3B in October. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
 | Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Drives intelligent reasoning. |
 
+A **skill** does the task — pulls the numbers, builds the report. A **belief** is the understanding the task is performed from. Skills take the doing; beliefs take the thinking.
+
 ---
 
 ## The Five Belief Types
@@ -63,7 +65,7 @@ belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
 │
-├── belief-template-system-prompts/         ← the five belief reasoning prompts
+├── belief-template-system-prompts/         ← the five standard belief reasoning prompts
 │   ├── README.md
 │   ├── 01-business-memory.md
 │   ├── 02-business-dynamics.md
@@ -71,23 +73,41 @@ belief/
 │   ├── 04-factual-understanding.md
 │   └── 05-causal-understanding.md
 │
-├── examples/                               ← belief applied to a real company
-│   └── google-narrative-belief.md          ← Alphabet narrative belief, 4 transcripts
-│
 ├── architecture/
 │   └── overview.md                         ← system architecture & agent integration
 │
 ├── lifecycle/
-│   └── ingestion-pipeline.md               ← how documents flow through Belief
+│   ├── seeding.md                          ← Phase 0: Knowledge Dossier and metric-dynamic anchors
+│   └── ingestion-pipeline.md               ← how documents flow through Belief (two phases, eight steps)
 │
 ├── world-model/
-│   └── schema.md                           ← belief file structure & update arithmetic
+│   └── schema.md                           ← belief file structure, update arithmetic, changelog tags
 │
 ├── prompts/
-│   └── four-prompt-architecture.md         ← the four core Belief prompts explained
+│   ├── belief-doctrine.md                  ← shared doctrine: what a belief is across all prompts
+│   ├── four-prompt-architecture.md         ← the four core Belief prompts explained
+│   ├── strategic-blueprint.md              ← Layer 1: the master configuration document
+│   ├── 00-document-profile.md             ← Prompt 00: interview agent to build document profile
+│   ├── 01-generate-blueprint.md           ← Prompt 01: produce the Strategic Blueprint
+│   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
+│   └── 06-fact-extractor.md              ← Prompt 06: compile the fact extraction prompt
 │
-└── config/
-    └── belief_config.yaml                  ← reference configuration file
+├── config/
+│   └── belief_config.yaml                  ← reference configuration file
+│
+├── compiled/                               ← generated at setup; one subdirectory per stream
+│   └── {stream_id}/
+│       ├── document_profile.md
+│       ├── strategic_blueprint.md
+│       ├── belief_reasoning_prompt.md
+│       └── fact_extractor_prompt.md
+│
+└── streams/                                ← living data; one subdirectory per stream
+    └── {stream_id}/
+        ├── belief.md                       ← L1 world model (surgically updated)
+        ├── belief_changelog.md             ← append-only audit trail
+        ├── L2_factlogs/                    ← per-document extracted signals
+        └── L3_raw/                         ← immutable transcription archive
 ```
 
 ---
@@ -103,6 +123,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 ## Quick Links
 
 - [Full Specification →](BELIEF.md)
+- [Shared Belief Doctrine →](prompts/belief-doctrine.md)
 - [Five Belief Reasoning Prompts →](belief-template-system-prompts/README.md)
 - [Architecture & Agent Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)

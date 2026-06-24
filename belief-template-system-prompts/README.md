@@ -39,6 +39,52 @@ evidence layer. Most observations stay here as tracked signals. When a
 pattern recurs and an interpretation becomes visible, it moves into the
 appropriate belief type.
 
+---
+
+## Structured Rules by Belief Type
+
+Each belief type has three non-negotiable rules that govern what a valid belief looks like within it.
+
+### 01 — Business Memory
+
+| Rule | Specification |
+|------|--------------|
+| **Numbers policy** | No raw period totals. Pattern language only — "third consecutive period", "consistently N% below plan". Numbers describe trajectory, not magnitude. |
+| **Pattern form** | Cross-period behavioral recurrence. What the business does repeatedly vs what happened once. Language the documents themselves use to mark recurrence ("again", "as seen in prior periods", "consistent with"). |
+| **Durability test** | Would a senior analyst hold this interpretation after reading 3 more documents from this entity — regardless of what those documents say about this specific period? |
+
+### 02 — Business Dynamics
+
+| Rule | Specification |
+|------|--------------|
+| **Numbers policy** | Structural ratios and efficiency percentages only. No period-specific totals. The ratio is the belief; the period value is evidence. |
+| **Pattern form** | Structural ratio stability across periods. Whether the mechanics are strengthening or breaking. What the trajectory predicts about the next period's ratio. |
+| **Durability test** | Is this mechanic true regardless of which specific reporting period is being reviewed? If it only holds in one period, it is not a dynamics belief. |
+
+### 03 — Narrative Understanding
+
+| Rule | Specification |
+|------|--------------|
+| **Numbers policy** | Zero numbers. Entirely about language, sequencing, emphasis, framing choices, and what is present vs absent. |
+| **Pattern form** | Linguistic fingerprints: specific phrases that recur, structural positions (what leads, what is buried), sequencing habits (how bad news is ordered), what categories get featured vs omitted. Requires observable anchors — not impressions. |
+| **Durability test** | Has this framing pattern appeared in 2+ documents independently? Is it a deliberate communication strategy, or a one-time rhetorical choice forced by that period's results? |
+
+### 04 — Factual Understanding
+
+| Rule | Specification |
+|------|--------------|
+| **Numbers policy** | Numbers ARE the belief. Every entry must cite metric, value, period, and the benchmark comparison used (e.g., vs prior period, vs plan). |
+| **Pattern form** | Metric definition stability — does this metric appear under the same definition across documents? Benchmark comparison consistency — does the comparison base shift, and when? |
+| **Durability test** | Does this metric appear under the same definition in every document of this type? If the definition or comparison base shifts, that shift is itself a factual belief worth capturing. |
+
+### 05 — Causal Understanding
+
+| Rule | Specification |
+|------|--------------|
+| **Numbers policy** | Magnitude only to describe scale of the lead or the lag. No full period totals. The lead-lag relationship is the belief; the magnitude is context. |
+| **Pattern form** | One lead-lag pair per belief. A leading signal, a lagging outcome, the observed lag length, and how many times this sequence has been confirmed. |
+| **Durability test** | Have both the leading signal AND the lagging outcome been observed at least once? A candidate causal belief (signal seen, outcome not yet observed) lives in Factual Understanding until confirmed. Cap confidence at 0.90 — causal beliefs are probabilistic, not deterministic. |
+
 ## What All Five Share
 
 Every belief, regardless of which type forms it, must pass:

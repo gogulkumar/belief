@@ -1,5 +1,57 @@
 # Architecture Overview — Belief in the AI Stack
 
+## The Three-Layer Architecture
+
+Belief is built in three layers. Each layer has a distinct responsibility and runs at a different time.
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  LAYER 1 — CONFIGURATION                                      │
+│  Strategic Blueprint                                          │
+│  Who the entity is · what angle · what watch areas           │
+│  What patterns look like · what a belief looks like here      │
+│  Runs: once at setup time                                     │
+└──────────────────────────────┬───────────────────────────────┘
+                               │  (read once, flows into both compilers)
+              ┌────────────────┴─────────────────┐
+              ▼                                   ▼
+┌─────────────────────────┐        ┌──────────────────────────┐
+│  LAYER 2 — COMPILATION  │        │  LAYER 2 — COMPILATION   │
+│  Belief Reasoning Prompt│        │  Fact Extraction Prompt  │
+│  (angle-aware,          │        │  (watch-area-scoped,     │
+│   entity-grounded)      │        │   pattern-direction-aware)│
+│  Runs: once per stream  │        │  Runs: once per document  │
+└────────────┬────────────┘        └──────────────┬───────────┘
+             │                                     │
+             └──────────────┬──────────────────────┘
+                            ▼
+┌──────────────────────────────────────────────────────────────┐
+│  LAYER 3 — EXECUTION                                          │
+│  Document → L3 units (transcription windows)                  │
+│          → L2 fact log (per document, angle-scoped)           │
+│          → belief evolution (existing belief + fact log)      │
+│          → changelog (what changed, what drifted)             │
+│  Runs: every new document                                     │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### The Cascade Principle
+
+The blueprint (Layer 1) is compiled once at setup time. Every downstream step reads it. If the blueprint is wrong or incomplete, everything below it is wrong. If the blueprint is rich and precise, everything below it is rich and precise — without any changes to the execution layer.
+
+This is the most important architectural property of the system: quality is injected at Layer 1 and propagates forward. Debugging a bad belief output should start by examining the blueprint, not the execution prompt.
+
+### What Changes Cascade
+
+A change to the blueprint automatically propagates to:
+- The belief reasoning prompt (Layer 2A) — which reads the blueprint for entity context and angle definition
+- The fact extraction prompt (Layer 2B) — which reads the blueprint for watch areas and pattern direction
+- The world model (Layer 3) — which accumulates beliefs shaped by the above two
+
+No code changes required. The compilers are generic. Only the blueprint is entity-specific.
+
+---
+
 ## Where Belief Sits
 
 Belief is not a retrieval system, a chat interface, or a database. It is the **reasoning layer** that sits above RAG and below the agent.
@@ -106,6 +158,50 @@ Document chunk
 Each type enforces its own silence default — most inputs produce no update. The value is in what gets filtered out, not just what goes in.
 
 ## Why This Architecture Matters
+
+### Pattern Recognition Is Cross-Cutting, Not a Sixth Type
+
+Pattern recognition is not a separate belief type. It is the method that all five types apply. Every belief type is already about patterns — the difference is what form patterns take:
+
+| Belief Type | Pattern Form |
+|-------------|-------------|
+| Business Memory | Cross-period behavioral recurrence; language the documents use to mark repetition |
+| Business Dynamics | Structural ratio stability and trajectory across periods |
+| Narrative Understanding | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
+| Factual Understanding | Metric definition stability; benchmark comparison consistency |
+| Causal Understanding | Lead-lag pair recurrence; signal → outcome with consistent lag |
+
+The fact extraction prompt is the injection point for pattern direction. When the blueprint (Layer 1) specifies what form patterns take for a given watch area, the fact extractor captures not just values but recurrence signals — the actual language used, the structural positions occupied, what appeared vs what was absent. Without pattern direction, the extractor captures point-in-time readings. With it, it captures evidence that accumulates into fingerprints.
+
+The LLM does not need keyword lists. It needs direction. Direction is enough; pre-defined keywords are too brittle to survive across documents.
+
+---
+
+### Metric-Layer Anchoring
+
+Beliefs are tied to the behavior of a financial metric over time — not to the document format that surfaced it.
+
+The same business dynamic (e.g., "Loyalty Program Margin Dilution") surfaces whether it is discovered in a text bullet on a business review deck, a calculated cell in a financial model, a row in a database export, or a line item in an SEC filing. The dynamic exists at the data layer, not the presentation layer.
+
+```
+[ RAW BUSINESS METRIC ] ──► e.g., "HCOM Take Rate drops 40 bps"
+              │
+     ┌────────┴────────┐
+     ▼                 ▼
+[ DATA SOURCE ]   [ BELIEF LENS ]
+ .pptx / .xlsx     "A 40 bps drop is consistent with
+ .csv / .pdf        loyalty redemption dilution."
+                        │
+                        ▼
+            [ EXTRACTED BUSINESS DYNAMIC ]
+              "Loyalty Program Margin Dilution"
+```
+
+This means:
+- The belief reasoning prompt reads for metric movement and its interpretation — not for document structure.
+- A belief confirmed in a deck and a belief confirmed in a spreadsheet are treated identically.
+- New document types do not require new belief types — they are routed through the same extraction and reasoning logic after Task 1 (format-specific extraction).
+- The world model is **document-format-agnostic**. Only the extraction method in Task 1 of the ingestion pipeline varies by format.
 
 ### The Silence Default Is Not a Weakness — It Is the Design
 

@@ -3,27 +3,39 @@
 
 belief_config:
 
+  # ─── MODEL SELECTION ───────────────────────────────────────────────────────
+  # Models used at each stage of the pipeline.
+  # Setup prompts (00, 01, 03, 06) and the belief engine can use different models.
+  # Use a capable reasoning model for belief evolution; a faster model for extraction.
+  belief_reasoning_model: claude-opus-4-8        # belief engine (Step 7) and setup compilers (03, 06)
+  fact_extraction_model: claude-sonnet-4-6       # fact extractor (Step 6)
+  document_profile_model: claude-sonnet-4-6      # interview agent (Step 1, Prompt 00)
+  transcription_model: claude-sonnet-4-6         # document intake and transcription (Step 5)
+
   # ─── TOKEN LIMITS ──────────────────────────────────────────────────────────
-  # Documents above this limit are split into chunks for the belief extraction loop.
-  # Documents below this limit run as a single belief pass.
+  # Documents above this limit are split into chunks for the fact extraction loop.
+  # Documents below this limit run as a single extraction pass.
   token_limit_per_chunk: 50000
 
-  # ─── ACTIVE BELIEF TYPES ───────────────────────────────────────────────────
-  # Add or remove belief types to control which dimensions of belief are maintained.
-  # Running all five is the default. Remove types to reduce LLM calls and cost.
-  # See belief-template-system-prompts/ for the full prompt for each belief type.
-  belief_types_active:
-    - business_memory          # 01 — what is structurally and durably true about this business
-    - business_dynamics        # 02 — how the business behaves as a system
+  # ─── ACTIVE BELIEF ANGLES ──────────────────────────────────────────────────
+  # Standard belief angles available for stream setup.
+  # Each stream selects one angle at setup time (Step 0).
+  # Custom angles can be defined during the Prompt 00 interview.
+  standard_angles:
+    - business_memory          # 01 — what is structurally and durably true about this entity
+    - business_dynamics        # 02 — how the entity behaves as a system
     - narrative_understanding  # 03 — how the organization tells its story
     - factual_understanding    # 04 — the evidence layer; feeds all other belief types
     - causal_understanding     # 05 — which signals reliably predict which outcomes, with what lag
 
-  # ─── TEMP BELIEF MAINTENANCE ───────────────────────────────────────────────
-  # When true, runs the maintenance loop between chunks to resolve overlapping,
-  # redundant, drifting, and contradicting beliefs within a single document.
-  # Set to false only for single-chunk documents (faster, no maintenance needed).
-  temp_belief_maintenance: true
+  # ─── MATURITY LADDER ───────────────────────────────────────────────────────
+  # Documents required to advance through the durability stages.
+  # These are defaults; the Strategic Blueprint (Prompt 01) can override per stream
+  # based on the document cadence for that entity (e.g., quarterly vs. monthly).
+  maturity_thresholds:
+    candidate_to_provisional: 2   # documents with supporting signal
+    provisional_to_confirmed: 3
+    confirmed_to_established: 4
 
   # ─── DECAY SETTINGS ────────────────────────────────────────────────────────
   # Beliefs not confirmed within this many days begin losing confidence.
@@ -36,15 +48,15 @@ belief_config:
   archive_threshold: 0.10
 
   # ─── WORLD MODEL BOUNDS ────────────────────────────────────────────────────
-  # Maximum number of active beliefs per belief type.
+  # Maximum number of active beliefs per stream.
   # Beliefs are ranked by confidence; lowest are archived first when this is exceeded.
-  world_model_max_beliefs_per_type: 20
+  world_model_max_beliefs_per_stream: 20
 
   # ─── STORAGE PATHS ─────────────────────────────────────────────────────────
-  world_model_path: ./world_model/
-  ledger_path: ./ledger/
-  source_index_path: ./index/
-  raw_archive_path: ./archive/
+  # compiled/ holds one-time setup artifacts per stream (blueprint, compiled prompts).
+  # streams/ holds the living world model, fact logs, and raw archive per stream.
+  compiled_path: ./compiled/              # compiled/{stream_id}/
+  streams_path: ./streams/               # streams/{stream_id}/belief.md, L2_factlogs/, L3_raw/
 
   # ─── CONFIDENCE ARITHMETIC ─────────────────────────────────────────────────
   # Standard update values. Match the belief reasoning system prompts.
