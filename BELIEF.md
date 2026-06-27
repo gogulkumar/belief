@@ -1,6 +1,6 @@
 # Belief — Full Specification
 
-*Business Belief Intelligence: How an AI system accumulates business understanding the way a senior analyst does — across any document, any business, any dimension.*
+*Institutional memory is portable: what is normal, what is template, what is evolving, and what would break — loaded into agents at the moment they draft, validate, or flag — instead of re-teaching the model from raw decks every time.*
 
 *Gogul Kumar Mathi · 2026*
 
@@ -56,12 +56,16 @@ Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs t
 
 ### What a Belief Contains
 
-A belief captures the understanding that a senior analyst holds implicitly after months of reading:
+A belief carries four kinds of institutional understanding. Each maps to a specific field in the belief entry:
 
-- **What is normal** — expected ranges and behaviors, so deviations are immediately visible
-- **What patterns look like** — the specific recurring forms: language, structure, sequencing, attribution habits
-- **What to expect next** — the forward signal that makes the belief actionable in the next document
-- **What would be a surprise** — the invalidation signal that marks when the pattern has changed
+| What a belief captures | Belief field | What it gives you |
+|---|---|---|
+| **What is normal** | Normal baseline | Expected ranges and behaviors — deviations are immediately visible without re-reading the archive |
+| **What is template** | Foundation signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
+| **What is evolving** | Evolution trail | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
+| **What would break** | Falsification test | The specific signal in a future document that would contradict, narrow, or retire the belief |
+
+These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document does not need to be re-read.
 
 ### Skills and Beliefs
 
