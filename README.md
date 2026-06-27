@@ -47,7 +47,7 @@ A **skill** does the task — pulls the numbers, builds the report. A **belief**
 
 ## The Five Belief Types
 
-Every document is read through five belief types. Each asks a different question about the same entity. All five write into one world model — one living model of one entity.
+Every document is read through five belief types. Each asks a different question about the same entity. All five write into one belief memory — one living model of one entity.
 
 | # | Belief Type | What It Asks |
 |---|-------------|-------------|
@@ -96,7 +96,7 @@ belief/
 ├── lifecycle/
 │   └── ingestion-pipeline.md               ← how documents flow through Belief (foundation + two phases)
 │
-├── world-model/
+├── belief-memory/
 │   └── schema.md                           ← belief file structure, update arithmetic, changelog tags
 │
 ├── prompts/
@@ -123,7 +123,7 @@ belief/
 │
 └── streams/                                ← living data; one subdirectory per stream
     └── {stream_id}/
-        ├── belief.md                       ← L1 world model (surgically updated, numbered beliefs)
+        ├── belief.md                       ← L1 belief memory (surgically updated, numbered beliefs)
         ├── belief_changelog.md             ← append-only audit trail
         ├── L2_factlogs/                    ← per-document extracted signals
         └── L3_raw/                         ← immutable transcription archive
@@ -133,7 +133,7 @@ belief/
 
 ## The Acceptance Criterion
 
-Give Belief ten months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — **the system is working**.
+Give Belief ten months of business review decks. Read the resulting belief memory. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — **the system is working**.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*
 
@@ -146,5 +146,5 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
 - [Architecture & Stack Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)
-- [World Model Schema →](world-model/schema.md)
+- [Belief Memory Schema →](belief-memory/schema.md)
 - [Config Reference →](config/belief_config.yaml)

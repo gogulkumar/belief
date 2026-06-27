@@ -70,7 +70,7 @@ The changelog captures every one of these transitions. The audit trail shows not
 
 ## What You Have After 10 Documents
 
-After ten comparable business review documents, the world model holds something like what a good senior analyst accumulates in ten months of reading. Not every slide. The pattern underneath the slides.
+After ten comparable business review documents, the belief memory holds something like what a good senior analyst accumulates in ten months of reading. Not every slide. The pattern underneath the slides.
 
 Specifically:
 - Which metrics this entity treats as primary and which it treats as supporting
@@ -87,7 +87,7 @@ None of this is in any single document. All of it is only visible across many.
 
 ## How You Use It
 
-The world model is not a database to query. It is not a search index. It is loaded into the context of any reasoning session the way an analyst reads their notes before a meeting — not to look things up, but to be calibrated before the work begins.
+The belief memory is not a database to query. It is not a search index. It is loaded into the context of any reasoning session the way an analyst reads their notes before a meeting — not to look things up, but to be calibrated before the work begins.
 
 Here is what "using belief" means in practice.
 
@@ -95,7 +95,7 @@ Here is what "using belief" means in practice.
 
 ### 1. Read the Next Document Better
 
-Before opening the next business review, load the world model. Every belief carries a **normal baseline** (what this document should show if the pattern is holding) and a **falsification test** (what would be a meaningful departure worth investigating).
+Before opening the next business review, load the belief memory. Every belief carries a **normal baseline** (what this document should show if the pattern is holding) and a **falsification test** (what would be a meaningful departure worth investigating).
 
 With that context loaded, you read differently.
 
@@ -123,7 +123,7 @@ The belief model is the calibration layer that tells you the difference.
 
 Any reasoning task about a business — answering a question, writing an analysis, building a forecast, evaluating a proposal — is more accurate when it starts from accumulated understanding rather than from scratch.
 
-Load the world model at the start of any session. The agent or analyst implicitly holds: which thesis metrics matter and why, what normal looks like, how the business has been trending, what the narration habits are, what to expect and what would be a surprise.
+Load the belief memory at the start of any session. The agent or analyst implicitly holds: which thesis metrics matter and why, what normal looks like, how the business has been trending, what the narration habits are, what to expect and what would be a surprise.
 
 A question like "is this margin performance concerning?" gets a contextually calibrated answer. Not just whether the number is below last period. Whether it is below what this entity normally delivers in this period, whether the explanation given is the entity's habitual explanation or a new one, whether the trend implied is consistent with the direction the belief model has been tracking.
 
@@ -151,19 +151,19 @@ A document that puts a Confirmed belief under Tension produces a `[TENSION]` ent
 
 A document that forces a perspective shift produces a `[CONTRADICT]` or `[SPLIT_BELIEF]` entry with a full explanation. The signal: the way we understood this pattern was wrong, or the pattern itself has changed.
 
-The changelog turns the world model from a static artifact into a live signal. You do not need to re-read ten documents to know what changed — you read the changelog for the most recent document.
+The changelog turns the belief memory from a static artifact into a live signal. You do not need to re-read ten documents to know what changed — you read the changelog for the most recent document.
 
 ---
 
 ### 6. Carry Institutional Knowledge Across People and Time
 
-The world model is what does not walk out the door when an analyst leaves.
+The belief memory is what does not walk out the door when an analyst leaves.
 
 The senior analyst who has been reading this business's reviews for eighteen months holds something no one else has. When they leave, the mental model goes with them. The next person starts from zero.
 
 With the belief model running, that accumulated understanding is in a file. It is not perfect — it is the machine's version of what the analyst holds, missing the tacit knowledge the analyst would carry that never appeared in documents. But it is far more than nothing.
 
-A new analyst loads the world model and has the pattern layer already built. They can read the first document they encounter with context rather than without it.
+A new analyst loads the belief memory and has the pattern layer already built. They can read the first document they encounter with context rather than without it.
 
 ---
 

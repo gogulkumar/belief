@@ -158,7 +158,7 @@ Not everything in a document becomes a belief. Most things should produce silenc
 
 ## 03 — The Five Belief Types
 
-Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one world model — there is no separate memory per belief type.
+Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one belief memory — there is no separate memory per belief type.
 
 ### Business Memory
 *What is structurally and durably true about how this business is built.*
@@ -193,7 +193,7 @@ Each belief is one lead-lag pair: a leading signal, a lagging outcome, the obser
 
 Before any document is ingested, the belief system should be seeded with a **Knowledge Dossier** — a human-written document capturing the institutional understanding of the business: how it makes money, where costs go, and what the normal operating ranges look like.
 
-The dossier is not processed through the ingestion pipeline. A setup agent extracts candidate beliefs from it and writes them directly into the world model as seeded priors (confidence 0.20). From that point, documents confirm, contradict, or decay those beliefs exactly as they would any other belief.
+The dossier is not processed through the ingestion pipeline. A setup agent extracts candidate beliefs from it and writes them directly into the belief memory as seeded priors (confidence 0.20). From that point, documents confirm, contradict, or decay those beliefs exactly as they would any other belief.
 
 This step turns the first document the system reads from a cold start into a calibrated one. See [`lifecycle/seeding.md`](../lifecycle/seeding.md) for the full Knowledge Dossier format, Metric-Dynamic Anchor table, and three-level cascade structure.
 
@@ -203,7 +203,7 @@ This step turns the first document the system reads from a cold start into a cal
 
 | Layer | What It Is | Characteristics |
 |-------|-----------|-----------------|
-| **L1 — World Model** | The living belief model | One file per belief type. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
+| **L1 — Belief Memory** | The living belief model | One file per belief type. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
 | **L2 — Source Index** | One record per document | Stores time period, themes, metrics, narratives, anomalies. Used to find relevant documents without scanning raw content. |
 | **L3 — Raw Archive** | The original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
 | **Ledger** | Append-only audit log | Every document: signals extracted, beliefs affected, changes made. |
@@ -235,7 +235,7 @@ DOCUMENT ARRIVES (any format)
        End: temp belief = document-level belief
           │
           ▼
-   MERGE INTO WORLD MODEL (L1)
+   MERGE INTO BELIEF MEMORY (L1)
    └─ surgical update per belief type
    └─ ledger entry written
    └─ decay pass runs
@@ -262,7 +262,7 @@ Two phases. Stream setup runs once. Document ingestion runs for every document.
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
 | **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals organized by watch area. Writes fact log to L2. Does not interpret — only captures. |
-| **belief_engine.py** | Reads the fact log and the existing world model using the compiled belief reasoning prompt. Makes surgical updates to `belief.md`. Appends to `belief_changelog.md`. |
+| **belief_engine.py** | Reads the fact log and the existing belief memory using the compiled belief reasoning prompt. Makes surgical updates to `belief.md`. Appends to `belief_changelog.md`. |
 
 The cascade principle: quality injected at setup propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It has no other context — everything it needs is already inside the compiled prompt.
 
@@ -288,13 +288,13 @@ A new analyst reads the belief and gets years of behavioral context in minutes. 
 ### Three Things Belief Enables That Nothing Else Does
 
 **01 — Contextual reasoning over time**
-Every agent today is context-blind at session start. Belief gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business.
+Every agent today is context-blind at session start. Belief gives agents a belief memory to reason from — not just a document to search through. Queries become calibrated to the business.
 
 **02 — Belief-grounded evaluation**
 Current evals check output format and SQL accuracy. Belief enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model.
 
 **03 — Portable business understanding**
-When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the world model is portable. A new model inherits the business understanding immediately. The investment compounds.
+When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the belief memory is portable. A new model inherits the business understanding immediately. The investment compounds.
 
 ### The Business Case
 
@@ -309,7 +309,7 @@ Running tasks inside a business is not the same as interpreting a business. Beli
 
 ### The Acceptance Criterion
 
-Give Belief 10 months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
+Give Belief 10 months of business review decks. Read the resulting belief memory. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*
 

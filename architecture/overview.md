@@ -55,7 +55,7 @@ Quality is injected at Layers 0 and 1 and propagates forward. Debugging a bad be
 A change to the blueprint automatically propagates to:
 - The belief reasoning prompt (Layer 2A)
 - The fact extraction prompt (Layer 2B)
-- The world model (Layer 3)
+- The belief memory (Layer 3)
 
 A refinement to the foundation propagates to every belief stream for that entity.
 
@@ -76,7 +76,7 @@ Business process deliverables sit at the bottom of the stack. Belief reads those
                        ▼
 ┌─────────────────────────────────────────────────────────┐
 │                   BELIEF LAYER                          │
-│         World Model (L1) — living belief memory         │
+│         Belief Memory (L1) — living belief memory         │
 │         Fact-to-belief gate · Update arithmetic         │
 └──────────────────────┬──────────────────────────────────┘
                        │  evidence retrieval
@@ -98,7 +98,7 @@ Belief is not a retrieval system, a chat interface, or a database. It is the **p
 
 ## How Agents Use Belief
 
-Agents do not query Belief at runtime. The world model is **loaded into context at session start** — the same way a senior analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
+Agents do not query Belief at runtime. The belief memory is **loaded into context at session start** — the same way a senior analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
 
 ### Query Agent
 Without Belief: queries data blind — syntactically correct answers, contextually naive.
@@ -156,7 +156,7 @@ belief_engine.py   ← belief_reasoning_prompt.md (system)
                    → belief_changelog.md (appended)
 ```
 
-The belief engine at runtime receives only its compiled prompt, the existing world model, and the fact log. It never receives the raw document, the foundation, or the blueprint. This is the contract that makes the system reproducible and auditable.
+The belief engine at runtime receives only its compiled prompt, the existing belief memory, and the fact log. It never receives the raw document, the foundation, or the blueprint. This is the contract that makes the system reproducible and auditable.
 
 ---
 
@@ -165,7 +165,7 @@ The belief engine at runtime receives only its compiled prompt, the existing wor
 | Layer | Purpose | Mutability |
 |-------|---------|------------|
 | **Entity Foundation** | Business understanding for the entity — thesis, metrics, normalization, narration. One `foundation.md` per entity. | Updated when streams reveal deeper understanding |
-| **L1 — World Model** | Living belief memory. One `belief.md` per stream. Loaded into agent context. | Surgically updated per document |
+| **L1 — Belief Memory** | Living belief memory. One `belief.md` per stream. Loaded into agent context. | Surgically updated per document |
 | **L2 — Fact Logs** | Per-document extracted signals. | Written once per document |
 | **L3 — Raw Archive** | Original document content verbatim. | Immutable. Written once. |
 
@@ -201,4 +201,4 @@ After 3 documents: thin, uncertain beliefs at confidence 0.20–0.40.
 After 10 documents: solidifying patterns at 0.50–0.70.
 After 30+ documents: high-confidence structural understanding at 0.75+.
 
-The world model becomes more valuable the longer it runs. This is the behavior of understanding, not retrieval.
+The belief memory becomes more valuable the longer it runs. This is the behavior of understanding, not retrieval.

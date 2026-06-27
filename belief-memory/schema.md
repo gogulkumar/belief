@@ -1,10 +1,10 @@
-# World Model Schema
+# Belief Memory Schema
 
-The world model (L1) is the living belief memory for one belief stream. It is the file an agent loads at session start. It is surgically updated — never rewritten from scratch.
+The belief memory (L1) is the living belief memory for one belief stream. It is the file an agent loads at session start. It is surgically updated — never rewritten from scratch.
 
 ## File Structure
 
-One world model file per active belief stream. Each stream lives under its own directory alongside its raw archive and fact logs. Every stream for an entity reads the entity's `foundation.md` as its prior.
+One belief memory file per active belief stream. Each stream lives under its own directory alongside its raw archive and fact logs. Every stream for an entity reads the entity's `foundation.md` as its prior.
 
 ```
 entities/{entity_id}/
@@ -17,7 +17,7 @@ compiled/{stream_id}/
 └── fact_extractor_prompt.md
 
 streams/{stream_id}/
-├── belief.md                    ← the world model (L1)
+├── belief.md                    ← the belief memory (L1)
 ├── belief_changelog.md          ← append-only audit trail
 ├── L2_factlogs/
 │   └── {doc_id}_fact_log.md    ← per-document extracted signals
@@ -150,14 +150,14 @@ The changelog is append-only. An absent changelog entry for a document means the
 The belief engine receives exactly three inputs at runtime. It receives nothing else.
 
 1. **The compiled belief reasoning prompt** — `compiled/{stream_id}/belief_reasoning_prompt.md` — the self-contained system prompt encoding the doctrine, angle definition, candidate belief seed set, evolution rules, and worked examples for this stream. Produced once at setup from the Strategic Blueprint. Never changes unless the stream is reconfigured.
-2. **The existing world model** — `streams/{stream_id}/belief.md` — the current state of all numbered beliefs in this stream. May be NULL for the first document.
+2. **The existing belief memory** — `streams/{stream_id}/belief.md` — the current state of all numbered beliefs in this stream. May be NULL for the first document.
 3. **The fact log** — `streams/{stream_id}/L2_factlogs/{doc_id}_fact_log.md` — signals extracted from the current document, organized by belief area.
 
 The belief engine never receives the raw document, the blueprint, or any other context. Everything it needs is inside the compiled prompt and the fact log. This is the contract that makes the system reproducible and auditable.
 
 ---
 
-## World Model Bounds
+## Belief Memory Bounds
 
 - **Min active beliefs per stream:** 8 (enforced by volume check)
 - **Max active beliefs per stream:** ~20 (configurable)
