@@ -88,6 +88,7 @@ Each belief carries:
 belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
+├── usage.md                                ← how beliefs accumulate and how to use them
 │
 ├── architecture/
 │   └── overview.md                         ← system architecture & how it fits in the stack
@@ -141,6 +142,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 ## Quick Links
 
 - [Full Specification →](BELIEF.md)
+- [How Belief Accumulates and How You Use It →](usage.md)
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
 - [Architecture & Stack Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)
