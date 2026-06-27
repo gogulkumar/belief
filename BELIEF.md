@@ -189,13 +189,15 @@ Each belief is one lead-lag pair: a leading signal, a lagging outcome, the obser
 
 ## 04 — The Lifecycle
 
-### Phase 0 — Seeding (Before Documents Arrive)
+### Step −1 — Entity Foundation (Before Any Stream)
 
-Before any document is ingested, the belief system should be seeded with a **Knowledge Dossier** — a human-written document capturing the institutional understanding of the business: how it makes money, where costs go, and what the normal operating ranges look like.
+Before any belief stream is created, the entity foundation must exist. The foundation is built once per entity through a structured interview (Prompt −1) and stored at `entities/{entity_id}/foundation.md`.
 
-The dossier is not processed through the ingestion pipeline. A setup agent extracts candidate beliefs from it and writes them directly into the belief memory as seeded priors (confidence 0.20). From that point, documents confirm, contradict, or decay those beliefs exactly as they would any other belief.
+The foundation captures five things: the business model and profitability thesis, the thesis-defining metrics, the normalization model (what normal looks like for each metric), the narration design (how this entity communicates), and what matters vs. noise in its documents.
 
-This step turns the first document the system reads from a cold start into a calibrated one. See [`lifecycle/seeding.md`](../lifecycle/seeding.md) for the full Knowledge Dossier format, Metric-Dynamic Anchor table, and three-level cascade structure.
+Every belief stream for the entity inherits the foundation as its prior. Without it, streams produce document-level observations. With it, they produce grounded business judgment — beliefs connected to the thesis, not floating.
+
+The foundation is a living document. As streams accumulate deeper understanding, the foundation can be refined, and the refinement propagates to every stream for that entity.
 
 ---
 
@@ -203,10 +205,11 @@ This step turns the first document the system reads from a cold start into a cal
 
 | Layer | What It Is | Characteristics |
 |-------|-----------|-----------------|
-| **L1 — Belief Memory** | The living belief model | One file per belief type. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
-| **L2 — Source Index** | One record per document | Stores time period, themes, metrics, narratives, anomalies. Used to find relevant documents without scanning raw content. |
-| **L3 — Raw Archive** | The original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
-| **Ledger** | Append-only audit log | Every document: signals extracted, beliefs affected, changes made. |
+| **Entity Foundation** | Business understanding for the entity | One `foundation.md` per entity. Built before any stream. Referenced by every blueprint for that entity. |
+| **L1 — Belief Memory** | The living belief file for one stream | One `belief.md` per stream. Numbered beliefs, surgically updated. Loaded into context at session start. |
+| **L2 — Fact Logs** | Per-document extracted signals | One fact log per document per stream. Written once. Read by the belief engine. |
+| **L3 — Raw Archive** | Original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
+| **Changelog** | Append-only audit trail | Every document: which beliefs changed, what action, why, what to test next. |
 
 ### Ingestion Pipeline — When a Document Arrives
 
@@ -215,56 +218,66 @@ DOCUMENT ARRIVES (any format)
           │
           ▼
 ┌─────────────────────────┐
-│  DOCUMENT TYPE ID       │  pptx / pdf / docx / audio / md
+│  intake.py              │  route by format → transcribe → chunk
+│  writes L3 (immutable)  │  pptx / pdf / docx / audio / md
 └─────────────────────────┘
           │
-          ▼  RAW EXTRACT → L3 (once only, never rerun)
+          ▼  RAW UNITS → L3 (once only, never rerun)
           │
           ▼
-┌──────────────────────────┐
-│  IS DOCUMENT < 50k TOK?  │
-└──────────────────────────┘
-    YES → single belief pass
-    NO  → chunk loop (50k per chunk)
+┌──────────────────────────────────────────┐
+│  fact_extractor.py                        │
+│  system: compiled fact_extractor_prompt   │
+│  input:  L3 units + topics_touched        │
+│  output: L2 fact log (per-stream)         │
+│  captures signals at belief-claim level   │
+│  surfaces distinct patterns separately    │
+└──────────────────────────────────────────┘
+          │
+          ▼  FACT LOG → belief engine
           │
           ▼
-   FOR EACH BELIEF TYPE (01–05):
-   ├─ Chunk 1: temp belief empty → dump all outputs
-   └─ Chunk 2+: compare against temp belief
-       confirm / contradict / merge / new / redundant / drifting
-       End: temp belief = document-level belief
-          │
-          ▼
-   MERGE INTO BELIEF MEMORY (L1)
-   └─ surgical update per belief type
-   └─ ledger entry written
-   └─ decay pass runs
+┌──────────────────────────────────────────┐
+│  belief_engine.py                         │
+│  system: compiled belief_reasoning_prompt │
+│  input:  existing belief.md (or NULL)     │
+│          + fact log                       │
+│  output: belief.md (evolved)              │
+│          + belief_changelog.md (appended) │
+│  volume check: ≥ 8 active beliefs         │
+└──────────────────────────────────────────┘
 ```
 
 ---
 
 ## 05 — The Prompt Architecture
 
-Two phases. Stream setup runs once. Document ingestion runs for every document.
+Three phases. Entity foundation runs once per entity. Stream setup runs once per stream. Document ingestion runs for every document.
+
+### Phase 0 — Entity Foundation (runs once per entity)
+
+| Prompt | What It Does |
+|--------|-------------|
+| **Prompt −1 — Entity Foundation** | Structured interview across five areas: business model and profitability thesis, thesis-defining metrics, normalization model, narration design, and what matters vs. noise. Produces `entities/{entity_id}/foundation.md`. Every stream for this entity reads it as its prior. |
 
 ### Phase 1 — Stream Setup (runs once per belief stream)
 
 | Prompt | What It Does |
 |--------|-------------|
-| **Prompt 00 — Document Profile** | Interview agent. Discovers entity, document types, chosen angle, and prior knowledge. Produces a structured Document Profile. |
-| **Prompt 01 — Strategic Blueprint** | Reads the Document Profile and produces the master configuration document. Defines what a belief means for this entity, this angle, these documents. Answered, not templated. |
-| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. The belief engine uses this prompt at runtime — never the blueprint itself. |
-| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. One compiled extractor per document type. |
+| **Prompt 00 — Document Profile** | Interview agent. Given the entity foundation already exists, discovers document types, cadence, chosen angle, and what each document type can and cannot carry. Produces a structured Document Profile. |
+| **Prompt 01 — Strategic Blueprint** | Reads the entity foundation and the Document Profile together. Produces the master configuration document in five sections: foundation reference, stream identity, signal matrix, belief definition (with claim-heading rule, 5-field format, volume check), and candidate belief seed set (8–15 grounded hypotheses). |
+| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Embeds the foundation context. Encodes the candidate seed set, claim-heading rule, 5-field format, volume check, no-renumber rule, and all evolution actions. |
+| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. Embeds foundation context (thesis metrics, normalization model, narration design). Mandates granularity to support 8–15 Candidate beliefs on the first document. One compiled extractor per document type. |
 
 ### Phase 2 — Document Ingestion (runs for every document)
 
 | Component | What It Does |
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
-| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals organized by watch area. Writes fact log to L2. Does not interpret — only captures. |
-| **belief_engine.py** | Reads the fact log and the existing belief memory using the compiled belief reasoning prompt. Makes surgical updates to `belief.md`. Appends to `belief_changelog.md`. |
+| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals grounded in the foundation — at the granularity needed for belief-level claims, not summary-level observations. Writes fact log to L2. Does not interpret — only captures. |
+| **belief_engine.py** | Reads the fact log and the existing belief memory using the compiled belief reasoning prompt. Numbered beliefs, claim-as-heading, 5-field format. Makes surgical updates to `belief.md`. Runs volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
 
-The cascade principle: quality injected at setup propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It has no other context — everything it needs is already inside the compiled prompt.
+The cascade principle: quality injected at entity foundation and blueprint propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It never receives the foundation, the blueprint, or the raw document — everything it needs is already encoded inside the compiled prompt.
 
 See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the full step-by-step pipeline and runtime contract.
 
@@ -319,9 +332,17 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 Every step in the pipeline has explicit prohibitions. These are not edge-case warnings — they are the core integrity rules that prevent the system from manufacturing beliefs it has not earned.
 
+### What the Entity Foundation Agent (Prompt −1) Must Never Do
+
+- Create beliefs. The foundation is the prior that beliefs are grounded in — it is not a belief and carries no confidence or direction.
+- Describe documents. The foundation is about how the business works, not about how its documents are written. Document format belongs in the document profile and blueprint.
+- Invent content. Only record what the user told you. If information is missing, say so explicitly and note what is unknown.
+- Produce generic content. Every sentence must be specific enough that any reader immediately understands what this business cares about most — not what any business in its industry cares about.
+
 ### What the Document Profile (Prompt 00) Must Never Do
 
 - Create beliefs. The interview only captures intent.
+- Re-interview about the business. The entity foundation already exists and captures business model, metrics, and behavioral patterns. Prompt 00 focuses on documents and angle only.
 - Interpret documents. If documents are available at setup, it profiles them — it does not extract signals.
 - Decide what signals matter. That is the blueprint's job.
 - Invent document characteristics the user did not describe.
@@ -348,8 +369,11 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Invent evidence not present in the fact log. If the fact log does not contain it, the belief engine does not hold it.
 - Write a belief from a single document. A first-document entry is Candidate only — explicitly marked as not yet a belief.
 - Lower confidence precipitously on a single contradicting signal. One document showing tension does not revise an Established belief.
-- Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality.
-- Confuse RETIRED with REFRAMED. RETIRED means the pattern ended — the behavior is no longer occurring. REFRAMED means the interpretive lens was wrong — the behavior was occurring but it meant something different than previously understood. When multiple consecutive TENSION signals accumulate, the engine must ask: did the pattern end, or did we misread what the pattern was?
+- Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality, not grounded in the foundation.
+- Use category labels as headings. The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a topic name.
+- Renumber beliefs. Once a belief is assigned #N, that number is permanent. Retired beliefs keep their number marked RETIRED.
+- Let active belief count fall below 8 without auditing for umbrella beliefs and splitting them.
+- Confuse RETIRE with CONTRADICT (perspective shift). RETIRE means the pattern ended — the behavior is no longer occurring. CONTRADICT with a perspective shift means the interpretive lens was wrong — the behavior was occurring but it meant something different than previously understood. When multiple consecutive TENSION signals accumulate, the engine must ask: did the pattern end (RETIRE), or did we misread what the pattern was (CONTRADICT + restatement)?
 
 ### The Silence Default
 
@@ -372,8 +396,8 @@ Same underlying concept, different names across fields. Naming it honestly avoid
 
 These are unresolved architectural decisions. They are documented here to prevent them from being re-litigated from scratch each time the system is extended.
 
-**01 — Pattern fingerprint as a fifth belief field**
-Should a dedicated field hold the concrete recurring signals (specific language, structural positions, behavioral markers) that evidence the belief? Currently, a belief states that a pattern exists. A fingerprint would hold what the pattern looks like in enough detail that the next document parser can check for it explicitly. Decision deferred: if enriching the blueprint layer produces fingerprints naturally inside the existing four fields, the fifth field is redundant. If the four fields remain descriptive rather than evidential, it is needed.
+**01 — Belief entry field structure** *(resolved in v4)*
+The belief entry now uses five fields: Statement, Why it matters, Evolution trail, Normal baseline, and Falsification test. The old concern about a separate "pattern fingerprint" field is resolved — the Evolution trail carries the concrete per-document evidence (specific language, structural positions, behavioral markers) as a first-person narrative of how the pattern developed. The Falsification test carries what would break it. No separate fingerprint field is needed.
 
 **02 — Anomaly detection as a first-class output**
 Should the pipeline produce an explicit anomaly report when a new document breaks an established pattern? Currently the changelog records that a belief changed but not why it changed or what the anomaly was. A dedicated anomaly output would be more actionable for the pre-reading use case.
