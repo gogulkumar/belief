@@ -1,16 +1,25 @@
 # Architecture Overview — Belief in the Stack
 
-## The Three-Layer Architecture
+## The Four-Layer Architecture
 
-Belief is built in three layers. Each layer has a distinct responsibility and runs at a different time.
+Belief is built in four layers. Each layer has a distinct responsibility and runs at a different time.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
+│  LAYER 0 — ENTITY FOUNDATION                                  │
+│  foundation.md                                               │
+│  Business model · Profitability thesis · Thesis metrics       │
+│  Normalization model · Narration design · Signals vs noise    │
+│  Runs: once per entity, before any belief stream             │
+└──────────────────────────┬───────────────────────────────────┘
+                           │  (read by every belief stream for this entity)
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
 │  LAYER 1 — CONFIGURATION                                      │
 │  Strategic Blueprint                                          │
-│  Who the entity is · what angle · what watch areas           │
+│  Who the entity is · what angle · candidate belief seed set   │
 │  What patterns look like · what a belief looks like here      │
-│  Runs: once at setup time                                     │
+│  Runs: once per belief stream at setup time                   │
 └──────────────────────────┬───────────────────────────────────┘
                            │  (read once, flows into both compilers)
             ┌──────────────┴──────────────────┐
@@ -18,8 +27,8 @@ Belief is built in three layers. Each layer has a distinct responsibility and ru
 ┌─────────────────────────┐       ┌──────────────────────────┐
 │  LAYER 2 — COMPILATION  │       │  LAYER 2 — COMPILATION   │
 │  Belief Reasoning Prompt│       │  Fact Extraction Prompt  │
-│  (angle-aware,          │       │  (watch-area-scoped,     │
-│   entity-grounded)      │       │   pattern-direction-aware)│
+│  (angle-aware,          │       │  (foundation-grounded,   │
+│   foundation-grounded)  │       │   pattern-direction-aware)│
 │  Runs: once per stream  │       │  Runs: once per doc type  │
 └────────────┬────────────┘       └──────────────┬───────────┘
              │                                    │
@@ -37,18 +46,20 @@ Belief is built in three layers. Each layer has a distinct responsibility and ru
 
 ### The Cascade Principle
 
-The blueprint (Layer 1) is compiled once at setup time. Every downstream step reads it. If the blueprint is wrong or incomplete, everything below it is wrong. If the blueprint is rich and precise, everything below it is rich and precise — without any changes to the execution layer.
+The foundation (Layer 0) grounds the blueprint (Layer 1), which is compiled into the runtime prompts (Layer 2). Every downstream step inherits its quality from this two-tiered cascade. If the foundation is precise and entity-specific, everything below it is precise. If the blueprint is correct, the execution prompts are correct without additional configuration.
 
-This is the most important architectural property of the system: quality is injected at Layer 1 and propagates forward. Debugging a bad belief output should start by examining the blueprint, not the execution prompt.
+Quality is injected at Layers 0 and 1 and propagates forward. Debugging a bad belief output should start by examining the foundation and blueprint, not the execution prompt.
 
 ### What Changes Cascade
 
 A change to the blueprint automatically propagates to:
-- The belief reasoning prompt (Layer 2A) — which reads the blueprint for entity context and angle definition
-- The fact extraction prompt (Layer 2B) — which reads the blueprint for watch areas and pattern direction
-- The world model (Layer 3) — which accumulates beliefs shaped by the above two
+- The belief reasoning prompt (Layer 2A)
+- The fact extraction prompt (Layer 2B)
+- The world model (Layer 3)
 
-No code changes required. The compilers are generic. Only the blueprint is entity-specific.
+A refinement to the foundation propagates to every belief stream for that entity.
+
+No code changes required. The compilers are generic. Only the foundation and blueprint are entity-specific.
 
 ---
 
@@ -105,20 +116,27 @@ With Belief: checks whether an answer reflects what is actually true about how t
 
 ## The Setup and Execution Flow
 
+### Foundation — runs once per entity
+
+```
+Prompt -1 ← (user interview: business model, thesis metrics, normalization, narration, signals/noise)
+          → entities/{entity_id}/foundation.md
+```
+
 ### Setup — runs once per belief stream
 
 ```
 Prompt 00 ← (entity, document types, angle, prior knowledge)
-         → document_profile.md
+          → document_profile.md
 
-Prompt 01 ← (document_profile.md, stated purpose)
-         → strategic_blueprint.md
+Prompt 01 ← (foundation.md, document_profile.md, stated purpose)
+          → strategic_blueprint.md
 
 Prompt 03 ← (strategic_blueprint.md)
-         → belief_reasoning_prompt.md
+          → belief_reasoning_prompt.md
 
 Prompt 06 ← (strategic_blueprint.md, belief_reasoning_prompt.md, doc type)
-         → fact_extractor_prompt.md
+          → fact_extractor_prompt.md
 ```
 
 ### Execution — runs for every document
@@ -138,16 +156,17 @@ belief_engine.py   ← belief_reasoning_prompt.md (system)
                    → belief_changelog.md (appended)
 ```
 
-The belief engine at runtime receives only its compiled prompt, the existing world model, and the fact log. It never receives the raw document or the blueprint. This is the contract that makes the system reproducible and auditable.
+The belief engine at runtime receives only its compiled prompt, the existing world model, and the fact log. It never receives the raw document, the foundation, or the blueprint. This is the contract that makes the system reproducible and auditable.
 
 ---
 
-## The Three Storage Layers
+## The Storage Layers
 
 | Layer | Purpose | Mutability |
 |-------|---------|------------|
+| **Entity Foundation** | Business understanding for the entity — thesis, metrics, normalization, narration. One `foundation.md` per entity. | Updated when streams reveal deeper understanding |
 | **L1 — World Model** | Living belief memory. One `belief.md` per stream. Loaded into agent context. | Surgically updated per document |
-| **L2 — Fact Logs** | Per-document extracted signals, organized by watch area. | Written once per document |
+| **L2 — Fact Logs** | Per-document extracted signals. | Written once per document |
 | **L3 — Raw Archive** | Original document content verbatim. | Immutable. Written once. |
 
 ---
@@ -164,27 +183,13 @@ Pattern recognition is not a separate belief type. It is the method that all fiv
 | Factual Understanding | Metric definition stability; benchmark comparison consistency |
 | Causal Understanding | Lead-lag pair recurrence; signal → outcome with consistent lag |
 
-The fact extraction prompt is the injection point for pattern direction. When the blueprint specifies what form patterns take for a given watch area, the fact extractor captures not just values but recurrence signals — the actual language used, the structural positions occupied, what appeared vs what was absent. Without pattern direction, the extractor captures point-in-time readings. With it, it captures evidence that accumulates into fingerprints.
-
----
-
-## Metric-Layer Anchoring
-
-Beliefs are tied to the behavior of a metric or pattern over time — not to the document format that surfaced it.
-
-The same business dynamic can surface whether it is discovered in a text bullet on a business review deck, a calculated cell in a financial model, a row in a database export, or a line item in a filing. The dynamic exists at the data layer, not the presentation layer.
-
-This means:
-- The belief reasoning prompt reads for metric movement and its interpretation — not for document structure
-- A belief confirmed in a deck and a belief confirmed in a spreadsheet are treated identically
-- New document types do not require new belief types — they are routed through the same extraction and reasoning logic after format-specific transcription
-- The world model is **document-format-agnostic**. Only the intake method varies by format.
+The fact extraction prompt is the injection point for pattern direction. When the blueprint specifies what form patterns take, the fact extractor captures not just values but recurrence signals — the actual language used, the structural positions occupied, what appeared vs what was absent. Without pattern direction, the extractor captures point-in-time readings. With it, it captures evidence that accumulates into fingerprints.
 
 ---
 
 ## The Silence Default Is Not a Weakness — It Is the Design
 
-Every belief prompt instructs the engine to stay silent unless a durable interpretation is visible. Most documents produce no belief updates across most watch areas. This is correct behavior. The rarity of a genuine belief update is what keeps confidence meaningful.
+Every belief prompt instructs the engine to stay silent unless a durable interpretation is visible. Most documents produce no belief updates across most beliefs. This is correct behavior. The rarity of a genuine belief update is what keeps confidence meaningful.
 
 A belief system that updates on everything is a summarizer.
 

@@ -52,11 +52,20 @@ belief_config:
   # Beliefs are ranked by confidence; lowest are archived first when this is exceeded.
   world_model_max_beliefs_per_stream: 20
 
+  # Minimum active beliefs before the engine flags over-collapse and audits for umbrella beliefs.
+  min_beliefs_volume_check: 8
+
+  # Target range for the first document — number of specific Candidate beliefs to initialize.
+  first_doc_target_min: 8
+  first_doc_target_max: 15
+
   # ─── STORAGE PATHS ─────────────────────────────────────────────────────────
+  # entities/ holds foundation.md for each entity — built once before any belief stream.
   # compiled/ holds one-time setup artifacts per stream (blueprint, compiled prompts).
   # streams/ holds the living world model, fact logs, and raw archive per stream.
-  compiled_path: ./compiled/              # compiled/{stream_id}/
-  streams_path: ./streams/               # streams/{stream_id}/belief.md, L2_factlogs/, L3_raw/
+  entities_path: ./entities/             # entities/{entity_id}/foundation.md
+  compiled_path: ./compiled/             # compiled/{stream_id}/
+  streams_path: ./streams/              # streams/{stream_id}/belief.md, L2_factlogs/, L3_raw/
 
   # ─── CONFIDENCE ARITHMETIC ─────────────────────────────────────────────────
   # Standard update values. Match the belief reasoning system prompts.

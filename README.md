@@ -63,19 +63,22 @@ Custom belief streams are also supported: Marketing Efficiency Memory, Forecast 
 
 ## How Belief Works
 
-1. **Stream setup** — one interview session defines the entity, the angle, and the document set
-2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle
-3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt, derived from the blueprint
+0. **Entity foundation built** — one interview session builds `foundation.md`: the business model, thesis metrics, normalization model, and narration design for the entity
+1. **Stream setup** — defines the entity, the angle, and the document set
+2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle, grounded in the foundation; seeds 8–15 candidate belief hypotheses
+3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt, carrying the foundation context
 4. **Document arrives** — any format: deck, transcript, report, audio
-5. **Signals extracted** — the fact extractor captures raw signals from the document, organized by watch area
-6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the world model
+5. **Signals extracted** — the fact extractor captures raw, granular signals from the document at the level needed for 8–15 distinct Candidate beliefs
+6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list
 7. **Silence by default** — most inputs produce no update. The gate is the mechanism.
 
 Each belief carries:
-- **Statement** — a durable, falsifiable interpretation
-- **Confidence** — 0.05 to 0.95 (0.90 cap for causal beliefs)
-- **Direction** — Improving / Stable / Deteriorating / Unclear
-- **Pattern fingerprint** — the concrete recurring evidence that makes the belief auditable
+- **Claim as heading** — `## Belief #N — [specific, falsifiable sentence]`
+- **Statement** — the claim restated precisely as business judgment grounded in the foundation
+- **Why it matters** — how it connects to the entity's profitability thesis
+- **Evolution trail** — first-person, per-document journey of how the pattern developed
+- **Normal baseline** — what the next comparable document should show if holding
+- **Falsification test** — what a future document must show to break, narrow, or retire it
 
 ---
 
@@ -86,28 +89,18 @@ belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
 │
-├── belief-template-system-prompts/         ← the five standard belief reasoning prompts
-│   ├── README.md
-│   ├── 01-business-memory.md
-│   ├── 02-business-dynamics.md
-│   ├── 03-narrative-capturing.md
-│   ├── 04-factual-understanding.md
-│   └── 05-causal-understanding.md
-│
 ├── architecture/
 │   └── overview.md                         ← system architecture & how it fits in the stack
 │
 ├── lifecycle/
-│   ├── seeding.md                          ← Phase 0: Knowledge Dossier and metric-dynamic anchors
-│   └── ingestion-pipeline.md               ← how documents flow through Belief (two phases, eight steps)
+│   └── ingestion-pipeline.md               ← how documents flow through Belief (foundation + two phases)
 │
 ├── world-model/
 │   └── schema.md                           ← belief file structure, update arithmetic, changelog tags
 │
 ├── prompts/
 │   ├── belief-doctrine.md                  ← shared doctrine: what a belief is across all prompts
-│   ├── four-prompt-architecture.md         ← the four core Belief prompts explained
-│   ├── strategic-blueprint.md              ← Layer 1: the master configuration document
+│   ├── -1-generate-foundation.md           ← Prompt -1: build the entity foundation (once per entity)
 │   ├── 00-document-profile.md             ← Prompt 00: interview agent to build document profile
 │   ├── 01-generate-blueprint.md           ← Prompt 01: produce the Strategic Blueprint
 │   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
@@ -115,6 +108,10 @@ belief/
 │
 ├── config/
 │   └── belief_config.yaml                  ← reference configuration file
+│
+├── entities/                               ← one subdirectory per entity; built before any stream
+│   └── {entity_id}/
+│       └── foundation.md                   ← business model, thesis metrics, normalization, narration
 │
 ├── compiled/                               ← generated at setup; one subdirectory per stream
 │   └── {stream_id}/
@@ -125,7 +122,7 @@ belief/
 │
 └── streams/                                ← living data; one subdirectory per stream
     └── {stream_id}/
-        ├── belief.md                       ← L1 world model (surgically updated)
+        ├── belief.md                       ← L1 world model (surgically updated, numbered beliefs)
         ├── belief_changelog.md             ← append-only audit trail
         ├── L2_factlogs/                    ← per-document extracted signals
         └── L3_raw/                         ← immutable transcription archive
@@ -145,9 +142,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 - [Full Specification →](BELIEF.md)
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
-- [Five Belief Reasoning Prompts →](belief-template-system-prompts/README.md)
 - [Architecture & Stack Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)
 - [World Model Schema →](world-model/schema.md)
-- [Four-Prompt Architecture →](prompts/four-prompt-architecture.md)
 - [Config Reference →](config/belief_config.yaml)

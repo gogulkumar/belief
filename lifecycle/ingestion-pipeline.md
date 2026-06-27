@@ -19,7 +19,21 @@ A single document can never manufacture a belief. Beliefs are earned across comp
 
 ---
 
-## Phase 1 — Stream Setup (Steps 0 – 4)
+## Phase 1 — Stream Setup (Steps −1 through 4)
+
+### Step −1 — Entity Foundation (Prompt −1)
+
+**Who:** LLM, running a structured interview with the user — once per entity, before any belief stream is created
+**Input:** User interview across five areas: business model, thesis-defining metrics, normalization model, narration design, what matters vs. noise
+**Output:** `entities/{entity_id}/foundation.md`
+
+Produces the institutional business understanding that every belief stream for this entity reads as its prior. Not a document summary. Not a belief. The mental model a strong analyst carries before opening any document — what kind of business this is, what its profitability thesis rests on, which metrics are thesis-defining, what normal looks like, and how this entity narrates its own performance.
+
+Without the foundation, a belief stream produces document-level facts. With it, it produces grounded business judgment.
+
+The foundation is built once per entity. All streams for that entity inherit it. The foundation is a living document — it can be refined as streams accumulate deeper understanding.
+
+---
 
 ### Step 0 — Stream Setup (user-driven)
 
@@ -49,17 +63,18 @@ Strongest allowed language at this step: "candidate signal" or "possible pattern
 
 ### Step 2 — Strategic Blueprint (Prompt 01)
 
-**Who:** LLM, once at setup, reading the profile
-**Input:** `document_profile.md`, requested belief stream, optional purpose and history
+**Who:** LLM, once at setup, reading the foundation and profile
+**Input:** `entities/{entity_id}/foundation.md`, `document_profile.md`, requested belief stream, optional purpose and history
 **Output:** `compiled/{stream_id}/strategic_blueprint.md`
 
-Converts the profile into an answered configuration document. Defines what a belief MEANS for this entity, this stream, these documents, this cadence.
+Converts the profile into an answered configuration document, grounded in the foundation. Defines what a belief MEANS for this entity, this stream, these documents, this cadence.
 
-The blueprint has four sections:
+The blueprint has five sections:
+- **Section 0** — Foundation reference (how the entity foundation grounds this specific stream — which thesis metrics are relevant, which normalization model applies, what narration patterns are background knowledge)
 - **Section 1** — Belief stream identity (entity, scope, exclusions)
 - **Section 2** — Document types and signal matrix (what each document CAN and CANNOT carry, numbers policy, template artifact risk, trigger question)
-- **Section 3** — Belief definition for this stream (what a belief is here, what it is not, durability test for this cadence, pattern form, a strong worked example, a weak example, forward signal and pattern break logic — all in entity vocabulary)
-- **Section 4** — Named watch areas (each with pattern signals to capture, forward signal, pattern break signal)
+- **Section 3** — Belief definition for this stream (what a belief is here, claim-as-heading rule, 5-field structure, durability test for this cadence, strong worked example, weak example, volume check rule — all in entity vocabulary)
+- **Section 4** — Candidate belief seed set (8–15 specific candidate claims grounded in foundation knowledge; each is a complete falsifiable sentence about how this entity behaves)
 
 Every section is answered with entity-specific content. No placeholders.
 
@@ -73,7 +88,7 @@ The angle is a hypothesis, not a constraint. If the documents cannot carry the r
 **Input:** `strategic_blueprint.md`
 **Output:** `compiled/{stream_id}/belief_reasoning_prompt.md`
 
-Compiles the blueprint into a self-contained runtime system prompt for the belief engine. At runtime the belief engine sees ONLY this prompt, the existing `belief.md` (or NULL), and the new fact log. So everything it needs must be inside: the belief doctrine, the entity-specific definition, the watch areas, the numbers policy, the durability ladder, the first-document rule, the subsequent-document rule, contradiction and silence handling, and all evolution actions.
+Compiles the blueprint into a self-contained runtime system prompt for the belief engine. At runtime the belief engine sees ONLY this prompt, the existing `belief.md` (or NULL), and the new fact log. So everything it needs must be inside: the belief doctrine, the entity-specific definition, the candidate belief seed set, the claim-heading rule, the 5-field format, the numbers policy, the durability ladder, the volume check, the first-document rule, the subsequent-document rule, the no-renumber rule, contradiction and silence handling, and all evolution actions.
 
 Does NOT re-derive the belief definition from generic rules — reads Blueprint Section 3 directly.
 
@@ -85,14 +100,15 @@ Does NOT re-derive the belief definition from generic rules — reads Blueprint 
 **Input:** `strategic_blueprint.md`, `belief_reasoning_prompt.md`, document type context
 **Output:** `compiled/{stream_id}/fact_extractor_prompt.md`
 
-Compiles a belief-stream-scoped extraction prompt derived by working backward from what the belief engine needs:
+Compiles a belief-stream-scoped extraction prompt derived by working backward from what the belief engine needs. The extractor is grounded in the entity foundation — it knows which signals connect to thesis metrics and which are background noise per the foundation's what-matters-vs-noise section.
 
-1. What feeds the **Statement**?
-2. What feeds **Why Durable** (recurrence signals for next-document comparison)?
-3. What feeds the **Normal Baseline**?
-4. What feeds the **Forward Signal**?
+The extractor captures:
+1. Signals that feed belief statements (specific, verbatim, falsifiable)
+2. Evolution trail evidence (what was said, where, in what language — not paraphrased)
+3. Normalization readings (reference the foundation's normal ranges)
+4. Leading indicators for falsification tests
 
-The extractor prompt is pattern-direction-aware — it captures evidence, not summary. Its strongest allowed output is "candidate signal" or "possible pattern evidence."
+The extractor must surface distinct signals separately to support 8–15 Candidate beliefs on the first document. No collapsing distinct patterns into umbrella summaries.
 
 Different document types in the same stream get different compiled extractor prompts. Each inherits from the same blueprint but has document-type-specific extraction guidance.
 
@@ -137,9 +153,11 @@ No interpretation. No extraction. Pure transcription and chunking.
 **Input:** `fact_extractor_prompt.md` (system) + L3 units + topics + optional existing belief
 **Output:** `streams/{stream_id}/L2_factlogs/{doc_id}_fact_log.md`
 
-Extracts the evidence packet — angle-scoped, watch-area-aligned, pattern-direction-aware. Organized by watch area.
+Extracts the evidence packet — angle-scoped, foundation-grounded, pattern-direction-aware. Organized to support individual belief claims, not watch areas.
 
 The fact log is NOT a summary. It preserves for each extracted item its type: fact / metric / benchmark / attribution / relationship / pattern evidence / fingerprint candidate / silence / contradiction / template risk / out-of-scope.
+
+Distinct signals are surfaced separately. If two different patterns appear in the same section of a document, they are two separate fact log entries — not one collapsed observation. This granularity is required to support 8–15 Candidate beliefs on the first document.
 
 If the document exceeds the token window, it is processed in chunks. Each chunk produces fact-log output. Chunk outputs are compared against the running fact log to resolve overlap, redundancy, and drift before the document-level fact log is finalized.
 
@@ -154,10 +172,12 @@ The belief engine never receives the raw document. It reads the fact log.
 **Output:** `streams/{stream_id}/belief.md` (evolved)
 
 **On first document (belief.md is NULL):**
-Create only candidate beliefs where the fact log has meaningful evidence. No established beliefs. No entries for watch areas with no signal. Every entry marked as first-document candidate in Why Durable.
+Initialize between 8 and 15 specific Candidate beliefs drawn from the fact log. Beliefs must use the candidate seed set from Blueprint Section 4 as a starting frame, but are grounded in what the first document actually showed. Every entry marked Status: Candidate. Evolution trail says "First seen in [doc_id] — [brief observation]." Normal baseline: "not yet established." No umbrella beliefs.
+
+**Volume check:** If the active belief count falls below 8, audit for umbrella beliefs that conflate multiple distinct patterns and split them. Record the split in the changelog as [SPLIT_BELIEF].
 
 **On subsequent documents:**
-For each existing belief, decide: confirm / deepen / narrow / contradict / tension / silence / stale / no signal. Update only when the interpretation, baseline, fingerprint, scope, forward signal, or invalidation signal changes. Check contradiction and silence BEFORE deepening.
+For each existing belief, decide: deepen / narrow / contradict / tension / silence / retire / no change. Update only when the evolution trail, baseline, or falsification test changes. Check contradiction and silence BEFORE deepening.
 
 The belief engine does NOT invent evidence. Only holds what the fact log provides.
 
@@ -173,10 +193,9 @@ Records what changed and why — the audit trail.
 
 For each belief affected, records:
 - Action (see action tags below)
-- Previous statement
-- New statement
+- Previous statement (if changed)
+- New statement (if changed)
 - Reason
-- Evidence type
 - Maturity impact
 - What the next comparable document should test
 
@@ -184,27 +203,33 @@ For each belief affected, records:
 
 | Tag | Meaning |
 |-----|---------|
-| `[NEW]` | A watch area added for the first time (Stage: Candidate) |
-| `[DEEPENED]` | Statement held; Why Durable, Pattern Fingerprint, or Forward Signal was enriched with new evidence |
-| `[UPDATED]` | Statement was revised — new evidence changed the interpretation |
-| `[NARROWED]` | Belief scope reduced — applies more specifically than before |
-| `[TENSION]` | A contradicting signal appeared but is not yet strong enough to revise the belief |
-| `[SILENCE]` | The document covered this watch area but showed no signal — noted but no update |
-| `[RETIRED]` | Belief archived — evidence no longer supports it after repeated absence or strong contradiction |
-| `[NO CHANGE]` | Document processed; no update warranted for this watch area |
+| `[NEW_BELIEF]` | A belief entered for the first time (Status: Candidate) |
+| `[DEEPEN]` | Belief held; evolution trail extended with new confirming evidence |
+| `[NARROW]` | Belief scope reduced — applies more specifically than before |
+| `[CONTRADICT]` | Strong contradicting evidence; belief statement revised |
+| `[TENSION]` | A contradicting signal appeared but not yet strong enough to revise |
+| `[SILENCE]` | The document covered this belief area but showed no signal |
+| `[RETIRE]` | Belief archived — pattern ended; number kept, marked RETIRED |
+| `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
+| `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
+| `[NO CHANGE]` | Document processed; no update warranted for this belief |
 
-The `Updated from:` header in `belief.md` is cumulative — real source filenames, in order, across all documents processed.
+The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.
 
 ---
 
 ## The Runtime Contract
 
 ```
+FOUNDATION (once per entity)
+  Prompt -1 ← (user interview: business model, thesis metrics, normalization, narration, signals/noise)
+           → entities/{entity_id}/foundation.md
+
 SETUP (once per stream)
   Prompt 00 ← (requested_stream, documents, transcriptions, metadata, purpose)
            → document_profile.md
 
-  Prompt 01 ← (document_profile.md, requested_stream, purpose, history)
+  Prompt 01 ← (foundation.md, document_profile.md, requested_stream, purpose, history)
            → strategic_blueprint.md
 
   Prompt 03 ← (strategic_blueprint.md)

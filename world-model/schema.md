@@ -4,9 +4,12 @@ The world model (L1) is the living belief memory for one belief stream. It is th
 
 ## File Structure
 
-One world model file per active belief stream. Each stream lives under its own directory alongside its raw archive and fact logs.
+One world model file per active belief stream. Each stream lives under its own directory alongside its raw archive and fact logs. Every stream for an entity reads the entity's `foundation.md` as its prior.
 
 ```
+entities/{entity_id}/
+└── foundation.md                ← entity-level business understanding (built once, before any stream)
+
 compiled/{stream_id}/
 ├── document_profile.md
 ├── strategic_blueprint.md
@@ -26,118 +29,105 @@ streams/{stream_id}/
 
 ## Belief Entry Format
 
-Each belief is one block inside `belief.md`. Fields are always present; values update over time.
+Each belief is one numbered block inside `belief.md`. The heading is the claim itself — a complete, specific sentence. Beliefs are numbered once and never renumbered. Retired beliefs keep their number marked RETIRED.
 
 ```markdown
-## [WATCH_AREA_NAME]
+## Belief #N — [The claim stated as a complete, falsifiable sentence.]   [ACTION_TAG]   Status: Candidate | Provisional | Confirmed | Established | Retired
 
-**Statement:** [Durable, falsifiable, actionable interpretation of how the entity behaves]
+**Statement**: The claim restated precisely and falsifiably, as business judgment grounded in how the business works (per the foundation). One sentence. Present tense. No hedging.
 
-**Validity scope:** [Entity, document type, cadence, known exclusions]
+**Why it matters**: How this belief connects to the foundation — why it matters for how the business operates, which thesis metric it touches, what it reveals about business behavior that is not obvious from any single document.
 
-**Confidence:** 0.XX
-**Direction:** Improving | Stable | Deteriorating | Unclear
-**Stage:** Candidate | Provisional | Confirmed | Established
-**Last Seen:** [Source filename of most recent confirming document]
-**First Seen:** [Source filename of originating document]
-**Updated from:** [Cumulative list of source filenames, in order, across all documents processed]
+**Evolution trail**: First-person, per-document journey. When it was first seen and in which document. What each subsequent comparable document added, confirmed, narrowed, or challenged. What the current maturity is and how many documents it rests on. Written as accumulating judgment, not a list of facts.
 
-**Why durable:** [What repeated evidence supports this. What would break it. How many documents would confirm it.]
+**Normal baseline**: What the next comparable document should show if this belief is holding, expressed in terms of the foundation's normalization model. On the first document: "not yet established — awaiting second comparable document."
 
-**Pattern fingerprint:** [Concrete recurring evidence — specific language, structural positions, sequencing behavior, measure relationships, attribution habits. This is what makes the belief auditable and testable across documents.]
-
-**Normal baseline:** [The expected or typical state for this watch area — the reference point that makes deviations meaningful. Not what happened — what is normal.]
-
-**Forward signal:** [What the next comparable document should show if this belief is holding. What signal would indicate it is shifting or breaking.]
-
-**Invalidation signal:** [What would force revision, suspension, narrowing, or retirement of this belief.]
-
-**Evidence trail:**
-- [{doc_id}] — [brief note on what it showed]
-- [{doc_id}] — [brief note on what it showed]
-
-**Contradictions:** (if any)
-- [{doc_id}] — [brief note on what challenged this belief]
+**Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. For Candidate stage: "fails to recur in the next comparable document." For mature beliefs: name a specific reversal — a concrete signal that would force revision.
 ```
 
 ---
 
 ## Durability Ladder
 
-The **Stage** field tracks how many comparable documents have supported the pattern. Do not skip stages.
+The **Status** field tracks how many comparable documents have supported the pattern. Do not skip stages.
 
 | Stage | Documents | Meaning |
 |-------|-----------|---------|
-| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Every first-document entry is Candidate. |
+| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. Every first-document entry is Candidate. |
 | **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
 | **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
 | **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal, not noise. |
 
-A Candidate entry is explicitly marked as subject to confirmation. An Established belief requires substantially stronger contradicting evidence before revision.
+A Candidate entry is subject to confirmation by the next comparable document. An Established belief requires substantially stronger contradicting evidence before revision.
+
+---
+
+## Volume Check
+
+A populated belief stream must hold at minimum 8 active beliefs. Fewer than 8 indicates over-collapse — beliefs that are umbrella statements covering multiple distinct patterns. The belief engine must self-audit when the count falls below 8 and split any umbrella beliefs into their constituent claims.
+
+On the first document, the belief engine must initialize between 8 and 15 specific Candidate beliefs. Not 3–4 shallow umbrellas. Specific, falsifiable claims at the level of observable business behavior.
 
 ---
 
 ## Example
 
 ```markdown
-## Revenue Growth Character
+## Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.   [DEEPEN]   Status: Confirmed
 
-**Statement:** Revenue growth is price-driven with volume in mild decline, monetizing an existing base rather than expanding it.
+**Statement**: Every quarterly review opens with volume performance against prior year before addressing any cost or margin line — establishing volume as the primary narrative frame through which all other performance is interpreted.
 
-**Validity scope:** Entity-wide, business review documents, quarterly cadence. Excludes new market launches (structurally different dynamics).
+**Why it matters**: The foundation identifies volume growth as the primary thesis metric. Leading with volume signals that management reads its own performance through this lens first — cost and margin are downstream of the volume story, not parallel to it. This shapes how to interpret any period where volume leads strong but margins miss.
 
-**Confidence:** 0.52
-**Direction:** Deteriorating
-**Stage:** Confirmed
-**Last Seen:** Business_Review_Q2_2026.pptx
-**First Seen:** Business_Review_Q4_2025.pptx
-**Updated from:** Business_Review_Q4_2025.pptx, Business_Review_Q1_2026.pptx, Business_Review_Q2_2026.pptx
+**Evolution trail**: First seen in Q4 2025 review — volume metrics occupied slides 2–3, with the first cost discussion not appearing until slide 7. I treated this as a possible structure, not yet a pattern. Q1 2026 repeated the same ordering: two volume slides, then pipeline, then cost efficiency. The structure held even though volume growth had slowed. By Q2 2026, with three consecutive reviews following this sequence, I treat this as how this business reads itself. The volume-first ordering is not driven by which metric performed better — it held in Q1 when volume was weak.
 
-**Why durable:** Observed in three consecutive quarterly reviews. Volume negative in all three; price positive in all three. Would break if volume returned positive for two consecutive quarters.
+**Normal baseline**: Next comparable document should open with volume performance on slides 2–4, with cost/margin content not appearing until at least slide 6. If the ordering inverts, note it as a signal worth watching.
 
-**Pattern fingerprint:** Volume metric appears immediately after revenue headline in every document. Price-volume split labeled explicitly in the performance section. Language: "pricing leverage" used in Q4 and Q1; "monetization efficiency" in Q2 — semantic drift but structural consistency. Volume decline named last in attribution, minimized relative to price contribution.
-
-**Normal baseline:** Revenue growth 7–11%, composed of +8–12% price offset by −1–3% volume. Price carries the headline.
-
-**Forward signal:** Next document should show price contribution still positive and volume still negative. If volume contribution turns positive, re-examine belief — single document would move to Tension, two consecutive positive volume quarters would force revision.
-
-**Invalidation signal:** Two consecutive quarters of positive volume growth, or a management acknowledgment that the business is actively volume-expanding.
-
-**Evidence trail:**
-- [Business_Review_Q4_2025.pptx] — Revenue +9% on +11% price, volume −1%. First signal.
-- [Business_Review_Q1_2026.pptx] — Pattern repeats. Volume −2%, price +8%. Confirmed.
-- [Business_Review_Q2_2026.pptx] — Volume now −3%, price holding +7%. Direction tightening.
-
-**Contradictions:**
-(none)
+**Falsification test**: Two consecutive quarterly reviews that lead with margin or cost performance before volume would break this belief. A single inversion is worth noting as TENSION but not yet sufficient to revise.
 ```
 
 ---
 
-## Causal Belief Entry Format
+## Changelog Structure
 
-Causal beliefs carry additional fields for the lead-lag relationship.
+After every document, `belief_changelog.md` records what changed — one entry per affected belief, appended.
 
 ```markdown
-## [CAUSAL_WATCH_AREA]
+## Changelog — {doc_id} — {timestamp}
 
-**Leading signal:** [what moves first, with threshold if visible]
-**Lagging outcome:** [what follows]
-**Observed lag:** ~N comparable documents
-**Confirmed:** N times
-**Status:** Candidate | Provisional | Confirmed | Established
+### Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.
+**Action:** [DEEPEN]
+**Previous statement:** (unchanged)
+**New statement:** (unchanged)
+**Reason:** Third consecutive document confirms volume-first ordering. Evolution trail extended with Q2 2026 observation that ordering held even when volume growth decelerated.
+**Maturity impact:** Provisional → Confirmed
+**What next document should test:** Whether volume-first ordering holds in a period where volume is negative or flat.
 
-**Confidence:** 0.XX  (cap: 0.90)
-**Direction:** Improving | Stable | Deteriorating | Unclear
-
-**Evidence trail:**
-- [{doc_id}] — leading signal appeared
-- [{doc_id}] — lagging outcome arrived N periods later
-
-**Contradictions:** (if any)
+### Belief #4 — Management attributes margin misses exclusively to external cost inflation.
+**Action:** [TENSION]
+**Previous statement:** Management attributes margin misses exclusively to external cost inflation.
+**New statement:** (unchanged — held under tension)
+**Reason:** Q2 document included one reference to internal procurement inefficiency contributing to cost pressure — first internal attribution observed. Single document; not yet sufficient to revise.
+**Maturity impact:** None — held at Confirmed pending next document
+**What next document should test:** Whether internal attribution recurs or Q2 reference was isolated.
 ```
 
-The confidence cap for causal beliefs is 0.90. Causal relationships are probabilistic, not deterministic. Confidence can approach but never fully assert mechanical certainty.
+### Changelog Action Tags
+
+| Tag | Meaning |
+|-----|---------|
+| `[NEW_BELIEF]` | A belief entered for the first time (Status: Candidate) |
+| `[DEEPEN]` | Belief held; evolution trail extended with new confirming evidence |
+| `[NARROW]` | Belief scope reduced — the claim now applies more specifically than before |
+| `[CONTRADICT]` | Strong contradicting evidence; belief statement revised under a new interpretation |
+| `[TENSION]` | A contradicting signal appeared but is not yet strong enough to revise the belief. Multiple consecutive TENSION entries signal a revision may be approaching. |
+| `[SILENCE]` | The document covered this belief area but showed no signal — noted but no update |
+| `[RETIRE]` | Belief archived — the pattern ended. The number is kept; the belief marked RETIRED. |
+| `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
+| `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
+| `[NO CHANGE]` | Document processed; no update warranted for this belief |
+
+The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.
 
 ---
 
@@ -145,9 +135,9 @@ The confidence cap for causal beliefs is 0.90. Causal relationships are probabil
 
 | Action | Confidence Change |
 |--------|------------------|
-| Confirm | +0.08 |
-| Contradict | −0.15 |
-| New Prior | initialized at 0.20 |
+| Confirm (DEEPEN) | +0.08 |
+| Contradict (TENSION) | −0.15 |
+| New Prior (NEW_BELIEF) | initialized at 0.20 |
 | Decay (90+ days unseen) | −0.05 per cycle |
 
 **Bounds:** Floor 0.05 · Cap 0.95 (0.90 for causal beliefs)
@@ -159,60 +149,18 @@ The confidence cap for causal beliefs is 0.90. Causal relationships are probabil
 
 The belief engine receives exactly three inputs at runtime. It receives nothing else.
 
-1. **The compiled belief reasoning prompt** — `compiled/{stream_id}/belief_reasoning_prompt.md` — the self-contained system prompt encoding the doctrine, angle definition, watch areas, evolution rules, and worked examples for this stream. Produced once at setup from the Strategic Blueprint. Never changes unless the stream is reconfigured.
-2. **The existing world model** — `streams/{stream_id}/belief.md` — the current state of all beliefs in this stream. May be NULL for the first document.
-3. **The fact log** — `streams/{stream_id}/L2_factlogs/{doc_id}_fact_log.md` — signals extracted from the current document, organized by watch area.
+1. **The compiled belief reasoning prompt** — `compiled/{stream_id}/belief_reasoning_prompt.md` — the self-contained system prompt encoding the doctrine, angle definition, candidate belief seed set, evolution rules, and worked examples for this stream. Produced once at setup from the Strategic Blueprint. Never changes unless the stream is reconfigured.
+2. **The existing world model** — `streams/{stream_id}/belief.md` — the current state of all numbered beliefs in this stream. May be NULL for the first document.
+3. **The fact log** — `streams/{stream_id}/L2_factlogs/{doc_id}_fact_log.md` — signals extracted from the current document, organized by belief area.
 
 The belief engine never receives the raw document, the blueprint, or any other context. Everything it needs is inside the compiled prompt and the fact log. This is the contract that makes the system reproducible and auditable.
 
 ---
 
-## Changelog Structure
-
-After every document, `belief_changelog.md` records what changed — one entry per affected watch area, appended.
-
-```markdown
-## Changelog — {doc_id} — {timestamp}
-
-### Revenue Growth Character
-**Action:** [DEEPENED]
-**Previous statement:** Revenue growth is price-driven with volume in mild decline.
-**New statement:** (unchanged)
-**Reason:** Third consecutive document confirms price-volume split. Pattern fingerprint enriched with Q2 language variant.
-**Evidence type:** Pattern evidence — structural recurrence
-**Maturity impact:** Provisional → Confirmed
-**What next document should test:** Whether volume decline steepens past −3% or price contribution begins compressing.
-
-### Cost Absorption Behavior
-**Action:** [TENSION]
-**Previous statement:** Fixed cost base absorbs volume decline without margin impact above X threshold.
-**New statement:** (unchanged — held under tension)
-**Reason:** Q2 document shows first margin compression since pattern was established. Single document; not yet sufficient to revise.
-**Evidence type:** Contradiction signal
-**Maturity impact:** None — held at Confirmed pending next document
-**What next document should test:** Whether margin compression continues or Q2 was an isolated event.
-```
-
-### Changelog Action Tags
-
-| Tag | Meaning |
-|-----|---------|
-| `[NEW]` | A watch area added for the first time (Stage: Candidate) |
-| `[DEEPENED]` | Statement held; Why Durable, Pattern Fingerprint, or Forward Signal was enriched with new evidence |
-| `[UPDATED]` | Statement was revised — new evidence changed the interpretation within the same interpretive frame |
-| `[REFRAMED]` | The interpretive lens itself shifted — what accumulated evidence means is now understood differently. Prior evidence is re-read under a new interpretation. Distinct from [UPDATED]: a reframe changes the frame, not just the statement. Use when contradictions have made the prior frame untenable, not merely weaker. |
-| `[NARROWED]` | Belief scope reduced — the belief now applies more specifically than before |
-| `[TENSION]` | A contradicting signal appeared but is not yet strong enough to revise the belief. Multiple consecutive TENSION entries signal that a reframe may be approaching. |
-| `[SILENCE]` | The document covered this watch area but showed no signal — noted but no update |
-| `[RETIRED]` | Belief archived — the pattern ended. Distinct from [REFRAMED]: the pattern is gone, not reinterpreted. |
-| `[NO CHANGE]` | Document processed; no update warranted for this watch area |
-
-The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.
-
----
-
 ## World Model Bounds
 
+- **Min active beliefs per stream:** 8 (enforced by volume check)
 - **Max active beliefs per stream:** ~20 (configurable)
 - **Decay trigger:** 90 days since last confirming document (configurable)
 - **Archive, not delete:** Contradicted and decayed beliefs are archived, not erased. History is preserved.
+- **No renumbering:** Once a belief is assigned #N, that number is permanent. Retired beliefs keep their number marked RETIRED.
