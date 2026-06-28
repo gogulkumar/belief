@@ -62,11 +62,11 @@ Every document is read through five belief types. Each asks a different question
 
 | # | Belief Type | What It Asks |
 |---|-------------|-------------|
-| 01 | Business Memory | What is structurally and durably true about how this entity is built? |
-| 02 | Business Dynamics | How does the entity behave as a system — where does pressure build, where does it release? |
-| 03 | Narrative Understanding | How does the organization tell its story, and what does the pattern of language reveal? |
-| 04 | Factual Understanding | What has been quantitatively observed, and which observations are building toward a belief? |
-| 05 | Causal Understanding | Which signals reliably predict which outcomes in this entity, and with what lag? |
+| 01 | Learning How Finance Consistently Explains Itself | What behavioral and communication patterns has this team established across recurring documents? |
+| 02 | Learning How This Business Generates and Loses Value | How does the entity behave as a system — where does pressure build, where does it release? |
+| 03 | Learning How Documents Frame the Story | How does the organization tell its story, and what does the pattern of language reveal? |
+| 04 | Learning What Finance Has Recorded as True | What has been quantitatively observed, and which observations are building toward a belief? |
+| 05 | Learning What Kind of Business This Actually Is | What is the durable structural truth about what this business is, how it makes money, and why it performs the way it does? |
 
 Custom belief streams are also supported: Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined angle.
 

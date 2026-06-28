@@ -22,11 +22,11 @@ belief_config:
   # Each stream selects one angle at setup time (Step 0).
   # Custom angles can be defined during the Prompt 00 interview.
   standard_angles:
-    - business_memory          # 01 — what is structurally and durably true about this entity
-    - business_dynamics        # 02 — how the entity behaves as a system
-    - narrative_understanding  # 03 — how the organization tells its story
-    - factual_understanding    # 04 — the evidence layer; feeds all other belief types
-    - causal_understanding     # 05 — which signals reliably predict which outcomes, with what lag
+    - business_memory          # 01 — Learning How Finance Consistently Explains Itself
+    - business_dynamics        # 02 — Learning How This Business Generates and Loses Value
+    - narrative_understanding  # 03 — Learning How Documents Frame the Story
+    - factual_understanding    # 04 — Learning What Finance Has Recorded as True
+    - causal_understanding     # 05 — Learning What Kind of Business This Actually Is
 
   # ─── MATURITY LADDER ───────────────────────────────────────────────────────
   # Documents required to advance through the durability stages.
