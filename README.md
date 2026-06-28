@@ -41,16 +41,18 @@ It does not store facts. It accumulates **beliefs**.
 
 A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it is a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
 
-Each belief carries four kinds of institutional understanding, each mapped to a field in the belief entry:
+The belief memory carries four kinds of institutional understanding:
 
-| What a belief captures | Belief field | What it gives you |
+| What it captures | Where it lives in the system | What it gives you |
 |---|---|---|
-| **What is normal** | Normal baseline | Expected ranges and behaviors — deviations are immediately visible |
-| **What is template** | Foundation signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
-| **What is evolving** | Evolution trail | Per-document history of how the pattern developed — deepened, tensioned, narrowed |
-| **What would break** | Falsification test | The specific signal in a future document that would contradict, narrow, or retire the belief |
+| **What is normal** | Normal baseline (belief entry field) | Expected ranges and behaviors — deviations are immediately visible |
+| **What is template** | Entity foundation — signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
+| **What is evolving** | Evolution trail (belief entry field) | Per-document history of how the pattern developed — deepened, tensioned, narrowed |
+| **What would break** | Falsification test (belief entry field) | The specific signal in a future document that would contradict, narrow, or retire the belief |
 
 These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time.
+
+Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
 
 A **skill** does the task — pulls the numbers, builds the report. A **belief** is the understanding the task is performed from. Skills take the doing; beliefs take the thinking.
 
