@@ -1,29 +1,56 @@
 # Belief — Business Belief Intelligence
 
-> How an AI system accumulates business understanding the way a senior analyst does — across any document, any business, any dimension.
+> Institutional memory is portable: what is normal, what is template, what is evolving, and what would break — loaded into agents at the moment they draft, validate, or flag — instead of re-teaching the model from raw decks every time.
 
-*Gogul Kumar Mathi · Corporate Finance AI · Expedia Group · 2026*
+*Gogul Kumar Mathi · 2026*
 
 ---
 
 ## The Problem
 
-Every AI agent you build operates on what is in its context window right now. The moment the session ends the understanding is gone. Next time it starts from zero. That is not intelligence. That is a very fast search engine.
+Every organization produces recurring documents as part of how it operates: quarterly business reviews, earnings calls, investor presentations, board decks, operating reports. These are not incidental outputs — they are the formal record of how management interprets performance, explains outcomes, and communicates direction.
 
-The missing layer: how does an AI system accumulate understanding over time the way a human expert does? Not retrieve — understand. Not search — remember. Not summarize — **believe**.
+What those documents contain, beyond the numbers:
+
+- How this team explains performance — what causes they name, in what order, framed how
+- Which metrics they treat as primary versus secondary
+- How emphasis shifts when results disappoint
+- What language recurs, and what language disappears
+- How commitments are explained when they are not met
+
+These behavioral patterns are not visible in any single document. They only emerge after reading many comparable documents from the same entity over time.
+
+A senior analyst who has read ten months of the same business's review decks holds a mental model that no one has written down. They know what a normal deck looks like — so they immediately see what is unusual about this one. They know how this management team typically explains a shortfall. They know which commitment is always ambitious and which is typically conservative.
+
+That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
 
 ---
 
 ## What Belief Is
 
-Belief is a **business belief intelligence system**. It reads any document — decks, transcripts, reports, audio, PDFs, markdown — and builds a living model of how a business operates. Not what any single document says. The pattern of behavior visible only across many documents over time.
+Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of the behavioral patterns inside them.
+
+Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
 It does not store facts. It accumulates **beliefs**.
 
 | A Fact | A Belief |
 |--------|----------|
-| Revenue was $2.3B in October. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
-| Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Drives intelligent reasoning. |
+| Revenue was $2.3B in Q3. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
+| Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Tells you what to expect in the next document — and what would be a surprise. |
+
+A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it is a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
+
+Each belief carries four kinds of institutional understanding, each mapped to a field in the belief entry:
+
+| What a belief captures | Belief field | What it gives you |
+|---|---|---|
+| **What is normal** | Normal baseline | Expected ranges and behaviors — deviations are immediately visible |
+| **What is template** | Foundation signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
+| **What is evolving** | Evolution trail | Per-document history of how the pattern developed — deepened, tensioned, narrowed |
+| **What would break** | Falsification test | The specific signal in a future document that would contradict, narrow, or retire the belief |
+
+These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time.
 
 A **skill** does the task — pulls the numbers, builds the report. A **belief** is the understanding the task is performed from. Skills take the doing; beliefs take the thinking.
 
@@ -31,30 +58,38 @@ A **skill** does the task — pulls the numbers, builds the report. A **belief**
 
 ## The Five Belief Types
 
-Every document is read through five belief types. Each asks a different question. All five write into one world model — one understanding of one business.
+Every document is read through five belief types. Each asks a different question about the same entity. All five write into one belief memory — one living model of one entity.
 
 | # | Belief Type | What It Asks |
 |---|-------------|-------------|
-| 01 | Business Memory | What is structurally and durably true about how this business is built? |
-| 02 | Business Dynamics | How does the business behave as a system — where does pressure build, where does it release? |
+| 01 | Business Memory | What is structurally and durably true about how this entity is built? |
+| 02 | Business Dynamics | How does the entity behave as a system — where does pressure build, where does it release? |
 | 03 | Narrative Understanding | How does the organization tell its story, and what does the pattern of language reveal? |
 | 04 | Factual Understanding | What has been quantitatively observed, and which observations are building toward a belief? |
-| 05 | Causal Understanding | Which signals reliably predict which outcomes in this business, and with what lag? |
+| 05 | Causal Understanding | Which signals reliably predict which outcomes in this entity, and with what lag? |
+
+Custom belief streams are also supported: Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined angle.
 
 ---
 
 ## How Belief Works
 
-1. **Document arrives** — any format: deck, transcript, report, audio
-2. **Read through all five belief types** — each one asks: what durable interpretation is visible here?
-3. **Maintain silence by default** — most inputs produce no update. The gate is the mechanism.
-4. **Update the belief** — surgical changes only: confirm +0.08, contradict −0.15, new prior at 0.20
-5. **Load into agent context** — every session starts with the accumulated beliefs
+0. **Entity foundation built** — one interview session builds `foundation.md`: the business model, thesis metrics, normalization model, and narration design for the entity
+1. **Stream setup** — defines the entity, the angle, and the document set
+2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle, grounded in the foundation; seeds 8–15 candidate belief hypotheses
+3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt, carrying the foundation context
+4. **Document arrives** — any format: deck, transcript, report, audio
+5. **Signals extracted** — the fact extractor captures raw, granular signals from the document at the level needed for 8–15 distinct Candidate beliefs
+6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list
+7. **Silence by default** — most inputs produce no update. The gate is the mechanism.
 
 Each belief carries:
-- **Statement** — a durable, falsifiable interpretation
-- **Confidence** — 0.05 to 0.95 (0.90 cap for causal beliefs)
-- **Direction** — Improving / Stable / Deteriorating / Unclear
+- **Claim as heading** — `## Belief #N — [specific, falsifiable sentence]`
+- **Statement** — the claim restated precisely as business judgment grounded in the foundation
+- **Why it matters** — how it connects to the entity's profitability thesis
+- **Evolution trail** — first-person, per-document journey of how the pattern developed
+- **Normal baseline** — what the next comparable document should show if holding
+- **Falsification test** — what a future document must show to break, narrow, or retire it
 
 ---
 
@@ -64,29 +99,20 @@ Each belief carries:
 belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
-│
-├── belief-template-system-prompts/         ← the five standard belief reasoning prompts
-│   ├── README.md
-│   ├── 01-business-memory.md
-│   ├── 02-business-dynamics.md
-│   ├── 03-narrative-capturing.md
-│   ├── 04-factual-understanding.md
-│   └── 05-causal-understanding.md
+├── usage.md                                ← how beliefs accumulate and how to use them
 │
 ├── architecture/
-│   └── overview.md                         ← system architecture & agent integration
+│   └── overview.md                         ← system architecture & how it fits in the stack
 │
 ├── lifecycle/
-│   ├── seeding.md                          ← Phase 0: Knowledge Dossier and metric-dynamic anchors
-│   └── ingestion-pipeline.md               ← how documents flow through Belief (two phases, eight steps)
+│   └── ingestion-pipeline.md               ← how documents flow through Belief (foundation + two phases)
 │
-├── world-model/
+├── belief-memory/
 │   └── schema.md                           ← belief file structure, update arithmetic, changelog tags
 │
 ├── prompts/
 │   ├── belief-doctrine.md                  ← shared doctrine: what a belief is across all prompts
-│   ├── four-prompt-architecture.md         ← the four core Belief prompts explained
-│   ├── strategic-blueprint.md              ← Layer 1: the master configuration document
+│   ├── -1-generate-foundation.md           ← Prompt -1: build the entity foundation (once per entity)
 │   ├── 00-document-profile.md             ← Prompt 00: interview agent to build document profile
 │   ├── 01-generate-blueprint.md           ← Prompt 01: produce the Strategic Blueprint
 │   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
@@ -94,6 +120,10 @@ belief/
 │
 ├── config/
 │   └── belief_config.yaml                  ← reference configuration file
+│
+├── entities/                               ← one subdirectory per entity; built before any stream
+│   └── {entity_id}/
+│       └── foundation.md                   ← business model, thesis metrics, normalization, narration
 │
 ├── compiled/                               ← generated at setup; one subdirectory per stream
 │   └── {stream_id}/
@@ -104,7 +134,7 @@ belief/
 │
 └── streams/                                ← living data; one subdirectory per stream
     └── {stream_id}/
-        ├── belief.md                       ← L1 world model (surgically updated)
+        ├── belief.md                       ← L1 belief memory (surgically updated, numbered beliefs)
         ├── belief_changelog.md             ← append-only audit trail
         ├── L2_factlogs/                    ← per-document extracted signals
         └── L3_raw/                         ← immutable transcription archive
@@ -114,7 +144,7 @@ belief/
 
 ## The Acceptance Criterion
 
-Give Belief 10 months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — **the system is working**.
+Give Belief ten months of business review decks. Read the resulting belief memory. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — **the system is working**.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*
 
@@ -123,10 +153,9 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 ## Quick Links
 
 - [Full Specification →](BELIEF.md)
+- [How Belief Accumulates and How You Use It →](usage.md)
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
-- [Five Belief Reasoning Prompts →](belief-template-system-prompts/README.md)
-- [Architecture & Agent Integration →](architecture/overview.md)
+- [Architecture & Stack Integration →](architecture/overview.md)
 - [Ingestion Pipeline →](lifecycle/ingestion-pipeline.md)
-- [World Model Schema →](world-model/schema.md)
-- [Four-Prompt Architecture →](prompts/four-prompt-architecture.md)
+- [Belief Memory Schema →](belief-memory/schema.md)
 - [Config Reference →](config/belief_config.yaml)

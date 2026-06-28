@@ -4,6 +4,16 @@ This doctrine defines what a belief means in this system. Every prompt that part
 
 ---
 
+## The Foundation Layer
+
+Before any belief stream begins, the entity foundation must exist. The foundation is not a belief and does not carry confidence or direction. It is the institutional understanding a strong analyst carries before opening any document: what kind of business this is, what its profitability thesis rests on, which metrics are thesis-defining, what normal looks like, and how this entity narrates its own performance.
+
+Every belief in every stream for an entity is grounded in that entity's foundation. A belief that cannot be connected to the foundation — to the business model, the thesis metrics, or the narration design — is either too generic or based on a document artifact rather than how the business works.
+
+The foundation lives at `entities/{entity_id}/foundation.md`. It is built once per entity, before any belief stream. It is a living document — refined as streams accumulate deeper understanding.
+
+---
+
 ## What a Belief Is
 
 A belief is not an opinion. A belief is not a summary. A belief is not a metric reading. A belief is not a one-time observation. A belief is not a forecast. A belief is not a recommendation.
@@ -17,6 +27,26 @@ A belief helps answer:
 > "Before I open the next comparable document, what should I already expect to be true — and what would surprise me if it changed?"
 
 That expectation is what makes the belief useful.
+
+---
+
+## The Claim Is the Heading
+
+The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a category label. Not a topic name.
+
+Wrong:
+```
+## Revenue Growth Character
+```
+
+Right:
+```
+## Belief #3 — Revenue growth is price-driven; volume has been in mild decline for three consecutive quarters.
+```
+
+The heading must carry enough specificity to be tested against the next document. A reader should be able to confirm or challenge the belief from the heading alone, before reading the body.
+
+Beliefs are numbered once. Numbers are permanent. Retired beliefs keep their number marked RETIRED. The list is never renumbered.
 
 ---
 
@@ -89,11 +119,35 @@ If the document says this, it is reported attribution. The system may record tha
 
 **A belief is not a forecast.**
 > Performance will improve next period.
-That is a prediction, not a belief. A Forecast Reliability belief stream may track whether plans tend to be conservative, aggressive, late-changing, or repeatedly revised — but it must not simply predict the future.
+That is a prediction, not a belief.
 
 **A belief is not a template artifact.**
 > Measure A appears before Measure B in the deck.
-This may only be true because the deck template forces that order. A stronger belief must explain the interpretive behavior inside the structure — whether the team uses Measure A as the primary explanation for downstream Measure B movement, not just that the two appear in a fixed order.
+This may only be true because the deck template forces that order. A stronger belief must explain the interpretive behavior inside the structure.
+
+---
+
+## The Dual Nature: Durable AND Provisional
+
+A belief must be durable enough to act from. It should not be abandoned after one contradicting document. But a belief must also be provisional — open to revision when accumulated evidence warrants it.
+
+These two properties are not in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
+
+Nir Eyal in *Beyond Belief* frames this as practical and provisional: the best beliefs offer just enough certainty to act, yet enough flexibility to adapt. A belief that requires ignoring evidence to sustain itself is not a belief — it is a bias that will eventually blind the analyst to what the documents are actually showing.
+
+### Two Kinds of Revision
+
+Not all revision is the same. The system must distinguish between them.
+
+**Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about how the entity attributes performance becomes more confident as more documents confirm it, or weakens as contradicting signals accumulate. Same lens, adjusted view.
+
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The interpretive frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint that has now resolved. The prior evidence trail does not become invalid — it is now understood differently under a new interpretation.
+
+A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
+
+### Beliefs Shape What You See Next
+
+A belief is not merely a record of past patterns. It is an active filter on the next document. It determines what the analyst notices, what looks normal, and what looks like a signal worth investigating. This is why beliefs must be precise and falsifiable — a vague belief produces vague attention. A precise belief — with a named falsification test — produces directed attention.
 
 ---
 
@@ -121,7 +175,37 @@ Beliefs mature over time. The system must not treat all beliefs as equally stron
 | **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. |
 | **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
 | **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
-| **Established** | 4+ | Four or more documents support the pattern, or the pattern holds across multiple document types. Breaking it is meaningful signal. |
+| **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal. |
+
+---
+
+## Volume Check
+
+A populated belief stream must hold at minimum 8 active beliefs. Fewer than 8 indicates over-collapse — umbrella statements that conflate multiple distinct patterns into one vague claim. When this happens, the belief engine must audit and split.
+
+On the first document, the engine must initialize between 8 and 15 specific Candidate beliefs. Not 3–4 shallow umbrellas. Specific, falsifiable claims at the level of observable business behavior.
+
+The purpose of the volume check is not to manufacture beliefs. It is to prevent the engine from producing beliefs that are too broad to be falsifiable — beliefs that cover so much ground they can never be proved wrong by a future document.
+
+---
+
+## Belief Entry Structure
+
+Every belief entry must use this structure. The heading is the claim. The five fields ground and test it.
+
+```markdown
+## Belief #N — [The claim stated as a complete, falsifiable sentence.]   [ACTION_TAG]   Status: Candidate | Provisional | Confirmed | Established | Retired
+
+**Statement**: The claim restated precisely and falsifiably, as business judgment grounded in how the business works (per the foundation). One sentence. Present tense. No hedging.
+
+**Why it matters**: How this belief connects to the foundation — why it matters for how the business operates, which thesis metric it touches, what it reveals about business behavior.
+
+**Evolution trail**: First-person, per-document journey. When first seen and in which document. What each subsequent comparable document added, confirmed, narrowed, or challenged. Current maturity and document count. Written as accumulating judgment, not a list of facts.
+
+**Normal baseline**: What the next comparable document should show if this belief is holding, per the foundation's normalization model. On the first document: "not yet established — awaiting second comparable document."
+
+**Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. Candidate: "fails to recur in the next comparable document." Mature beliefs: name a specific reversal.
+```
 
 ---
 
@@ -143,33 +227,7 @@ A strong belief is usually about one of the following:
 
 A belief must not be a raw reading of a single measure. It must not be a single result from one period. It must not be an unsupported causal claim. It must not be a generic statement that applies to any entity in any domain.
 
-**The belief must carry interpretation.**
-
----
-
-## Belief Entry Structure
-
-Every belief entry must use this structure:
-
-```markdown
-## [Watch Area Name]
-
-**Statement**: One falsifiable sentence, present tense, specific to this entity and belief stream.
-
-**Validity scope**: Where this belief applies — entity, document type, cadence, business scope, and known exclusions.
-
-**Why durable**: What repeated evidence supports this belief, how many comparable documents support it, and whether recurrence appears business-driven, communication-driven, or template-driven.
-
-**Pattern fingerprint**: Concrete recurring evidence that makes the belief auditable. May include language, sequencing, structural position, benchmark behavior, measure relationship, attribution habit, or presence/absence behavior.
-
-**Normal baseline**: What should be expected in the next comparable document if the belief is holding.
-
-**Forward signal**: What the next document should show if the belief is continuing or strengthening.
-
-**Invalidation signal**: What would force revision, suspension, narrowing, or retirement.
-```
-
-The **Pattern Fingerprint** is critical. It prevents the belief from becoming vague prose. It makes the belief testable against future documents.
+**The belief must carry interpretation. The interpretation must be grounded in the foundation.**
 
 ---
 
@@ -187,5 +245,7 @@ Before creating or updating a belief, ask:
 8. Does it preserve entity context — measure, period, comparison base — where relevant?
 9. Does it identify what would confirm, weaken, or invalidate it?
 10. Does it belong in a durable belief memory rather than a normal summary?
+11. Is the heading a specific, testable claim — not a category label?
+12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
 
-If the answer is no, do not create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.
+If the answer is no to any of these, do not create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.

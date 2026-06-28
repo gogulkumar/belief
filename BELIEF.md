@@ -1,6 +1,6 @@
 # Belief — Full Specification
 
-*Business Belief Intelligence: How an AI system accumulates business understanding the way a senior analyst does — across any document, any business, any dimension.*
+*Institutional memory is portable: what is normal, what is template, what is evolving, and what would break — loaded into agents at the moment they draft, validate, or flag — instead of re-teaching the model from raw decks every time.*
 
 *Gogul Kumar Mathi · 2026*
 
@@ -8,62 +8,86 @@
 
 ## 01 — What Is Belief
 
-### The Problem Every AI System Has
+### The Source
 
-Every agent you build operates on what is in its context window right now. The moment the session ends the understanding is gone. Next time it starts from zero. That is not intelligence. That is a very fast search engine.
+Every organization produces recurring documents as part of how it operates: quarterly business reviews, earnings calls, investor presentations, board decks, operating reports. These are not incidental outputs — they are the formal record of how management interprets performance, explains outcomes, and communicates direction.
 
-The missing layer is this: how does an AI system accumulate understanding over time the way a human expert does? Not retrieve — understand. Not search — remember. Not summarize — believe.
+What those documents contain, beyond the numbers:
+
+- How this team explains performance — what causes they name, in what order, framed how
+- Which metrics they treat as primary versus secondary
+- How emphasis shifts when results disappoint
+- What language recurs, and what language disappears
+- How commitments are explained when they are not met
+
+These behavioral patterns are not visible in any single document. They only emerge after reading many comparable documents from the same entity over time.
+
+### The Analyst Analogy
+
+A senior analyst who has been reading the same business's quarterly reviews for ten months holds a mental model that no one has written down. They know what a normal deck looks like for this business — so they immediately see what is unusual about this one. They know how this management team typically explains a shortfall. They know which commitment is always ambitious and which is typically conservative.
+
+They know that when the deck leads with a small beat, the real story is always in the second half of the bridge. They know that when the word "investment" appears in the cost commentary, it means discretionary spend the team chose — not external pressure. They know that the Q2 sequential pattern in this business always looks like a softening that recovers in Q3, and that certain numbers are structurally low because of how the business closes its quarter.
+
+None of that knowledge lives in any single document. It accumulated across dozens of documents, hundreds of reviews, and years of pattern recognition. That analyst is the most valuable person in the room during a business review. And any AI deployed against the same documents starts each session knowing nothing that she knows.
+
+They do not remember every slide. They hold the pattern. That pattern is the belief.
+
+That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
 
 ### What Belief Is
 
-Belief is a business belief intelligence system. It reads any document — decks, transcripts, reports, audio, PDFs, markdown — and builds a living model of how a business operates. Not what any single document says. The pattern of behavior visible only across many documents over time.
+Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of the behavioral patterns inside them.
+
+Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
 It does not store facts. It accumulates beliefs. And beliefs are different.
 
 **Facts vs Beliefs**
 
-- A fact: Revenue was $2.3B in October.
-- A belief: Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting more from its existing base rather than expanding it.
+- A fact: Revenue was $2.3B in Q3.
+- A belief: Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it.
 
-Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs drive intelligent reasoning. Facts just answer lookup queries.
-
-### The Analyst Analogy
-
-A senior analyst who has been in the room for ten months does not remember every slide. They hold a mental model of how the business behaves. They know what is seasonal and what is structural. They know when a number looks wrong. They know where to look when they need evidence.
-
-Belief builds that mental model — from any document, for any business — and keeps it current as new documents arrive.
-
-### The New Hire Who Never Learns
-
-A capable new hire can do the task on day one but gets it wrong — they lack the context that takes months to absorb. Today's AI is that hire, except it never stops being new. Every task starts with no knowledge of how this place works. Belief ends that reset.
+Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs tell you what to expect in the next document — and what would constitute a surprise worth investigating.
 
 ### What a Belief Is Not
 
 | Not this | Why a belief is different |
 |---|---|
 | A **fact** to look up | A fact is retrieved and static. A belief is applied as working truth and can change. |
-| A **hardcoded rule** | A rule is frozen at write-time. A belief is expected to drift and is maintained. |
-| **Conversation or agent memory** | That remembers what *you said*. A belief remembers how *the business works*. |
+| A **document summary** | A summary describes what a document said. A belief describes what the pattern of documents means. |
+| A **metric reading** | A metric is a value at a point in time. A belief is the durable interpretation of how a metric behaves over time. |
+| A **management attribution** | Management saying "efficiency improved because of better process" is reported attribution. The belief is whether that attribution is consistent, how it is framed, and whether the numbers support it. |
 
-The sharpest distinction is the last one. The field has invested heavily in giving AI memory of conversations and recent sessions. A belief is the other, harder kind — memory of the business itself.
+### The Failure Modes Beliefs Prevent
+
+These are the failure modes that appear when AI works with recurring business documents without institutional memory.
+
+**The summary trap.** AI tools produce accurate summaries of individual documents. But a summary of what this document says is not the same as knowing what this document means in the context of everything that came before it. The belief system does not summarise. It maintains standing interpretations that exist independently of any single document.
+
+**The attribution fabrication trap.** AI models are fluent with causal language. They connect observations to explanations with confidence. "Revenue declined because of FX headwinds" — but was it? Or did the team attribute it to FX because FX is an uncontrollable external factor that absolves accountability for a controllable miss? The belief system separates management's stated attribution (what they said caused it) from verified causality (what actually caused it). These are different beliefs, tracked separately, evolved separately.
+
+**The recency trap.** An AI reading this month's deck in isolation treats everything in it as equally newsworthy. A senior analyst who has read 18 months of decks knows that three of the five items in this month's bridge are structural recurring patterns — not news — and the one genuinely new signal is buried in a footnote on slide 12. The belief system creates that distinction mechanically: what is expected (held as a belief) versus what is new (not yet matched to any belief, or contradicting a held belief).
+
+**The vocabulary drift trap.** Business teams change the language they use to describe things over time — sometimes deliberately, sometimes not. When a word disappears from commentary, it might mean the thing stopped happening, or it might mean the team stopped wanting to highlight it. When a new phrase appears, it might reflect a genuine strategic shift or a narrative management choice. A system that tracks beliefs about language patterns surfaces vocabulary drift as a signal. A system that just reads the current document does not notice.
 
 ### What a Belief Contains
 
-For a given process, the belief layer captures the understanding an expert applies without thinking:
+A belief carries four kinds of institutional understanding. Each maps to a specific field in the belief entry:
 
-- **Definitions** — what each term means here (e.g., which definition of "revenue" applies in this room)
-- **Trusted sources** — which system or file is the source of truth; which wins on conflict
-- **What's normal** — expected ranges, so a real anomaly is distinguishable from noise
-- **Process steps** — the sequence the work always follows
-- **Rules and conventions** — how outputs are framed for different stakeholders
+| What a belief captures | Belief field | What it gives you |
+|---|---|---|
+| **What is normal** | Normal baseline | Expected ranges and behaviors — deviations are immediately visible without re-reading the archive |
+| **What is template** | Foundation signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
+| **What is evolving** | Evolution trail | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
+| **What would break** | Falsification test | The specific signal in a future document that would contradict, narrow, or retire the belief |
+
+These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document does not need to be re-read.
 
 ### Skills and Beliefs
 
 A skill does the task — pulls the numbers, builds the report. It runs on whatever it can infer about the business at the time.
 
-A belief is the understanding the task is performed *from* — the assumptions behind the doing. Skills take the doing; beliefs take the thinking.
-
-Belief is scoped to the same process a skill already performs. It is not a model of the whole business. Start where a skill is running and capture the thinking behind that one process.
+A belief is the understanding the task is performed *from* — the working model behind the doing. Skills take the doing; beliefs take the thinking.
 
 ---
 
@@ -91,6 +115,24 @@ Beyond the core distinctions (not a fact, not a rule, not agent memory), a belie
 - An **opinion** about whether performance is good or bad
 - A **projection or forecast** — a belief describes what is, not what is predicted
 
+### The Dual Nature: Durable AND Provisional
+
+A belief must be durable enough to act from — it should not be abandoned after one contradicting document. But it must also be provisional — open to revision when accumulated evidence warrants it.
+
+These two properties are not in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
+
+Nir Eyal in *Beyond Belief* frames this precisely: the best beliefs are both practical and provisional — they offer just enough certainty to act, yet enough flexibility to adapt. A belief is a firmly held interpretation, open to revision when new evidence arrives. A belief that requires ignoring evidence to sustain itself is not a belief. It is a bias.
+
+### Two Kinds of Belief Revision
+
+Not all revision is the same.
+
+**Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about "external attribution patterns" becomes more confident as three more comparable documents confirm it, or weakens as two consecutive documents show a different framing. The frame itself is stable.
+
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail does not become invalid — it is now understood differently.
+
+A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what a working belief model is designed to produce: accumulated evidence eventually changing not just confidence, but understanding.
+
 ### The Durability Ladder
 
 A belief passes through maturity stages as more comparable documents are processed. Do not skip stages.
@@ -113,6 +155,8 @@ A belief passes through maturity stages as more comparable documents are process
 
 Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
 
+These arithmetic updates handle incremental revision. They do not handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
+
 ### The Fact-to-Belief Gate
 
 Not everything in a document becomes a belief. Most things should produce silence. The gate is the filter.
@@ -130,11 +174,34 @@ Not everything in a document becomes a belief. Most things should produce silenc
 1. **Falsifiability** — can a future document contradict this?
 2. **Distinctiveness** — is this specific to this business, not any business in this sector?
 
+### What a Mature Belief Looks Like
+
+After five or more comparable documents, a belief entry looks like this. Notice that the heading is a complete, specific, falsifiable sentence — not a category label.
+
+---
+
+**## Belief #7 — Every Variance Headline Opens With the Best-Performing Driver; the Negative Is Always the Second Clause**
+**Status:** Established | **Confidence:** 0.60 | **Direction:** Stable
+
+**Statement:** Established across five documents. Every variance headline in every deck is structured positive-first without exception. Whether the overall result is a beat or a miss, the opening attribution clause names a positive driver. In beats, the leading positive is the dominant contributor. In misses or mixed results, the team still locates a positive to lead with before acknowledging the headwind. The negative driver is structurally relegated to the second clause in every instance across all five documents. This is a systematic narrative convention, not a neutral factual ordering.
+
+**Why it matters:** A reader who knows this pattern knows to find the actual commercial story in the offset clause, not the headline. A reader who does not know this pattern will systematically overweight the opening attribution because it leads.
+
+**Evolution trail:** First seen in Document 1 — the headline led with channel efficiency ahead of a modest miss; I noted it but held it as a single observation. Document 2 repeated the same structure: a positive driver led even though the result was flat. At that point I held it as Provisional. Documents 3, 4, and 5 each confirmed the same structure without exception, including one document where the business posted its weakest result of the period — and still led with the best available positive. Established.
+
+**Normal baseline:** In the next comparable document, the first clause of every variance headline will name the most favourable driver available, regardless of whether the overall result is positive or negative.
+
+**Falsification test:** A headline that opens with a miss, headwind, or structural deterioration before stating any positive contributor would indicate a break in the team's narrative sequencing convention and should be investigated immediately.
+
+---
+
+A mature belief stream holds 12–20 entries at this level of specificity. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
+
 ---
 
 ## 03 — The Five Belief Types
 
-Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one world model — there is no separate memory per belief type.
+Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one belief memory — there is no separate memory per belief type.
 
 ### Business Memory
 *What is structurally and durably true about how this business is built.*
@@ -165,13 +232,15 @@ Each belief is one lead-lag pair: a leading signal, a lagging outcome, the obser
 
 ## 04 — The Lifecycle
 
-### Phase 0 — Seeding (Before Documents Arrive)
+### Step −1 — Entity Foundation (Before Any Stream)
 
-Before any document is ingested, the belief system should be seeded with a **Knowledge Dossier** — a human-written document capturing the institutional understanding of the business: how it makes money, where costs go, and what the normal operating ranges look like.
+Before any belief stream is created, the entity foundation must exist. The foundation is built once per entity through a structured interview (Prompt −1) and stored at `entities/{entity_id}/foundation.md`.
 
-The dossier is not processed through the ingestion pipeline. A setup agent extracts candidate beliefs from it and writes them directly into the world model as seeded priors (confidence 0.20). From that point, documents confirm, contradict, or decay those beliefs exactly as they would any other belief.
+The foundation captures five things: the business model and profitability thesis, the thesis-defining metrics, the normalization model (what normal looks like for each metric), the narration design (how this entity communicates), and what matters vs. noise in its documents.
 
-This step turns the first document the system reads from a cold start into a calibrated one. See [`lifecycle/seeding.md`](../lifecycle/seeding.md) for the full Knowledge Dossier format, Metric-Dynamic Anchor table, and three-level cascade structure.
+Every belief stream for the entity inherits the foundation as its prior. Without it, streams produce document-level observations. With it, they produce grounded business judgment — beliefs connected to the thesis, not floating.
+
+The foundation is a living document. As streams accumulate deeper understanding, the foundation can be refined, and the refinement propagates to every stream for that entity.
 
 ---
 
@@ -179,10 +248,11 @@ This step turns the first document the system reads from a cold start into a cal
 
 | Layer | What It Is | Characteristics |
 |-------|-----------|-----------------|
-| **L1 — World Model** | The living belief model | One file per belief type. Surgically edited — never rewritten. Loaded into context for every reasoning pass. |
-| **L2 — Source Index** | One record per document | Stores time period, themes, metrics, narratives, anomalies. Used to find relevant documents without scanning raw content. |
-| **L3 — Raw Archive** | The original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
-| **Ledger** | Append-only audit log | Every document: signals extracted, beliefs affected, changes made. |
+| **Entity Foundation** | Business understanding for the entity | One `foundation.md` per entity. Built before any stream. Referenced by every blueprint for that entity. |
+| **L1 — Belief Memory** | The living belief file for one stream | One `belief.md` per stream. Numbered beliefs, surgically updated. Loaded into context at session start. |
+| **L2 — Fact Logs** | Per-document extracted signals | One fact log per document per stream. Written once. Read by the belief engine. |
+| **L3 — Raw Archive** | Original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
+| **Changelog** | Append-only audit trail | Every document: which beliefs changed, what action, why, what to test next. |
 
 ### Ingestion Pipeline — When a Document Arrives
 
@@ -191,56 +261,66 @@ DOCUMENT ARRIVES (any format)
           │
           ▼
 ┌─────────────────────────┐
-│  DOCUMENT TYPE ID       │  pptx / pdf / docx / audio / md
+│  intake.py              │  route by format → transcribe → chunk
+│  writes L3 (immutable)  │  pptx / pdf / docx / audio / md
 └─────────────────────────┘
           │
-          ▼  RAW EXTRACT → L3 (once only, never rerun)
+          ▼  RAW UNITS → L3 (once only, never rerun)
           │
           ▼
-┌──────────────────────────┐
-│  IS DOCUMENT < 50k TOK?  │
-└──────────────────────────┘
-    YES → single belief pass
-    NO  → chunk loop (50k per chunk)
+┌──────────────────────────────────────────┐
+│  fact_extractor.py                        │
+│  system: compiled fact_extractor_prompt   │
+│  input:  L3 units + topics_touched        │
+│  output: L2 fact log (per-stream)         │
+│  captures signals at belief-claim level   │
+│  surfaces distinct patterns separately    │
+└──────────────────────────────────────────┘
+          │
+          ▼  FACT LOG → belief engine
           │
           ▼
-   FOR EACH BELIEF TYPE (01–05):
-   ├─ Chunk 1: temp belief empty → dump all outputs
-   └─ Chunk 2+: compare against temp belief
-       confirm / contradict / merge / new / redundant / drifting
-       End: temp belief = document-level belief
-          │
-          ▼
-   MERGE INTO WORLD MODEL (L1)
-   └─ surgical update per belief type
-   └─ ledger entry written
-   └─ decay pass runs
+┌──────────────────────────────────────────┐
+│  belief_engine.py                         │
+│  system: compiled belief_reasoning_prompt │
+│  input:  existing belief.md (or NULL)     │
+│          + fact log                       │
+│  output: belief.md (evolved)              │
+│          + belief_changelog.md (appended) │
+│  volume check: ≥ 8 active beliefs         │
+└──────────────────────────────────────────┘
 ```
 
 ---
 
 ## 05 — The Prompt Architecture
 
-Two phases. Stream setup runs once. Document ingestion runs for every document.
+Three phases. Entity foundation runs once per entity. Stream setup runs once per stream. Document ingestion runs for every document.
+
+### Phase 0 — Entity Foundation (runs once per entity)
+
+| Prompt | What It Does |
+|--------|-------------|
+| **Prompt −1 — Entity Foundation** | Structured interview across five areas: business model and profitability thesis, thesis-defining metrics, normalization model, narration design, and what matters vs. noise. Produces `entities/{entity_id}/foundation.md`. Every stream for this entity reads it as its prior. |
 
 ### Phase 1 — Stream Setup (runs once per belief stream)
 
 | Prompt | What It Does |
 |--------|-------------|
-| **Prompt 00 — Document Profile** | Interview agent. Discovers entity, document types, chosen angle, and prior knowledge. Produces a structured Document Profile. |
-| **Prompt 01 — Strategic Blueprint** | Reads the Document Profile and produces the master configuration document. Defines what a belief means for this entity, this angle, these documents. Answered, not templated. |
-| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. The belief engine uses this prompt at runtime — never the blueprint itself. |
-| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. One compiled extractor per document type. |
+| **Prompt 00 — Document Profile** | Interview agent. Given the entity foundation already exists, discovers document types, cadence, chosen angle, and what each document type can and cannot carry. Produces a structured Document Profile. |
+| **Prompt 01 — Strategic Blueprint** | Reads the entity foundation and the Document Profile together. Produces the master configuration document in five sections: foundation reference, stream identity, signal matrix, belief definition (with claim-heading rule, 5-field format, volume check), and candidate belief seed set (8–15 grounded hypotheses). |
+| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Embeds the foundation context. Encodes the candidate seed set, claim-heading rule, 5-field format, volume check, no-renumber rule, and all evolution actions. |
+| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. Embeds foundation context (thesis metrics, normalization model, narration design). Mandates granularity to support 8–15 Candidate beliefs on the first document. One compiled extractor per document type. |
 
 ### Phase 2 — Document Ingestion (runs for every document)
 
 | Component | What It Does |
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
-| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals organized by watch area. Writes fact log to L2. Does not interpret — only captures. |
-| **belief_engine.py** | Reads the fact log and the existing world model using the compiled belief reasoning prompt. Makes surgical updates to `belief.md`. Appends to `belief_changelog.md`. |
+| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals grounded in the foundation — at the granularity needed for belief-level claims, not summary-level observations. Writes fact log to L2. Does not interpret — only captures. |
+| **belief_engine.py** | Reads the fact log and the existing belief memory using the compiled belief reasoning prompt. Numbered beliefs, claim-as-heading, 5-field format. Makes surgical updates to `belief.md`. Runs volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
 
-The cascade principle: quality injected at setup propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It has no other context — everything it needs is already inside the compiled prompt.
+The cascade principle: quality injected at entity foundation and blueprint propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It never receives the foundation, the blueprint, or the raw document — everything it needs is already encoded inside the compiled prompt.
 
 See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the full step-by-step pipeline and runtime contract.
 
@@ -264,13 +344,13 @@ A new analyst reads the belief and gets years of behavioral context in minutes. 
 ### Three Things Belief Enables That Nothing Else Does
 
 **01 — Contextual reasoning over time**
-Every agent today is context-blind at session start. Belief gives agents a world model to reason from — not just a document to search through. Queries become calibrated to the business.
+Every agent today is context-blind at session start. Belief gives agents a belief memory to reason from — not just a document to search through. Queries become calibrated to the business.
 
 **02 — Belief-grounded evaluation**
 Current evals check output format and SQL accuracy. Belief enables a new kind of eval — does this answer reflect what is actually true about this business? You can check agent outputs against the belief model.
 
 **03 — Portable business understanding**
-When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the world model is portable. A new model inherits the business understanding immediately. The investment compounds.
+When you upgrade a model or rebuild a system the understanding currently lives nowhere. With Belief the belief memory is portable. A new model inherits the business understanding immediately. The investment compounds.
 
 ### The Business Case
 
@@ -285,7 +365,7 @@ Running tasks inside a business is not the same as interpreting a business. Beli
 
 ### The Acceptance Criterion
 
-Give Belief 10 months of business review decks. Read the resulting world model. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
+Give Belief 10 months of business review decks. Read the resulting belief memory. If a senior analyst reads it and identifies two or three beliefs they agree with that they would not have articulated explicitly — beliefs that feel true, that reflect how the business actually behaves — the system is working.
 
 Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, that is what I know about this business.*
 
@@ -295,9 +375,17 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 Every step in the pipeline has explicit prohibitions. These are not edge-case warnings — they are the core integrity rules that prevent the system from manufacturing beliefs it has not earned.
 
+### What the Entity Foundation Agent (Prompt −1) Must Never Do
+
+- Create beliefs. The foundation is the prior that beliefs are grounded in — it is not a belief and carries no confidence or direction.
+- Describe documents. The foundation is about how the business works, not about how its documents are written. Document format belongs in the document profile and blueprint.
+- Invent content. Only record what the user told you. If information is missing, say so explicitly and note what is unknown.
+- Produce generic content. Every sentence must be specific enough that any reader immediately understands what this business cares about most — not what any business in its industry cares about.
+
 ### What the Document Profile (Prompt 00) Must Never Do
 
 - Create beliefs. The interview only captures intent.
+- Re-interview about the business. The entity foundation already exists and captures business model, metrics, and behavioral patterns. Prompt 00 focuses on documents and angle only.
 - Interpret documents. If documents are available at setup, it profiles them — it does not extract signals.
 - Decide what signals matter. That is the blueprint's job.
 - Invent document characteristics the user did not describe.
@@ -324,7 +412,11 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Invent evidence not present in the fact log. If the fact log does not contain it, the belief engine does not hold it.
 - Write a belief from a single document. A first-document entry is Candidate only — explicitly marked as not yet a belief.
 - Lower confidence precipitously on a single contradicting signal. One document showing tension does not revise an Established belief.
-- Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality.
+- Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality, not grounded in the foundation.
+- Use category labels as headings. The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a topic name.
+- Renumber beliefs. Once a belief is assigned #N, that number is permanent. Retired beliefs keep their number marked RETIRED.
+- Let active belief count fall below 8 without auditing for umbrella beliefs and splitting them.
+- Confuse RETIRE with CONTRADICT (perspective shift). RETIRE means the pattern ended — the behavior is no longer occurring. CONTRADICT with a perspective shift means the interpretive lens was wrong — the behavior was occurring but it meant something different than previously understood. When multiple consecutive TENSION signals accumulate, the engine must ask: did the pattern end (RETIRE), or did we misread what the pattern was (CONTRADICT + restatement)?
 
 ### The Silence Default
 
@@ -347,8 +439,8 @@ Same underlying concept, different names across fields. Naming it honestly avoid
 
 These are unresolved architectural decisions. They are documented here to prevent them from being re-litigated from scratch each time the system is extended.
 
-**01 — Pattern fingerprint as a fifth belief field**
-Should a dedicated field hold the concrete recurring signals (specific language, structural positions, behavioral markers) that evidence the belief? Currently, a belief states that a pattern exists. A fingerprint would hold what the pattern looks like in enough detail that the next document parser can check for it explicitly. Decision deferred: if enriching the blueprint layer produces fingerprints naturally inside the existing four fields, the fifth field is redundant. If the four fields remain descriptive rather than evidential, it is needed.
+**01 — Belief entry field structure** *(resolved in v4)*
+The belief entry now uses five fields: Statement, Why it matters, Evolution trail, Normal baseline, and Falsification test. The old concern about a separate "pattern fingerprint" field is resolved — the Evolution trail carries the concrete per-document evidence (specific language, structural positions, behavioral markers) as a first-person narrative of how the pattern developed. The Falsification test carries what would break it. No separate fingerprint field is needed.
 
 **02 — Anomaly detection as a first-class output**
 Should the pipeline produce an explicit anomaly report when a new document breaks an established pattern? Currently the changelog records that a belief changed but not why it changed or what the anomaly was. A dedicated anomaly output would be more actionable for the pre-reading use case.
