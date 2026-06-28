@@ -72,11 +72,11 @@ Present the five standard angles. Ask which one fits best — or whether a diffe
 >
 > | Angle | What it accumulates |
 > |-------|---------------------|
-> | **Business Memory** | How this entity consistently behaves across recurring periods — structural patterns in how it operates, manages, and communicates |
-> | **Business Dynamics** | How the business structurally makes money — ratios, mechanics, and relationships that hold independent of any specific period |
-> | **Narrative Understanding** | Persistent framing choices — what the entity leads with, buries, emphasizes, or avoids across recurring documents |
-> | **Factual Understanding** | Stable, verifiable readings of specific metrics over time — building toward a baseline for what is normal |
-> | **Causal Understanding** | Durable interpretations of cause and effect — which attributed drivers appear repeatedly, and which signals tend to precede which outcomes |
+> | **Learning How Finance Consistently Explains Itself** | How this entity consistently behaves across recurring periods — structural patterns in how it operates, manages, and communicates |
+> | **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships that hold independent of any specific period |
+> | **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, emphasizes, or avoids across recurring documents |
+> | **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a baseline for what is normal |
+> | **Learning What Kind of Business This Actually Is** | Durable interpretations of cause and effect — which attributed drivers appear repeatedly, and which signals tend to precede which outcomes |
 >
 > Custom angles are also supported. Examples: "Forecast Reliability" (how consistently plans are revised), "Commitment Tracking" (how consistently commitments in one document are addressed in the next), "Risk Language" (how the entity frames uncertainty and downside).
 

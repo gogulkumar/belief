@@ -177,11 +177,11 @@ Pattern recognition is not a separate belief type. It is the method that all fiv
 
 | Belief Type | Pattern Form |
 |-------------|-------------|
-| Business Memory | Cross-period behavioral recurrence; language the documents use to mark repetition |
-| Business Dynamics | Structural ratio stability and trajectory across periods |
-| Narrative Understanding | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
-| Factual Understanding | Metric definition stability; benchmark comparison consistency |
-| Causal Understanding | Lead-lag pair recurrence; signal → outcome with consistent lag |
+| Learning How Finance Consistently Explains Itself | Cross-period behavioral recurrence; language the documents use to mark repetition |
+| Learning How This Business Generates and Loses Value | Structural ratio stability and trajectory across periods |
+| Learning How Documents Frame the Story | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
+| Learning What Finance Has Recorded as True | Metric definition stability; benchmark comparison consistency |
+| Learning What Kind of Business This Actually Is | Lead-lag pair recurrence; signal → outcome with consistent lag |
 
 The fact extraction prompt is the injection point for pattern direction. When the blueprint specifies what form patterns take, the fact extractor captures not just values but recurrence signals — the actual language used, the structural positions occupied, what appeared vs what was absent. Without pattern direction, the extractor captures point-in-time readings. With it, it captures evidence that accumulates into fingerprints.
 

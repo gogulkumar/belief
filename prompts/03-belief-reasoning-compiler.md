@@ -132,19 +132,19 @@ If the answer to any of these is no, do not write the belief.
 
 State the numbers rule for this angle explicitly. Derive it from Blueprint Section 3.4.
 
-For Business Memory:
+For Learning How Finance Consistently Explains Itself:
 > No raw period totals. Pattern language only — describe the behavior, not the magnitude. Example: "consistently 10–15% below commitment" rather than "$X shortfall."
 
-For Business Dynamics:
+For Learning How This Business Generates and Loses Value:
 > Structural ratios and efficiency percentages only — the ratio itself, the benchmark it is compared against, the trend direction. No period-specific revenue or cost totals.
 
-For Narrative Understanding:
+For Learning How Documents Frame the Story:
 > Zero numbers. This angle is entirely about language, sequencing, emphasis, and framing choices. Numbers do not belong in beliefs for this angle.
 
-For Factual Understanding:
+For Learning What Finance Has Recorded as True:
 > Numbers ARE the belief. Every factual belief entry must state: the metric name, the value, the period, and the comparison benchmark. Missing any of these makes the entry incomplete.
 
-For Causal Understanding:
+For Learning What Kind of Business This Actually Is:
 > Include magnitude only to describe the scale of attributed gaps. No full period totals. The pattern is the belief, not the absolute numbers.
 
 For user-defined angles:

@@ -203,30 +203,30 @@ A mature belief stream holds 12–20 entries at this level of specificity. Toget
 
 Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one belief memory — there is no separate memory per belief type.
 
-### Business Memory
-*What is structurally and durably true about how this business is built.*
+### Learning How Finance Consistently Explains Itself
+*What behavioral and communication patterns has this team established across recurring documents.*
 
-Watches simultaneously across: Business Model & Structure, Business Dynamics, Growth Engine, Margin & Cost Behavior, Capital Allocation, Operating Scale & Leverage. The slowest belief to change. Updated rarely; high confidence when confirmed.
+Watches: attribution sequencing, framing of beats and misses, vocabulary choices, commitment language, emphasis and omission patterns, how emphasis shifts when results disappoint. The belief type most sensitive to vocabulary drift. Updated when language patterns change.
 
-### Business Dynamics
+### Learning How This Business Generates and Loses Value
 *How the business behaves as a system — where pressure builds, where it releases.*
 
 Watches: Cost-Revenue Relationship, Investment to Output Conversion, Volume and Price Dynamics, Feedback Loops, Organizational Response Sequence. How costs behave under pressure. Where efficiency builds or breaks.
 
-### Narrative Understanding
+### Learning How Documents Frame the Story
 *How the organization tells its story, and what the pattern of language reveals.*
 
 Watches: Forward Commitment Pattern, Attribution Pattern, Language Specificity, Emphasis and Omission. Requires specific observable language anchors — not impressions. Never characterizes intent.
 
-### Factual Understanding
+### Learning What Finance Has Recorded as True
 *What has actually been observed and measured. The evidence layer.*
 
 Not interpretation — the intake layer. Records revenue figures, growth rates, segment data, operating metrics, forward commitments, and signals being tracked. Most observations stay here. When a pattern recurs and an interpretation becomes visible, it moves into one of the other four belief types.
 
-### Causal Understanding
-*Which signals reliably predict which outcomes, with what lag.*
+### Learning What Kind of Business This Actually Is
+*What is the durable structural truth about what this business is, how it makes money, and why it performs the way it does.*
 
-Each belief is one lead-lag pair: a leading signal, a lagging outcome, the observed lag, the count, and pending status. The only belief type that generates forward watch items — when a known leading signal appears, it is flagged immediately. Cap at 0.90. Requires both signal and outcome to be observed before a belief is written.
+Watches: business model and profitability thesis, growth engine and its primary levers, structural cost behavior, capital allocation pattern, operating scale and leverage dynamics. The slowest belief to change — only updates when structural understanding shifts. High confidence when confirmed across many documents.
 
 ---
 
