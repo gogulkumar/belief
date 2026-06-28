@@ -72,16 +72,18 @@ These are the failure modes that appear when AI works with recurring business do
 
 ### What a Belief Contains
 
-A belief carries four kinds of institutional understanding. Each maps to a specific field in the belief entry:
+The belief memory carries four kinds of institutional understanding:
 
-| What a belief captures | Belief field | What it gives you |
+| What it captures | Where it lives in the system | What it gives you |
 |---|---|---|
-| **What is normal** | Normal baseline | Expected ranges and behaviors — deviations are immediately visible without re-reading the archive |
-| **What is template** | Foundation signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
-| **What is evolving** | Evolution trail | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
-| **What would break** | Falsification test | The specific signal in a future document that would contradict, narrow, or retire the belief |
+| **What is normal** | Normal baseline (belief entry field) | Expected ranges and behaviors — deviations are immediately visible without re-reading the archive |
+| **What is template** | Entity foundation — signals-vs-noise | What this entity always says, what language is formulaic, what to discount so the real signal stands out |
+| **What is evolving** | Evolution trail (belief entry field) | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
+| **What would break** | Falsification test (belief entry field) | The specific signal in a future document that would contradict, narrow, or retire the belief |
 
 These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document does not need to be re-read.
+
+Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
 
 ### Skills and Beliefs
 
