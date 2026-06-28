@@ -89,6 +89,26 @@ None of this is in any single document. All of it is only visible across many.
 
 The belief memory is not a database to query. It is not a search index. It is loaded into the context of any reasoning session the way an analyst reads their notes before a meeting — not to look things up, but to be calibrated before the work begins.
 
+---
+
+### Three Modes of Consumption
+
+The belief memory is consumed in three distinct modes, depending on the task.
+
+**Mode 1 — Generative Context.** Beliefs are loaded before the AI writes anything. The model generates output that already follows the established patterns — the right attribution language, the right sequencing, the right level of operational specificity — because it already knows what normal sounds like for this entity. The analyst does not need to brief the AI on the entity's vocabulary, its narrative conventions, or its structural benchmarks. The beliefs carry all of that.
+
+The practical result: first drafts from an AI loaded with mature beliefs read like they were written by someone who has been in the room for 18 months, not someone reading the document for the first time.
+
+**Mode 2 — Validation.** Beliefs are loaded after generation, before output reaches a human. The AI checks whether the generated output is consistent with established patterns and flags departures. Instead of "does this follow the template?", the question becomes "does this commentary follow the established attribution pattern for this entity? Is the vocabulary consistent with how this team communicates good news versus bad news?"
+
+This is the mode that transforms a formatting checker into an institutional knowledge validator.
+
+**Mode 3 — Anomaly Detection.** Beliefs establish the expected range. When a new document arrives, every belief entry defines what normal looks like — the Normal Baseline field is the specific, checkable expectation. The system compares the incoming document against that baseline before any generation happens. What is anomalous is flagged immediately: not because the AI read the document and thought something looked unusual, but because a specific expectation was violated.
+
+This turns document review from reactive to anticipatory. The analyst opens the document already knowing what to look for, what is expected, and which deviations from expectation are worth investigating.
+
+---
+
 Here is what "using belief" means in practice.
 
 ---
@@ -192,3 +212,17 @@ This is a new category of evaluation — not benchmark accuracy, but pattern ali
 Each document does not add proportionally. Early documents add the most — the first pattern signals, the first calibrations. Later documents deepen what is already held, refine the normal baseline, and occasionally break or reframe a belief that was holding incorrectly.
 
 The model becomes more valuable the longer it runs. That is the behavior of understanding, not retrieval.
+
+---
+
+## Why AI Alone Cannot Do This
+
+The natural response is: "couldn't we just give the AI more context? Load the last six documents and let it figure out the patterns itself?"
+
+No. Three structural reasons.
+
+**Context windows are not memory.** Loading six previous documents into a context window produces a model that has read six documents. Loading a belief memory produces a model that has internalized what six months of reading those documents established. These are not the same. The belief system distills knowledge into the minimum text that carries the maximum institutional understanding. Six raw documents take 200,000 tokens to load and bury the signal in noise. Six months of mature beliefs take 8,000 tokens and surface only what is durable, falsifiable, and actionable.
+
+**Recurrence requires memory across sessions.** AI models have no persistent memory between sessions. Every session starts from zero. The belief file is persistent external memory — it carries forward what was learned in every prior session so the next session does not start cold. Without it, every document is processed as if it is the first document.
+
+**Contradiction detection requires knowing what was previously held.** The belief system's most important capability is not generating beliefs — it is detecting when an established belief is being challenged. That detection requires knowing what was held before. An AI reading a document in isolation has no baseline to compare against. A belief engine comparing a new document against a mature belief memory will surface "this document is the first in eleven consecutive documents not to use phrase X in the headline" as a meaningful signal. That observation is invisible without the memory.
