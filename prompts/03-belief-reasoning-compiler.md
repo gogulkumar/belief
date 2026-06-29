@@ -132,8 +132,8 @@ If the answer to any of these is no, do not write the belief.
 
 State the numbers rule for this angle explicitly. Derive it from Blueprint Section 3.4.
 
-For Learning How Finance Consistently Explains Itself:
-> No raw period totals. Pattern language only — describe the behavior, not the magnitude. Example: "consistently 10–15% below commitment" rather than "$X shortfall."
+For Learning What the Business Has Consistently Shown:
+> Numbers are required. The delivery record is the belief — counts, percentages, and ranges across comparable periods. Example: "above FC in 9 of 12 comparable periods, median beat 3.2%" rather than "consistently beats FC." Every belief must state: the metric, the direction, the count of periods, and the magnitude where relevant. Period-specific totals are not the belief — the cross-period pattern is.
 
 For Learning How This Business Generates and Loses Value:
 > Structural ratios and efficiency percentages only — the ratio itself, the benchmark it is compared against, the trend direction. No period-specific revenue or cost totals.

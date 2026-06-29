@@ -136,7 +136,7 @@ Present the five standard options:
 
 | Stream | What it accumulates |
 |--------|---------------------|
-| **Learning How Finance Consistently Explains Itself** | How the team consistently behaves — explanation patterns, emphasis choices, language habits across comparable periods |
+| **Learning What the Business Has Consistently Shown** | The performance track record — what this entity has actually delivered across comparable periods, where it is reliable and where it is not |
 | **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships between measures |
 | **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, or emphasizes across recurring documents |
 | **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a factual baseline |

@@ -72,7 +72,7 @@ Present the five standard angles. Ask which one fits best — or whether a diffe
 >
 > | Angle | What it accumulates |
 > |-------|---------------------|
-> | **Learning How Finance Consistently Explains Itself** | How this entity consistently behaves across recurring periods — structural patterns in how it operates, manages, and communicates |
+> | **Learning What the Business Has Consistently Shown** | The factual performance track record — what this entity has actually delivered across comparable periods, where it is reliable and where it is not |
 > | **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships that hold independent of any specific period |
 > | **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, emphasizes, or avoids across recurring documents |
 > | **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a baseline for what is normal |

@@ -177,7 +177,7 @@ Pattern recognition is not a separate belief type. It is the method that all fiv
 
 | Belief Type | Pattern Form |
 |-------------|-------------|
-| Learning How Finance Consistently Explains Itself | Cross-period behavioral recurrence; language the documents use to mark repetition |
+| Learning What the Business Has Consistently Shown | Cross-period delivery patterns; metric beat/miss rates; reliability of commitments |
 | Learning How This Business Generates and Loses Value | Structural ratio stability and trajectory across periods |
 | Learning How Documents Frame the Story | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
 | Learning What Finance Has Recorded as True | Metric definition stability; benchmark comparison consistency |
