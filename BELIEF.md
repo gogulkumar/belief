@@ -178,9 +178,11 @@ Not everything in a document becomes a belief. Most things should produce silenc
 
 ### What a Mature Belief Looks Like
 
-After five or more comparable documents, a belief entry looks like this. Notice that the heading is a complete, specific, falsifiable sentence — not a category label.
+After five or more comparable documents, a belief entry looks like this. The heading is a complete, specific, falsifiable sentence — not a category label. The same five-field structure applies to every stream, but what it contains differs by stream.
 
 ---
+
+**Stream 03 example — document-level patterns**
 
 **## Belief #7 — Every Variance Headline Opens With the Best-Performing Driver; the Negative Is Always the Second Clause**
 **Status:** Established | **Confidence:** 0.60 | **Direction:** Stable
@@ -197,7 +199,41 @@ After five or more comparable documents, a belief entry looks like this. Notice 
 
 ---
 
-A mature belief stream holds 12–20 entries at this level of specificity. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
+**Stream 01 example — performance track record**
+
+**## Belief #3 — Revenue Guidance Has Been Met or Exceeded in 7 of 8 Comparable Quarters; the One Miss Was Preceded by a Specific Language Shift**
+**Status:** Established | **Confidence:** 0.72 | **Direction:** Stable
+
+**Statement:** This business delivers against its stated revenue guidance in 7 of 8 comparable quarters, median beat 1.4%. The single significant miss (−3.1%, Q3) was preceded in the prior-period document by a shift in forward commitment language from "we expect" to "we are targeting" — the only instance of that language shift in the record. Revenue guidance reliability is high; the language shift is a leading indicator that has now been confirmed once.
+
+**Why it matters:** High guidance reliability means a miss is signal, not noise. The language shift pattern, if it recurs before another miss, becomes an early warning indicator one period ahead of the result.
+
+**Evolution trail:** First three documents established the beat pattern. Q3 miss prompted investigation — reviewing prior document found the language shift. Subsequent five documents have all been beats with "we expect" language. One data point on the language shift; tracking for recurrence.
+
+**Normal baseline:** Next comparable document delivers at or above stated revenue guidance. Forward commitment language reads "we expect" or equivalent directional certainty.
+
+**Falsification test:** Two consecutive misses without a prior-period language shift would break the guidance reliability belief. A language shift that does not precede a miss would narrow the leading indicator belief.
+
+---
+
+**Stream 02 example — financial mechanics and operating chain**
+
+**## Belief #5 — S&M Spend Peaks in Q1 and Drives Bookings Recovery in Q2 With a Consistent 6–8 Week Lag; the Chain Has Held in 6 Consecutive Cycles**
+**Status:** Established | **Confidence:** 0.78 | **Direction:** Stable
+
+**Statement:** This business runs a deliberate spend-ahead-of-season mechanic. S&M/NBV compresses in Q1 (typically 28–34% range) as the business invests ahead of the Q2 demand peak. New bookings volume recovers in Q2 with a 6–8 week lag from peak Q1 spend. This mechanic has held in 6 consecutive Q1→Q2 cycles. Q1 S&M compression is not a problem — it is the thesis executing.
+
+**Why it matters:** An agent reading Q1 S&M/NBV in isolation will flag it as elevated. An agent that holds this belief will correctly interpret it as the seasonal investment phase of a mechanic that has held for 6 cycles. The calibration changes the entire downstream interpretation.
+
+**Evolution trail:** First two Q1→Q2 cycles established the lag hypothesis. Third cycle confirmed the 6–8 week lag range. Cycles 4–6 have narrowed the spend range (28–34%) and confirmed the booking recovery timing. The mechanic is now Established — deviation from it in either direction is the signal worth investigating.
+
+**Normal baseline:** Q1 S&M/NBV in 28–34% range. Q2 NBV at or above FC by mid-quarter. Lag between peak Q1 spend and peak Q2 bookings: 6–8 weeks.
+
+**Falsification test:** A Q1 with S&M/NBV in range that does not produce Q2 booking recovery by week 10 would indicate the mechanic has broken — investigate whether demand, channel mix, or conversion efficiency is the break point.
+
+---
+
+A mature belief stream holds 12–20 entries at this level of specificity across all streams. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
 
 ---
 

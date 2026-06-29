@@ -70,7 +70,9 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-## Example
+## Examples
+
+### Stream 03 example — document-level patterns
 
 ```markdown
 ## Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.   [DEEPEN]   Status: Confirmed
@@ -88,6 +90,42 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
+### Stream 01 example — performance track record
+
+```markdown
+## Belief #3 — Revenue guidance has been met or exceeded in 7 of 8 comparable quarters; the one miss was preceded by a distinct language shift in the prior period.   [DEEPEN]   Status: Established
+
+**Statement**: This business delivers against its stated revenue guidance in 7 of 8 comparable quarters, with a median beat of 1.4%. The single miss (Q3 2024) was preceded by the prior quarter's document shifting from "on track" language to hedged phrasing ("remain focused on achieving our targets") — a language change not seen in any quarter that produced a beat.
+
+**Why it matters**: The foundation identifies revenue delivery as the primary commitment metric. A 7-of-8 track record with a consistent median beat of ~1.4% is the baseline expectation going into every document. The language-shift preceding the only miss creates a leading indicator: hedged commitment language is now a falsifiable warning signal, not a stylistic variation.
+
+**Evolution trail**: First seen in Q4 2023 review — revenue beat guidance by 1.2%. I initialized this as a Candidate. Q1 2024 added a second comparable beat (1.8%). Q2 2024 added a third (1.1%), advancing to Confirmed. Q3 2024 produced the first miss (−0.6%); I noted the prior-quarter language shift as a potential signal and held the belief at Confirmed with TENSION on the language indicator. Q4 2024 through Q2 2025 produced three more beats (1.3%, 1.6%, 0.9%), with no hedged language in prior periods. The pattern is now Established: the track record is durable, and the language indicator has been seen once. Seven of eight periods at consistent magnitude.
+
+**Normal baseline**: Next comparable document should show revenue within 0–2.5% above guidance. A beat of more than 3% or a miss of any size is worth flagging against this baseline. If the prior-period document contained hedged commitment language, weight a miss more heavily.
+
+**Falsification test**: Two consecutive guidance misses would break the delivery reliability belief. A pattern where hedged language precedes beats — not misses — would retire the language-as-leading-indicator sub-claim, narrowing the belief to the delivery rate alone.
+```
+
+---
+
+### Stream 02 example — financial mechanics and operating chain
+
+```markdown
+## Belief #5 — S&M spend peaks in Q1 and drives bookings recovery in Q2 with a consistent 6–8 week lag; this chain has held in 6 consecutive cycles.   [DEEPEN]   Status: Established
+
+**Statement**: This business runs a deliberate spend-ahead-of-season mechanic. S&M/NBV compresses in Q1 (typically 28–34%), which drives Q2 bookings recovery within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When S&M/NBV falls below 26% in Q1, Q2 bookings recovery has underperformed by a median of 4.2 percentage points.
+
+**Why it matters**: The foundation identifies S&M spend and NBV as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 booking conversion is the single most predictive mechanic in the business. Understanding where S&M/NBV sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 bookings will recover on cycle or disappoint.
+
+**Evolution trail**: The chain was hypothesized from the foundation before the first document. First confirmed in Q1–Q2 2023: S&M/NBV at 31% in Q1, bookings up 8.4% in Q2. Held in Q3–Q4 2023 cycle. By 2024 Q1 I had three comparable cycles and advanced to Confirmed. The sub-claim about the 26% threshold emerged in Q1 2024 when S&M/NBV fell to 24.8% (cost discipline initiative) and Q2 bookings recovered only 3.1% — the first observable below-threshold datapoint. Q1–Q2 2025 added a sixth cycle with S&M/NBV at 29.4% and Q2 bookings up 7.9%. The threshold sub-claim now rests on two datapoints — Provisional sub-claim inside an Established primary claim.
+
+**Normal baseline**: Q1 S&M/NBV in the 28–34% range should produce Q2 bookings recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 bookings expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
+
+**Falsification test**: A cycle where S&M/NBV sits within the 28–34% normal range in Q1 but Q2 bookings fail to recover within 6–10% would break this belief. A cycle where S&M/NBV falls below 26% but Q2 bookings still recover on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
+```
+
+---
+
 ## Changelog Structure
 
 After every document, `belief_changelog.md` records what changed — one entry per affected belief, appended.
@@ -96,6 +134,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 ## Changelog — {doc_id} — {timestamp}
 
 ### Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.
+<!-- Stream 03 — document-level patterns -->
 **Action:** [DEEPEN]
 **Previous statement:** (unchanged)
 **New statement:** (unchanged)
@@ -104,6 +143,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 **What next document should test:** Whether volume-first ordering holds in a period where volume is negative or flat.
 
 ### Belief #4 — Management attributes margin misses exclusively to external cost inflation.
+<!-- Stream 03 — attribution habits -->
 **Action:** [TENSION]
 **Previous statement:** Management attributes margin misses exclusively to external cost inflation.
 **New statement:** (unchanged — held under tension)
