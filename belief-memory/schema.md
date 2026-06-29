@@ -49,7 +49,7 @@ Each belief is one numbered block inside `belief.md`. The heading is the claim i
 
 ## Durability Ladder
 
-The **Status** field tracks how many comparable documents have supported the pattern. Do not skip stages.
+The **Status** field tracks how many comparable documents have supported the pattern. Don't skip stages.
 
 | Stage | Documents | Meaning |
 |-------|-----------|---------|

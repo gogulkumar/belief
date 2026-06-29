@@ -10,7 +10,7 @@ This is the consumption layer. The belief system accumulates understanding by re
 
 ## The Activation Principle
 
-The belief memory is not a reference document to be searched. It is a working model of how the business behaves. When activated, it produces answers that no single document could produce — because the answers are grounded in the pattern across all documents, not the content of the most recent one.
+The belief memory isn't a reference document to be searched. It's a working model of how the business behaves. When activated, it produces answers that no single document could produce — because the answers are grounded in the pattern across all documents, not the content of the most recent one.
 
 The difference:
 
@@ -160,7 +160,7 @@ For Stream 02 relationship beliefs:
 
 ## Runtime Rules
 
-**Use only the belief memory.** Do not add information from general knowledge about the entity, the industry, or the document type. The answer must be traceable to a specific belief in the memory.
+**Use only the belief memory.** Don't add information from general knowledge about the entity, the industry, or the document type. The answer must be traceable to a specific belief in the memory.
 
 **Cite the belief.** Every claim in the output must reference a specific belief number and its status. "Belief #5 (Established)" is how calibration is shown — not confidence language ("I think," "it seems").
 
@@ -170,7 +170,7 @@ For Stream 02 relationship beliefs:
 
 **Relationship claims are the connective tissue.** When answering questions about why a metric moved, always check Stream 02 relationship beliefs first. The operating chain is the most important context for interpreting any individual metric.
 
-**Do not summarize the document.** If the analyst asks "what does this deck say about S&M spend?", the answer is not a summary of the S&M slides. The answer is what Belief #5 says about the context in which the S&M reading should be interpreted.
+**Don't summarize the document.** If the analyst asks "what does this deck say about S&M spend?", the answer is not a summary of the S&M slides. It's what Belief #5 says about the context in which the S&M reading should be interpreted.
 
 ---
 

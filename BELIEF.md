@@ -30,9 +30,9 @@ They know that when the deck leads with a small beat, the real story is always i
 
 None of that knowledge lives in any single document. It accumulated across dozens of documents, hundreds of reviews, and years of pattern recognition. That analyst is the most valuable person in the room during a business review. And any AI deployed against the same documents starts each session knowing nothing that she knows.
 
-They do not remember every slide. They hold the pattern. That pattern is the belief.
+They don't remember every slide. They hold the pattern. That pattern is the belief.
 
-That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
+That accumulated understanding isn't in a file. It isn't queryable. When the analyst leaves, it leaves with them.
 
 ### What Belief Is
 
@@ -40,24 +40,24 @@ Belief reads business process deliverables — the recurring decks, transcripts,
 
 Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
-It does not store facts. It accumulates beliefs. And beliefs are different.
+It doesn't store facts. It accumulates beliefs. And beliefs are different.
 
 ### The System Learns the Business From the Documents
 
-A critical design principle: **the system discovers the business model by reading — it does not require the user to describe it upfront.**
+A critical design principle: **the system discovers the business model by reading — it doesn't require the user to describe it upfront.**
 
 The documents already contain the business model. Every quarterly review, earnings transcript, or board deck includes management's explanation of what drove the results: "Q1 marketing investment drove Q2 demand recovery," "when transaction volume crosses this threshold, supplier economics improve," "the cost structure is largely fixed, so volume softness flows directly to margin." These are explicit relationship claims — statements connecting one metric to another with direction, lag, and mechanism.
 
 The belief system treats these relationship claims as its most valuable signal type. When a document says A drives B, that is not a framing observation — it is a structural claim about how the business works. It should become a belief from the moment it first appears, marked Candidate, and confirmed or contradicted as more documents arrive.
 
 This means:
-- The user does not need to explain how the business works before any documents are read
-- The foundation does not need to pre-encode the operating chain or causal model
+- The user doesn't need to explain how the business works before any documents are read
+- The foundation doesn't need to pre-encode the operating chain or causal model
 - The first 1–3 documents build the preliminary business model from what management explicitly states
 - Later documents deepen, refine, or challenge that model
 - The accumulated Stream 02 beliefs become the discovered business model — earned from reading, not specified from assumption
 
-The analyst analogy holds here too. A new analyst joining a business does not start with a business model document. They read the company's own communications. Those communications contain the model — management explains it every period. The belief system does the same thing, systematically, at scale.
+The analyst analogy holds here too. A new analyst joining a business doesn't start with a business model document. They read the company's own communications. Those communications contain the model — management explains it every period. The belief system does the same thing, systematically, at scale.
 
 **Facts vs Beliefs**
 
@@ -79,13 +79,13 @@ Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs t
 
 These are the failure modes that appear when AI works with recurring business documents without institutional memory.
 
-**The summary trap.** AI tools produce accurate summaries of individual documents. But a summary of what this document says is not the same as knowing what this document means in the context of everything that came before it. The belief system does not summarise. It maintains standing interpretations that exist independently of any single document.
+**The summary trap.** AI tools produce accurate summaries of individual documents. But a summary of what this document says is not the same as knowing what this document means in the context of everything that came before it. The belief system doesn't summarise. It maintains standing interpretations that exist independently of any single document.
 
 **The attribution fabrication trap.** AI models are fluent with causal language. They connect observations to explanations with confidence. "Revenue declined because of FX headwinds" — but was it? Or did the team attribute it to FX because FX is an uncontrollable external factor that absolves accountability for a controllable miss? The belief system separates management's stated attribution (what they said caused it) from verified causality (what actually caused it). These are different beliefs, tracked separately, evolved separately.
 
 **The recency trap.** An AI reading this month's deck in isolation treats everything in it as equally newsworthy. A senior analyst who has read 18 months of decks knows that three of the five items in this month's bridge are structural recurring patterns — not news — and the one genuinely new signal is buried in a footnote on slide 12. The belief system creates that distinction mechanically: what is expected (held as a belief) versus what is new (not yet matched to any belief, or contradicting a held belief).
 
-**The vocabulary drift trap.** Business teams change the language they use to describe things over time — sometimes deliberately, sometimes not. When a word disappears from commentary, it might mean the thing stopped happening, or it might mean the team stopped wanting to highlight it. When a new phrase appears, it might reflect a genuine strategic shift or a narrative management choice. A system that tracks beliefs about language patterns surfaces vocabulary drift as a signal. A system that just reads the current document does not notice.
+**The vocabulary drift trap.** Business teams change the language they use to describe things over time — sometimes deliberately, sometimes not. When a word disappears from commentary, it might mean the thing stopped happening, or it might mean the team stopped wanting to highlight it. When a new phrase appears, it might reflect a genuine strategic shift or a narrative management choice. A system that tracks beliefs about language patterns surfaces vocabulary drift as a signal. A system that just reads the current document doesn't notice.
 
 ### What a Belief Contains
 
@@ -98,7 +98,7 @@ The belief memory carries four kinds of institutional understanding:
 | **What is evolving** | Evolution trail (belief entry field) | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
 | **What would break** | Falsification test (belief entry field) | The specific signal in a future document that would contradict, narrow, or retire the belief |
 
-These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document does not need to be re-read.
+These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document doesn't need to be re-read.
 
 Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
 
@@ -138,7 +138,7 @@ Beyond the core distinctions (not a fact, not a rule, not agent memory), a belie
 
 A belief must be durable enough to act from — it should not be abandoned after one contradicting document. But it must also be provisional — open to revision when accumulated evidence warrants it.
 
-These two properties are not in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
+These two properties aren't in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
 
 Nir Eyal in *Beyond Belief* frames this precisely: the best beliefs are both practical and provisional — they offer just enough certainty to act, yet enough flexibility to adapt. A belief is a firmly held interpretation, open to revision when new evidence arrives. A belief that requires ignoring evidence to sustain itself is not a belief. It is a bias.
 
@@ -148,7 +148,7 @@ Not all revision is the same.
 
 **Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about "external attribution patterns" becomes more confident as three more comparable documents confirm it, or weakens as two consecutive documents show a different framing. The frame itself is stable.
 
-**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail does not become invalid — it is now understood differently.
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail doesn't become invalid — it's now understood differently.
 
 A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what a working belief model is designed to produce: accumulated evidence eventually changing not just confidence, but understanding.
 
@@ -174,7 +174,7 @@ A belief passes through maturity stages as more comparable documents are process
 
 Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
 
-These arithmetic updates handle incremental revision. They do not handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
+These arithmetic updates handle incremental revision. They don't handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
 
 ### The Fact-to-Belief Gate
 
@@ -206,7 +206,7 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Statement:** Established across five documents. Every variance headline in every deck is structured positive-first without exception. Whether the overall result is a beat or a miss, the opening attribution clause names a positive driver. In beats, the leading positive is the dominant contributor. In misses or mixed results, the team still locates a positive to lead with before acknowledging the headwind. The negative driver is structurally relegated to the second clause in every instance across all five documents. This is a systematic narrative convention, not a neutral factual ordering.
 
-**Why it matters:** A reader who knows this pattern knows to find the actual commercial story in the offset clause, not the headline. A reader who does not know this pattern will systematically overweight the opening attribution because it leads.
+**Why it matters:** A reader who knows this pattern knows to find the actual commercial story in the offset clause, not the headline. A reader who doesn't know this pattern will systematically overweight the opening attribution because it leads.
 
 **Evolution trail:** First seen in Document 1 — the headline led with channel efficiency ahead of a modest miss; I noted it but held it as a single observation. Document 2 repeated the same structure: a positive driver led even though the result was flat. At that point I held it as Provisional. Documents 3, 4, and 5 each confirmed the same structure without exception, including one document where the business posted its weakest result of the period — and still led with the best available positive. Established.
 
@@ -301,11 +301,11 @@ This is not financial mechanics (how the numbers work) or factual readings (what
 
 This is the model-building stream. Its primary job is to discover how the business actually works by extracting the relationship claims that management states explicitly in recurring documents. Every time a document says "A drove B," "when X happens, Y follows," or "our investment in Q1 translates to volume in Q2," that is a structural claim about the business engine. Stream 02 captures those claims, accumulates them, and over time assembles the operating model of the business from the ground up.
 
-The user does not need to explain this model upfront. The documents contain it. Stream 02's job is to find it.
+The user doesn't need to explain this model upfront. The documents contain it. Stream 02's job is to find it.
 
 **What it exclusively watches:**
 
-**Relationship claims (highest priority — extractable from document one).** When a document explicitly states that one metric causes, drives, enables, or predicts another, that is the primary signal. "Our Q1 marketing investment drove Q2 demand recovery" — extract: S&M spend → bookings, Q1 to Q2, stated mechanism is demand recovery, verbatim language captured. This becomes a Candidate belief on the first document it appears. It does not require multiple documents to initialize — explicit causal statements are evidence of the relationship from the moment they are stated. Subsequent documents either confirm, modify, or contradict it.
+**Relationship claims (highest priority — extractable from document one).** When a document explicitly states that one metric causes, drives, enables, or predicts another, that is the primary signal. "Our Q1 marketing investment drove Q2 demand recovery" — extract: S&M spend → bookings, Q1 to Q2, stated mechanism is demand recovery, verbatim language captured. This becomes a Candidate belief on the first document it appears. It doesn't require multiple documents to initialize — explicit causal statements are evidence of the relationship from the moment they are stated. Subsequent documents either confirm, modify, or contradict it.
 
 **Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business model. When a thesis-defining ratio compresses below a threshold, is that a quarterly fluctuation or a business model signal? This stream holds the interpretation of what the ratio means, not just its value.
 

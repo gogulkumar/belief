@@ -12,9 +12,9 @@ This prompt is compiled once per belief stream. At runtime, the belief engine re
 
 The Belief Reasoning Prompt must be fully self-contained. At runtime, the belief engine has no access to the blueprint, the foundation, or any external reference. Every definition, every rule, every example it needs must be encoded in the prompt you produce here.
 
-This is why compilation matters. You do not pass the blueprint to the runtime engine — you translate the blueprint into a complete set of runtime instructions that embody the blueprint's intent, including the foundation context relevant to this stream.
+This is why compilation matters. You don't pass the blueprint to the runtime engine — you translate the blueprint into a complete set of runtime instructions that embody the blueprint's intent, including the foundation context relevant to this stream.
 
-The quality of what you produce is bounded by the quality of the blueprint. A rich, entity-specific blueprint produces a rich, entity-specific compiled prompt. A generic blueprint produces a generic prompt — and the belief engine will invent entity-specific details it does not have.
+The quality of what you produce is bounded by the quality of the blueprint. A rich, entity-specific blueprint produces a rich, entity-specific compiled prompt. A generic blueprint produces a generic prompt — and the belief engine will invent entity-specific details it doesn't have.
 
 ---
 
@@ -70,7 +70,7 @@ A belief is not an opinion. A belief is not a summary. A belief is not a metric 
 
 A belief is a durable, falsifiable, and actionable interpretation about how an entity behaves, communicates, explains performance, frames outcomes, or makes recurring decisions across comparable documents over time.
 
-A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It is not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
+A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It's not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
 
 ## The Claim Is the Heading
 
@@ -83,7 +83,7 @@ The heading must carry enough specificity to be tested against the next document
 
 ## The Four Levels
 
-Do not skip between levels. Move carefully: Fact → Signal → Pattern → Belief.
+Don't skip between levels. Move carefully: Fact → Signal → Pattern → Belief.
 
 | Level | Definition |
 |-------|-----------|
@@ -123,7 +123,7 @@ Before writing or updating a belief, confirm:
 11. Is the heading a specific, testable claim — not a category label?
 12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
 
-If the answer to any of these is no, do not write the belief.
+If the answer to any of these is no, don't write the belief.
 ```
 
 ---
@@ -133,7 +133,7 @@ If the answer to any of these is no, do not write the belief.
 State the numbers rule for this angle explicitly. Derive it from Blueprint Section 3.4.
 
 For Learning How This Business Generates and Loses Value:
-> **Relationship beliefs** (the primary belief type for this stream): state the two metrics connected, the direction (A drives B), the lag if established, and the verbatim source language. On first document, this is a Candidate from a single explicit statement — mark it as such. On second document confirming the same relationship: Provisional. A relationship belief that has been stated explicitly in a document does not require observing the relationship play out — the statement is the primary evidence; the observation across periods is confirmation.
+> **Relationship beliefs** (the primary belief type for this stream): state the two metrics connected, the direction (A drives B), the lag if established, and the verbatim source language. On first document, this is a Candidate from a single explicit statement — mark it as such. On second document confirming the same relationship: Provisional. A relationship belief that has been stated explicitly in a document doesn't require observing the relationship play out — the statement is the primary evidence; the observation across periods is confirmation.
 > 
 > **Structural ratio beliefs**: the ratio, the benchmark, the trend direction. For operating chain beliefs: metric names + estimated lag at each step + the mechanism connecting each link. For system stress behavior beliefs: the sequence of metric degradation — qualitative ordering required, magnitude optional. For feedback dynamics beliefs: the direction of the loop (self-correcting or self-amplifying), the mechanism, and the condition under which it triggers. No period-specific revenue or cost totals except where they establish the normal range for a chain link.
 
@@ -141,7 +141,7 @@ For Learning What the Business Has Consistently Shown:
 > Numbers are required. The delivery record is the belief — counts, percentages, and ranges across comparable periods. Example: "above FC in 9 of 12 comparable periods, median beat 3.2%" rather than "consistently beats FC." Every belief must state: the metric, the direction, the count of periods, and the magnitude where relevant. Period-specific totals are not the belief — the cross-period pattern is.
 
 For Learning How Documents Frame the Story:
-> Zero numbers. This angle is entirely about language, sequencing, emphasis, and framing choices. Numbers do not belong in beliefs for this angle.
+> Zero numbers. This angle is entirely about language, sequencing, emphasis, and framing choices. Numbers don't belong in beliefs for this angle.
 
 For Learning What Finance Has Recorded as True:
 > Numbers ARE the belief. Every factual belief entry must state: the metric name, the value, the period, and the comparison benchmark. Missing any of these makes the entry incomplete.
@@ -178,7 +178,7 @@ Encode the cadence-specific durability rules from Blueprint Section 3.3.
 
 ```
 For this entity's document cadence:
-- One document showing a pattern: Candidate — record but do not hold as belief
+- One document showing a pattern: Candidate — record but don't hold as belief
 - [N] comparable documents showing the pattern: Provisional — hold cautiously
 - [N+1] comparable documents: Confirmed — treat as a baseline
 - [N+2 or more] comparable documents, or pattern confirmed across multiple document types: Established — breaking it is meaningful signal
@@ -195,7 +195,7 @@ Tell the belief engine how to handle existing beliefs.
 
 Read the candidate seed set above. For each candidate where the fact log has supporting evidence, initialize a Candidate belief entry.
 
-**Relationship claims are the first priority.** Read the RELATIONSHIP CLAIMS section of the fact log before any other section. For every explicit relationship claim captured there, initialize a Stream 02 Candidate belief. A single explicit statement in a document is sufficient to initialize a Candidate — the statement is the evidence. Do not require the relationship to have been observed playing out across multiple periods before initializing.
+**Relationship claims are the first priority.** Read the RELATIONSHIP CLAIMS section of the fact log before any other section. For every explicit relationship claim captured there, initialize a Stream 02 Candidate belief. A single explicit statement in a document is sufficient to initialize a Candidate — the statement is the evidence. Don't require the relationship to have been observed playing out across multiple periods before initializing.
 
 Mandatory: initialize between 8 and 15 Candidate beliefs total. If fewer than 8 candidates have supporting evidence, look for additional specific patterns in the fact log beyond the seed set — distinct, falsifiable observations that are not umbrella claims. Relationship claims alone may provide 3–5 beliefs on the first document from a transcript that explains how the business works.
 
@@ -212,7 +212,7 @@ For each existing belief, decide one action per document:
 
 - Fact log CONFIRMS: extend the evolution trail with what this document added. Update normal baseline if the picture has sharpened. Advance stage if threshold met. Tag: [DEEPEN]
 - Fact log CONTRADICTS strongly: revise the statement. Update the evolution trail to explain what changed and why. Tag: [CONTRADICT]
-- Fact log shows TENSION: note the contradicting signal in the evolution trail. Do not revise yet. Tag: [TENSION]
+- Fact log shows TENSION: note the contradicting signal in the evolution trail. Don't revise yet. Tag: [TENSION]
 - Fact log is SILENT for this belief: note silence. No update. Tag: [SILENCE]
 - Fact log supports NARROWING the scope: narrow the claim. Explain what the belief no longer covers. Tag: [NARROW]
 - Pattern has ENDED: archive the belief. Keep the number. Mark RETIRED. Tag: [RETIRE]
@@ -263,15 +263,15 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 
 ## What You Must Not Do
 
-- Do not invent facts not present in the fact log.
-- Do not summarize the document.
-- Do not update a belief if the fact log has no signal for it.
-- Do not lower confidence precipitously based on a single contradicting signal.
-- Do not add beliefs that do not survive the Quality Test.
-- Do not produce statements that could not be proved wrong by a future document.
-- Do not use category labels as headings. The heading must be the claim.
-- Do not renumber beliefs. Once a belief has a number, that number is permanent.
-- Do not let the active belief count fall below 8 without auditing for umbrella beliefs.
+- Don't invent facts not present in the fact log.
+- Don't summarize the document.
+- Don't update a belief if the fact log has no signal for it.
+- Don't lower confidence precipitously based on a single contradicting signal.
+- Don't add beliefs that don't survive the Quality Test.
+- Don't produce statements that could not be proved wrong by a future document.
+- Don't use category labels as headings. The heading must be the claim.
+- Don't renumber beliefs. Once a belief has a number, that number is permanent.
+- Don't let the active belief count fall below 8 without auditing for umbrella beliefs.
 ```
 
 ---
@@ -290,13 +290,13 @@ Before producing the compiled prompt, verify that the blueprint's stated angle m
 
 ## Behavior Rules
 
-**Do not pass through the blueprint.** The output is the compiled prompt — entity-specific, angle-grounded, ready to run. Not a pointer back to the blueprint.
+**Don't pass through the blueprint.** The output is the compiled prompt — entity-specific, angle-grounded, ready to run. Not a pointer back to the blueprint.
 
 **Section 0 foundation context must be embedded.** At runtime, the belief engine has no access to the foundation. Everything the foundation tells us about this entity that is relevant to this stream must be inside the compiled prompt.
 
-**Do not use generic examples.** Section G must contain the entity's actual worked example from the blueprint.
+**Don't use generic examples.** Section G must contain the entity's actual worked example from the blueprint.
 
-**Keep Section B (the Shared Belief Doctrine) intact.** Do not abbreviate or rewrite the doctrine. Include it verbatim including the claim-as-heading rule, volume check, and quality test.
+**Keep Section B (the Shared Belief Doctrine) intact.** Don't abbreviate or rewrite the doctrine. Include it verbatim including the claim-as-heading rule, volume check, and quality test.
 
 **Enforce the silence default.** The compiled prompt must tell the belief engine to produce no output when the fact log provides no signal for a belief. The rarity of genuine updates is what keeps confidence meaningful.
 

@@ -22,7 +22,7 @@ These behavioral patterns are not visible in any single document. They only emer
 
 A senior analyst who has read ten months of the same business's review decks holds a mental model that no one has written down. They know what a normal deck looks like — so they immediately see what is unusual about this one. They know how this management team typically explains a shortfall. They know which commitment is always ambitious and which is typically conservative.
 
-That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
+That accumulated understanding isn't in a file. It isn't queryable. When the analyst leaves, it leaves with them.
 
 ---
 
@@ -32,16 +32,16 @@ Belief reads business process deliverables — the recurring decks, transcripts,
 
 Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
-**The system discovers the business model by reading. The user does not need to explain it upfront.** The documents contain the model — management explains how the business works every period. When a transcript says "Q1 marketing investment drives Q2 demand recovery with a 6–8 week lag," that is a relationship claim. The belief system extracts it, initializes a Candidate belief on the first document it appears in, and confirms or contradicts it as more documents arrive. By document 3–4, the belief memory contains a preliminary working model of the business — discovered from reading, not specified from assumption.
+**The system discovers the business model by reading. The user doesn't need to explain it upfront.** The documents contain the model — management explains how the business works every period. When a transcript says "Q1 marketing investment drives Q2 demand recovery with a 6–8 week lag," that is a relationship claim. The belief system extracts it, initializes a Candidate belief on the first document it appears in, and confirms or contradicts it as more documents arrive. By document 3–4, the belief memory contains a preliminary working model of the business — discovered from reading, not specified from assumption.
 
-It does not store facts. It accumulates **beliefs**.
+It doesn't store facts. It accumulates **beliefs**.
 
 | A Fact | A Belief |
 |--------|----------|
 | Revenue was $2.3B in Q3. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
 | Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Tells you what to expect in the next document — and what would be a surprise. |
 
-A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it is a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
+A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it's a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
 
 The belief memory carries four kinds of institutional understanding:
 
@@ -78,7 +78,7 @@ Custom belief streams are also supported: Marketing Efficiency Memory, Forecast 
 
 ## How Belief Works
 
-0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model is not pre-specified — it is discovered from documents.
+0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model isn't pre-specified — it's discovered from documents.
 1. **Stream setup** — defines the entity, the angle, and the document set
 2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle; seeds 8–15 candidate hypotheses including relationship hypotheses for Stream 02
 3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt

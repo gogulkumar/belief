@@ -12,7 +12,7 @@ The fact log is the bridge between raw document content and the belief engine. T
 
 ## The Extraction Principle
 
-The fact extractor does not summarize. It does not interpret. It captures signals — raw, concrete, and evidence-bearing — at the granularity the belief engine needs.
+The fact extractor doesn't summarize and doesn't interpret. It captures signals — raw, concrete, and evidence-bearing — at the granularity the belief engine needs.
 
 The difference:
 
@@ -28,7 +28,7 @@ The fact extractor must capture:
 - The benchmark or comparison being made (against what reference point)
 - What was present vs what was absent (if a pattern involves presence/absence)
 
-**The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they are present in documents far more often than analysts expect.
+**The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they appear in documents far more often than analysts expect.
 
 A relationship claim is any statement where the document asserts that:
 - A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
@@ -147,7 +147,7 @@ Beyond the named candidates, capture any signal that:
 - Is specific enough to be confirmed or broken by the next comparable document
 - Connects to the foundation's thesis metrics or narration design
 
-Each additional signal is a separate entry. Do not consolidate distinct observations. The belief engine needs granularity to initialize 8–15 specific Candidate beliefs from the first document.
+Each additional signal is a separate entry. Don't consolidate distinct observations. The belief engine needs granularity to initialize 8–15 specific Candidate beliefs from the first document.
 ```
 
 ---
@@ -264,7 +264,7 @@ For each signal extracted for a named candidate:
 If no signal is present for a named candidate, output:
 ## CANDIDATE #N — NO SIGNAL IN THIS WINDOW
 
-Do not include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
+Don't include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
 ```
 
 ---
@@ -282,7 +282,7 @@ CAPTURE full numeric context. A number without its period, benchmark, and metric
 
 CAPTURE structural position. Where in the document something appears is part of the signal.
 
-SURFACE DISTINCT SIGNALS SEPARATELY. If two different behaviors appear in the same slide or section, they are two separate fact log entries. Do not consolidate. The belief engine needs granularity.
+SURFACE DISTINCT SIGNALS SEPARATELY. If two different behaviors appear in the same slide or section, they are two separate fact log entries. Don't consolidate. The belief engine needs granularity.
 
 CROSS-REFERENCE THE FOUNDATION. When you capture a metric reading, note whether it falls within the foundation's normal range. When you capture language, note whether it matches the foundation's narration design expectations.
 
@@ -305,7 +305,7 @@ STAY SILENT when no signal is present. "NO SIGNAL IN THIS WINDOW" is a valid and
 
 **Pattern direction from the blueprint is the injection point.** Section 3.4 of the blueprint tells you what form patterns take for this entity in this angle. This is what turns the fact extractor from a generic signal extractor into a pattern-aware evidence collector.
 
-**Granularity is required.** The extraction output must support 8–15 Candidate beliefs on the first document. This means distinct patterns must be surfaced as distinct signals. The compiler must make this explicit in the extraction rules.
+**Granularity is required.** The extraction output must support 8–15 Candidate beliefs on the first document. Distinct patterns must be surfaced as distinct signals. Make this explicit in the extraction rules.
 
 **Different document types require different compiled prompts.** If the blueprint describes three document types, produce three compiled fact extraction prompts — one per type. Each inherits from the same blueprint but has a different Section D.
 

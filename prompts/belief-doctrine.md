@@ -16,11 +16,11 @@ The foundation lives at `entities/{entity_id}/foundation.md`. It is built once p
 
 ## What a Belief Is
 
-A belief is not an opinion. A belief is not a summary. A belief is not a metric reading. A belief is not a one-time observation. A belief is not a forecast. A belief is not a recommendation.
+A belief is not an opinion. Not a summary. Not a metric reading. Not a one-time observation. Not a forecast. Not a recommendation.
 
 In this system, a belief is a **durable, falsifiable, and actionable interpretation** about how an entity behaves, communicates, explains performance, frames outcomes, or makes recurring decisions across comparable documents over time.
 
-A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It is not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
+A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It's not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
 
 **A belief can also be a discovered relationship** — a durable claim that one metric in this business drives another, with a stated direction, lag, and mechanism. These relationship beliefs are the connective tissue that turns isolated metric observations into a working model of the business. They are discovered from what the documents say, not pre-specified by the user. When a document states explicitly that A drives B, that is a relationship claim — the most structurally important signal the system can extract. It becomes a Candidate belief on the first document it appears in, and is confirmed or contradicted as more documents arrive.
 
@@ -135,7 +135,7 @@ This may only be true because the deck template forces that order. A stronger be
 
 A belief must be durable enough to act from. It should not be abandoned after one contradicting document. But a belief must also be provisional — open to revision when accumulated evidence warrants it.
 
-These two properties are not in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
+These two properties aren't in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
 
 Nir Eyal in *Beyond Belief* frames this as practical and provisional: the best beliefs offer just enough certainty to act, yet enough flexibility to adapt. A belief that requires ignoring evidence to sustain itself is not a belief — it is a bias that will eventually blind the analyst to what the documents are actually showing.
 
@@ -147,7 +147,7 @@ Not all revision is the same. The system must distinguish between them.
 
 **Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The interpretive frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint that has now resolved. The prior evidence trail does not become invalid — it is now understood differently under a new interpretation.
 
-A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
+A perspective shift isn't a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
 
 ### Beliefs Shape What You See Next
 
@@ -279,7 +279,7 @@ A belief in this stream must be grounded in observed business outcomes — not d
 
 **Across all streams:**
 
-A belief must not be a raw reading of a single measure. It must not be a single result from one period. It must not be an unsupported causal claim. It must not be a generic statement that applies to any entity in any domain. It must not be a deck observation dressed as business insight.
+A belief isn't a raw reading of a single measure. It isn't a single result from one period. It isn't an unsupported causal claim. It isn't a generic statement that applies to any entity in any domain. It isn't a deck observation dressed as business insight.
 
 **The belief must carry interpretation. The interpretation must be grounded in the foundation.**
 
@@ -302,4 +302,4 @@ Before creating or updating a belief, ask:
 11. Is the heading a specific, testable claim — not a category label?
 12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
 
-If the answer is no to any of these, do not create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.
+If the answer is no to any of these, don't create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.

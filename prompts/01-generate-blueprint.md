@@ -76,7 +76,7 @@ This is the identity record. Downstream prompts read this to know what entity an
 
 ### Section 2 — Document Types and Signal Matrix
 
-For each document type in scope, answer these questions explicitly. Do not list what you guess might be in the document. Answer based on what the Document Profile told you — and what can realistically be inferred about documents of this type for this entity at this cadence.
+For each document type in scope, answer these questions explicitly. Don't list what you guess might be in the document. Answer based on what the Document Profile told you — and what can realistically be inferred about documents of this type for this entity at this cadence.
 
 For each document type:
 
@@ -103,7 +103,7 @@ This is the most critical section. It defines what a belief looks like — speci
 
 Downstream compilers (Prompt 03 and Prompt 06) read this section to understand what they are building toward. Without this section, they fall back on generic angle rules. With this section, they work from entity-specific grounding.
 
-Answer each question explicitly. Do not leave any blank.
+Answer each question explicitly. Don't leave any blank.
 
 **3.1 — What does a strong belief entry look like for this entity?**
 
@@ -197,7 +197,7 @@ For each candidate:
 **Falsification trigger**: Document shows B moving without any reference to A. Or document shows A and B moving independently across multiple comparable periods.
 ```
 
-These are hypotheses. The belief engine confirms them, discards them, or replaces them with better-grounded beliefs from what the documents actually reveal. Relationship hypotheses that are confirmed by an explicit statement in the first document immediately become Stream 02 Candidate beliefs — they do not need to wait for multiple documents.
+These are hypotheses. The belief engine confirms them, discards them, or replaces them with better-grounded beliefs from what the documents actually reveal. Relationship hypotheses that are confirmed by an explicit statement in the first document immediately become Stream 02 Candidate beliefs — they don't need to wait for multiple documents.
 
 ---
 
@@ -205,16 +205,16 @@ These are hypotheses. The belief engine confirms them, discards them, or replace
 
 **The blueprint is for the downstream compilers, not for the user.** Write it so that Prompt 03 and Prompt 06 can read it and produce entity-specific, angle-grounded output without additional input.
 
-**Section 0 comes first.** The foundation reference must be completed before defining the belief stream. Every subsequent section inherits from it.
+**Section 0 comes first.** Complete the foundation reference before defining the belief stream. Every subsequent section inherits from it.
 
 **Answer every section.** If information is missing, say so explicitly — and explain what the downstream prompts should assume in the absence of that information.
 
-**Do not hedge.** The blueprint must contain commitments, not possibilities. "It may be the case that..." is not useful to a downstream compiler. "This entity leads with [X] comparison before [Y]" is.
+**Don't hedge.** The blueprint must contain commitments, not possibilities. "It may be the case that..." is not useful to a downstream compiler. "This entity leads with [X] comparison before [Y]" is.
 
 **The angle is a hypothesis, not a constraint.** If the Document Profile describes a scope where the stated angle has almost no signal, name this mismatch explicitly in Section 3.5. Suggest a better-fitting angle.
 
-**The worked example in Section 3.1 must be real.** It is used by Prompt 03 as the template for the execution prompt. A generic worked example produces a generic execution prompt.
+**The worked example in Section 3.1 must be real.** It's used by Prompt 03 as the template for the execution prompt. A generic worked example produces a generic execution prompt.
 
 **The candidate seed set in Section 4 must be grounded.** Each candidate must trace back to something specific in the foundation — not invented from genre knowledge about "businesses like this."
 
-**Use the entity's own vocabulary.** If the foundation describes specific planning benchmarks, document sections, or language the entity uses, encode that vocabulary in the blueprint. Downstream prompts cannot invent this vocabulary; they can only use what the blueprint gives them.
+**Use the entity's own vocabulary.** If the foundation describes specific planning benchmarks, document sections, or language the entity uses, encode that vocabulary in the blueprint. Downstream prompts can't invent this vocabulary; they can only use what the blueprint gives them.
