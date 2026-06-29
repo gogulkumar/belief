@@ -154,6 +154,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 ## Quick Links
 
+- [Run Belief End-to-End (Skill Prompt) →](skill.md)
 - [Full Specification →](BELIEF.md)
 - [How Belief Accumulates and How You Use It →](usage.md)
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
