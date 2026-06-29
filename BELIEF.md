@@ -207,32 +207,38 @@ The five streams are designed with exclusive scope. Each stream owns exactly one
 
 ---
 
-### Stream 01 — Learning How Finance Consistently Explains Itself
+### Stream 01 — Learning What the Business Has Consistently Shown
 
-**Discriminating axis: The team's behavioral patterns.**
+**Discriminating axis: The performance track record.**
 
-This stream tracks what the people who produce these documents consistently choose to do — how they interpret performance, which explanations they reach for, how their framing shifts when results change. Not what the document says. Not how the document is structured. The recurring behavioral choices of the team, made visible through documents over time.
+Not what any document says — what the business has actually delivered across comparable periods. This stream accumulates the factual performance record: how the business has behaved against its own commitments over time, where delivery has been reliable, where it has not, and what the pattern of outcomes reveals about this business as a performing entity.
+
+This is not financial mechanics (how the numbers work) or factual readings (what a specific number was). It is the record of what has been demonstrated — delivery against expectations, cross-period reliability, the patterns of performance that only become visible after many comparable periods.
 
 **What it exclusively watches:**
-- How this team consistently attributes outcomes — which drivers they name, in what order, framed as controllable or external
-- How explanation framing shifts when results disappoint vs beat
-- Which vocabulary recurs across many documents, and which disappears
-- Commitment language — how this team signals high vs low confidence in forward statements
-- What this team consistently emphasizes, and what it consistently omits, regardless of document structure
-- Vocabulary drift — when a term that was used regularly stops appearing
+- Delivery reliability: how consistently this business meets, beats, or misses its own stated expectations across comparable periods
+- Which metrics have a reliable track record and which do not — and whether reliability has changed over time
+- Performance patterns across the arc: the Q1-to-Q4 delivery shape, what recovers, what does not
+- Commitment reliability: when this team says "we expect X," how often has X materialized — and under what conditions it does or does not
+- Where the business has surprised in the same direction repeatedly — these are the structural over- or under-performers
+- How performance reliability differs by metric — some metrics are consistently delivered; others are consistently aspirational
 
 **Does NOT capture:**
-- Where in the document these patterns appear — that is stream 03 (document structure)
-- What the numbers actually were — that is stream 04 (factual record)
-- What the numbers mean financially — that is stream 02 (financial mechanics)
+- How the document presents or explains performance — that is stream 03 (document-level patterns)
+- The specific metric readings themselves — that is stream 04 (factual record)
+- Why the numbers work the way they do financially — that is stream 02 (financial mechanics)
 - What kind of business this is strategically — that is stream 05 (strategic character)
 
-**The line between stream 01 and stream 03:** "This team always leads the variance bridge with the most favorable available driver" is behavioral (01) — it is about a recurring choice the team makes. "The variance bridge always appears on slide 3" is structural (03) — it is about how the document is built. The same document can produce evidence for both, but they are separate observations about separate things.
+**The line between stream 01 and stream 04:** Stream 04 holds what a document stated: metric name, value, period, benchmark — the data reading. Stream 01 holds what the accumulated record of those readings shows: "NBV has come in above FC in 9 of 12 comparable periods, median beat of 3.2%." Stream 04 is the individual observation. Stream 01 is the pattern that emerges across many observations.
+
+**The line between stream 01 and stream 02:** Stream 02 holds why the numbers behave the way they do — the mechanic. Stream 01 holds what the numbers have actually done across time — the record. "Q1 spend compression drives Q2 recovery" is stream 02 (the mechanic). "Q2 has come in at or above FC in 8 consecutive periods" is stream 01 (the delivery record of that mechanic playing out).
+
+**Evidence standard:** Every belief in this stream must be grounded in outcomes across comparable periods — not in what the document says the business is trying to do, and not in how the document is structured. The evidence is the delivery record, not the narrative.
 
 **Example beliefs:**
-- "This team consistently attributes marketing cost improvement to 'efficiency' or 'leverage' — never to demand quality or product performance — across 9 consecutive documents"
-- "When the overall result misses plan, this team leads with the best available positive metric for at least two paragraphs before naming the shortfall — this pattern has held in 11 of 12 documents"
-- "The phrase 'investment' in cost commentary is a vocabulary convention meaning discretionary spend the team chose — not external cost pressure. The team uses this word to distinguish controllable choices from uncontrollable events."
+- "NBV has come in above monthly FC in 9 of 12 comparable periods, median beat 3.2%. The one significant miss (−8%) followed a period where forward commitment language shifted from 'we expect' to 'we are monitoring.'"
+- "Revenue guidance has been met or exceeded in 7 of 8 comparable quarters. When it has missed, the miss has been less than 2% — the business does not produce large revenue surprises in either direction."
+- "Cost delivery is more reliable than revenue delivery. The business has hit or beaten its cost FC in 11 of 12 comparable periods even when revenue missed — cost discipline is the more consistent performance axis."
 
 ---
 
@@ -256,9 +262,11 @@ Not what the numbers say in any period — but how the numbers work as a system.
 
 **Does NOT capture:**
 - The specific values of metrics in any period — that is stream 04 (factual record)
+- The delivery record across periods — that is stream 01 (performance track record)
 - What kind of business this is at a strategic level — that is stream 05 (strategic character)
-- How the team explains or frames the numbers — that is stream 01 (behavioral patterns)
-- Where or how the numbers appear in the document — that is stream 03 (document structure)
+- How the document presents or frames the numbers — that is stream 03 (document-level patterns)
+
+**Evidence standard:** Every belief in this stream must be grounded in business reality — observable from actual metric behavior, ratio relationships, and financial outcomes. If the evidence for a belief is how the deck presents something (which section it appears in, how the team chose to frame it), that belief belongs in stream 03, not here.
 
 **The line between stream 02 and stream 05:** "S&M/NBV compresses in Q1 and recovers in Q2" is a mechanic (02). "This is a performance-marketing-led business that can scale spend efficiently but has no organic demand creation" is strategic character (05). The mechanic is the observation. The character is the interpretation of what that mechanic reveals about what kind of company this is.
 
@@ -276,27 +284,31 @@ The number did not change. The understanding of the number changed.
 
 ### Stream 03 — Learning How Documents Frame the Story
 
-**Discriminating axis: The document's structural patterns.**
+**Discriminating axis: The document's observable patterns.**
 
-Not who produced the document (stream 01) — but how the document itself is built: what leads, what is buried, what appears in which position, what structural choices recur across comparable documents. This stream treats the document as an artifact with an architecture, and tracks how that architecture consistently behaves.
+This is the document-learning stream. It tracks what is observable about how this entity builds and presents its recurring documents — structure, sequencing, framing choices, language patterns, what leads and what is buried. The evidence base is entirely what the document itself does: how it is written, ordered, and constructed across comparable periods.
 
 **What it exclusively watches:**
 - Slide and section sequencing — what appears first, second, last across comparable documents
 - Where in the document good news vs bad news is positioned
 - Which topics appear in strong-result decks vs weak-result decks — presence and absence as signals
 - How the forward commitment section is structured — its position, its presence, its omission
-- Attribution structure — not WHAT is attributed (stream 01) but WHERE in the document attribution appears and in what sequence
+- Language patterns: vocabulary that recurs, phrases that disappear, how attribution is framed in the document
 - What the document structure telegraphs before the numbers are read
+- Communication habits made visible in documents: how this team consistently explains, attributes, and emphasizes — observable from what the document contains
 
 **Does NOT capture:**
-- What the team's behavioral explanation choices are — that is stream 01 (behavioral patterns)
 - The financial meanings of the numbers — that is stream 02 (financial mechanics)
+- The actual delivery record across periods — that is stream 01 (performance track record)
 - The specific values of the numbers — that is stream 04 (factual record)
 - What kind of business this is strategically — that is stream 05 (strategic character)
+
+**Evidence standard:** Every belief in this stream is grounded in what the document contains and how it is constructed — not in what actually happened financially, and not in what the business is as a commercial entity. The document is the object of study here.
 
 **Example beliefs:**
 - "Decks that open with a cost or efficiency topic on slide 1 have reported a miss in 7 of 8 comparable documents — the document structure telegraphs the result before the numbers appear"
 - "The variance bridge has appeared as the second major section in every strong-result deck; in 4 of 5 miss decks it appeared later or was structured differently"
+- "When the overall result misses plan, the document leads with the best available positive metric for at least two sections before naming the shortfall — this framing pattern has appeared in 11 of 12 miss documents"
 - "The forward commitment slide was present in every deck for 11 consecutive months; the two omissions both preceded significant downward revisions in the following period"
 
 ---
@@ -305,7 +317,7 @@ Not who produced the document (stream 01) — but how the document itself is bui
 
 **Discriminating axis: The verified factual record.**
 
-Not interpretation. Not relationship. Not pattern. What a document actually stated: the metric name, the value, the period, the comparison benchmark. This is the intake layer — the evidence base from which every other stream draws when patterns eventually emerge.
+Not interpretation. Not relationship. Not pattern. What a document actually stated: the metric name, the value, the period, the comparison benchmark. This is the intake layer — the evidence base from which stream 01 (performance track record) and stream 02 (financial mechanics) draw when patterns eventually emerge.
 
 **What it exclusively watches:**
 - Specific metric readings with all four elements: metric name, value, period, comparison benchmark
@@ -315,13 +327,15 @@ Not interpretation. Not relationship. Not pattern. What a document actually stat
 
 **Does NOT capture:**
 - What the numbers mean or how they relate to each other — that is stream 02 (financial mechanics)
-- How the team explained or framed the numbers — that is stream 01 (behavioral patterns)
-- Where the numbers appeared in the document — that is stream 03 (document structure)
+- The accumulated delivery record across periods — that is stream 01 (performance track record)
+- How the document presented or framed the numbers — that is stream 03 (document-level patterns)
 - What the numbers reveal about the strategic character of the business — that is stream 05 (strategic character)
 
-**How beliefs move out of stream 04:** Most observations stay here permanently. When a factual pattern recurs across multiple comparable documents and an interpretation becomes visible — "this metric has come in above plan in 9 of 10 comparable periods" — that pattern may generate a belief in stream 02 (if it reveals a financial mechanic) or stream 01 (if it reveals a team behavioral pattern). Stream 04 always retains the factual reading. The interpretation moves.
+**What does NOT belong here:** Formatting conventions ("the variance is always shown as absolute and percentage"), document structure habits ("three recurring benchmark comparisons appear in each deck"), or observations about how the document is built. Those belong in stream 03. Stream 04 holds only what was stated — the data point, with full context.
 
-**Example belief:** "NBV has come in above the monthly FC target in 9 of 12 comparable documents, by a median of 3.2%. The one significant miss (−8%) occurred in a document where the forward commitment language in the prior period had shifted from 'we expect' to 'we are monitoring.'"
+**How beliefs move out of stream 04:** Most observations stay here permanently. When a factual pattern recurs across multiple comparable documents and an interpretation becomes visible — "this metric has come in above plan in 9 of 10 comparable periods" — that cross-period pattern generates a belief in stream 01 (performance track record). The specific mechanic behind it may generate a belief in stream 02. Stream 04 always retains the individual reading. The interpretation moves.
+
+**Example belief:** "NBV: $142M actual vs $138M FC, +2.9%. Period: October 2024 MBR. Comparison: vs $131M in October 2023 (+8.4% YoY). Label used in document: 'New Bookings Volume.'"
 
 ---
 
@@ -341,9 +355,11 @@ Not the financial mechanics (stream 02) — but what those mechanics reveal abou
 
 **Does NOT capture:**
 - The specific ratios and their period-to-period mechanics — that is stream 02 (financial mechanics)
+- The delivery record across periods — that is stream 01 (performance track record)
 - The specific metric readings — that is stream 04 (factual record)
-- The team's communication and explanation patterns — that is stream 01 (behavioral patterns)
-- The document's structural patterns — that is stream 03 (document structure)
+- The document's structural and language patterns — that is stream 03 (document-level patterns)
+
+**Evidence standard:** Every belief in this stream must be grounded in observable business outcomes — what the business has demonstrably done over time, not in how any document describes what the business is. A belief that rests entirely on how the deck presents the business model is a document observation (stream 03), not a business insight. The evidence for a stream 05 belief is the pattern of actual business behavior, not the narrative framing of it.
 
 **The line between stream 02 and stream 05:** Stream 02 holds what the numbers do. Stream 05 holds what the numbers mean about what kind of company this is. These are not the same. "S&M/NBV compresses in Q1 and recovers in Q2" is stream 02. "This business acquires customers through paid performance marketing, not brand — it can scale demand up and down efficiently but creates no organic demand. Cost efficiency is the primary lever, not pricing power" is stream 05. One describes the mechanic. The other describes what the mechanic reveals about the business's commercial identity.
 

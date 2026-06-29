@@ -123,19 +123,20 @@ Enforce the pattern evidence standard explicitly.
 ```
 ## Pattern Evidence Standards
 
-For language-based signals (Learning How Documents Frame the Story, Learning How Finance Consistently Explains Itself):
+For language-based signals (Learning How Documents Frame the Story):
 - Capture VERBATIM quotes — the exact words used, not a paraphrase
 - Capture structural position — where in the document this language appears (e.g., "first item in the performance section", "appears only in the appendix", "lead sentence of the executive summary")
 - Note what language was absent if absence is meaningful (e.g., "the word 'headwinds' does not appear in this document; the foundation notes this entity uses it consistently in weak periods")
 
-For number-based signals (Learning What Finance Has Recorded as True, Learning How This Business Generates and Loses Value, Learning What Kind of Business This Actually Is):
+For number-based signals (Learning What Finance Has Recorded as True, Learning How This Business Generates and Loses Value, Learning What Kind of Business This Actually Is, Learning What the Business Has Consistently Shown):
 - Capture: metric name + value + period + comparison benchmark
 - Do not strip any of these four elements — an incomplete number is not a signal, it is a fragment
 - Capture the label the document uses for the metric — not a normalized version
 - Cross-reference the foundation's normalization model: note whether the reading is within normal range, at a deviation threshold, or outside normal range
 - Note if the metric definition changed from prior documents
+- For Learning What the Business Has Consistently Shown: also note whether this reading continues, breaks, or is silent on an existing delivery pattern
 
-For attribution signals (Learning What Kind of Business This Actually Is, Learning How Finance Consistently Explains Itself):
+For attribution signals (Learning What Kind of Business This Actually Is):
 - Capture the exact cause named, in the exact language used
 - Capture the order in which causes are named (what comes first matters)
 - Note whether the cause is framed as controllable or external — the foundation's narration design section describes this entity's habits

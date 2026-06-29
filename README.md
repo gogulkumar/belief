@@ -64,11 +64,11 @@ Every document is read through five belief types. Each asks a different question
 
 | # | Belief Type | What It Asks |
 |---|-------------|-------------|
-| 01 | Learning How Finance Consistently Explains Itself | What behavioral and communication patterns has this team established across recurring documents? |
-| 02 | Learning How This Business Generates and Loses Value | How does the entity behave as a system — where does pressure build, where does it release? |
-| 03 | Learning How Documents Frame the Story | How does the organization tell its story, and what does the pattern of language reveal? |
-| 04 | Learning What Finance Has Recorded as True | What has been quantitatively observed, and which observations are building toward a belief? |
-| 05 | Learning What Kind of Business This Actually Is | What is the durable structural truth about what this business is, how it makes money, and why it performs the way it does? |
+| 01 | Learning What the Business Has Consistently Shown | What has this business actually delivered across comparable periods — where is performance reliable, where is it not? |
+| 02 | Learning How This Business Generates and Loses Value | How do the numbers work as a system — ratio relationships, lead-lag mechanics, conversion chains? |
+| 03 | Learning How Documents Frame the Story | How does the document tell the story — structure, sequencing, language patterns, what leads and what is buried? |
+| 04 | Learning What Finance Has Recorded as True | What specific metric readings, variances, and commitments has this entity stated — the verified factual record? |
+| 05 | Learning What Kind of Business This Actually Is | What is the durable strategic character of this business — what thesis it operates under, how it competes, what it protects? |
 
 Custom belief streams are also supported: Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined angle.
 
@@ -154,6 +154,7 @@ Not accuracy on a benchmark. Not a perplexity score. An analyst saying: *yes, th
 
 ## Quick Links
 
+- [Run Belief End-to-End (Skill Prompt) →](skill.md)
 - [Full Specification →](BELIEF.md)
 - [How Belief Accumulates and How You Use It →](usage.md)
 - [Shared Belief Doctrine →](prompts/belief-doctrine.md)
