@@ -211,9 +211,35 @@ Every document is read through all five belief types. Each type asks a different
 Watches: attribution sequencing, framing of beats and misses, vocabulary choices, commitment language, emphasis and omission patterns, how emphasis shifts when results disappoint. The belief type most sensitive to vocabulary drift. Updated when language patterns change.
 
 ### Learning How This Business Generates and Loses Value
-*How the business behaves as a system — where pressure builds, where it releases.*
+*Not what the numbers are — what the numbers mean for how the business structurally works.*
 
-Watches: Cost-Revenue Relationship, Investment to Output Conversion, Volume and Price Dynamics, Feedback Loops, Organizational Response Sequence. How costs behave under pressure. Where efficiency builds or breaks.
+This is the stream for understanding numbers. Not reading them — understanding them.
+
+"Learning What Finance Has Recorded as True" tells you what the numbers are: the value, the period, the comparison. This stream tells you what the numbers mean: ratio relationships, mechanics, what moves what, what the number reveals about the thesis.
+
+**What it specifically learns:**
+
+**Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business. When a thesis-defining ratio compresses, is that a quarter problem or a business model signal? Business Dynamics holds the interpretation of what the ratio means, not just its value.
+
+**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. When Q1 spend peaks, Q2 bookings recover. These lead-lag relationships are invisible unless you have read enough documents to see the pattern. Business Dynamics holds them.
+
+**Normal ranges.** Not the plan target — the realistic operating range given the business model. A number that looks alarming in isolation might be structural for this business at this time of year. Business Dynamics holds what normal looks like so a deviation is immediately visible.
+
+**Structural mechanics.** Take rate, contribution margin, revenue conversion. How the business turns an input into an output. The chain between booking and revenue and profit, and where it breaks under pressure.
+
+**Metric relationships.** When two metrics diverge, the divergence is the signal. When volume is flat but revenue grows, that is price-driven growth. When both grow together, that is volume expansion. The relationship between metrics tells you more than either metric alone — and Business Dynamics holds the interpretation of what the relationship means for this business.
+
+**How this changes what an agent produces:**
+
+Without Business Dynamics loaded:
+> "S&M/NBV is 32%, 200bps above the FC target."
+> That is a fact answer. It reads the slide.
+
+With Business Dynamics loaded:
+> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC."
+> That is a judgment answer. It reads the slide and knows what it means.
+
+The number did not change. The understanding of the number changed — because the Business Dynamics belief carried the context that turned a ratio into meaning.
 
 ### Learning How Documents Frame the Story
 *How the organization tells its story, and what the pattern of language reveals.*
@@ -221,9 +247,13 @@ Watches: Cost-Revenue Relationship, Investment to Output Conversion, Volume and 
 Watches: Forward Commitment Pattern, Attribution Pattern, Language Specificity, Emphasis and Omission. Requires specific observable language anchors — not impressions. Never characterizes intent.
 
 ### Learning What Finance Has Recorded as True
-*What has actually been observed and measured. The evidence layer.*
+*What the numbers ARE — stable readings, verified values, benchmark comparisons.*
 
-Not interpretation — the intake layer. Records revenue figures, growth rates, segment data, operating metrics, forward commitments, and signals being tracked. Most observations stay here. When a pattern recurs and an interpretation becomes visible, it moves into one of the other four belief types.
+This is the evidence layer. Not interpretation — intake. It records what a document actually stated: the metric, the value, the period, the comparison benchmark. "NBV was $1.2B in May vs Plan of $1.1B." That is a factual belief.
+
+Most observations from any document stay here. When a pattern recurs across multiple comparable documents and an interpretation becomes visible, it moves into one of the other streams.
+
+The distinction from Business Dynamics: Factual Understanding records the reading. Business Dynamics holds the understanding of what that reading means for how the business structurally works. Both are needed. Factual without Dynamics produces an agent that reads the number correctly but cannot say what it means. Dynamics without Factual produces interpretation without a verified evidence base.
 
 ### Learning What Kind of Business This Actually Is
 *What is the durable structural truth about what this business is, how it makes money, and why it performs the way it does.*
