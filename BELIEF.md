@@ -203,62 +203,154 @@ A mature belief stream holds 12–20 entries at this level of specificity. Toget
 
 ## 03 — The Five Belief Types
 
-Every document is read through all five belief types. Each type asks a different question about the same business. All five write into one belief memory — there is no separate memory per belief type.
+The five streams are designed with exclusive scope. Each stream owns exactly one discriminating axis — one type of understanding that no other stream claims. Every signal from every document belongs to exactly one stream. If two streams could both plausibly hold a belief about the same signal, the stream design has failed. Overlap is not an inevitable feature — it is an error.
 
-### Learning How Finance Consistently Explains Itself
-*What behavioral and communication patterns has this team established across recurring documents.*
+---
 
-Watches: attribution sequencing, framing of beats and misses, vocabulary choices, commitment language, emphasis and omission patterns, how emphasis shifts when results disappoint. The belief type most sensitive to vocabulary drift. Updated when language patterns change.
+### Stream 01 — Learning How Finance Consistently Explains Itself
 
-### Learning How This Business Generates and Loses Value
-*Not what the numbers are — what the numbers mean for how the business structurally works.*
+**Discriminating axis: The team's behavioral patterns.**
 
-This is the stream for understanding numbers. Not reading them — understanding them.
+This stream tracks what the people who produce these documents consistently choose to do — how they interpret performance, which explanations they reach for, how their framing shifts when results change. Not what the document says. Not how the document is structured. The recurring behavioral choices of the team, made visible through documents over time.
 
-"Learning What Finance Has Recorded as True" tells you what the numbers are: the value, the period, the comparison. This stream tells you what the numbers mean: ratio relationships, mechanics, what moves what, what the number reveals about the thesis.
+**What it exclusively watches:**
+- How this team consistently attributes outcomes — which drivers they name, in what order, framed as controllable or external
+- How explanation framing shifts when results disappoint vs beat
+- Which vocabulary recurs across many documents, and which disappears
+- Commitment language — how this team signals high vs low confidence in forward statements
+- What this team consistently emphasizes, and what it consistently omits, regardless of document structure
+- Vocabulary drift — when a term that was used regularly stops appearing
 
-**What it specifically learns:**
+**Does NOT capture:**
+- Where in the document these patterns appear — that is stream 03 (document structure)
+- What the numbers actually were — that is stream 04 (factual record)
+- What the numbers mean financially — that is stream 02 (financial mechanics)
+- What kind of business this is strategically — that is stream 05 (strategic character)
 
-**Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business. When a thesis-defining ratio compresses, is that a quarter problem or a business model signal? Business Dynamics holds the interpretation of what the ratio means, not just its value.
+**The line between stream 01 and stream 03:** "This team always leads the variance bridge with the most favorable available driver" is behavioral (01) — it is about a recurring choice the team makes. "The variance bridge always appears on slide 3" is structural (03) — it is about how the document is built. The same document can produce evidence for both, but they are separate observations about separate things.
 
-**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. When Q1 spend peaks, Q2 bookings recover. These lead-lag relationships are invisible unless you have read enough documents to see the pattern. Business Dynamics holds them.
+**Example beliefs:**
+- "This team consistently attributes marketing cost improvement to 'efficiency' or 'leverage' — never to demand quality or product performance — across 9 consecutive documents"
+- "When the overall result misses plan, this team leads with the best available positive metric for at least two paragraphs before naming the shortfall — this pattern has held in 11 of 12 documents"
+- "The phrase 'investment' in cost commentary is a vocabulary convention meaning discretionary spend the team chose — not external cost pressure. The team uses this word to distinguish controllable choices from uncontrollable events."
 
-**Normal ranges.** Not the plan target — the realistic operating range given the business model. A number that looks alarming in isolation might be structural for this business at this time of year. Business Dynamics holds what normal looks like so a deviation is immediately visible.
+---
 
-**Structural mechanics.** Take rate, contribution margin, revenue conversion. How the business turns an input into an output. The chain between booking and revenue and profit, and where it breaks under pressure.
+### Stream 02 — Learning How This Business Generates and Loses Value
 
-**Metric relationships.** When two metrics diverge, the divergence is the signal. When volume is flat but revenue grows, that is price-driven growth. When both grow together, that is volume expansion. The relationship between metrics tells you more than either metric alone — and Business Dynamics holds the interpretation of what the relationship means for this business.
+**Discriminating axis: The financial mechanics.**
+
+Not what the numbers say in any period — but how the numbers work as a system. Ratio relationships, conversion chains, lead-lag mechanics, the mathematical structure that governs how inputs become outputs in this specific business.
+
+**What it exclusively watches:**
+
+**Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business model. When a thesis-defining ratio compresses below a threshold, is that a quarterly fluctuation or a business model signal? This stream holds the interpretation of what the ratio means, not just its value.
+
+**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. Q1 spend peaks → Q2 bookings recover. These relationships are invisible unless you have read enough documents to see the pattern. This stream holds the mechanic and the lag.
+
+**Normal ranges.** Not the plan target — the realistic operating range for each metric given the business model and seasonality. A number that looks alarming in isolation might be structural for this business in this period. This stream holds what normal looks like so a deviation is immediately visible.
+
+**Structural mechanics.** Take rate, contribution margin, revenue conversion. How the business turns an input into an output. The conversion chain from booking to revenue to profit, and where it breaks under pressure.
+
+**Metric relationships.** When two metrics diverge, the divergence is the signal. Volume flat, revenue growing = price-driven growth. Both growing = volume expansion. The relationship between metrics tells you more than either metric alone.
+
+**Does NOT capture:**
+- The specific values of metrics in any period — that is stream 04 (factual record)
+- What kind of business this is at a strategic level — that is stream 05 (strategic character)
+- How the team explains or frames the numbers — that is stream 01 (behavioral patterns)
+- Where or how the numbers appear in the document — that is stream 03 (document structure)
+
+**The line between stream 02 and stream 05:** "S&M/NBV compresses in Q1 and recovers in Q2" is a mechanic (02). "This is a performance-marketing-led business that can scale spend efficiently but has no organic demand creation" is strategic character (05). The mechanic is the observation. The character is the interpretation of what that mechanic reveals about what kind of company this is.
 
 **How this changes what an agent produces:**
 
-Without Business Dynamics loaded:
-> "S&M/NBV is 32%, 200bps above the FC target."
-> That is a fact answer. It reads the slide.
+Without stream 02 loaded:
+> "S&M/NBV is 32%, 200bps above the FC target." — A fact answer. Reads the slide.
 
-With Business Dynamics loaded:
-> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC."
-> That is a judgment answer. It reads the slide and knows what it means.
+With stream 02 loaded:
+> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC." — A judgment answer. Reads the slide and knows what it means.
 
-The number did not change. The understanding of the number changed — because the Business Dynamics belief carried the context that turned a ratio into meaning.
+The number did not change. The understanding of the number changed.
 
-### Learning How Documents Frame the Story
-*How the organization tells its story, and what the pattern of language reveals.*
+---
 
-Watches: Forward Commitment Pattern, Attribution Pattern, Language Specificity, Emphasis and Omission. Requires specific observable language anchors — not impressions. Never characterizes intent.
+### Stream 03 — Learning How Documents Frame the Story
 
-### Learning What Finance Has Recorded as True
-*What the numbers ARE — stable readings, verified values, benchmark comparisons.*
+**Discriminating axis: The document's structural patterns.**
 
-This is the evidence layer. Not interpretation — intake. It records what a document actually stated: the metric, the value, the period, the comparison benchmark. "NBV was $1.2B in May vs Plan of $1.1B." That is a factual belief.
+Not who produced the document (stream 01) — but how the document itself is built: what leads, what is buried, what appears in which position, what structural choices recur across comparable documents. This stream treats the document as an artifact with an architecture, and tracks how that architecture consistently behaves.
 
-Most observations from any document stay here. When a pattern recurs across multiple comparable documents and an interpretation becomes visible, it moves into one of the other streams.
+**What it exclusively watches:**
+- Slide and section sequencing — what appears first, second, last across comparable documents
+- Where in the document good news vs bad news is positioned
+- Which topics appear in strong-result decks vs weak-result decks — presence and absence as signals
+- How the forward commitment section is structured — its position, its presence, its omission
+- Attribution structure — not WHAT is attributed (stream 01) but WHERE in the document attribution appears and in what sequence
+- What the document structure telegraphs before the numbers are read
 
-The distinction from Business Dynamics: Factual Understanding records the reading. Business Dynamics holds the understanding of what that reading means for how the business structurally works. Both are needed. Factual without Dynamics produces an agent that reads the number correctly but cannot say what it means. Dynamics without Factual produces interpretation without a verified evidence base.
+**Does NOT capture:**
+- What the team's behavioral explanation choices are — that is stream 01 (behavioral patterns)
+- The financial meanings of the numbers — that is stream 02 (financial mechanics)
+- The specific values of the numbers — that is stream 04 (factual record)
+- What kind of business this is strategically — that is stream 05 (strategic character)
 
-### Learning What Kind of Business This Actually Is
-*What is the durable structural truth about what this business is, how it makes money, and why it performs the way it does.*
+**Example beliefs:**
+- "Decks that open with a cost or efficiency topic on slide 1 have reported a miss in 7 of 8 comparable documents — the document structure telegraphs the result before the numbers appear"
+- "The variance bridge has appeared as the second major section in every strong-result deck; in 4 of 5 miss decks it appeared later or was structured differently"
+- "The forward commitment slide was present in every deck for 11 consecutive months; the two omissions both preceded significant downward revisions in the following period"
 
-Watches: business model and profitability thesis, growth engine and its primary levers, structural cost behavior, capital allocation pattern, operating scale and leverage dynamics. The slowest belief to change — only updates when structural understanding shifts. High confidence when confirmed across many documents.
+---
+
+### Stream 04 — Learning What Finance Has Recorded as True
+
+**Discriminating axis: The verified factual record.**
+
+Not interpretation. Not relationship. Not pattern. What a document actually stated: the metric name, the value, the period, the comparison benchmark. This is the intake layer — the evidence base from which every other stream draws when patterns eventually emerge.
+
+**What it exclusively watches:**
+- Specific metric readings with all four elements: metric name, value, period, comparison benchmark
+- Verified forward commitments with explicit language: "We expect X by period Y"
+- Stated variances: actual vs plan vs prior period, as the document states them
+- Specific data that is verified and attributed — not inferred
+
+**Does NOT capture:**
+- What the numbers mean or how they relate to each other — that is stream 02 (financial mechanics)
+- How the team explained or framed the numbers — that is stream 01 (behavioral patterns)
+- Where the numbers appeared in the document — that is stream 03 (document structure)
+- What the numbers reveal about the strategic character of the business — that is stream 05 (strategic character)
+
+**How beliefs move out of stream 04:** Most observations stay here permanently. When a factual pattern recurs across multiple comparable documents and an interpretation becomes visible — "this metric has come in above plan in 9 of 10 comparable periods" — that pattern may generate a belief in stream 02 (if it reveals a financial mechanic) or stream 01 (if it reveals a team behavioral pattern). Stream 04 always retains the factual reading. The interpretation moves.
+
+**Example belief:** "NBV has come in above the monthly FC target in 9 of 12 comparable documents, by a median of 3.2%. The one significant miss (−8%) occurred in a document where the forward commitment language in the prior period had shifted from 'we expect' to 'we are monitoring.'"
+
+---
+
+### Stream 05 — Learning What Kind of Business This Actually Is
+
+**Discriminating axis: The strategic character of the business.**
+
+Not the financial mechanics (stream 02) — but what those mechanics reveal about the fundamental nature of this commercial entity. What thesis it operates under. How it competes. What it is as a business at a structural level. The slowest-moving stream — strategic character shifts rarely. When it does shift, it is the most significant update the belief memory can produce.
+
+**What it exclusively watches:**
+- The fundamental business model and what the profitability thesis rests on
+- Whether growth is volume-driven or price-driven — and what that reveals about competitive position
+- Whether the business is capital-light or capital-intensive — and how it behaves under pressure given that structure
+- What the primary strategic lever is: efficiency, scale, differentiation, pricing power
+- How the business responds to sustained commercial pressure — what it protects first, what it sacrifices
+- What the pattern of capital allocation reveals about management's strategic priorities over time
+
+**Does NOT capture:**
+- The specific ratios and their period-to-period mechanics — that is stream 02 (financial mechanics)
+- The specific metric readings — that is stream 04 (factual record)
+- The team's communication and explanation patterns — that is stream 01 (behavioral patterns)
+- The document's structural patterns — that is stream 03 (document structure)
+
+**The line between stream 02 and stream 05:** Stream 02 holds what the numbers do. Stream 05 holds what the numbers mean about what kind of company this is. These are not the same. "S&M/NBV compresses in Q1 and recovers in Q2" is stream 02. "This business acquires customers through paid performance marketing, not brand — it can scale demand up and down efficiently but creates no organic demand. Cost efficiency is the primary lever, not pricing power" is stream 05. One describes the mechanic. The other describes what the mechanic reveals about the business's commercial identity.
+
+**Example beliefs:**
+- "This is a performance-marketing-led demand model. Growth comes from paid acquisition, not organic or brand-driven demand. The business can scale spend efficiently but has no flywheel — demand stops when spend stops."
+- "The business operates a volume-over-price growth thesis. When volume softens, the team does not reach for price to protect revenue. This is structural, not a period choice."
+- "Capital allocation is consistently biased toward short-cycle, measurable-return investments. Long-horizon structural bets have not appeared in the capital allocation record across 8 comparable documents. Risk management is the de facto strategy."
 
 ---
 
