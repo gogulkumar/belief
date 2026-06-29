@@ -132,11 +132,13 @@ If the answer to any of these is no, do not write the belief.
 
 State the numbers rule for this angle explicitly. Derive it from Blueprint Section 3.4.
 
+For Learning How This Business Generates and Loses Value:
+> **Relationship beliefs** (the primary belief type for this stream): state the two metrics connected, the direction (A drives B), the lag if established, and the verbatim source language. On first document, this is a Candidate from a single explicit statement — mark it as such. On second document confirming the same relationship: Provisional. A relationship belief that has been stated explicitly in a document does not require observing the relationship play out — the statement is the primary evidence; the observation across periods is confirmation.
+> 
+> **Structural ratio beliefs**: the ratio, the benchmark, the trend direction. For operating chain beliefs: metric names + estimated lag at each step + the mechanism connecting each link. For system stress behavior beliefs: the sequence of metric degradation — qualitative ordering required, magnitude optional. For feedback dynamics beliefs: the direction of the loop (self-correcting or self-amplifying), the mechanism, and the condition under which it triggers. No period-specific revenue or cost totals except where they establish the normal range for a chain link.
+
 For Learning What the Business Has Consistently Shown:
 > Numbers are required. The delivery record is the belief — counts, percentages, and ranges across comparable periods. Example: "above FC in 9 of 12 comparable periods, median beat 3.2%" rather than "consistently beats FC." Every belief must state: the metric, the direction, the count of periods, and the magnitude where relevant. Period-specific totals are not the belief — the cross-period pattern is.
-
-For Learning How This Business Generates and Loses Value:
-> Structural ratios and efficiency percentages for ratio relationship beliefs — the ratio, the benchmark, the trend direction. For operating chain beliefs: metric names + estimated lag at each step + the mechanism connecting each link. For system stress behavior beliefs: the sequence of metric degradation (which fell first, which held, which recovered last) — qualitative ordering required, magnitude optional. For feedback dynamics beliefs: the direction of the loop (self-correcting or self-amplifying), the mechanism, and the condition under which it triggers. No period-specific revenue or cost totals except where they establish the normal range for a chain link.
 
 For Learning How Documents Frame the Story:
 > Zero numbers. This angle is entirely about language, sequencing, emphasis, and framing choices. Numbers do not belong in beliefs for this angle.
@@ -191,16 +193,18 @@ Tell the belief engine how to handle existing beliefs.
 ```
 ## On first document (EXISTING_BELIEF is NULL)
 
-Read the candidate seed set above. For each candidate where the fact log has supporting evidence, initialize a Candidate belief entry. Do not initialize entries for candidates with no signal in the fact log.
+Read the candidate seed set above. For each candidate where the fact log has supporting evidence, initialize a Candidate belief entry.
 
-Mandatory: initialize between 8 and 15 Candidate beliefs. If fewer than 8 candidates have supporting evidence, look for additional specific patterns in the fact log beyond the seed set — distinct, falsifiable observations that are not umbrella claims.
+**Relationship claims are the first priority.** Read the RELATIONSHIP CLAIMS section of the fact log before any other section. For every explicit relationship claim captured there, initialize a Stream 02 Candidate belief. A single explicit statement in a document is sufficient to initialize a Candidate — the statement is the evidence. Do not require the relationship to have been observed playing out across multiple periods before initializing.
+
+Mandatory: initialize between 8 and 15 Candidate beliefs total. If fewer than 8 candidates have supporting evidence, look for additional specific patterns in the fact log beyond the seed set — distinct, falsifiable observations that are not umbrella claims. Relationship claims alone may provide 3–5 beliefs on the first document from a transcript that explains how the business works.
 
 Every initialized entry:
 - Heading: the claim as a complete sentence
 - Status: Candidate
-- Evolution trail: "First seen in [doc_id] — [brief observation]."
+- Evolution trail: "First seen in [doc_id] — [brief observation, including whether this was stated explicitly in the document or inferred from metric movements]."
 - Normal baseline: "not yet established — awaiting second comparable document."
-- Falsification test: "fails to recur in the next comparable document" (or more specific if the signal supports it)
+- Falsification test: for relationship beliefs — "a document where A moves but B does not follow within the stated lag would challenge this relationship." For other beliefs — "fails to recur in the next comparable document."
 
 ## On subsequent documents
 

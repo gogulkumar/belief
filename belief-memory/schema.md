@@ -108,16 +108,16 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-### Stream 02 example — financial mechanics and operating chain
+### Stream 02 example — relationship belief, initialized from document one, deepened across 6 cycles
 
 ```markdown
-## Belief #5 — S&M spend peaks in Q1 and drives bookings recovery in Q2 with a consistent 6–8 week lag; this chain has held in 6 consecutive cycles.   [DEEPEN]   Status: Established
+## Belief #5 — S&M spend in Q1 drives bookings recovery in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
 
 **Statement**: This business runs a deliberate spend-ahead-of-season mechanic. S&M/NBV compresses in Q1 (typically 28–34%), which drives Q2 bookings recovery within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When S&M/NBV falls below 26% in Q1, Q2 bookings recovery has underperformed by a median of 4.2 percentage points.
 
 **Why it matters**: The foundation identifies S&M spend and NBV as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 booking conversion is the single most predictive mechanic in the business. Understanding where S&M/NBV sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 bookings will recover on cycle or disappoint.
 
-**Evolution trail**: The chain was hypothesized from the foundation before the first document. First confirmed in Q1–Q2 2023: S&M/NBV at 31% in Q1, bookings up 8.4% in Q2. Held in Q3–Q4 2023 cycle. By 2024 Q1 I had three comparable cycles and advanced to Confirmed. The sub-claim about the 26% threshold emerged in Q1 2024 when S&M/NBV fell to 24.8% (cost discipline initiative) and Q2 bookings recovered only 3.1% — the first observable below-threshold datapoint. Q1–Q2 2025 added a sixth cycle with S&M/NBV at 29.4% and Q2 bookings up 7.9%. The threshold sub-claim now rests on two datapoints — Provisional sub-claim inside an Established primary claim.
+**Evolution trail**: This relationship belief was initialized on the first document — the Q1 2023 earnings transcript included an explicit management statement: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into bookings over the following 6–8 weeks." I captured this as a RELATIONSHIP CLAIM and initialized a Candidate belief on that statement alone. The statement was the evidence; I did not wait for the relationship to play out. Q1–Q2 2023 confirmed the lag: S&M/NBV at 31% in Q1, bookings up 8.4% in Q2 within 7 weeks — Provisional. Three confirmed cycles by Q1 2024 — Confirmed. The sub-claim about the 26% threshold emerged in Q1 2024 when S&M/NBV fell to 24.8% and Q2 bookings recovered only 3.1%. Q1–Q2 2025 added a sixth cycle. The threshold sub-claim rests on two datapoints — Provisional sub-claim inside an Established primary claim.
 
 **Normal baseline**: Q1 S&M/NBV in the 28–34% range should produce Q2 bookings recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 bookings expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
 

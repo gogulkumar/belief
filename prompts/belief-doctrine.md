@@ -22,11 +22,15 @@ In this system, a belief is a **durable, falsifiable, and actionable interpretat
 
 A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It is not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
 
+**A belief can also be a discovered relationship** — a durable claim that one metric in this business drives another, with a stated direction, lag, and mechanism. These relationship beliefs are the connective tissue that turns isolated metric observations into a working model of the business. They are discovered from what the documents say, not pre-specified by the user. When a document states explicitly that A drives B, that is a relationship claim — the most structurally important signal the system can extract. It becomes a Candidate belief on the first document it appears in, and is confirmed or contradicted as more documents arrive.
+
 A belief helps answer:
 
 > "Before I open the next comparable document, what should I already expect to be true — and what would surprise me if it changed?"
 
-That expectation is what makes the belief useful.
+That expectation is what makes the belief useful. For relationship beliefs, it also answers:
+
+> "When this metric moves, what else should I expect to move — and when?"
 
 ---
 

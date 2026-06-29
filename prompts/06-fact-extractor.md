@@ -28,6 +28,17 @@ The fact extractor must capture:
 - The benchmark or comparison being made (against what reference point)
 - What was present vs what was absent (if a pattern involves presence/absence)
 
+**The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they are present in documents far more often than analysts expect.
+
+A relationship claim is any statement where the document asserts that:
+- A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
+- A precedes or predicts B ("bookings typically convert to revenue within 30–45 days")
+- A is a function of B ("take rate improves as transaction volume scales above X")
+- A and B move together or diverge in a meaningful way ("volume was flat while revenue grew — price is doing the work")
+- A condition changes B's behavior ("when spend falls below this threshold, conversion efficiency deteriorates")
+
+These claims are the building blocks of the operating model. Every one that appears in a document must be captured — verbatim, with both metrics named, with the stated direction and lag, and with the structural position in the document. The belief engine will turn them into Stream 02 Candidate beliefs. On the first document, these may be the most valuable signals produced.
+
 ---
 
 ## Input
@@ -70,15 +81,40 @@ Your output will be read by the belief reasoning engine. Organize extracted sign
 
 ### Section B — What to Extract
 
-Encode an extraction manifest — exactly what signals to look for, in what form, with what level of specificity.
+Encode an extraction manifest in two parts: relationship discovery first, then named candidates.
 
-Derive the manifest from Blueprint Section 4 (candidate belief seed set) and Blueprint Section 3.4 (pattern direction for this angle). Work backward from what the belief engine needs:
+**Part 1 — Relationship Discovery (always runs first, on every document)**
+
+Before scanning for any named candidate signals, scan the entire document window for explicit relationship claims. These take priority because they are the source material for the business model that all other streams depend on.
+
+```
+## Relationship Discovery
+
+For every explicit relationship claim in this document window:
+
+RELATIONSHIP CLAIM: [Metric/factor A] → [Metric/factor B]
+Direction: [how A connects to B — drives, precedes, enables, predicts, is conditional on]
+Lag or timing: [if stated — "within 6–8 weeks," "same period," "following quarter"]
+Condition: [if the relationship is conditional — "when volume exceeds X," "during Q1 only"]
+Verbatim language: [exact quote — do not paraphrase]
+Source position: [where in the document this appeared]
+New or repeated: [first time this relationship has been stated, or was it stated in prior documents]
+
+If no relationship claims are present in this document window:
+Output: NO RELATIONSHIP CLAIMS IN THIS WINDOW
+```
+
+This section feeds Stream 02 directly. Every relationship claim captured here becomes a Candidate belief for the belief engine to evaluate.
+
+**Part 2 — Named Candidate Signals**
+
+After relationship discovery, scan for signals related to the named candidates from Blueprint Section 4. Work backward from what the belief engine needs:
 
 1. **Statement feed**: What raw signal in the document would confirm or contradict a candidate belief? This is the primary signal — capture it verbatim if it is language-based, or with full numeric context (metric + value + period + benchmark) if it is number-based.
 
 2. **Evolution trail feed**: What recurring signal should be captured so the next document can be compared? This is where pattern evidence lives. Capture the exact language, the structural position, or the behavioral marker.
 
-3. **Normal baseline feed**: What signal establishes a reference point? What is the "usual" reading for this area that makes deviations meaningful? Cross-reference the foundation's normalization model.
+3. **Normal baseline feed**: What signal establishes a reference point? What is the "usual" reading for this area that makes deviations meaningful?
 
 4. **Falsification feed**: What leading indicator is visible now that would confirm or break a belief in the next document?
 
@@ -192,7 +228,27 @@ Tell the fact extractor exactly how to format its output.
 ```
 ## Output Format
 
-For each signal extracted, use this structure:
+**Part 1 — Relationship Claims** (always first in the output)
+
+For each relationship claim found:
+
+---
+## RELATIONSHIP CLAIM — [A] → [B]
+
+**Metric A**: [Full name as used in document]
+**Metric B**: [Full name as used in document]
+**Direction**: [drives / precedes / enables / predicts / conditional]
+**Lag or timing**: [If stated — exact language]
+**Condition**: [If conditional — exact language]
+**Verbatim**: "[Exact quote from document]"
+**Source position**: [Where in the document this appeared]
+---
+
+If no relationship claims: ## NO RELATIONSHIP CLAIMS IN THIS WINDOW
+
+**Part 2 — Named Candidate Signals**
+
+For each signal extracted for a named candidate:
 
 ---
 ## SIGNAL — [Brief label: what this signal is]
@@ -202,14 +258,13 @@ For each signal extracted, use this structure:
 **Content**: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 **Source position**: [Where in the document this appeared]
 **Comparison basis**: [What benchmark or reference point, if applicable]
-**Foundation alignment**: [Whether this matches the foundation's normalization model, narration design expectation, or represents a deviation]
-**Absent signals**: [What was expected per the foundation but not present, if meaningful]
+**Absent signals**: [What was expected but not present, if meaningful]
 ---
 
 If no signal is present for a named candidate, output:
 ## CANDIDATE #N — NO SIGNAL IN THIS WINDOW
 
-Do not include general document summaries. Each distinct signal is a separate entry.
+Do not include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
 ```
 
 ---

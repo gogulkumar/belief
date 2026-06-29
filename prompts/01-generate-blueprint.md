@@ -36,20 +36,22 @@ Produce the blueprint in five sections.
 
 ### Section 0 — Foundation Reference
 
-Before anything else, state how the entity foundation grounds this specific stream.
+Before anything else, state what is known about this entity from the foundation, and what will be discovered from documents.
 
 ```markdown
 ## Section 0 — Foundation Reference
 
 **Entity foundation**: entities/{entity_id}/foundation.md
 
-**Thesis metrics relevant to this stream**: [Which of the foundation's thesis-defining metrics are most visible in the documents this stream will read. Be specific — name them as the entity uses them.]
+**Entity identity**: [Entity name, organizational scope, what kind of entity this is]
 
-**Normalization context**: [What the foundation's normalization model says about normal ranges for those metrics. What seasonal patterns or recurring one-time effects are relevant. What a meaningful deviation looks like.]
+**Document types**: [What documents will be read, their cadence, who produces them]
 
-**Narration design relevant to this stream**: [What the foundation's narration design section tells us to expect when reading this entity's documents — how it leads, how it frames good/bad news, what gets buried. Ground the belief definition in this.]
+**What the foundation pre-specifies**: [Only what was explicitly provided at setup — entity identity and document types. Do not invent the business model, operating chain, or behavioral patterns. These are discovered from documents.]
 
-**Signals vs. noise for this stream**: [From the foundation's what-matters-vs-noise section — which signals are high-value for this stream, which are present-but-uninformative, and any known document quirks that could mislead extraction.]
+**What will be discovered from documents**: [Name the areas the belief streams will build as they read: the operating model (Stream 02 relationship claims), the factual baseline (Stream 04), the communication patterns (Stream 03), the delivery track record (Stream 01), and the strategic character (Stream 05). On first document, these areas are hypotheses, not facts.]
+
+**Known prior context** (if any): [If the user provided any context about how the business works — a specific relationship they believe exists, a metric they know is important — encode it here as a starting hypothesis, clearly labeled as user-provided rather than document-derived. It will be treated as a Candidate belief seed, not as established fact.]
 ```
 
 ---
@@ -167,23 +169,35 @@ State the minimum belief count for this stream. Fewer than 8 active beliefs indi
 
 ### Section 4 — Candidate Belief Seed Set
 
-Before any document is processed, the blueprint seeds a set of candidate beliefs — specific, falsifiable claims about how this entity is likely to behave, derived from the foundation and the document profile. These are hypotheses grounded in institutional knowledge, not document facts. They are the starting frame for the belief engine on the first document.
+Before any document is processed, the blueprint seeds a set of candidate beliefs — hypotheses about what the first document might reveal. These are not pre-specified facts about the business. They are starting frames that tell the belief engine what to look for and what questions to hold going into the first document.
+
+For Stream 02, the seed candidates are **relationship hypotheses** — questions about how metrics might connect, not assertions that they do. The first document will reveal the actual relationships; the seed candidates make the belief engine alert to them.
 
 Produce between 8 and 15 seed candidates. Each must be:
 - A complete, falsifiable sentence (a claim, not a category)
-- Grounded in the foundation — the business model, thesis metrics, narration design, or normalization model
-- Specific enough to be confirmed or broken by a single document
-- Written in the entity's vocabulary
+- For Stream 02: a relationship hypothesis — "If A drives B, the document should show [this pattern]" — grounded in what the document type can plausibly contain
+- For other streams: specific enough to be confirmed or broken by a single document
+- Written in the entity's vocabulary where known
 
 For each candidate:
 
 ```markdown
-**Candidate #N**: [The claim as a complete sentence]
-**Foundation grounding**: [Which part of the foundation this draws from — thesis metric, narration pattern, normalization model, or known quirk]
+**Candidate #N**: [The claim or relationship hypothesis as a complete sentence]
+**Type**: [RELATIONSHIP HYPOTHESIS / PERFORMANCE HYPOTHESIS / COMMUNICATION HYPOTHESIS / FACTUAL HYPOTHESIS]
+**What to look for in the first document**: [What signal in the document would confirm, contradict, or refine this candidate]
 **Falsification trigger**: [What a document must show to break this candidate]
 ```
 
-These are hypotheses. The belief engine may confirm them, discard them, narrow them, or replace them with better-grounded beliefs from what it actually observes. The seed set exists so the first document produces 8–15 specific Candidate beliefs rather than 3–4 shallow umbrellas.
+**Relationship hypotheses (for Stream 02)** take a specific form:
+
+```markdown
+**Candidate #N**: [Metric A] may drive [Metric B] — the document should contain an explicit causal statement or correlated movement if this is true.
+**Type**: RELATIONSHIP HYPOTHESIS
+**What to look for**: Any explicit statement connecting A to B. Any correlation where A moved in a prior period and B is moving now. Any management language attributing B's movement to A.
+**Falsification trigger**: Document shows B moving without any reference to A. Or document shows A and B moving independently across multiple comparable periods.
+```
+
+These are hypotheses. The belief engine confirms them, discards them, or replaces them with better-grounded beliefs from what the documents actually reveal. Relationship hypotheses that are confirmed by an explicit statement in the first document immediately become Stream 02 Candidate beliefs — they do not need to wait for multiple documents.
 
 ---
 
