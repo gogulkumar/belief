@@ -22,7 +22,7 @@ belief_config:
   # Each stream selects one angle at setup time (Step 0).
   # Custom angles can be defined during the Prompt 00 interview.
   standard_angles:
-    - business_memory          # 01 — Learning How Finance Consistently Explains Itself
+    - business_memory          # 01 — Learning What the Business Has Consistently Shown
     - business_dynamics        # 02 — Learning How This Business Generates and Loses Value
     - narrative_understanding  # 03 — Learning How Documents Frame the Story
     - factual_understanding    # 04 — Learning What Finance Has Recorded as True
