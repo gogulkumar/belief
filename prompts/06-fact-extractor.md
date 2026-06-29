@@ -12,7 +12,7 @@ The fact log is the bridge between raw document content and the belief engine. T
 
 ## The Extraction Principle
 
-The fact extractor does not summarize. It does not interpret. It captures signals — raw, concrete, and evidence-bearing — at the granularity the belief engine needs.
+The fact extractor doesn't summarize and doesn't interpret. It captures signals — raw, concrete, and evidence-bearing — at the granularity the belief engine needs.
 
 The difference:
 
@@ -27,6 +27,17 @@ The fact extractor must capture:
 - The structural position (where in the document this appeared)
 - The benchmark or comparison being made (against what reference point)
 - What was present vs what was absent (if a pattern involves presence/absence)
+
+**The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they appear in documents far more often than analysts expect.
+
+A relationship claim is any statement where the document asserts that:
+- A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
+- A precedes or predicts B ("bookings typically convert to revenue within 30–45 days")
+- A is a function of B ("take rate improves as transaction volume scales above X")
+- A and B move together or diverge in a meaningful way ("volume was flat while revenue grew — price is doing the work")
+- A condition changes B's behavior ("when spend falls below this threshold, conversion efficiency deteriorates")
+
+These claims are the building blocks of the operating model. Every one that appears in a document must be captured — verbatim, with both metrics named, with the stated direction and lag, and with the structural position in the document. The belief engine will turn them into Stream 02 Candidate beliefs. On the first document, these may be the most valuable signals produced.
 
 ---
 
@@ -70,15 +81,40 @@ Your output will be read by the belief reasoning engine. Organize extracted sign
 
 ### Section B — What to Extract
 
-Encode an extraction manifest — exactly what signals to look for, in what form, with what level of specificity.
+Encode an extraction manifest in two parts: relationship discovery first, then named candidates.
 
-Derive the manifest from Blueprint Section 4 (candidate belief seed set) and Blueprint Section 3.4 (pattern direction for this angle). Work backward from what the belief engine needs:
+**Part 1 — Relationship Discovery (always runs first, on every document)**
+
+Before scanning for any named candidate signals, scan the entire document window for explicit relationship claims. These take priority because they are the source material for the business model that all other streams depend on.
+
+```
+## Relationship Discovery
+
+For every explicit relationship claim in this document window:
+
+RELATIONSHIP CLAIM: [Metric/factor A] → [Metric/factor B]
+Direction: [how A connects to B — drives, precedes, enables, predicts, is conditional on]
+Lag or timing: [if stated — "within 6–8 weeks," "same period," "following quarter"]
+Condition: [if the relationship is conditional — "when volume exceeds X," "during Q1 only"]
+Verbatim language: [exact quote — do not paraphrase]
+Source position: [where in the document this appeared]
+New or repeated: [first time this relationship has been stated, or was it stated in prior documents]
+
+If no relationship claims are present in this document window:
+Output: NO RELATIONSHIP CLAIMS IN THIS WINDOW
+```
+
+This section feeds Stream 02 directly. Every relationship claim captured here becomes a Candidate belief for the belief engine to evaluate.
+
+**Part 2 — Named Candidate Signals**
+
+After relationship discovery, scan for signals related to the named candidates from Blueprint Section 4. Work backward from what the belief engine needs:
 
 1. **Statement feed**: What raw signal in the document would confirm or contradict a candidate belief? This is the primary signal — capture it verbatim if it is language-based, or with full numeric context (metric + value + period + benchmark) if it is number-based.
 
 2. **Evolution trail feed**: What recurring signal should be captured so the next document can be compared? This is where pattern evidence lives. Capture the exact language, the structural position, or the behavioral marker.
 
-3. **Normal baseline feed**: What signal establishes a reference point? What is the "usual" reading for this area that makes deviations meaningful? Cross-reference the foundation's normalization model.
+3. **Normal baseline feed**: What signal establishes a reference point? What is the "usual" reading for this area that makes deviations meaningful?
 
 4. **Falsification feed**: What leading indicator is visible now that would confirm or break a belief in the next document?
 
@@ -111,7 +147,7 @@ Beyond the named candidates, capture any signal that:
 - Is specific enough to be confirmed or broken by the next comparable document
 - Connects to the foundation's thesis metrics or narration design
 
-Each additional signal is a separate entry. Do not consolidate distinct observations. The belief engine needs granularity to initialize 8–15 specific Candidate beliefs from the first document.
+Each additional signal is a separate entry. Don't consolidate distinct observations. The belief engine needs granularity to initialize 8–15 specific Candidate beliefs from the first document.
 ```
 
 ---
@@ -135,6 +171,25 @@ For number-based signals (Learning What Finance Has Recorded as True, Learning H
 - Cross-reference the foundation's normalization model: note whether the reading is within normal range, at a deviation threshold, or outside normal range
 - Note if the metric definition changed from prior documents
 - For Learning What the Business Has Consistently Shown: also note whether this reading continues, breaks, or is silent on an existing delivery pattern
+
+For operating chain signals (Learning How This Business Generates and Loses Value):
+- Capture which metric moved in this document and what the document shows moved with it or after it
+- Note the apparent lag: if metric A moved in a prior period and metric B moved now, capture both readings and the gap between them — this is evidence for or against a chain link
+- Capture any explicit statement in the document connecting one metric's movement to another ("bookings growth translated into revenue X weeks later") — verbatim
+- Note which chain links are silent in this document: if the document shows spend and revenue but not the intermediate conversion metrics, record that gap explicitly
+- If a chain link appears to have broken — a metric that normally follows another did not move as expected — capture this as a leading indicator for a stress behavior or feedback belief
+
+For system stress behavior signals (Learning How This Business Generates and Loses Value):
+- When the document reports a miss or degradation in any thesis metric: capture which metric degraded, the magnitude, and what other metrics are reported alongside it
+- Capture the sequence: did the document show demand softness before cost impact, or cost impact before volume impact? The order of degradation is the signal
+- Capture what the document shows held or improved while other metrics degraded — this is evidence for what the business protects under stress
+- Capture any explicit management statement about prioritization under pressure ("we chose to hold X and accept lower Y") — verbatim
+
+For feedback dynamics signals (Learning How This Business Generates and Loses Value):
+- Capture whether the document reports a recovery after a prior-period stress, and if so, what drove it — internal (efficiency improvement, cost reduction) or external (market recovery, seasonal normalization)
+- If recovery appears self-driven, capture the specific mechanic described
+- If recovery appears absent after a prior-period miss, capture that silence — the absence of recovery is the feedback signal
+- Capture any document showing that a prior-period cut (cost, marketing, headcount) led to a constraint in a current-period metric — this is the self-amplifying loop in evidence
 
 For attribution signals (Learning What Kind of Business This Actually Is):
 - Capture the exact cause named, in the exact language used
@@ -173,7 +228,27 @@ Tell the fact extractor exactly how to format its output.
 ```
 ## Output Format
 
-For each signal extracted, use this structure:
+**Part 1 — Relationship Claims** (always first in the output)
+
+For each relationship claim found:
+
+---
+## RELATIONSHIP CLAIM — [A] → [B]
+
+**Metric A**: [Full name as used in document]
+**Metric B**: [Full name as used in document]
+**Direction**: [drives / precedes / enables / predicts / conditional]
+**Lag or timing**: [If stated — exact language]
+**Condition**: [If conditional — exact language]
+**Verbatim**: "[Exact quote from document]"
+**Source position**: [Where in the document this appeared]
+---
+
+If no relationship claims: ## NO RELATIONSHIP CLAIMS IN THIS WINDOW
+
+**Part 2 — Named Candidate Signals**
+
+For each signal extracted for a named candidate:
 
 ---
 ## SIGNAL — [Brief label: what this signal is]
@@ -183,14 +258,13 @@ For each signal extracted, use this structure:
 **Content**: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 **Source position**: [Where in the document this appeared]
 **Comparison basis**: [What benchmark or reference point, if applicable]
-**Foundation alignment**: [Whether this matches the foundation's normalization model, narration design expectation, or represents a deviation]
-**Absent signals**: [What was expected per the foundation but not present, if meaningful]
+**Absent signals**: [What was expected but not present, if meaningful]
 ---
 
 If no signal is present for a named candidate, output:
 ## CANDIDATE #N — NO SIGNAL IN THIS WINDOW
 
-Do not include general document summaries. Each distinct signal is a separate entry.
+Don't include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
 ```
 
 ---
@@ -208,7 +282,7 @@ CAPTURE full numeric context. A number without its period, benchmark, and metric
 
 CAPTURE structural position. Where in the document something appears is part of the signal.
 
-SURFACE DISTINCT SIGNALS SEPARATELY. If two different behaviors appear in the same slide or section, they are two separate fact log entries. Do not consolidate. The belief engine needs granularity.
+SURFACE DISTINCT SIGNALS SEPARATELY. If two different behaviors appear in the same slide or section, they are two separate fact log entries. Don't consolidate. The belief engine needs granularity.
 
 CROSS-REFERENCE THE FOUNDATION. When you capture a metric reading, note whether it falls within the foundation's normal range. When you capture language, note whether it matches the foundation's narration design expectations.
 
@@ -231,7 +305,7 @@ STAY SILENT when no signal is present. "NO SIGNAL IN THIS WINDOW" is a valid and
 
 **Pattern direction from the blueprint is the injection point.** Section 3.4 of the blueprint tells you what form patterns take for this entity in this angle. This is what turns the fact extractor from a generic signal extractor into a pattern-aware evidence collector.
 
-**Granularity is required.** The extraction output must support 8–15 Candidate beliefs on the first document. This means distinct patterns must be surfaced as distinct signals. The compiler must make this explicit in the extraction rules.
+**Granularity is required.** The extraction output must support 8–15 Candidate beliefs on the first document. Distinct patterns must be surfaced as distinct signals. Make this explicit in the extraction rules.
 
 **Different document types require different compiled prompts.** If the blueprint describes three document types, produce three compiled fact extraction prompts — one per type. Each inherits from the same blueprint but has a different Section D.
 

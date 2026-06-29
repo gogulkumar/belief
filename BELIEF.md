@@ -30,17 +30,34 @@ They know that when the deck leads with a small beat, the real story is always i
 
 None of that knowledge lives in any single document. It accumulated across dozens of documents, hundreds of reviews, and years of pattern recognition. That analyst is the most valuable person in the room during a business review. And any AI deployed against the same documents starts each session knowing nothing that she knows.
 
-They do not remember every slide. They hold the pattern. That pattern is the belief.
+They don't remember every slide. They hold the pattern. That pattern is the belief.
 
-That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
+That accumulated understanding isn't in a file. It isn't queryable. When the analyst leaves, it leaves with them.
 
 ### What Belief Is
 
-Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of the behavioral patterns inside them.
+Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of how the business works and behaves.
 
 Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
-It does not store facts. It accumulates beliefs. And beliefs are different.
+It doesn't store facts. It accumulates beliefs. And beliefs are different.
+
+### The System Learns the Business From the Documents
+
+A critical design principle: **the system discovers the business model by reading — it doesn't require the user to describe it upfront.**
+
+The documents already contain the business model. Every quarterly review, earnings transcript, or board deck includes management's explanation of what drove the results: "Q1 marketing investment drove Q2 demand recovery," "when transaction volume crosses this threshold, supplier economics improve," "the cost structure is largely fixed, so volume softness flows directly to margin." These are explicit relationship claims — statements connecting one metric to another with direction, lag, and mechanism.
+
+The belief system treats these relationship claims as its most valuable signal type. When a document says A drives B, that is not a framing observation — it is a structural claim about how the business works. It should become a belief from the moment it first appears, marked Candidate, and confirmed or contradicted as more documents arrive.
+
+This means:
+- The user doesn't need to explain how the business works before any documents are read
+- The foundation doesn't need to pre-encode the operating chain or causal model
+- The first 1–3 documents build the preliminary business model from what management explicitly states
+- Later documents deepen, refine, or challenge that model
+- The accumulated Stream 02 beliefs become the discovered business model — earned from reading, not specified from assumption
+
+The analyst analogy holds here too. A new analyst joining a business doesn't start with a business model document. They read the company's own communications. Those communications contain the model — management explains it every period. The belief system does the same thing, systematically, at scale.
 
 **Facts vs Beliefs**
 
@@ -62,13 +79,13 @@ Facts are static. Beliefs carry direction, confidence, and trajectory. Beliefs t
 
 These are the failure modes that appear when AI works with recurring business documents without institutional memory.
 
-**The summary trap.** AI tools produce accurate summaries of individual documents. But a summary of what this document says is not the same as knowing what this document means in the context of everything that came before it. The belief system does not summarise. It maintains standing interpretations that exist independently of any single document.
+**The summary trap.** AI tools produce accurate summaries of individual documents. But a summary of what this document says is not the same as knowing what this document means in the context of everything that came before it. The belief system doesn't summarise. It maintains standing interpretations that exist independently of any single document.
 
 **The attribution fabrication trap.** AI models are fluent with causal language. They connect observations to explanations with confidence. "Revenue declined because of FX headwinds" — but was it? Or did the team attribute it to FX because FX is an uncontrollable external factor that absolves accountability for a controllable miss? The belief system separates management's stated attribution (what they said caused it) from verified causality (what actually caused it). These are different beliefs, tracked separately, evolved separately.
 
 **The recency trap.** An AI reading this month's deck in isolation treats everything in it as equally newsworthy. A senior analyst who has read 18 months of decks knows that three of the five items in this month's bridge are structural recurring patterns — not news — and the one genuinely new signal is buried in a footnote on slide 12. The belief system creates that distinction mechanically: what is expected (held as a belief) versus what is new (not yet matched to any belief, or contradicting a held belief).
 
-**The vocabulary drift trap.** Business teams change the language they use to describe things over time — sometimes deliberately, sometimes not. When a word disappears from commentary, it might mean the thing stopped happening, or it might mean the team stopped wanting to highlight it. When a new phrase appears, it might reflect a genuine strategic shift or a narrative management choice. A system that tracks beliefs about language patterns surfaces vocabulary drift as a signal. A system that just reads the current document does not notice.
+**The vocabulary drift trap.** Business teams change the language they use to describe things over time — sometimes deliberately, sometimes not. When a word disappears from commentary, it might mean the thing stopped happening, or it might mean the team stopped wanting to highlight it. When a new phrase appears, it might reflect a genuine strategic shift or a narrative management choice. A system that tracks beliefs about language patterns surfaces vocabulary drift as a signal. A system that just reads the current document doesn't notice.
 
 ### What a Belief Contains
 
@@ -81,7 +98,7 @@ The belief memory carries four kinds of institutional understanding:
 | **What is evolving** | Evolution trail (belief entry field) | Per-document history of how the pattern developed — deepened, tensioned, narrowed, or shifted perspective |
 | **What would break** | Falsification test (belief entry field) | The specific signal in a future document that would contradict, narrow, or retire the belief |
 
-These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document does not need to be re-read.
+These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document doesn't need to be re-read.
 
 Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
 
@@ -121,7 +138,7 @@ Beyond the core distinctions (not a fact, not a rule, not agent memory), a belie
 
 A belief must be durable enough to act from — it should not be abandoned after one contradicting document. But it must also be provisional — open to revision when accumulated evidence warrants it.
 
-These two properties are not in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
+These two properties aren't in tension. They define the difference between a belief and either a reflex (no durability) or a bias (no provisionality).
 
 Nir Eyal in *Beyond Belief* frames this precisely: the best beliefs are both practical and provisional — they offer just enough certainty to act, yet enough flexibility to adapt. A belief is a firmly held interpretation, open to revision when new evidence arrives. A belief that requires ignoring evidence to sustain itself is not a belief. It is a bias.
 
@@ -131,7 +148,7 @@ Not all revision is the same.
 
 **Incremental update** — The statement is refined as confidence rises or falls. The interpretive frame stays intact. A belief about "external attribution patterns" becomes more confident as three more comparable documents confirm it, or weakens as two consecutive documents show a different framing. The frame itself is stable.
 
-**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail does not become invalid — it is now understood differently.
+**Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint. What looked like "consistent external attribution" was a temporary framing choice that has now reversed. The prior evidence trail doesn't become invalid — it's now understood differently.
 
 A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what a working belief model is designed to produce: accumulated evidence eventually changing not just confidence, but understanding.
 
@@ -157,7 +174,7 @@ A belief passes through maturity stages as more comparable documents are process
 
 Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
 
-These arithmetic updates handle incremental revision. They do not handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
+These arithmetic updates handle incremental revision. They don't handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
 
 ### The Fact-to-Belief Gate
 
@@ -178,16 +195,18 @@ Not everything in a document becomes a belief. Most things should produce silenc
 
 ### What a Mature Belief Looks Like
 
-After five or more comparable documents, a belief entry looks like this. Notice that the heading is a complete, specific, falsifiable sentence — not a category label.
+After five or more comparable documents, a belief entry looks like this. The heading is a complete, specific, falsifiable sentence — not a category label. The same five-field structure applies to every stream, but what it contains differs by stream.
 
 ---
+
+**Stream 03 example — document-level patterns**
 
 **## Belief #7 — Every Variance Headline Opens With the Best-Performing Driver; the Negative Is Always the Second Clause**
 **Status:** Established | **Confidence:** 0.60 | **Direction:** Stable
 
 **Statement:** Established across five documents. Every variance headline in every deck is structured positive-first without exception. Whether the overall result is a beat or a miss, the opening attribution clause names a positive driver. In beats, the leading positive is the dominant contributor. In misses or mixed results, the team still locates a positive to lead with before acknowledging the headwind. The negative driver is structurally relegated to the second clause in every instance across all five documents. This is a systematic narrative convention, not a neutral factual ordering.
 
-**Why it matters:** A reader who knows this pattern knows to find the actual commercial story in the offset clause, not the headline. A reader who does not know this pattern will systematically overweight the opening attribution because it leads.
+**Why it matters:** A reader who knows this pattern knows to find the actual commercial story in the offset clause, not the headline. A reader who doesn't know this pattern will systematically overweight the opening attribution because it leads.
 
 **Evolution trail:** First seen in Document 1 — the headline led with channel efficiency ahead of a modest miss; I noted it but held it as a single observation. Document 2 repeated the same structure: a positive driver led even though the result was flat. At that point I held it as Provisional. Documents 3, 4, and 5 each confirmed the same structure without exception, including one document where the business posted its weakest result of the period — and still led with the best available positive. Established.
 
@@ -197,7 +216,41 @@ After five or more comparable documents, a belief entry looks like this. Notice 
 
 ---
 
-A mature belief stream holds 12–20 entries at this level of specificity. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
+**Stream 01 example — performance track record**
+
+**## Belief #3 — Revenue Guidance Has Been Met or Exceeded in 7 of 8 Comparable Quarters; the One Miss Was Preceded by a Specific Language Shift**
+**Status:** Established | **Confidence:** 0.72 | **Direction:** Stable
+
+**Statement:** This business delivers against its stated revenue guidance in 7 of 8 comparable quarters, median beat 1.4%. The single significant miss (−3.1%, Q3) was preceded in the prior-period document by a shift in forward commitment language from "we expect" to "we are targeting" — the only instance of that language shift in the record. Revenue guidance reliability is high; the language shift is a leading indicator that has now been confirmed once.
+
+**Why it matters:** High guidance reliability means a miss is signal, not noise. The language shift pattern, if it recurs before another miss, becomes an early warning indicator one period ahead of the result.
+
+**Evolution trail:** First three documents established the beat pattern. Q3 miss prompted investigation — reviewing prior document found the language shift. Subsequent five documents have all been beats with "we expect" language. One data point on the language shift; tracking for recurrence.
+
+**Normal baseline:** Next comparable document delivers at or above stated revenue guidance. Forward commitment language reads "we expect" or equivalent directional certainty.
+
+**Falsification test:** Two consecutive misses without a prior-period language shift would break the guidance reliability belief. A language shift that does not precede a miss would narrow the leading indicator belief.
+
+---
+
+**Stream 02 example — relationship claim initialized from document one, then deepened**
+
+**## Belief #5 — S&M Spend in Q1 Drives Bookings Recovery in Q2 With a 6–8 Week Lag; the Chain Has Held in 6 Consecutive Cycles**
+**Status:** Established | **Confidence:** 0.78 | **Direction:** Stable
+
+**Statement:** This business runs a deliberate spend-ahead-of-season mechanic. S&M spend compresses against NBV in Q1 (typically 28–34% range) as the business invests ahead of the Q2 demand peak. New bookings volume recovers in Q2 with a 6–8 week lag from peak Q1 spend. This mechanic was first stated explicitly by management in the Q1 2023 earnings transcript and has been confirmed across 6 consecutive Q1→Q2 cycles. Q1 S&M compression is not a problem — it is the thesis executing.
+
+**Why it matters:** An agent reading Q1 S&M/NBV in isolation will flag it as elevated. An agent that holds this belief will correctly interpret it as the seasonal investment phase of a mechanic that management has stated explicitly and that the delivery record has confirmed across 6 cycles. The calibration changes the entire downstream interpretation.
+
+**Evolution trail:** First seen in Q1 2023 earnings transcript — management stated: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into bookings over the following 6–8 weeks." I initialized this as a Candidate relationship belief on the first document where it appeared — the explicit causal claim was sufficient to warrant tracking. Q1→Q2 2023 confirmed the timing. Q1 2024 the same. By Q1 2025 I had observed the mechanic in three cycles and advanced to Confirmed. Cycles 4–6 narrowed the spend range to 28–34% and confirmed the 6–8 week lag. The chain is now Established — deviation in either direction is the signal worth investigating, not the compression itself.
+
+**Normal baseline:** Q1 S&M/NBV in 28–34% range. Q2 NBV at or above FC by mid-quarter. Lag between peak Q1 spend and bookings recovery: 6–8 weeks.
+
+**Falsification test:** A Q1 with S&M/NBV in range that does not produce Q2 bookings recovery by week 10 would indicate the mechanic has broken. Management no longer describing the Q1 spend as an intentional demand investment — a language shift in how they explain Q1 — would be an early warning signal worth tracking before the next cycle confirms or denies the break.
+
+---
+
+A mature belief stream holds 12–20 entries at this level of specificity across all streams. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
 
 ---
 
@@ -244,21 +297,27 @@ This is not financial mechanics (how the numbers work) or factual readings (what
 
 ### Stream 02 — Learning How This Business Generates and Loses Value
 
-**Discriminating axis: The financial mechanics.**
+**Discriminating axis: The financial mechanics — discovered from what documents say.**
 
-Not what the numbers say in any period — but how the numbers work as a system. Ratio relationships, conversion chains, lead-lag mechanics, the mathematical structure that governs how inputs become outputs in this specific business.
+This is the model-building stream. Its primary job is to discover how the business actually works by extracting the relationship claims that management states explicitly in recurring documents. Every time a document says "A drove B," "when X happens, Y follows," or "our investment in Q1 translates to volume in Q2," that is a structural claim about the business engine. Stream 02 captures those claims, accumulates them, and over time assembles the operating model of the business from the ground up.
+
+The user doesn't need to explain this model upfront. The documents contain it. Stream 02's job is to find it.
 
 **What it exclusively watches:**
 
+**Relationship claims (highest priority — extractable from document one).** When a document explicitly states that one metric causes, drives, enables, or predicts another, that is the primary signal. "Our Q1 marketing investment drove Q2 demand recovery" — extract: S&M spend → bookings, Q1 to Q2, stated mechanism is demand recovery, verbatim language captured. This becomes a Candidate belief on the first document it appears. It doesn't require multiple documents to initialize — explicit causal statements are evidence of the relationship from the moment they are stated. Subsequent documents either confirm, modify, or contradict it.
+
 **Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business model. When a thesis-defining ratio compresses below a threshold, is that a quarterly fluctuation or a business model signal? This stream holds the interpretation of what the ratio means, not just its value.
 
-**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. Q1 spend peaks → Q2 bookings recover. These relationships are invisible unless you have read enough documents to see the pattern. This stream holds the mechanic and the lag.
+**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. These relationships may appear explicitly in documents ("bookings typically convert to revenue within 30–45 days") or may emerge from observing metrics across multiple periods. Both forms are captured — explicit statements as Candidates on first mention, inferred patterns after two or more comparable periods confirm the relationship.
 
-**Normal ranges.** Not the plan target — the realistic operating range for each metric given the business model and seasonality. A number that looks alarming in isolation might be structural for this business in this period. This stream holds what normal looks like so a deviation is immediately visible.
+**Normal operating ranges.** Not the plan target — the realistic range for each metric given what the business has actually shown. A number that looks alarming in isolation may be structural for this business in this period. This stream builds these ranges from observed readings over time and from what management explicitly describes as normal.
 
-**Structural mechanics.** Take rate, contribution margin, revenue conversion. How the business turns an input into an output. The conversion chain from booking to revenue to profit, and where it breaks under pressure.
+**The operating chain.** The complete causal sequence connecting every thesis metric from first input to final output — with the mechanism and lag at each step. Not pairwise: the full chain. This chain is assembled incrementally: each relationship claim adds a link, each confirmed lag refines the timing. The chain answers: which metric is the throttle, which is the gauge, which is the governor, and where the chain breaks under pressure. It is falsifiable — a future document can show a link breaking, a lag shifting, or a conversion step degrading.
 
-**Metric relationships.** When two metrics diverge, the divergence is the signal. Volume flat, revenue growing = price-driven growth. Both growing = volume expansion. The relationship between metrics tells you more than either metric alone.
+**System stress behavior.** When the business is under pressure, which metric degrades first, which holds longest, and which recovers last? The sequence reveals what this business structurally protects. "Under demand pressure, this business absorbs the hit in volume before adjusting price — take rate holds even as bookings fall." Stress behavior beliefs require observing at least one pressure episode in the documents.
+
+**Feedback dynamics.** Whether the system self-corrects or self-amplifies under pressure. A self-correcting system holds margin under volume softness and recovers without intervention. A self-reinforcing contraction amplifies: volume miss → revenue miss → reinvestment cut → next-period volume miss, with no internal correction. This requires observing at least two comparable stress or recovery periods.
 
 **Does NOT capture:**
 - The specific values of metrics in any period — that is stream 04 (factual record)
@@ -266,7 +325,18 @@ Not what the numbers say in any period — but how the numbers work as a system.
 - What kind of business this is at a strategic level — that is stream 05 (strategic character)
 - How the document presents or frames the numbers — that is stream 03 (document-level patterns)
 
-**Evidence standard:** Every belief in this stream must be grounded in business reality — observable from actual metric behavior, ratio relationships, and financial outcomes. If the evidence for a belief is how the deck presents something (which section it appears in, how the team chose to frame it), that belief belongs in stream 03, not here.
+**Initialization rules by belief type:**
+
+| Belief type | Can initialize from doc 1? | Condition |
+|-------------|---------------------------|-----------|
+| Relationship claim | Yes — Candidate | Document explicitly states the relationship in causal language |
+| Ratio relationship | Yes — Candidate | Reading observed; interpretation is the hypothesis |
+| Lead-lag mechanic | Yes if explicit, else doc 2 | Explicit statement → doc 1; inferred from two moving metrics → doc 2 |
+| Operating chain | Yes — Candidate (partial) | Name what the document reveals; mark as incomplete until more links confirmed |
+| Stress behavior | After first stress episode | Requires observing at least one pressure period |
+| Feedback dynamics | After two comparable episodes | Requires two stress or recovery periods to distinguish self-correcting from self-amplifying |
+
+**Evidence standard:** Every belief in this stream must be grounded in business reality — in what metrics actually did or what management explicitly stated about how they connect. If the evidence is how the deck presents something rather than what the business actually does, the belief belongs in stream 03.
 
 **The line between stream 02 and stream 05:** "S&M/NBV compresses in Q1 and recovers in Q2" is a mechanic (02). "This is a performance-marketing-led business that can scale spend efficiently but has no organic demand creation" is strategic character (05). The mechanic is the observation. The character is the interpretation of what that mechanic reveals about what kind of company this is.
 
@@ -276,9 +346,9 @@ Without stream 02 loaded:
 > "S&M/NBV is 32%, 200bps above the FC target." — A fact answer. Reads the slide.
 
 With stream 02 loaded:
-> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC." — A judgment answer. Reads the slide and knows what it means.
+> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — the documents have established that this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC." — A judgment answer. Reads the slide and knows what it means because the system learned what it means from prior documents.
 
-The number did not change. The understanding of the number changed.
+The number did not change. The understanding of the number changed — earned from reading, not pre-specified.
 
 ---
 
@@ -374,13 +444,17 @@ Not the financial mechanics (stream 02) — but what those mechanics reveal abou
 
 ### Step −1 — Entity Foundation (Before Any Stream)
 
-Before any belief stream is created, the entity foundation must exist. The foundation is built once per entity through a structured interview (Prompt −1) and stored at `entities/{entity_id}/foundation.md`.
+Before any belief stream is created, the entity foundation must exist. The foundation is built once per entity through a short setup interview (Prompt −1) and stored at `entities/{entity_id}/foundation.md`.
 
-The foundation captures five things: the business model and profitability thesis, the thesis-defining metrics, the normalization model (what normal looks like for each metric), the narration design (how this entity communicates), and what matters vs. noise in its documents.
+The foundation captures three things: entity identity (name, organizational scope, what kind of entity it is), document types that will be read (format, cadence, who produces them), and the angles or streams to be tracked.
 
-Every belief stream for the entity inherits the foundation as its prior. Without it, streams produce document-level observations. With it, they produce grounded business judgment — beliefs connected to the thesis, not floating.
+**What the foundation does NOT pre-specify:** The business model, operating chain, causal relationships between metrics, normal ranges, narration patterns, and what matters vs. noise. These are discovered by reading documents — they are outputs of the belief streams, not inputs to them.
 
-The foundation is a living document. As streams accumulate deeper understanding, the foundation can be refined, and the refinement propagates to every stream for that entity.
+On the first 1–3 documents, Stream 02 operates in model-discovery mode: its primary job is to extract explicit relationship claims from documents and initialize them as Candidate beliefs. Those accumulated beliefs become the discovered business model. Stream 04 builds the factual baseline. Stream 03 begins mapping communication patterns. By document 3–4, the belief memory holds a preliminary model of the business — built from what the documents said, not from what the user specified.
+
+The foundation is updated — not rewritten — as the streams accumulate understanding. When Stream 02 establishes a durable operating chain belief, that belief can be referenced by the foundation as a confirmed mechanic. The understanding flows from reading to foundation, not the other way around.
+
+Every belief stream for the entity inherits the foundation as its prior context. The foundation keeps the streams aligned to the same entity definition, even as each stream builds its own understanding independently.
 
 ---
 
@@ -435,32 +509,40 @@ DOCUMENT ARRIVES (any format)
 
 ## 05 — The Prompt Architecture
 
-Three phases. Entity foundation runs once per entity. Stream setup runs once per stream. Document ingestion runs for every document.
+Three phases. Entity foundation runs once per entity. Stream setup runs once per stream. Document ingestion runs for every document. Belief activation runs on demand — whenever the belief memory is used to answer a question or prepare an analysis.
 
 ### Phase 0 — Entity Foundation (runs once per entity)
 
 | Prompt | What It Does |
 |--------|-------------|
-| **Prompt −1 — Entity Foundation** | Structured interview across five areas: business model and profitability thesis, thesis-defining metrics, normalization model, narration design, and what matters vs. noise. Produces `entities/{entity_id}/foundation.md`. Every stream for this entity reads it as its prior. |
+| **Prompt −1 — Entity Foundation** | Short setup interview: entity name and identity, document types and cadence, who produces the documents, and which streams to track. Produces `entities/{entity_id}/foundation.md`. Does NOT ask about the business model, operating chain, or causal relationships — those are discovered from documents. |
 
 ### Phase 1 — Stream Setup (runs once per belief stream)
 
 | Prompt | What It Does |
 |--------|-------------|
-| **Prompt 00 — Document Profile** | Interview agent. Given the entity foundation already exists, discovers document types, cadence, chosen angle, and what each document type can and cannot carry. Produces a structured Document Profile. |
-| **Prompt 01 — Strategic Blueprint** | Reads the entity foundation and the Document Profile together. Produces the master configuration document in five sections: foundation reference, stream identity, signal matrix, belief definition (with claim-heading rule, 5-field format, volume check), and candidate belief seed set (8–15 grounded hypotheses). |
-| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Embeds the foundation context. Encodes the candidate seed set, claim-heading rule, 5-field format, volume check, no-renumber rule, and all evolution actions. |
-| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiled belief prompt and compiles the runtime system prompt for the fact extractor. Embeds foundation context (thesis metrics, normalization model, narration design). Mandates granularity to support 8–15 Candidate beliefs on the first document. One compiled extractor per document type. |
+| **Prompt 00 — Document Profile** | Interview agent. Discovers document types, cadence, chosen angle, and what each document type can and cannot carry. Produces a structured Document Profile. |
+| **Prompt 01 — Strategic Blueprint** | Reads the entity foundation and the Document Profile together. Produces the master configuration document: stream identity, signal matrix, belief definition, and candidate belief seed set (8–15 hypotheses). For Stream 02, the seed set includes relationship hypotheses — not pre-specified relationships, but prompts for what to look for in the first document. |
+| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Encodes the candidate seed set, claim-heading rule, 5-field format, volume check, no-renumber rule, relationship belief initialization rules, and all evolution actions. |
+| **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiles the runtime system prompt for the fact extractor. Places RELATIONSHIP CLAIM extraction as the top priority signal type. Mandates granularity to support 8–15 Candidate beliefs on the first document. One compiled extractor per document type. |
 
 ### Phase 2 — Document Ingestion (runs for every document)
 
 | Component | What It Does |
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
-| **fact_extractor.py** | Reads L3 units using the compiled fact extractor prompt. Extracts signals grounded in the foundation — at the granularity needed for belief-level claims, not summary-level observations. Writes fact log to L2. Does not interpret — only captures. |
-| **belief_engine.py** | Reads the fact log and the existing belief memory using the compiled belief reasoning prompt. Numbered beliefs, claim-as-heading, 5-field format. Makes surgical updates to `belief.md`. Runs volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
+| **fact_extractor.py** | Reads L3 units. First pass: scan for RELATIONSHIP CLAIMS — explicit statements connecting one metric to another. Second pass: extract individual metric signals, attribution statements, structural observations. Writes fact log to L2. Does not interpret — only captures. |
+| **belief_engine.py** | Reads the fact log and the existing belief memory. Relationship claims from the fact log initialize Stream 02 Candidate beliefs on first document. Numbered beliefs, claim-as-heading, 5-field format. Surgical updates to `belief.md`. Volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
 
-The cascade principle: quality injected at entity foundation and blueprint propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It never receives the foundation, the blueprint, or the raw document — everything it needs is already encoded inside the compiled prompt.
+### Phase 3 — Belief Activation (runs on demand)
+
+| Prompt | What It Does |
+|--------|-------------|
+| **Prompt 07 — Belief Activation** | Reads the current belief memory and produces a specific output for a specific use case: pre-read briefing (what to expect from the next document), analytical Q&A (answers a specific question using the belief memory), or meeting prep (what to push on, what to watch for, what can be skipped). This is how the belief memory is used, not just built. |
+
+The cascade principle: quality injected at the blueprint propagates forward without additional configuration. The belief engine at runtime receives only its compiled prompt, the existing `belief.md`, and the fact log. It never receives the foundation, the blueprint, or the raw document — everything it needs is encoded inside the compiled prompt.
+
+The understanding flows from documents upward: documents → relationship claims → Stream 02 beliefs → discovered business model. Not the other way around.
 
 See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the full step-by-step pipeline and runtime contract.
 
@@ -468,16 +550,19 @@ See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the
 
 ## 06 — Why This Matters
 
-### The Three Use Cases
+### The Four Use Cases
 
 **01 — Pre-reading a document**
-Before reading the next document, an analyst reads the belief first. It tells them what is already known to be true about how this entity communicates and performs. They walk in with priors, not cold. They read faster, notice more, and ask better questions.
+Before reading the next document, an analyst loads the belief memory into Prompt 07 and gets a briefing: here is what this document is expected to show, here is what normal looks like for each area it will cover, and here is what would constitute a signal worth investigating — deviation from a held belief. They walk in with priors, not cold.
 
-**02 — Anomaly detection**
-The belief sets the normal. When a new document arrives, the question is not "what does this document say?" but "what does this document do differently from what was expected?" Without a precise baseline, anomalies are invisible. With a belief, they surface immediately — not because a rule was triggered, but because the expected state is known.
+**02 — Analytical Q&A**
+An analyst asks a specific question: "Is the Q1 S&M compression a problem?" Prompt 07 reads the belief memory and answers from it: "Belief #5 says no — this business runs a deliberate spend-ahead-of-season mechanic, confirmed in 6 consecutive cycles. Q1 compression is the thesis executing. The question to watch is whether Q2 bookings recover on the 6–8 week timeline, not whether Q1 spend was elevated." The answer is not a summary of the current document. It is calibrated judgment from accumulated evidence.
 
-**03 — Institutional memory transfer**
-A new analyst reads the belief and gets years of behavioral context in minutes. For this to work, the belief must be specific enough to be actionable — not just "the business is seasonal" but specific enough that the analyst knows exactly what to look for in the next document, and what its absence would mean.
+**03 — Anomaly detection**
+The belief sets the normal. When a new document arrives, the question is not "what does this document say?" but "what does this document do differently from what was expected?" Without a precise baseline, anomalies are invisible. With a belief, they surface immediately — not because a rule was triggered, but because the expected state is known and the deviation from it is specific.
+
+**04 — Institutional memory transfer**
+A new analyst or a new model reads the belief memory and gets the accumulated business understanding immediately. For this to work, the beliefs must be specific enough to be actionable — not just "the business is seasonal" but specific enough that the reader knows exactly what to look for, what normal is, and what its absence would mean. The belief memory is the knowledge asset. It transfers when models change, when analysts rotate, when teams rebuild.
 
 ---
 
@@ -550,7 +635,7 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Receive the raw document at runtime. It reads only the compiled belief reasoning prompt, the existing `belief.md`, and the fact log.
 - Receive the blueprint at runtime. Everything it needs from the blueprint is already encoded in the compiled prompt.
 - Invent evidence not present in the fact log. If the fact log does not contain it, the belief engine does not hold it.
-- Write a belief from a single document. A first-document entry is Candidate only — explicitly marked as not yet a belief.
+- Write a belief at higher than Candidate stage from a single document. A first-document entry is Candidate only — explicitly marked as pending confirmation.
 - Lower confidence precipitously on a single contradicting signal. One document showing tension does not revise an Established belief.
 - Write beliefs that fail the quality test: non-falsifiable, entity-generic, single-period, template artifacts, unsupported causality, not grounded in the foundation.
 - Use category labels as headings. The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a topic name.

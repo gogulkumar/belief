@@ -16,17 +16,21 @@ The foundation lives at `entities/{entity_id}/foundation.md`. It is built once p
 
 ## What a Belief Is
 
-A belief is not an opinion. A belief is not a summary. A belief is not a metric reading. A belief is not a one-time observation. A belief is not a forecast. A belief is not a recommendation.
+A belief is not an opinion. Not a summary. Not a metric reading. Not a one-time observation. Not a forecast. Not a recommendation.
 
 In this system, a belief is a **durable, falsifiable, and actionable interpretation** about how an entity behaves, communicates, explains performance, frames outcomes, or makes recurring decisions across comparable documents over time.
 
-A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It is not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
+A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It's not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
+
+**A belief can also be a discovered relationship** — a durable claim that one metric in this business drives another, with a stated direction, lag, and mechanism. These relationship beliefs are the connective tissue that turns isolated metric observations into a working model of the business. They are discovered from what the documents say, not pre-specified by the user. When a document states explicitly that A drives B, that is a relationship claim — the most structurally important signal the system can extract. It becomes a Candidate belief on the first document it appears in, and is confirmed or contradicted as more documents arrive.
 
 A belief helps answer:
 
 > "Before I open the next comparable document, what should I already expect to be true — and what would surprise me if it changed?"
 
-That expectation is what makes the belief useful.
+That expectation is what makes the belief useful. For relationship beliefs, it also answers:
+
+> "When this metric moves, what else should I expect to move — and when?"
 
 ---
 
@@ -131,7 +135,7 @@ This may only be true because the deck template forces that order. A stronger be
 
 A belief must be durable enough to act from. It should not be abandoned after one contradicting document. But a belief must also be provisional — open to revision when accumulated evidence warrants it.
 
-These two properties are not in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
+These two properties aren't in tension. Durability without provisionality is bias. Provisionality without durability is noise. Together they define what makes a belief useful.
 
 Nir Eyal in *Beyond Belief* frames this as practical and provisional: the best beliefs offer just enough certainty to act, yet enough flexibility to adapt. A belief that requires ignoring evidence to sustain itself is not a belief — it is a bias that will eventually blind the analyst to what the documents are actually showing.
 
@@ -143,7 +147,7 @@ Not all revision is the same. The system must distinguish between them.
 
 **Perspective shift** — Enough evidence accumulates to suggest a fundamentally different interpretation of what has been observed. The interpretive frame itself changes. What looked like "cost efficiency behavior" was actually a response to a structural market constraint that has now resolved. The prior evidence trail does not become invalid — it is now understood differently under a new interpretation.
 
-A perspective shift is not a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
+A perspective shift isn't a failure of the previous belief. The previous belief was the best available interpretation at the time, held provisionally. A perspective shift is what accumulated evidence is meant to produce: not just more confidence in the same frame, but occasionally, a different frame entirely.
 
 ### Beliefs Shape What You See Next
 
@@ -213,19 +217,69 @@ Every belief entry must use this structure. The heading is the claim. The five f
 
 In any belief stream, beliefs must be careful because documents often contain statements, measures, and framing choices that can look meaningful but may not be durable.
 
-A strong belief is usually about one of the following:
+Each belief stream accumulates a different type of durable understanding. A strong belief belongs to exactly one stream — and the stream determines what form the belief takes.
 
-- how a team repeatedly explains performance or outcomes
-- which measures it treats as primary versus secondary
-- which comparison it uses as the narrative anchor (plan, forecast, prior period, target)
-- how it distinguishes controllable drivers from external drivers
-- how measure relationships behave across periods
-- how plans or commitments are explained when missed
-- how positive or negative performance is framed
-- what topics appear, disappear, move earlier, or get buried
-- how the operating mechanics of the business appear to hold across time
+**Stream 01 — Learning What the Business Has Consistently Shown**
 
-A belief must not be a raw reading of a single measure. It must not be a single result from one period. It must not be an unsupported causal claim. It must not be a generic statement that applies to any entity in any domain.
+A strong belief in this stream is about the delivery record: what this business has actually produced across comparable periods, not what it says or intends. Strong beliefs in this stream look like:
+
+- whether guidance is reliably met, beaten, or missed — and by how much, across how many comparable periods
+- whether specific thesis metrics are consistent or volatile across comparable periods
+- whether commitments made in one period are reliably honored in the next — the track record of stated expectations vs. actual outcomes
+- what leading signals have historically preceded beats or misses
+
+A belief in this stream must carry counts (N of M periods), magnitudes (median beat/miss), and direction. Pattern language alone is insufficient.
+
+**Stream 02 — Learning How This Business Generates and Loses Value**
+
+A strong belief in this stream is about the financial mechanics and systemic behavior: how the business is actually wired. Strong beliefs look like:
+
+- ratio relationships and efficiency ranges that define normal operating leverage (e.g., S&M/NBV in the 28–34% range)
+- the operating chain: the causal sequence connecting thesis metrics with named lag at each step (e.g., spend → bookings in 6–8 weeks → revenue in 30–45 days)
+- stress sequencing: which metric degrades first under pressure, which holds, and which recovers last — revealing what this business structurally protects
+- feedback dynamics: whether the business self-corrects under pressure or amplifies pressure through a reinforcing loop (cost cuts → demand shortfall → further cuts)
+
+Operating chain, stress behavior, and feedback dynamics beliefs require multiple comparable documents. They cannot be initialized from the first document alone.
+
+**Stream 03 — Learning How Documents Frame the Story**
+
+A strong belief in this stream is about how this entity communicates in recurring documents. Strong beliefs look like:
+
+- how the team repeatedly explains performance or outcomes — which causes it names, in what order, framed how
+- which comparison it uses as the primary narrative anchor (plan, forecast, prior period, target)
+- how it distinguishes controllable drivers from external drivers — and whether that framing shifts under pressure
+- what language recurs — specific words or phrases that appear consistently in specific contexts
+- how positive or negative performance is framed — the structural pattern of how good news leads and bad news follows
+- what topics appear, disappear, move earlier in the document, or get buried — structural sequencing across comparable documents
+
+A belief in this stream must be grounded in document-level evidence (verbatim language, structural position, sequencing). It must not be grounded in business outcomes.
+
+**Stream 04 — Learning What Finance Has Recorded as True**
+
+A strong belief in this stream is about what the entity has formally stated as a metric reading. Strong beliefs look like:
+
+- the actual value of a thesis metric, with period, benchmark, and comparison basis
+- a factual account of how a key metric has moved across comparable periods — the recorded history of specific readings
+- a structural fact about how a measure is defined or calculated in this entity's documents (metric name, denominator, normalization approach)
+
+Every belief in this stream must carry: the metric name, the value, the period, and the comparison benchmark. Missing any of these makes the entry a fragment, not a belief.
+
+**Stream 05 — Learning What Kind of Business This Actually Is**
+
+A strong belief in this stream is about strategic character — observed from what the business actually does, not from what its documents say. Strong beliefs look like:
+
+- whether this business competes primarily on price, volume, efficiency, or product advantage — revealed by where margin is made and lost across periods, not from stated strategy
+- how it responds under pressure — whether it protects investment and accepts short-term margin compression, or cuts and accepts long-term risk
+- what kind of growth this business actually runs (unit expansion, price increase, mix shift, geographic spread) — revealed by what drives the revenue line across comparable periods
+- where the structural advantages and vulnerabilities appear from repeated financial outcomes
+
+A belief in this stream must be grounded in observed business outcomes — not deck observations or management claims.
+
+---
+
+**Across all streams:**
+
+A belief isn't a raw reading of a single measure. It isn't a single result from one period. It isn't an unsupported causal claim. It isn't a generic statement that applies to any entity in any domain. It isn't a deck observation dressed as business insight.
 
 **The belief must carry interpretation. The interpretation must be grounded in the foundation.**
 
@@ -248,4 +302,4 @@ Before creating or updating a belief, ask:
 11. Is the heading a specific, testable claim — not a category label?
 12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
 
-If the answer is no to any of these, do not create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.
+If the answer is no to any of these, don't create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.

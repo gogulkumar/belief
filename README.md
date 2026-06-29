@@ -22,24 +22,26 @@ These behavioral patterns are not visible in any single document. They only emer
 
 A senior analyst who has read ten months of the same business's review decks holds a mental model that no one has written down. They know what a normal deck looks like — so they immediately see what is unusual about this one. They know how this management team typically explains a shortfall. They know which commitment is always ambitious and which is typically conservative.
 
-That accumulated understanding is not in a file. It is not queryable. When the analyst leaves, it leaves with them.
+That accumulated understanding isn't in a file. It isn't queryable. When the analyst leaves, it leaves with them.
 
 ---
 
 ## What Belief Is
 
-Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of the behavioral patterns inside them.
+Belief reads business process deliverables — the recurring decks, transcripts, reports, and documents that organizations already produce — and builds a living model of how the business works and behaves.
 
 Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
-It does not store facts. It accumulates **beliefs**.
+**The system discovers the business model by reading. The user doesn't need to explain it upfront.** The documents contain the model — management explains how the business works every period. When a transcript says "Q1 marketing investment drives Q2 demand recovery with a 6–8 week lag," that is a relationship claim. The belief system extracts it, initializes a Candidate belief on the first document it appears in, and confirms or contradicts it as more documents arrive. By document 3–4, the belief memory contains a preliminary working model of the business — discovered from reading, not specified from assumption.
+
+It doesn't store facts. It accumulates **beliefs**.
 
 | A Fact | A Belief |
 |--------|----------|
 | Revenue was $2.3B in Q3. | Revenue growth is increasingly dependent on pricing rather than volume, suggesting the business is extracting from its existing base rather than expanding it. |
 | Static. Answers lookup queries. | Carries direction, confidence, and trajectory. Tells you what to expect in the next document — and what would be a surprise. |
 
-A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it is a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
+A belief is both **durable** and **provisional**. Durable: it holds across time, not abandoned after one contradicting document. Provisional: it's a working interpretation open to revision when accumulated evidence warrants it. When enough evidence accumulates to demand a different interpretive frame — not just refined confidence, but a different understanding of what the pattern means — the belief shifts perspective, not just statement.
 
 The belief memory carries four kinds of institutional understanding:
 
@@ -76,14 +78,15 @@ Custom belief streams are also supported: Marketing Efficiency Memory, Forecast 
 
 ## How Belief Works
 
-0. **Entity foundation built** — one interview session builds `foundation.md`: the business model, thesis metrics, normalization model, and narration design for the entity
+0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model isn't pre-specified — it's discovered from documents.
 1. **Stream setup** — defines the entity, the angle, and the document set
-2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle, grounded in the foundation; seeds 8–15 candidate belief hypotheses
-3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt, carrying the foundation context
+2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle; seeds 8–15 candidate hypotheses including relationship hypotheses for Stream 02
+3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt
 4. **Document arrives** — any format: deck, transcript, report, audio
-5. **Signals extracted** — the fact extractor captures raw, granular signals from the document at the level needed for 8–15 distinct Candidate beliefs
-6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list
-7. **Silence by default** — most inputs produce no update. The gate is the mechanism.
+5. **Signals extracted** — first pass: relationship claims (explicit statements connecting metrics); second pass: candidate signals. Relationship claims from the first document initialize Stream 02 Candidate beliefs immediately.
+6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list. Relationship beliefs confirmed across periods build the operating model of the business.
+7. **Belief activated** — at any point, the belief memory can be queried: pre-read briefing before the next document, a calibrated answer to a specific question, or a meeting brief with what to push on and what to accept.
+8. **Silence by default** — most inputs produce no update. The gate is the mechanism.
 
 Each belief carries:
 - **Claim as heading** — `## Belief #N — [specific, falsifiable sentence]`
@@ -118,7 +121,8 @@ belief/
 │   ├── 00-document-profile.md             ← Prompt 00: interview agent to build document profile
 │   ├── 01-generate-blueprint.md           ← Prompt 01: produce the Strategic Blueprint
 │   ├── 03-belief-reasoning-compiler.md    ← Prompt 03: compile the belief reasoning prompt
-│   └── 06-fact-extractor.md              ← Prompt 06: compile the fact extraction prompt
+│   ├── 06-fact-extractor.md              ← Prompt 06: compile the fact extraction prompt
+│   └── 07-belief-activation.md           ← Prompt 07: activate the belief memory (pre-read, Q&A, meeting prep)
 │
 ├── config/
 │   └── belief_config.yaml                  ← reference configuration file

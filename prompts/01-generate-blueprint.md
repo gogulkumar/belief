@@ -36,20 +36,22 @@ Produce the blueprint in five sections.
 
 ### Section 0 — Foundation Reference
 
-Before anything else, state how the entity foundation grounds this specific stream.
+Before anything else, state what is known about this entity from the foundation, and what will be discovered from documents.
 
 ```markdown
 ## Section 0 — Foundation Reference
 
 **Entity foundation**: entities/{entity_id}/foundation.md
 
-**Thesis metrics relevant to this stream**: [Which of the foundation's thesis-defining metrics are most visible in the documents this stream will read. Be specific — name them as the entity uses them.]
+**Entity identity**: [Entity name, organizational scope, what kind of entity this is]
 
-**Normalization context**: [What the foundation's normalization model says about normal ranges for those metrics. What seasonal patterns or recurring one-time effects are relevant. What a meaningful deviation looks like.]
+**Document types**: [What documents will be read, their cadence, who produces them]
 
-**Narration design relevant to this stream**: [What the foundation's narration design section tells us to expect when reading this entity's documents — how it leads, how it frames good/bad news, what gets buried. Ground the belief definition in this.]
+**What the foundation pre-specifies**: [Only what was explicitly provided at setup — entity identity and document types. Do not invent the business model, operating chain, or behavioral patterns. These are discovered from documents.]
 
-**Signals vs. noise for this stream**: [From the foundation's what-matters-vs-noise section — which signals are high-value for this stream, which are present-but-uninformative, and any known document quirks that could mislead extraction.]
+**What will be discovered from documents**: [Name the areas the belief streams will build as they read: the operating model (Stream 02 relationship claims), the factual baseline (Stream 04), the communication patterns (Stream 03), the delivery track record (Stream 01), and the strategic character (Stream 05). On first document, these areas are hypotheses, not facts.]
+
+**Known prior context** (if any): [If the user provided any context about how the business works — a specific relationship they believe exists, a metric they know is important — encode it here as a starting hypothesis, clearly labeled as user-provided rather than document-derived. It will be treated as a Candidate belief seed, not as established fact.]
 ```
 
 ---
@@ -74,7 +76,7 @@ This is the identity record. Downstream prompts read this to know what entity an
 
 ### Section 2 — Document Types and Signal Matrix
 
-For each document type in scope, answer these questions explicitly. Do not list what you guess might be in the document. Answer based on what the Document Profile told you — and what can realistically be inferred about documents of this type for this entity at this cadence.
+For each document type in scope, answer these questions explicitly. Don't list what you guess might be in the document. Answer based on what the Document Profile told you — and what can realistically be inferred about documents of this type for this entity at this cadence.
 
 For each document type:
 
@@ -101,7 +103,7 @@ This is the most critical section. It defines what a belief looks like — speci
 
 Downstream compilers (Prompt 03 and Prompt 06) read this section to understand what they are building toward. Without this section, they fall back on generic angle rules. With this section, they work from entity-specific grounding.
 
-Answer each question explicitly. Do not leave any blank.
+Answer each question explicitly. Don't leave any blank.
 
 **3.1 — What does a strong belief entry look like for this entity?**
 
@@ -145,7 +147,15 @@ This is the pattern direction — what the fact extractor must watch for. Choose
 - **Behavioral markers**: what the entity consistently does or consistently omits
 - **Measure relationships**: how specific measures are positioned relative to each other across documents
 
-For this entity in this angle, which of these forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
+For the **Learning How This Business Generates and Loses Value** angle, three additional pattern forms are required. These must be explicitly answered in the blueprint even if the first documents cannot yet confirm them — they are the hypotheses the belief engine will be looking to build over time:
+
+- **Operating chain mapping**: What is the complete causal sequence connecting the thesis metrics for this entity, from first input to final outcome? Name each metric in the chain, the mechanism connecting it to the next, and the estimated lag. Example: "Spend → CPX → Demand volume (same period) → Bookings (lag: 0–7 days) → Revenue (lag: 30–45 days) → Contribution margin (same period as revenue)." This is the engine of the business and the most important systemic belief the stream will build.
+
+- **Stress sequencing**: When this business is under pressure, which metric is likely to degrade first, which is likely to hold, and which is the last to recover? Ground this in the foundation's business model and thesis metrics. Name the expected degradation sequence and what a document would need to show to confirm or contradict it.
+
+- **Feedback loop detection**: Is this business likely to self-correct under pressure, or does pressure in one metric amplify into others? State the hypothesis — which direction, through which mechanism — and what signal in a future document would confirm a self-correcting vs self-reinforcing dynamic.
+
+For this entity in this angle, which of the standard forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
 
 **3.5 — What can these documents NOT give this stream, no matter how carefully they are read?**
 
@@ -159,23 +169,35 @@ State the minimum belief count for this stream. Fewer than 8 active beliefs indi
 
 ### Section 4 — Candidate Belief Seed Set
 
-Before any document is processed, the blueprint seeds a set of candidate beliefs — specific, falsifiable claims about how this entity is likely to behave, derived from the foundation and the document profile. These are hypotheses grounded in institutional knowledge, not document facts. They are the starting frame for the belief engine on the first document.
+Before any document is processed, the blueprint seeds a set of candidate beliefs — hypotheses about what the first document might reveal. These are not pre-specified facts about the business. They are starting frames that tell the belief engine what to look for and what questions to hold going into the first document.
+
+For Stream 02, the seed candidates are **relationship hypotheses** — questions about how metrics might connect, not assertions that they do. The first document will reveal the actual relationships; the seed candidates make the belief engine alert to them.
 
 Produce between 8 and 15 seed candidates. Each must be:
 - A complete, falsifiable sentence (a claim, not a category)
-- Grounded in the foundation — the business model, thesis metrics, narration design, or normalization model
-- Specific enough to be confirmed or broken by a single document
-- Written in the entity's vocabulary
+- For Stream 02: a relationship hypothesis — "If A drives B, the document should show [this pattern]" — grounded in what the document type can plausibly contain
+- For other streams: specific enough to be confirmed or broken by a single document
+- Written in the entity's vocabulary where known
 
 For each candidate:
 
 ```markdown
-**Candidate #N**: [The claim as a complete sentence]
-**Foundation grounding**: [Which part of the foundation this draws from — thesis metric, narration pattern, normalization model, or known quirk]
+**Candidate #N**: [The claim or relationship hypothesis as a complete sentence]
+**Type**: [RELATIONSHIP HYPOTHESIS / PERFORMANCE HYPOTHESIS / COMMUNICATION HYPOTHESIS / FACTUAL HYPOTHESIS]
+**What to look for in the first document**: [What signal in the document would confirm, contradict, or refine this candidate]
 **Falsification trigger**: [What a document must show to break this candidate]
 ```
 
-These are hypotheses. The belief engine may confirm them, discard them, narrow them, or replace them with better-grounded beliefs from what it actually observes. The seed set exists so the first document produces 8–15 specific Candidate beliefs rather than 3–4 shallow umbrellas.
+**Relationship hypotheses (for Stream 02)** take a specific form:
+
+```markdown
+**Candidate #N**: [Metric A] may drive [Metric B] — the document should contain an explicit causal statement or correlated movement if this is true.
+**Type**: RELATIONSHIP HYPOTHESIS
+**What to look for**: Any explicit statement connecting A to B. Any correlation where A moved in a prior period and B is moving now. Any management language attributing B's movement to A.
+**Falsification trigger**: Document shows B moving without any reference to A. Or document shows A and B moving independently across multiple comparable periods.
+```
+
+These are hypotheses. The belief engine confirms them, discards them, or replaces them with better-grounded beliefs from what the documents actually reveal. Relationship hypotheses that are confirmed by an explicit statement in the first document immediately become Stream 02 Candidate beliefs — they don't need to wait for multiple documents.
 
 ---
 
@@ -183,16 +205,16 @@ These are hypotheses. The belief engine may confirm them, discard them, narrow t
 
 **The blueprint is for the downstream compilers, not for the user.** Write it so that Prompt 03 and Prompt 06 can read it and produce entity-specific, angle-grounded output without additional input.
 
-**Section 0 comes first.** The foundation reference must be completed before defining the belief stream. Every subsequent section inherits from it.
+**Section 0 comes first.** Complete the foundation reference before defining the belief stream. Every subsequent section inherits from it.
 
 **Answer every section.** If information is missing, say so explicitly — and explain what the downstream prompts should assume in the absence of that information.
 
-**Do not hedge.** The blueprint must contain commitments, not possibilities. "It may be the case that..." is not useful to a downstream compiler. "This entity leads with [X] comparison before [Y]" is.
+**Don't hedge.** The blueprint must contain commitments, not possibilities. "It may be the case that..." is not useful to a downstream compiler. "This entity leads with [X] comparison before [Y]" is.
 
 **The angle is a hypothesis, not a constraint.** If the Document Profile describes a scope where the stated angle has almost no signal, name this mismatch explicitly in Section 3.5. Suggest a better-fitting angle.
 
-**The worked example in Section 3.1 must be real.** It is used by Prompt 03 as the template for the execution prompt. A generic worked example produces a generic execution prompt.
+**The worked example in Section 3.1 must be real.** It's used by Prompt 03 as the template for the execution prompt. A generic worked example produces a generic execution prompt.
 
 **The candidate seed set in Section 4 must be grounded.** Each candidate must trace back to something specific in the foundation — not invented from genre knowledge about "businesses like this."
 
-**Use the entity's own vocabulary.** If the foundation describes specific planning benchmarks, document sections, or language the entity uses, encode that vocabulary in the blueprint. Downstream prompts cannot invent this vocabulary; they can only use what the blueprint gives them.
+**Use the entity's own vocabulary.** If the foundation describes specific planning benchmarks, document sections, or language the entity uses, encode that vocabulary in the blueprint. Downstream prompts can't invent this vocabulary; they can only use what the blueprint gives them.

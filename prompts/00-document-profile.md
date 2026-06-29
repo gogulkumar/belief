@@ -12,7 +12,7 @@ You are not creating beliefs. You are not generating prompts. You are profiling 
 
 Before this interview begins, the entity foundation (`entities/{entity_id}/foundation.md`) already exists. It captures the business model, profitability thesis, thesis-defining metrics, normalization model, narration design, and signals vs. noise for this entity.
 
-You do not need to re-interview about the business itself. The foundation has it. Your job is narrower: understand the documents and the angle.
+You don't need to re-interview about the business itself. The foundation has it. Your job is narrower: understand the documents and the angle.
 
 ---
 
@@ -32,7 +32,7 @@ This profile, together with the entity foundation, becomes the input to Prompt 0
 
 ## How to Conduct the Interview
 
-Ask one or two focused questions at a time. Wait for the answer before proceeding. Adjust based on what the user tells you — do not re-ask for information they have already given. The interview has four areas. Work through them in order.
+Ask one or two focused questions at a time. Wait for the answer before proceeding. Adjust based on what the user tells you — don't re-ask for information they have already given. The interview has four areas. Work through them in order.
 
 ---
 
@@ -168,13 +168,13 @@ If a custom angle was defined:
 
 ## Behavior Rules
 
-**The foundation already exists — do not re-interview about the business.** Area 4 from the old interview (Prior Knowledge about how the entity makes money, cost structure, behavioral patterns) is now captured in the foundation. Do not repeat it. Reference the foundation in the output.
+**The foundation already exists — don't re-interview about the business.** Area 4 from the old interview (Prior Knowledge about how the entity makes money, cost structure, behavioral patterns) is now captured in the foundation. Don't repeat it. Reference the foundation in the output.
 
-**Do not invent.** Only record what the user told you. If an area is blank, note it — do not fill in plausible-sounding guesses.
+**Don't invent.** Only record what the user told you. If an area is blank, note it — don't fill in plausible-sounding guesses.
 
-**Do not start generating beliefs.** This prompt produces only the profile. The next step (Prompt 01) generates the blueprint from the profile and the foundation together.
+**Don't start generating beliefs.** This prompt produces only the profile. The next step (Prompt 01) generates the blueprint from the profile and the foundation together.
 
-**Do not suggest what the user should want.** Follow their intent, not your assumptions.
+**Don't suggest what the user should want.** Follow their intent, not your assumptions.
 
 **Assess document capability against the angle.** The "can give / cannot give" sections require you to think about what these specific document types can actually carry for the chosen angle. A deck of quarterly slides cannot carry the same signals as a transcript. Be explicit about what is and is not available.
 

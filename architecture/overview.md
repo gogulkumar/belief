@@ -98,7 +98,7 @@ Belief is not a retrieval system, a chat interface, or a database. It is the **p
 
 ## How Agents Use Belief
 
-Agents do not query Belief at runtime. The belief memory is **loaded into context at session start** — the same way a senior analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
+Agents don't query Belief at runtime. The belief memory is **loaded into context at session start** — the same way a senior analyst reads their notes before a meeting. Every inference is then implicitly grounded by accumulated business understanding.
 
 ### Query Agent
 Without Belief: queries data blind — syntactically correct answers, contextually naive.

@@ -35,22 +35,25 @@ Your job is to walk the user through every stage in order, produce the output fo
 
 Start by asking these two questions. Ask both at once.
 
-> **Question 1:** Do you already have beliefs set up for this entity and stream?
-> - **Yes** → You have an existing `belief.md` file and want to process a new document or rebuild
-> - **No** → You are starting from scratch for a new entity or new stream
+> **Question 1:** What do you want to do?
+> - **Start from scratch** — new entity, no documents processed yet
+> - **Process a new document** — beliefs already exist, new document arriving
+> - **Use the belief memory** — answer a question, prepare for a meeting, or get a pre-read briefing
+> - **Rebuild** — existing beliefs need to be regenerated
 >
 > **Question 2:** Do you have an entity foundation already built (`foundation.md`)?
 > - **Yes** → Paste it in and I will read it before we start
-> - **No** → I will build it first through a short interview
+> - **No** → I will build it first — it takes about 5 minutes
 
 Based on the answers, take one of these paths:
 
 | Situation | Path |
 |-----------|------|
-| No foundation, no beliefs | → Run Stage 1 (Foundation), then Stage 2 (Stream Setup), then Stage 3 (Compile), then Stage 4 (Process Document) |
-| Foundation exists, no beliefs | → Skip to Stage 2 (Stream Setup), then Stage 3 (Compile), then Stage 4 (Process Document) |
+| No foundation, no beliefs | → Run Stage 1 (Foundation), then Stage 2 (Stream Setup), then Stage 3 (Compile), then Stage 4 (Process First Document) |
+| Foundation exists, no beliefs | → Skip to Stage 2 (Stream Setup), then Stage 3 (Compile), then Stage 4 (Process First Document) |
 | Foundation and beliefs exist, new document arriving | → Skip to Stage 5 (Update Existing Stream) |
-| Foundation and beliefs exist, want to rebuild | → Ask the user which rebuild option they want (see Stage 6) |
+| Foundation and beliefs exist, want to use the belief memory | → Skip to Stage 7 (Belief Activation) |
+| Foundation and beliefs exist, want to rebuild | → Ask which rebuild option they want (see Stage 6) |
 
 Tell the user which path you are taking before you begin.
 
@@ -60,69 +63,59 @@ Tell the user which path you are taking before you begin.
 
 **Skip this stage if the user already has a `foundation.md`.**
 
-Run a structured interview across five areas. Ask one or two questions at a time. Wait for each answer before continuing. Do not invent content.
+This is a short setup — 5 minutes. You are capturing entity identity and document context only. You are NOT asking the user to explain how the business works — the documents will teach the system that. Ask these questions one group at a time. Wait for each answer.
 
-### Area 1 — Business Model
+### Group 1 — Entity Identity
 Ask:
-- What kind of business is this? What is the core transaction or exchange?
-- What is the profitability thesis — the central bet the business is making?
-- What does winning look like for this business model?
+- What is the name of this entity? (company, division, product line, team — whatever level this is)
+- What kind of entity is it? One sentence: what does it do?
+- Who produces the documents you will be reading? (management team, finance team, external research, etc.)
 
-### Area 2 — Thesis-Defining Metrics
+### Group 2 — Documents
 Ask:
-- Which metrics are the ones that tell you whether the business is actually working?
-- For each: why does it matter for the profitability thesis?
-- Which metrics appear in documents but are reporting detail rather than thesis-defining?
+- What document types will flow through this system? (e.g., quarterly business review decks, earnings call transcripts, monthly reports, investor presentations)
+- For each: how often do they arrive? What format are they in?
+- How many documents do you have now? How many do you expect in the next six months?
 
-### Area 3 — Normalization Model
+### Group 3 — Any Known Context (Optional)
 Ask:
-- For each thesis metric, what is the normal operating range?
-- What is seasonal? Which metrics follow a predictable pattern across the calendar?
-- How large does a move need to be to be meaningful rather than noise?
+- Is there anything specific about this entity that you already know and want the system to start from? (e.g., "I know this business is marketing-led" or "the key metric is NBV") — this is optional. If you say nothing, the system will discover the business model by reading the documents.
+- Are there any known quirks in the documents that might mislead an AI reader? (e.g., "Q1 always looks weak due to seasonality" or "they use non-standard metric names")
 
-### Area 4 — Narration Design
-Ask:
-- How does this entity typically tell its performance story? What does it lead with?
-- How does management frame good results? Disappointing results?
-- What gets structurally emphasized regardless of performance? What gets buried?
-
-### Area 5 — What Matters vs. Noise
-Ask:
-- What signals should an AI reading these documents pay close attention to?
-- What is present in every document but not informative about how the business is performing?
-- Are there known quirks or artifacts in this entity's documents that could mislead a reader?
+Do NOT ask about the business model, operating chain, causal relationships, thesis metrics, normal ranges, or narration patterns. These will be discovered from documents. The user is not expected to know them upfront — that is precisely what the belief system is for.
 
 **Output — foundation.md**
 
-When all five areas are answered, produce a complete `foundation.md`:
-
 ```
-# [Entity Name] — Business Foundation
+# [Entity Name] — Foundation
 
 Built: [date]
 
-## Business Model and Profitability Thesis
-[One to two paragraphs — what kind of business, how it makes money, what the profitability thesis rests on]
+## Entity Identity
+Name: [Entity name]
+Type: [What kind of entity — one sentence]
+Document producer: [Who creates the documents this system will read]
 
-## Thesis-Defining Metrics
-[For each thesis metric: name, why it is thesis-defining, what a meaningful move means, normal range]
+## Documents
+[For each document type:]
+- Type: [Name]
+- Cadence: [How often it arrives]
+- Format: [PDF, PPTX, transcript, etc.]
 
-## Normalization Model
-[Normal operating ranges, seasonal patterns, deviation thresholds, known recurring one-time effects per thesis metric]
+## Known Prior Context
+[Only what the user provided. If nothing: "None — business model and operating mechanics will be discovered from documents."]
 
-## Narration Design
-[How this entity communicates — what it leads with, how it frames good/bad news, what gets buried, what language recurs]
+## Known Document Quirks
+[Only what the user provided. If nothing: "None identified."]
 
-## What Matters vs. Noise
-Stress these signals: [list]
-Treat as noise: [list]
-Known document quirks: [list]
+## Discovered Understanding
+[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 relationship beliefs, Stream 01 delivery track record, etc. The business model lives here once the system has earned it from reading.]
 ```
 
 **Success check — Stage 1:**
-Before proceeding, confirm: Does this foundation capture how the business actually works and how its documents read? Is anything missing or wrong?
+Show the foundation. Ask: Is the entity identity correct? Are the document types right? Anything you want to add to the known prior context?
 
-Wait for the user's confirmation. Correct anything they flag. Then say: "Foundation built. Moving to Stage 2 — Stream Setup."
+Wait for confirmation. Correct anything flagged. Then say: "Foundation built. Moving to Stage 2 — Stream Setup."
 
 ---
 
@@ -252,9 +245,27 @@ Once the document is provided:
 
 ### Step 6 — Extract Signals
 
-Using the `fact_extractor_prompt.md` as your system context, read the document and produce a `fact_log.md` — the structured signal extraction for this document.
+Using the `fact_extractor_prompt.md` as your system context, read the document and produce a `fact_log.md`.
 
-For each signal, produce:
+**First pass — Relationship Discovery:**
+Before anything else, scan the entire document for explicit relationship claims — any statement where the document says that one metric, factor, or business component drives, causes, enables, or predicts another. These are the most valuable signals in the document because they reveal how the business works. Capture every one.
+
+For each relationship claim:
+```
+## RELATIONSHIP CLAIM — [A] → [B]
+Metric A: [Full name as used in document]
+Metric B: [Full name as used in document]
+Direction: [drives / precedes / enables / predicts / conditional]
+Lag or timing: [If stated — exact language]
+Condition: [If conditional — exact language]
+Verbatim: "[Exact quote from document]"
+Source position: [Where in the document this appeared]
+```
+
+If no relationship claims: output `NO RELATIONSHIP CLAIMS IN THIS DOCUMENT`
+
+**Second pass — Named Candidate Signals:**
+For each signal related to named candidates:
 ```
 ## SIGNAL — [Brief label]
 Belief candidate: [Which candidate this feeds]
@@ -262,29 +273,42 @@ Signal type: [PRIMARY SIGNAL / PATTERN EVIDENCE / BASELINE READING / LEADING IND
 Content: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 Source position: [Where in the document this appeared]
 Comparison basis: [What benchmark or reference point, if applicable]
-Foundation alignment: [Whether this matches expected normal ranges or narration patterns, or represents a deviation]
-Absent signals: [What was expected per the foundation but not present, if meaningful]
+Absent signals: [What was expected but not present, if meaningful]
 ```
 
-If no signal is present for a named candidate: output `CANDIDATE #N — NO SIGNAL IN THIS WINDOW`
+If no signal for a named candidate: output `CANDIDATE #N — NO SIGNAL IN THIS WINDOW`
 
 **Success check — Step 6:**
-Show the fact log. Ask: Do these signals look accurate? Did the extraction miss anything important or include noise?
+Show the fact log, starting with any relationship claims found. Ask: Do these relationship claims accurately represent what the document stated? Did the extraction miss any explicit causal statements? Do the named candidate signals look accurate?
 
 ### Step 7 — Initialize Belief Memory
 
 Using the `belief_reasoning_prompt.md` as your system context, read the fact log and initialize `belief.md`.
 
-On first document: initialize between 8 and 15 Candidate beliefs. Every entry uses the five-field format:
+**Start with relationship claims.** For every relationship claim in the fact log, initialize a Stream 02 Candidate belief. A single explicit statement in a document is sufficient — the stated relationship is the evidence. Do not wait for multiple documents to confirm a relationship that the document already asserted directly.
 
+For relationship beliefs:
+```
+## Belief #N — [Metric A] drives [Metric B] [with/in/within lag if stated]   [NEW_BELIEF]   Status: Candidate
+
+**Statement**: [One falsifiable sentence: A drives B, with stated direction, lag, and mechanism if given]
+**Why it matters**: [What this relationship means for how the business generates or loses value]
+**Evolution trail**: First stated in [doc_id] — document explicitly said: "[verbatim]". Initialized as Candidate from explicit management statement. Not yet confirmed by observation across periods.
+**Normal baseline**: Not yet established — will be set once the relationship has been observed playing out in a subsequent document.
+**Falsification test**: A document where [A] moves but [B] does not follow within the stated lag, with no management explanation for the break, would challenge this relationship.
+```
+
+Then initialize all other Candidate beliefs from named candidate signals. Total first-document beliefs: 8–15 Candidates.
+
+Every non-relationship belief entry:
 ```
 ## Belief #N — [The claim as a complete, falsifiable sentence]   [NEW_BELIEF]   Status: Candidate
 
 **Statement**: [One falsifiable sentence, present tense, specific to this entity]
-**Why it matters**: [How this connects to the foundation — which thesis metric, why it matters]
+**Why it matters**: [Why this matters for how the business operates]
 **Evolution trail**: First seen in [doc_id] — [brief observation of what this document showed]
 **Normal baseline**: Not yet established — awaiting second comparable document.
-**Falsification test**: [What a future document must show to break this — or "fails to recur in the next comparable document"]
+**Falsification test**: [What a future document must show to break this]
 ```
 
 Then produce `belief_changelog.md`:
@@ -292,16 +316,17 @@ Then produce `belief_changelog.md`:
 ## [doc_id] — [Date]
 
 [For each new belief:]
-[NEW_BELIEF] Belief #N — [claim] — First seen in this document. Initialized as Candidate.
+[NEW_BELIEF] Belief #N — [claim] — [Relationship belief: initialized from explicit statement. Other: initialized from first observed signal.] Status: Candidate.
 ```
 
 **Success check — Step 7:**
 Show the belief memory. Ask:
-- Are there at least 8 beliefs? If fewer than 8, audit for umbrella claims to split.
-- Are the claims specific enough to be confirmed or broken by the next document?
+- How many relationship claims from the document became Candidate beliefs? (If zero but the document discussed how the business works, the extraction may have missed statements)
+- Are there at least 8 beliefs total? If fewer, audit for umbrella claims to split
+- Are the relationship belief claims specific enough to be confirmed or broken — is the lag stated, the direction clear, the mechanism named?
 - Does anything feel like a document summary rather than a durable pattern?
 
-Wait for confirmation. Then say: "Belief memory initialized. The stream is live. When the next document arrives, run Stage 5."
+Wait for confirmation. Then say: "Belief memory initialized. Stream is live. When the next document arrives, run Stage 5. To use the belief memory now — to answer a question or prepare for a meeting — run Stage 7."
 
 ---
 
@@ -385,6 +410,102 @@ Once confirmed, run the selected path. Process documents chronologically — ear
 
 ---
 
+## Stage 7 — Belief Activation (Using the Belief Memory)
+
+*Run this stage when beliefs already exist and the user wants to use them — not process a new document.*
+
+Ask which use case:
+
+> **What do you want to do with the belief memory?**
+> - **Pre-read briefing** — I'm about to read the next document and want to know what to expect
+> - **Answer a question** — I have a specific question about how this business works or what a metric means
+> - **Meeting prep** — I'm about to go into a business review and want to know what to push on
+
+### Use Case A — Pre-Read Briefing
+
+Ask the user to paste in (or confirm) the current `belief.md`. Then produce:
+
+```
+## Pre-Read Briefing — [Entity] — [Next document: type and period]
+
+### What to Expect
+For each active belief with a Normal baseline:
+[Belief #N — claim]: Expected: [what normal baseline says]. Deviation threshold: [what would be worth flagging].
+
+### What Would Be a Signal
+For each belief with a Falsification test that could trigger in this document:
+[Belief #N — claim]: Watch for [what would challenge it]. If seen: [what to do].
+
+### Relationship Chain Status
+[List the established operating chain links from Stream 02 in order: A → B (lag X) → C (lag Y)...]
+What this document should confirm or update: [which chain links this document type can carry evidence for]
+
+### What to Ignore
+[Beliefs that are SILENCE-likely for this document type — established patterns that this document type does not cover]
+```
+
+### Use Case B — Answer a Question
+
+Ask the user their question. Then produce:
+
+```
+## Belief-Grounded Answer — [Question]
+
+### Answer
+[Direct answer in 1–2 sentences, calibrated by the belief evidence]
+
+### What the Belief Memory Says
+[For each relevant belief:]
+Belief #N ([Status]): [What this belief says that is relevant. Quote the statement verbatim.]
+
+### What Would Change This Answer
+[What future evidence would revise the relevant beliefs — and therefore change the answer]
+
+### What the Belief Memory Cannot Answer
+[Any part of the question where no established belief exists — name the gap explicitly. If a Candidate belief exists but is not yet confirmed, say so.]
+```
+
+**Examples of questions this handles:**
+- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 ratio relationship belief answers
+- "What drives revenue in this business?" → Stream 02 relationship beliefs answer
+- "Should I be concerned about the revenue miss?" → Stream 01 delivery track record answers with base rate and context
+- "Is this business self-correcting or does a miss compound?" → Stream 02 feedback dynamics belief answers (if established)
+- "What language shift should make me worried?" → Stream 03 communication pattern beliefs answer
+- "What is the normal booking range for Q2?" → Stream 01 or Stream 04 baseline answers
+
+### Use Case C — Meeting Preparation
+
+Ask the user to paste in (or confirm) the current `belief.md`. Then produce:
+
+```
+## Meeting Brief — [Entity] — [Meeting type, period]
+
+### Three Things to Push On
+[For each: the belief being tested, why it matters, the specific question to ask]
+1. Push on [topic] — Belief #N says [X]. Ask: "[Specific question]." If the answer is [Y], it confirms. If [Z], flag for follow-up.
+2. [Same structure]
+3. [Same structure]
+
+### Two Things to Accept Without Deep Investigation
+[Patterns that are Established and expected — do not spend meeting time on what the belief memory predicts will be routine]
+1. [Topic]: Belief #N says this is expected in this period. Accept unless deviation exceeds [threshold].
+2. [Same structure]
+
+### One Pattern to Watch
+[The highest-uncertainty belief — Candidate or under TENSION — that this meeting might provide new signal for]
+Belief #N ([Candidate/TENSION]): Watch for [specific signal]. If seen: [what it means].
+
+### Relationship Chain Check
+[Which chain links does this meeting's data allow you to test? For each: what confirms it, what challenges it]
+```
+
+**Success check — Stage 7:**
+After producing any activation output, ask: Does this answer your question? Is there any part where the belief memory gave you less than you needed — either because the belief doesn't exist yet or because it's still Candidate?
+
+If there are gaps, note them explicitly. Gaps in the belief memory are signals that more documents need to be processed, not that the system failed.
+
+---
+
 ## Reference: What Each Stage Produces
 
 | Stage | Output | Where it lives |
@@ -396,6 +517,7 @@ Once confirmed, run the selected path. Process documents chronologically — ear
 | 3c — Fact Extractor Prompt | `fact_extractor_prompt.md` | `compiled/{stream_id}/` |
 | 4/5 Step 6 — Signal Extraction | `{doc_id}_fact_log.md` | `streams/{stream_id}/L2_factlogs/` |
 | 4/5 Step 7 — Belief Evolution | `belief.md` + `belief_changelog.md` | `streams/{stream_id}/` |
+| 7 — Belief Activation | Pre-read briefing / Q&A answer / Meeting brief | Not stored — produced on demand |
 
 ---
 
