@@ -260,6 +260,12 @@ Not what the numbers say in any period — but how the numbers work as a system.
 
 **Metric relationships.** When two metrics diverge, the divergence is the signal. Volume flat, revenue growing = price-driven growth. Both growing = volume expansion. The relationship between metrics tells you more than either metric alone.
 
+**The operating chain.** The complete causal sequence connecting every thesis metric from first input to final outcome — with the lag at each step. Not pairwise relationships: the full chain. For a performance-marketing business: Spend → Acquisition efficiency → Demand volume → Bookings → Revenue conversion lag → Gross revenue → Take rate → Net revenue → Cost structure → Contribution margin → Reinvestment capacity. This chain is the engine of the business. A belief about it answers: which metric is the throttle, which is the gauge, which is the governor, and where the chain is weakest. The chain is falsifiable — a future document can show a link breaking, a lag shortening, or a conversion step degrading. This is the single most important belief this stream can hold, and it cannot be assembled until enough documents have been processed to observe the chain in motion.
+
+**System stress behavior.** When the business is under pressure — demand softness, cost inflation, margin compression, volume miss — which metric degrades first, which holds longest, and which recovers last? The sequence is not random. It reveals what this business structurally protects and what it sacrifices. "Under demand pressure, this business absorbs the hit in volume before adjusting price — take rate holds even as bookings fall." That is a durable belief about how the system responds to stress, different in kind from a one-period observation. The belief becomes falsifiable once enough stress episodes have been observed to establish the pattern.
+
+**Feedback dynamics.** Whether the business system self-corrects or self-amplifies under pressure. A self-correcting system: when volume softens, fixed-cost leverage improves efficiency, margin holds, reinvestment continues, recovery follows without intervention. A self-reinforcing contraction: when volume softens → revenue falls → margin falls faster → reinvestment is cut → next-period volume falls further — a loop with no internal correction mechanism. The feedback dynamic is one of the most durable things that can be known about a business, and the most consequential for how to interpret a miss. A self-correcting business recovers. A self-amplifying business requires external intervention.
+
 **Does NOT capture:**
 - The specific values of metrics in any period — that is stream 04 (factual record)
 - The delivery record across periods — that is stream 01 (performance track record)
@@ -267,6 +273,8 @@ Not what the numbers say in any period — but how the numbers work as a system.
 - How the document presents or frames the numbers — that is stream 03 (document-level patterns)
 
 **Evidence standard:** Every belief in this stream must be grounded in business reality — observable from actual metric behavior, ratio relationships, and financial outcomes. If the evidence for a belief is how the deck presents something (which section it appears in, how the team chose to frame it), that belief belongs in stream 03, not here.
+
+**Note on the operating chain, stress behavior, and feedback dynamics:** These three belief types cannot be initialized on the first document. They require enough comparable documents to observe the chain in motion, stress episodes to observe the response sequence, and multiple pressure periods to detect whether the system corrects or amplifies. On first document, seed Candidate beliefs that name what the chain appears to be — but mark them explicitly as hypotheses pending confirmation. Do not claim a feedback dynamic exists until at least two comparable stress episodes have been observed.
 
 **The line between stream 02 and stream 05:** "S&M/NBV compresses in Q1 and recovers in Q2" is a mechanic (02). "This is a performance-marketing-led business that can scale spend efficiently but has no organic demand creation" is strategic character (05). The mechanic is the observation. The character is the interpretation of what that mechanic reveals about what kind of company this is.
 

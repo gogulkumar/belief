@@ -136,6 +136,25 @@ For number-based signals (Learning What Finance Has Recorded as True, Learning H
 - Note if the metric definition changed from prior documents
 - For Learning What the Business Has Consistently Shown: also note whether this reading continues, breaks, or is silent on an existing delivery pattern
 
+For operating chain signals (Learning How This Business Generates and Loses Value):
+- Capture which metric moved in this document and what the document shows moved with it or after it
+- Note the apparent lag: if metric A moved in a prior period and metric B moved now, capture both readings and the gap between them — this is evidence for or against a chain link
+- Capture any explicit statement in the document connecting one metric's movement to another ("bookings growth translated into revenue X weeks later") — verbatim
+- Note which chain links are silent in this document: if the document shows spend and revenue but not the intermediate conversion metrics, record that gap explicitly
+- If a chain link appears to have broken — a metric that normally follows another did not move as expected — capture this as a leading indicator for a stress behavior or feedback belief
+
+For system stress behavior signals (Learning How This Business Generates and Loses Value):
+- When the document reports a miss or degradation in any thesis metric: capture which metric degraded, the magnitude, and what other metrics are reported alongside it
+- Capture the sequence: did the document show demand softness before cost impact, or cost impact before volume impact? The order of degradation is the signal
+- Capture what the document shows held or improved while other metrics degraded — this is evidence for what the business protects under stress
+- Capture any explicit management statement about prioritization under pressure ("we chose to hold X and accept lower Y") — verbatim
+
+For feedback dynamics signals (Learning How This Business Generates and Loses Value):
+- Capture whether the document reports a recovery after a prior-period stress, and if so, what drove it — internal (efficiency improvement, cost reduction) or external (market recovery, seasonal normalization)
+- If recovery appears self-driven, capture the specific mechanic described
+- If recovery appears absent after a prior-period miss, capture that silence — the absence of recovery is the feedback signal
+- Capture any document showing that a prior-period cut (cost, marketing, headcount) led to a constraint in a current-period metric — this is the self-amplifying loop in evidence
+
 For attribution signals (Learning What Kind of Business This Actually Is):
 - Capture the exact cause named, in the exact language used
 - Capture the order in which causes are named (what comes first matters)

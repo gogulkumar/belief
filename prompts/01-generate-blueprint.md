@@ -145,7 +145,15 @@ This is the pattern direction — what the fact extractor must watch for. Choose
 - **Behavioral markers**: what the entity consistently does or consistently omits
 - **Measure relationships**: how specific measures are positioned relative to each other across documents
 
-For this entity in this angle, which of these forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
+For the **Learning How This Business Generates and Loses Value** angle, three additional pattern forms are required. These must be explicitly answered in the blueprint even if the first documents cannot yet confirm them — they are the hypotheses the belief engine will be looking to build over time:
+
+- **Operating chain mapping**: What is the complete causal sequence connecting the thesis metrics for this entity, from first input to final outcome? Name each metric in the chain, the mechanism connecting it to the next, and the estimated lag. Example: "Spend → CPX → Demand volume (same period) → Bookings (lag: 0–7 days) → Revenue (lag: 30–45 days) → Contribution margin (same period as revenue)." This is the engine of the business and the most important systemic belief the stream will build.
+
+- **Stress sequencing**: When this business is under pressure, which metric is likely to degrade first, which is likely to hold, and which is the last to recover? Ground this in the foundation's business model and thesis metrics. Name the expected degradation sequence and what a document would need to show to confirm or contradict it.
+
+- **Feedback loop detection**: Is this business likely to self-correct under pressure, or does pressure in one metric amplify into others? State the hypothesis — which direction, through which mechanism — and what signal in a future document would confirm a self-correcting vs self-reinforcing dynamic.
+
+For this entity in this angle, which of the standard forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
 
 **3.5 — What can these documents NOT give this stream, no matter how carefully they are read?**
 
