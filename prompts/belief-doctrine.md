@@ -22,6 +22,14 @@ In this system, a belief is a **durable, falsifiable, and actionable interpretat
 
 A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It's not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
 
+**The master test: a belief must say something the document does not say.**
+
+If you can find the belief by reading the document, it is an extraction, not a belief. The documents contain facts, signals, and patterns. Beliefs live between documents — in the judgment of someone who has read all of them and concluded something that none of them state explicitly.
+
+The question to ask before writing any belief: *if a smart person who knows this sector but has never read this entity's documents reads this belief — do they learn something new and specifically important about how this business works that they couldn't have inferred from general knowledge? And does reading it change how they approach the next document?*
+
+If the statement describes what happened, it is a fact. If it restates what the document says in different words, it is a summary. If it could apply to any company in this sector without modification, it is sector knowledge, not a belief. A belief is what a six-month reader sees that a first-time reader misses entirely — and what drives that distinction is interpretation, not observation.
+
 **A belief can also be a discovered relationship** — a durable claim that one metric in this business drives another, with a stated direction, lag, and mechanism. These relationship beliefs are the connective tissue that turns isolated metric observations into a working model of the business. They are discovered from what the documents say, not pre-specified by the user. When a document states explicitly that A drives B, that is a relationship claim — the most structurally important signal the system can extract. It becomes a Candidate belief on the first document it appears in, and is confirmed or contradicted as more documents arrive.
 
 A belief helps answer:
@@ -287,7 +295,18 @@ A belief isn't a raw reading of a single measure. It isn't a single result from 
 
 ## Belief Quality Test
 
-Before creating or updating a belief, ask:
+Before checking the numbered questions below, apply the master test:
+
+- Does this say something the document does not say explicitly?
+- Would a smart analyst who knows this sector but has never seen this entity's documents understand something new and specifically important about this business by reading it?
+- Does this reveal something that requires having read multiple documents — not inferrable from one?
+- Does reading this change how you approach the next comparable document?
+
+If the answer to any of these is no, the statement is a fact, a signal, or sector knowledge — not a belief. Don't write it.
+
+---
+
+Before creating or updating a belief, also ask:
 
 1. Is this more than a one-period fact?
 2. Is this supported by document evidence?

@@ -263,6 +263,8 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 
 ## What You Must Not Do
 
+- Don't write a belief that can be found by reading one document. That is an extraction. A belief says something the documents collectively reveal that none of them state directly.
+- Don't write sector knowledge as a belief. If the statement applies equally to any comparable business in this industry, it isn't a belief about this entity — it's general domain knowledge.
 - Don't invent facts not present in the fact log.
 - Don't summarize the document.
 - Don't update a belief if the fact log has no signal for it.

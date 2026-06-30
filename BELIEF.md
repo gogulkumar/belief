@@ -188,10 +188,11 @@ Not everything in a document becomes a belief. Most things should produce silenc
 | Challenges an existing belief | Contradict −0.15 |
 | Implies something durable that no existing belief covers | New prior at 0.20 |
 
-**Two gates every belief must pass before being written:**
+**Three gates every belief must pass before being written:**
 
-1. **Falsifiability** — can a future document contradict this?
-2. **Distinctiveness** — is this specific to this business, not any business in this sector?
+1. **Interpretation** — does this say something the document does not say? A belief is what the documents collectively reveal that none of them state directly. If you can find it by reading one document, it is an extraction, not a belief.
+2. **Falsifiability** — can a future document contradict this?
+3. **Distinctiveness** — is this specific to this business, not any business in this sector?
 
 ### What a Mature Belief Looks Like
 
@@ -251,6 +252,62 @@ After five or more comparable documents, a belief entry looks like this. The hea
 ---
 
 A mature belief stream holds 12–20 entries at this level of specificity across all streams. Together they cover what is structurally established, what is under tension, and what is being watched as a Candidate. Any analyst — or any AI model — loading the full stream before opening the next document is informed in ways that are impossible to replicate by reading that document alone.
+
+---
+
+### The Difference Between Extraction and Belief
+
+The clearest way to understand the master test is to see it applied. Each pair below starts with a statement that fails, then shows what it should become.
+
+---
+
+**Pair 1 — Document observation vs. business insight**
+
+*Extraction (fails the master test):*
+> The entity consistently reports its core volume metric against three benchmarks in this order: Plan, FC, then prior year — without varying the sequence.
+
+This describes how the deck is structured. A new analyst reads it and learns nothing about the business. They learn something about a formatting convention. They could discover this in five minutes by opening any document. It is not something accumulated across months of reading — it is something visible on the first page of the first document.
+
+*Belief (passes the master test):*
+> This entity's growth is a ceiling problem disguised as an efficiency story. Revenue has grown while core volume has stagnated. Management frames this as pricing sophistication — and the efficiency improvements are real. But what they reveal is that the business cannot expand demand; it can only extract more from demand that already exists. The S&M efficiency story is covering a structural ceiling the documents never name directly.
+>
+> Why it matters: Every efficiency improvement buys time. It doesn't solve the underlying problem. When you read any document from this entity, the question isn't whether efficiency improved. It's whether volume moved. If it didn't, the business is closer to the ceiling than the narrative suggests.
+
+The second version makes a claim someone could argue with. It names something the documents don't say. It changes what you look for in every future document.
+
+---
+
+**Pair 2 — Sector knowledge vs. entity-specific understanding**
+
+*Extraction (fails the master test):*
+> Q1 marketing spend concentration is the structural lead signal for Q2 volume recovery — a deliberate seasonal mechanic, not a cost problem.
+
+This applies equally to any business in this sector. Any travel or retail company invests ahead of its demand season. An analyst who has never read a single document from this entity could write this from general knowledge. It reveals nothing specific about how this business actually works.
+
+*Belief (passes the master test):*
+> Under pressure, this entity manages the narrative before it manages the problem. Every miss period in the record follows the same attribution sequence: external factors first, channel mix second, volume third. Controllable decisions come last or not at all. But the financial mechanics stream shows the actual primary driver in miss periods is consistently conversion efficiency — how efficiently bookings become transactions. That metric rarely leads the bridge. The team has learned that external attribution is accepted more readily than operational attribution, so the story is structured to lead with what cannot be controlled before reaching what can.
+>
+> Why it matters: When you hear external factors leading the attribution in a miss, don't spend time on those factors. Ask about conversion. That's where the real explanation lives. The narrative isn't wrong — the external factor did have an effect. But it is not the lead driver. It is the lead story.
+
+The second version reveals something that requires months of reading the same documents to see. It is specific to this entity's communication pattern. It names what isn't in the document.
+
+---
+
+**Pair 3 — Behavioral description vs. interpretive judgment**
+
+*Extraction (fails the master test):*
+> This entity consistently protects its core demand investment when EBITDA is under pressure, cutting overhead and headcount before touching demand spend.
+
+This describes a behavior without saying what it means. A fact is "they protect demand investment." A belief is what that protection reveals about this organization's actual priorities — and what it means when it breaks.
+
+*Belief (passes the master test):*
+> The deck's opening slide is a confidence indicator, not a content decision. Documents that open on the efficiency metric are documents where the team believes efficiency is the strongest story they have. Documents that open on cost discipline or EBITDA are documents where they don't. The document template doesn't mandate the opening sequence — the team chooses it. And they consistently choose the metric they most want leadership to anchor on.
+>
+> Why it matters: Look at the opening slide before reading anything else. If it's not the primary efficiency metric, you already know the volume number is difficult. The team told you by choosing not to lead with it. This is faster and more reliable than scanning to find the volume number.
+
+---
+
+These pairs demonstrate the standard the belief engine must reach. Extractions describe what is in the documents. Beliefs say what the documents — collectively, over time — reveal that none of them state directly. If a belief passes the master test, someone reading it for the first time understands something specific and important about this business that they could not have inferred from general knowledge.
 
 ---
 
