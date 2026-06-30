@@ -125,15 +125,17 @@ Ask the user three things:
 
 **1. Which belief stream do you want to run?**
 
-Present the five standard options:
+Present the seven standard options:
 
 | Stream | What it accumulates |
 |--------|---------------------|
-| **Learning What the Business Has Consistently Shown** | The performance track record — what this entity has actually delivered across comparable periods, where it is reliable and where it is not |
-| **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships between measures |
-| **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, or emphasizes across recurring documents |
-| **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a factual baseline |
-| **Learning What Kind of Business This Actually Is** | Durable interpretations of the business's strategic character — what kind of company this is and why it performs the way it does |
+| **00 — Factual Understanding** | The stable factual record — metric definitions, calculation bases, benchmark sequences, and whether they hold consistent across documents |
+| **01 — Business Model Understanding** | The economic engine — how this specific business makes money, what the profitability thesis is, and whether it is working |
+| **02 — Business Dynamics** | Mechanical relationships between metrics — lead-lag patterns, seasonal cycles, conversion chains, and feedback loops |
+| **03 — Causal Understanding** | What the team attributes as causes of performance movement — and whether those attributions are honest, selective, or strategically chosen |
+| **04 — Business Memory** | Decision patterns under pressure — what the organization consistently protects, cuts, and sacrifices when forced to choose |
+| **05 — Narrative Understanding** | Communication choices — what the document leads with, what that signals, and the gap between framing and what the numbers actually show |
+| **06 — Forecast and Plan Behavior** | Planning and revision patterns — the systematic biases in how this business sets and updates expectations |
 
 Custom streams are also supported. If the user names something not on this list, ask them to define it in one sentence: what does a belief in this stream look like?
 

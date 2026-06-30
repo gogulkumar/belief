@@ -311,189 +311,241 @@ These pairs demonstrate the standard the belief engine must reach. Extractions d
 
 ---
 
-## 03 — The Five Belief Types
+## 03 — The Seven Belief Streams
 
-The five streams are designed with exclusive scope. Each stream owns exactly one discriminating axis — one type of understanding that no other stream claims. Every signal from every document belongs to exactly one stream. If two streams could both plausibly hold a belief about the same signal, the stream design has failed. Overlap is not an inevitable feature — it is an error.
+Seven streams. Each owns exactly one discriminating axis — one type of understanding that no other stream claims. Every signal from every document belongs to exactly one stream. If two streams could plausibly hold a belief about the same signal, the stream design has failed.
 
----
-
-### Stream 01 — Learning What the Business Has Consistently Shown
-
-**Discriminating axis: The performance track record.**
-
-Not what any document says — what the business has actually delivered across comparable periods. This stream accumulates the factual performance record: how the business has behaved against its own commitments over time, where delivery has been reliable, where it has not, and what the pattern of outcomes reveals about this business as a performing entity.
-
-This is not financial mechanics (how the numbers work) or factual readings (what a specific number was). It is the record of what has been demonstrated — delivery against expectations, cross-period reliability, the patterns of performance that only become visible after many comparable periods.
-
-**What it exclusively watches:**
-- Delivery reliability: how consistently this business meets, beats, or misses its own stated expectations across comparable periods
-- Which metrics have a reliable track record and which do not — and whether reliability has changed over time
-- Performance patterns across the arc: the Q1-to-Q4 delivery shape, what recovers, what does not
-- Commitment reliability: when this team says "we expect X," how often has X materialized — and under what conditions it does or does not
-- Where the business has surprised in the same direction repeatedly — these are the structural over- or under-performers
-- How performance reliability differs by metric — some metrics are consistently delivered; others are consistently aspirational
-
-**Does NOT capture:**
-- How the document presents or explains performance — that is stream 03 (document-level patterns)
-- The specific metric readings themselves — that is stream 04 (factual record)
-- Why the numbers work the way they do financially — that is stream 02 (financial mechanics)
-- What kind of business this is strategically — that is stream 05 (strategic character)
-
-**The line between stream 01 and stream 04:** Stream 04 holds what a document stated: metric name, value, period, benchmark — the data reading. Stream 01 holds what the accumulated record of those readings shows: "NBV has come in above FC in 9 of 12 comparable periods, median beat of 3.2%." Stream 04 is the individual observation. Stream 01 is the pattern that emerges across many observations.
-
-**The line between stream 01 and stream 02:** Stream 02 holds why the numbers behave the way they do — the mechanic. Stream 01 holds what the numbers have actually done across time — the record. "Q1 spend compression drives Q2 recovery" is stream 02 (the mechanic). "Q2 has come in at or above FC in 8 consecutive periods" is stream 01 (the delivery record of that mechanic playing out).
-
-**Evidence standard:** Every belief in this stream must be grounded in outcomes across comparable periods — not in what the document says the business is trying to do, and not in how the document is structured. The evidence is the delivery record, not the narrative.
-
-**Example beliefs:**
-- "NBV has come in above monthly FC in 9 of 12 comparable periods, median beat 3.2%. The one significant miss (−8%) followed a period where forward commitment language shifted from 'we expect' to 'we are monitoring.'"
-- "Revenue guidance has been met or exceeded in 7 of 8 comparable quarters. When it has missed, the miss has been less than 2% — the business does not produce large revenue surprises in either direction."
-- "Cost delivery is more reliable than revenue delivery. The business has hit or beaten its cost FC in 11 of 12 comparable periods even when revenue missed — cost discipline is the more consistent performance axis."
+Each stream also has a test — a single question that separates beliefs that belong here from beliefs that don't.
 
 ---
 
-### Stream 02 — Learning How This Business Generates and Loses Value
+### Stream 00 — Factual Understanding
 
-**Discriminating axis: The financial mechanics — discovered from what documents say.**
+**Purpose:** The verified, stable factual record of how this business is measured. Not what the numbers mean — what they definitively are and whether they are consistent.
 
-This is the model-building stream. Its primary job is to discover how the business actually works by extracting the relationship claims that management states explicitly in recurring documents. Every time a document says "A drove B," "when X happens, Y follows," or "our investment in Q1 translates to volume in Q2," that is a structural claim about the business engine. Stream 02 captures those claims, accumulates them, and over time assembles the operating model of the business from the ground up.
+**What it covers:**
+- Metric definitions and whether they hold stable across documents
+- Benchmark sequence and whether it ever shifts
+- Calculation bases — net vs gross, adjusted vs reported
+- Data source and system consistency
+- Scope stability — same segments, geographies, channels included each period
 
-The user doesn't need to explain this model upfront. The documents contain it. Stream 02's job is to find it.
+**What it must never do:** State interpretation. Never say what a number means for the business. Never say whether performance is good or bad. Only what is verifiably true and whether it is consistent.
 
-**What it exclusively watches:**
+**The test:** Any analyst with the source document can verify this belief independently. It is re-checkable.
 
-**Relationship claims (highest priority — extractable from document one).** When a document explicitly states that one metric causes, drives, enables, or predicts another, that is the primary signal. "Our Q1 marketing investment drove Q2 demand recovery" — extract: S&M spend → bookings, Q1 to Q2, stated mechanism is demand recovery, verbatim language captured. This becomes a Candidate belief on the first document it appears. It doesn't require multiple documents to initialize — explicit causal statements are evidence of the relationship from the moment they are stated. Subsequent documents either confirm, modify, or contradict it.
+**Example belief:**
 
-**Ratio relationships.** Not just the ratio — but what movement in the ratio means for the business model. When a thesis-defining ratio compresses below a threshold, is that a quarterly fluctuation or a business model signal? This stream holds the interpretation of what the ratio means, not just its value.
+> **Belief #1 — [Entity] calculates its primary efficiency ratio on a net basis excluding partner contributions, making it structurally lower than how competitors report the same ratio.**
+>
+> **Statement:** The efficiency ratio excludes partner co-contributions from the numerator. This has been consistent across every document reviewed. The ratio is therefore not directly comparable to any external benchmark that includes gross spend.
+>
+> **Why it matters:** Every comparison between this entity's efficiency ratio and an industry figure or competitor is comparing different things. The number looks more efficient than it actually is on a gross basis. Understanding this prevents misreading efficiency improvements as real when they may reflect partner mix changes.
+>
+> **Evolution trail:** Confirmed in the first document. Verified across all subsequent documents — definition unchanged. Four documents. Established.
+>
+> **Normal baseline:** Every document reports the ratio on this net basis. A shift to gross reporting would change the ratio materially and would require restatement of prior periods.
+>
+> **Falsification test:** A document that reports the ratio on a gross basis, or an explicit statement that the calculation basis changed.
 
-**Lead-lag mechanics.** The number you see today predicts the number you will see next quarter. These relationships may appear explicitly in documents ("bookings typically convert to revenue within 30–45 days") or may emerge from observing metrics across multiple periods. Both forms are captured — explicit statements as Candidates on first mention, inferred patterns after two or more comparable periods confirm the relationship.
+---
 
-**Normal operating ranges.** Not the plan target — the realistic range for each metric given what the business has actually shown. A number that looks alarming in isolation may be structural for this business in this period. This stream builds these ranges from observed readings over time and from what management explicitly describes as normal.
+### Stream 01 — Business Model Understanding
 
-**The operating chain.** The complete causal sequence connecting every thesis metric from first input to final output — with the mechanism and lag at each step. Not pairwise: the full chain. This chain is assembled incrementally: each relationship claim adds a link, each confirmed lag refines the timing. The chain answers: which metric is the throttle, which is the gauge, which is the governor, and where the chain breaks under pressure. It is falsifiable — a future document can show a link breaking, a lag shifting, or a conversion step degrading.
+**Purpose:** The durable understanding of how this specific business makes money — not what it reported, but what the underlying economic engine is and whether it is working.
 
-**System stress behavior.** When the business is under pressure, which metric degrades first, which holds longest, and which recovers last? The sequence reveals what this business structurally protects. "Under demand pressure, this business absorbs the hit in volume before adjusting price — take rate holds even as bookings fall." Stress behavior beliefs require observing at least one pressure episode in the documents.
+**What it covers:**
+- The profitability thesis — the core bet this business is making
+- Which metrics reveal whether the thesis is holding vs breaking
+- The revenue model — what drives the top line at a structural level
+- The margin structure — where margin is made and where it leaks
+- The growth engine — price vs volume, new vs existing, sustainable vs finite
+- Unit economics — is the business getting more or less efficient per unit of output
 
-**Feedback dynamics.** Whether the system self-corrects or self-amplifies under pressure. A self-correcting system holds margin under volume softness and recovers without intervention. A self-reinforcing contraction amplifies: volume miss → revenue miss → reinvestment cut → next-period volume miss, with no internal correction. This requires observing at least two comparable stress or recovery periods.
+**What it must never do:** Report what happened this period. Never state a metric reading. Never describe a document. Describe the economic model, not the economic results.
 
-**Does NOT capture:**
-- The specific values of metrics in any period — that is stream 04 (factual record)
-- The delivery record across periods — that is stream 01 (performance track record)
-- What kind of business this is at a strategic level — that is stream 05 (strategic character)
-- How the document presents or frames the numbers — that is stream 03 (document-level patterns)
+**The test:** This belief is true regardless of which specific period is being reviewed. It describes how the business works, not what it did.
 
-**Initialization rules by belief type:**
+**Example belief:**
+
+> **Belief #1 — [Entity] is extracting more from existing demand rather than expanding demand — and the gap between those two things is getting harder to see in the headline numbers.**
+>
+> **Statement:** Revenue growth is being driven by price realization while core volume remains flat or grows minimally. The business is monetizing its existing customer base more intensively rather than bringing new customers in. This is a fundamentally different economic engine from what the headline metric suggests.
+>
+> **Why it matters:** Price-driven growth has a ceiling. When pricing power runs out — either because the market pushes back or because the addressable premium is already captured — there is no volume engine behind it. Any document showing flat volume alongside strong revenue is showing this pattern. It is not sophistication. It is volume stagnation dressed as efficiency.
+>
+> **Evolution trail:** First identified when revenue grew 8% and core volume grew 2%. Treated as noise. Second comparable period repeated it. Third confirmed it. By the fourth comparable document, this stopped being a timing question and became a structural interpretation. Four documents. Established.
+>
+> **Normal baseline:** Any period where core volume grows less than 3% while revenue grows more than 5% is confirming this belief. A genuine departure would be volume growing faster than revenue for two consecutive periods.
+>
+> **Falsification test:** Two consecutive periods where volume growth exceeds revenue growth — meaning demand is genuinely expanding faster than price. That would mean the demand engine restarted and this belief was wrong about the structural nature of the stagnation.
+
+---
+
+### Stream 02 — Business Dynamics
+
+**Purpose:** How the parts of the business move relative to each other over time. Not what the model is — how it behaves mechanically. Lead-lag relationships, seasonal cycles, conversion chains, feedback loops.
+
+**What it covers:**
+- Which metrics move first and which follow, with what lag
+- Seasonal mechanics — what is expected at each point in the year
+- The conversion chain — from first spend to final output
+- Where the chain is efficient, where it leaks, what changes conversion at each step
+- How one period's performance sets up or constrains the next
+
+**What it must never do:** Describe the business model — that is Stream 01. Describe organizational decision patterns — that is Stream 04. Only the mechanical relationships between metrics.
+
+**The test:** This belief would hold even if the management team changed. It describes how the numbers move, not how the people decide.
+
+**Initialization rules:**
 
 | Belief type | Can initialize from doc 1? | Condition |
 |-------------|---------------------------|-----------|
-| Relationship claim | Yes — Candidate | Document explicitly states the relationship in causal language |
-| Ratio relationship | Yes — Candidate | Reading observed; interpretation is the hypothesis |
-| Lead-lag mechanic | Yes if explicit, else doc 2 | Explicit statement → doc 1; inferred from two moving metrics → doc 2 |
-| Operating chain | Yes — Candidate (partial) | Name what the document reveals; mark as incomplete until more links confirmed |
-| Stress behavior | After first stress episode | Requires observing at least one pressure period |
-| Feedback dynamics | After two comparable episodes | Requires two stress or recovery periods to distinguish self-correcting from self-amplifying |
+| Relationship claim (explicit) | Yes — Candidate | Document explicitly states the relationship in causal language |
+| Lead-lag mechanic (explicit) | Yes — Candidate | Document states the timing |
+| Lead-lag mechanic (inferred) | Doc 2 minimum | Two periods required to observe the pattern |
+| Conversion chain | Yes — Candidate (partial) | Mark as incomplete until more links confirmed |
+| Stress behavior | After first pressure episode | Requires observing at least one pressure period |
+| Feedback dynamics | After two comparable episodes | Requires two stress or recovery periods |
 
-**Evidence standard:** Every belief in this stream must be grounded in business reality — in what metrics actually did or what management explicitly stated about how they connect. If the evidence is how the deck presents something rather than what the business actually does, the belief belongs in stream 03.
+**Example belief:**
 
-**The line between stream 02 and stream 05:** "S&M/NBV compresses in Q1 and recovers in Q2" is a mechanic (02). "This is a performance-marketing-led business that can scale spend efficiently but has no organic demand creation" is strategic character (05). The mechanic is the observation. The character is the interpretation of what that mechanic reveals about what kind of company this is.
-
-**How this changes what an agent produces:**
-
-Without stream 02 loaded:
-> "S&M/NBV is 32%, 200bps above the FC target." — A fact answer. Reads the slide.
-
-With stream 02 loaded:
-> "S&M/NBV is 32%, 200bps above FC target. This is within the expected Q1 range — the documents have established that this business runs a deliberate spend-ahead-of-season mechanic where Q1 compression normalizes in Q2. This is the thesis executing, not a problem. Watch Q2 recovery against FC." — A judgment answer. Reads the slide and knows what it means because the system learned what it means from prior documents.
-
-The number did not change. The understanding of the number changed — earned from reading, not pre-specified.
-
----
-
-### Stream 03 — Learning How Documents Frame the Story
-
-**Discriminating axis: The document's observable patterns.**
-
-This is the document-learning stream. It tracks what is observable about how this entity builds and presents its recurring documents — structure, sequencing, framing choices, language patterns, what leads and what is buried. The evidence base is entirely what the document itself does: how it is written, ordered, and constructed across comparable periods.
-
-**What it exclusively watches:**
-- Slide and section sequencing — what appears first, second, last across comparable documents
-- Where in the document good news vs bad news is positioned
-- Which topics appear in strong-result decks vs weak-result decks — presence and absence as signals
-- How the forward commitment section is structured — its position, its presence, its omission
-- Language patterns: vocabulary that recurs, phrases that disappear, how attribution is framed in the document
-- What the document structure telegraphs before the numbers are read
-- Communication habits made visible in documents: how this team consistently explains, attributes, and emphasizes — observable from what the document contains
-
-**Does NOT capture:**
-- The financial meanings of the numbers — that is stream 02 (financial mechanics)
-- The actual delivery record across periods — that is stream 01 (performance track record)
-- The specific values of the numbers — that is stream 04 (factual record)
-- What kind of business this is strategically — that is stream 05 (strategic character)
-
-**Evidence standard:** Every belief in this stream is grounded in what the document contains and how it is constructed — not in what actually happened financially, and not in what the business is as a commercial entity. The document is the object of study here.
-
-**Example beliefs:**
-- "Decks that open with a cost or efficiency topic on slide 1 have reported a miss in 7 of 8 comparable documents — the document structure telegraphs the result before the numbers appear"
-- "The variance bridge has appeared as the second major section in every strong-result deck; in 4 of 5 miss decks it appeared later or was structured differently"
-- "When the overall result misses plan, the document leads with the best available positive metric for at least two sections before naming the shortfall — this framing pattern has appeared in 11 of 12 miss documents"
-- "The forward commitment slide was present in every deck for 11 consecutive months; the two omissions both preceded significant downward revisions in the following period"
+> **Belief #2 — The conversion break in the bookings-to-completions chain is the earliest signal that something in the demand chain is wrong — and it appears 4–6 weeks before it shows up in the primary volume metric.**
+>
+> **Statement:** When paid channel bookings grow faster than completed transactions — meaning the bookings-to-completion conversion ratio falls below 0.88 — the primary volume metric misses its forecast in the following period in every instance reviewed. The conversion ratio is a leading indicator with a 4–6 week lag. It does not feature in the main document narrative.
+>
+> **Why it matters:** By the time the volume miss shows up in the bridge, the conversion problem already happened a month ago. Watching the conversion ratio gives a 4–6 week early warning that the document itself does not provide.
+>
+> **Evolution trail:** First noticed when conversion dropped and the volume metric missed the following period. Tested against four subsequent periods. When conversion is above 0.92, the volume metric meets or beats forecast. When it drops below 0.88, it misses. Five observations. Confirmed.
+>
+> **Normal baseline:** Conversion ratio between 0.90–0.96 is healthy. Below 0.88 is an early warning.
+>
+> **Falsification test:** A period where conversion drops below 0.88 and the volume metric meets or beats forecast anyway. That would break the lead-lag relationship and mean the two metrics have decoupled.
 
 ---
 
-### Stream 04 — Learning What Finance Has Recorded as True
+### Stream 03 — Causal Understanding
 
-**Discriminating axis: The verified factual record.**
+**Purpose:** What this business attributes as the causes of performance movement — and whether those attributions are honest, selective, or strategically chosen. The gap between what the team says caused something and what the evidence shows.
 
-Not interpretation. Not relationship. Not pattern. What a document actually stated: the metric name, the value, the period, the comparison benchmark. This is the intake layer — the evidence base from which stream 01 (performance track record) and stream 02 (financial mechanics) draw when patterns eventually emerge.
+**What it covers:**
+- Which causes are named, in what order, with what language
+- Whether the attribution is consistent across comparable periods
+- Whether external factors are used selectively to explain controllable misses
+- Whether controllable problems are framed as external
+- The gap between stated attribution and what the dynamics stream shows actually moved
 
-**What it exclusively watches:**
-- Specific metric readings with all four elements: metric name, value, period, comparison benchmark
-- Verified forward commitments with explicit language: "We expect X by period Y"
-- Stated variances: actual vs plan vs prior period, as the document states them
-- Specific data that is verified and attributed — not inferred
+**What it must never do:** State what actually caused performance — that belongs in Stream 02. Only what the team attributes and whether that attribution pattern is consistent or selective.
 
-**Does NOT capture:**
-- What the numbers mean or how they relate to each other — that is stream 02 (financial mechanics)
-- The accumulated delivery record across periods — that is stream 01 (performance track record)
-- How the document presented or framed the numbers — that is stream 03 (document-level patterns)
-- What the numbers reveal about the strategic character of the business — that is stream 05 (strategic character)
+**The test:** A new analyst reading this belief would know what the team will say before opening the document — and would know whether to believe it.
 
-**What does NOT belong here:** Formatting conventions ("the variance is always shown as absolute and percentage"), document structure habits ("three recurring benchmark comparisons appear in each deck"), or observations about how the document is built. Those belong in stream 03. Stream 04 holds only what was stated — the data point, with full context.
+**Example belief:**
 
-**How beliefs move out of stream 04:** Most observations stay here permanently. When a factual pattern recurs across multiple comparable documents and an interpretation becomes visible — "this metric has come in above plan in 9 of 10 comparable periods" — that cross-period pattern generates a belief in stream 01 (performance track record). The specific mechanic behind it may generate a belief in stream 02. Stream 04 always retains the individual reading. The interpretation moves.
-
-**Example belief:** "NBV: $142M actual vs $138M FC, +2.9%. Period: October 2024 MBR. Comparison: vs $131M in October 2023 (+8.4% YoY). Label used in document: 'New Bookings Volume.'"
+> **Belief #2 — The team leads every miss explanation with an external factor first, always — and the real operational driver appears third or not at all.**
+>
+> **Statement:** In every miss period reviewed, the variance explanation leads with external or macro factors, names channel mix second, and either buries operational drivers third or omits them entirely. This sequencing is not accidental. It reflects a consistent communication strategy that frames shortfalls as primarily external and largely uncontrollable.
+>
+> **Why it matters:** The sequencing tells you where the team wants attention to land. External factors cannot be questioned. Channel mix is semi-controllable. Conversion, product decisions, pricing execution — the genuinely controllable drivers — almost never appear in the top two positions. When you read the bridge, mentally reorder it. The third item is usually the real story.
+>
+> **Evolution trail:** Tested against four miss periods. An external factor led in three of four. Channel mix led in one but an external factor appeared second. Controllable drivers led in zero of four. Four documents. Established.
+>
+> **Normal baseline:** In any miss period, the first two bridge items will be external or semi-external. An anomaly is a miss where a controllable driver leads — that signals the problem is too large or too visible to frame externally.
+>
+> **Falsification test:** A miss period where a controllable driver — conversion rate, a pricing decision, a channel investment choice — leads the variance bridge. That would mean either the miss is undeniable or the team's communication strategy has fundamentally changed.
 
 ---
 
-### Stream 05 — Learning What Kind of Business This Actually Is
+### Stream 04 — Business Memory
 
-**Discriminating axis: The strategic character of the business.**
+**Purpose:** How this organization behaves as a decision-making system under different conditions. Not what it reports — what it actually does when performance is under pressure, when facing tradeoffs, when deciding what to protect and what to sacrifice.
 
-Not the financial mechanics (stream 02) — but what those mechanics reveal about the fundamental nature of this commercial entity. What thesis it operates under. How it competes. What it is as a business at a structural level. The slowest-moving stream — strategic character shifts rarely. When it does shift, it is the most significant update the belief memory can produce.
+**What it covers:**
+- Decision patterns under pressure — what gets protected, what gets cut
+- What the organization treats as structurally protected regardless of conditions
+- How leadership responds to misses vs beats
+- Whether stated priorities survive contact with a difficult period
+- The organizational character — what it values when forced to choose
 
-**What it exclusively watches:**
-- The fundamental business model and what the profitability thesis rests on
-- Whether growth is volume-driven or price-driven — and what that reveals about competitive position
-- Whether the business is capital-light or capital-intensive — and how it behaves under pressure given that structure
-- What the primary strategic lever is: efficiency, scale, differentiation, pricing power
-- How the business responds to sustained commercial pressure — what it protects first, what it sacrifices
-- What the pattern of capital allocation reveals about management's strategic priorities over time
+**What it must never do:** Describe what the document says about decisions. Describe the actual decision pattern evidenced across documents. Never describe a single period — always the recurring behavior.
 
-**Does NOT capture:**
-- The specific ratios and their period-to-period mechanics — that is stream 02 (financial mechanics)
-- The delivery record across periods — that is stream 01 (performance track record)
-- The specific metric readings — that is stream 04 (factual record)
-- The document's structural and language patterns — that is stream 03 (document-level patterns)
+**The test:** A new analyst reading this belief would know what the organization will do before it does it — because the behavior has been consistent enough to predict.
 
-**Evidence standard:** Every belief in this stream must be grounded in observable business outcomes — what the business has demonstrably done over time, not in how any document describes what the business is. A belief that rests entirely on how the deck presents the business model is a document observation (stream 03), not a business insight. The evidence for a stream 05 belief is the pattern of actual business behavior, not the narrative framing of it.
+**Example belief:**
 
-**The line between stream 02 and stream 05:** Stream 02 holds what the numbers do. Stream 05 holds what the numbers mean about what kind of company this is. These are not the same. "S&M/NBV compresses in Q1 and recovers in Q2" is stream 02. "This business acquires customers through paid performance marketing, not brand — it can scale demand up and down efficiently but creates no organic demand. Cost efficiency is the primary lever, not pricing power" is stream 05. One describes the mechanic. The other describes what the mechanic reveals about the business's commercial identity.
+> **Belief #3 — Demand investment is the last thing that gets cut under pressure — and when it finally does get cut, something fundamental has changed in how leadership views the business.**
+>
+> **Statement:** In every pressure period reviewed, overhead was reduced and hiring was deferred before any demand investment was considered. Demand spend was never cut. The organizational rule is that demand investment is the revenue engine and everything else is the buffer. The first demand spend cut — when it eventually happens — is not a cost management decision. It is a thesis decision. It means leadership no longer believes demand investment is buying profitable results at the current rate.
+>
+> **Why it matters:** When you see overhead cut, performance is under pressure but the thesis is intact. When you see demand spend cut, the thesis itself is being questioned. The two signals look similar in a cost bridge but mean completely different things. Watching which line moves first tells you more about leadership's confidence in the business model than any single metric.
+>
+> **Evolution trail:** Four pressure periods reviewed. Overhead reduced in all four. Demand spend held in all four. Pattern is consistent and deliberate. Established.
+>
+> **Normal baseline:** Under pressure, expect overhead reduction and hiring deferral. Expect demand investment to hold or increase. Any deviation is the most important signal this business can emit.
+>
+> **Falsification test:** A pressure period where demand investment is reduced before overhead is fully exhausted. That single event breaks this belief and signals that the organizational thesis has changed.
 
-**Example beliefs:**
-- "This is a performance-marketing-led demand model. Growth comes from paid acquisition, not organic or brand-driven demand. The business can scale spend efficiently but has no flywheel — demand stops when spend stops."
-- "The business operates a volume-over-price growth thesis. When volume softens, the team does not reach for price to protect revenue. This is structural, not a period choice."
-- "Capital allocation is consistently biased toward short-cycle, measurable-return investments. Long-horizon structural bets have not appeared in the capital allocation record across 8 comparable documents. Risk management is the de facto strategy."
+---
+
+### Stream 05 — Narrative Understanding
+
+**Purpose:** How this business tells its story — the deliberate communication choices that reveal what leadership wants you to think versus what the numbers actually show. The gap between framing and reality.
+
+**What it covers:**
+- What the document leads with and what that choice signals
+- Which metric becomes the narrative anchor and when it shifts
+- How confidence language changes under different performance conditions
+- What topics disappear from the main document as they deteriorate
+- Specific words that recur with specific meanings
+- How the framing has drifted over time and what triggered the drift
+
+**What it must never do:** State what actually happened — that belongs in Stream 02. Only the communication choices and what they reveal about what the team wants the reader to conclude.
+
+**The test:** A reader who had never opened the document could predict the narrative structure before reading it. And when the structure deviates, they notice immediately.
+
+**Example belief:**
+
+> **Belief #1 — The opening section is a confidence signal, not a content decision — and the team has been consistent enough that you can read the performance result from the section choice before you find the number.**
+>
+> **Statement:** When the team opens the document on the efficiency metric, the primary volume metric is within 2% of plan. When they open on cost discipline or margin, it has missed plan by more than 4%. The opening section choice is a leading indicator of the volume result. The template doesn't mandate the opening — the team chooses it. And they consistently lead with the metric they most want leadership to anchor on.
+>
+> **Why it matters:** You don't need to find the volume number to know whether the period was good or bad. Open the document and look at the first section title. The opening choice tells you. And when the opening shifts, you already know the performance direction before the team states it.
+>
+> **Evolution trail:** Tested across six periods. Three opened on the efficiency metric — all three were within 1.5% of plan. Two opened on cost or margin — both missed by more than 4%. Six for six. Established.
+>
+> **Normal baseline:** Opening section is the efficiency metric. Any other opening is a signal.
+>
+> **Falsification test:** A period where the volume metric misses by more than 4% but the document opens on the efficiency metric anyway. That would mean the team changed how they frame misses — or the miss is being minimized in a way that itself becomes a signal.
+
+---
+
+### Stream 06 — Forecast and Plan Behavior
+
+**Purpose:** How this business plans, forecasts, and revises — the systematic patterns in how it sets expectations and updates them. Not whether forecasts are accurate this period — whether the forecasting behavior is predictable and what that predicts.
+
+**What it covers:**
+- Whether Plan is set aggressively, conservatively, or realistically
+- How forecast moves through the year — timing, direction, magnitude of revisions
+- Systematic bias by period or condition
+- How the business explains forecast changes — the attribution pattern for revisions
+- Whether risk and upside language materializes or is consistently wrong
+
+**What it must never do:** State actual forecast vs actual values as beliefs — those belong in Stream 00. Only the behavioral pattern of how forecasting is done and what that pattern reveals.
+
+**The test:** A reader of this belief can predict, before the new forecast is released, approximately what it will say and in which direction it will be revised.
+
+**Example belief:**
+
+> **Belief #1 — The early-year forecast is always optimistic and the late-year forecast is always conservative — and the team knows this, which means the revisions are not corrections, they are scheduled.**
+>
+> **Statement:** The early-year forecast has come in above eventual actuals in every comparable period reviewed. The late-year forecast has come in below eventual actuals in every comparable period reviewed. The bias is directionally consistent and magnitude-consistent. This is not random forecasting error — it is a systematic pattern that suggests the planning process deliberately or structurally produces optimistic early-year and conservative late-year assumptions.
+>
+> **Why it matters:** When actuals miss the early-year forecast, that is not underperformance — it is the expected bias materializing. When actuals beat the late-year forecast, that is not outperformance — it is the conservative cushion being released. Reading either as genuine signal leads to wrong conclusions. The forecast is a communication artifact with a known directional bias you have to adjust for before interpreting results.
+>
+> **Evolution trail:** Early-year forecast above actuals in four consecutive comparable periods. Late-year forecast below actuals in four consecutive comparable periods. Consistent across two years. Established.
+>
+> **Normal baseline:** Early-year actuals will miss forecast. Late-year actuals will beat forecast. Both are expected. Signal is when the result exceeds the known bias — a miss worse than the typical range, or a late-year miss.
+>
+> **Falsification test:** An early-year period where actuals meet or beat forecast. That would mean either the planning process changed or the business genuinely outperformed — and you need to understand which.
 
 ---
 
@@ -507,7 +559,7 @@ The foundation captures three things: entity identity (name, organizational scop
 
 **What the foundation does NOT pre-specify:** The business model, operating chain, causal relationships between metrics, normal ranges, narration patterns, and what matters vs. noise. These are discovered by reading documents — they are outputs of the belief streams, not inputs to them.
 
-On the first 1–3 documents, Stream 02 operates in model-discovery mode: its primary job is to extract explicit relationship claims from documents and initialize them as Candidate beliefs. Those accumulated beliefs become the discovered business model. Stream 04 builds the factual baseline. Stream 03 begins mapping communication patterns. By document 3–4, the belief memory holds a preliminary model of the business — built from what the documents said, not from what the user specified.
+On the first 1–3 documents, Stream 02 (Business Dynamics) operates in model-discovery mode: its primary job is to extract explicit relationship claims from documents and initialize them as Candidate beliefs. Those accumulated beliefs become the discovered business model. Stream 00 (Factual Understanding) builds the metric definition baseline. Stream 05 (Narrative Understanding) begins mapping communication patterns. Stream 01 (Business Model Understanding) starts forming interpretations of the economic engine. By document 3–4, the belief memory holds a preliminary model of the business — built from what the documents said, not from what the user specified.
 
 The foundation is updated — not rewritten — as the streams accumulate understanding. When Stream 02 establishes a durable operating chain belief, that belief can be referenced by the foundation as a confirmed mechanic. The understanding flows from reading to foundation, not the other way around.
 
