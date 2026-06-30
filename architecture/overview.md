@@ -171,17 +171,19 @@ The belief engine at runtime receives only its compiled prompt, the existing bel
 
 ---
 
-## Pattern Recognition Is the Method, Not a Sixth Type
+## Pattern Recognition Is the Method, Not an Eighth Stream
 
-Pattern recognition is not a separate belief type. It is the method that all five types apply. Every belief type is about patterns — the difference is what form patterns take:
+Pattern recognition is not a separate belief stream. It is the method that all seven streams apply. Every stream is about patterns — the difference is what form patterns take:
 
-| Belief Type | Pattern Form |
-|-------------|-------------|
-| Learning What the Business Has Consistently Shown | Cross-period delivery patterns; metric beat/miss rates; reliability of commitments |
-| Learning How This Business Generates and Loses Value | Structural ratio stability and trajectory across periods |
-| Learning How Documents Frame the Story | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
-| Learning What Finance Has Recorded as True | Metric definition stability; benchmark comparison consistency |
-| Learning What Kind of Business This Actually Is | Lead-lag pair recurrence; signal → outcome with consistent lag |
+| Stream | Pattern Form |
+|--------|-------------|
+| 00 — Factual Understanding | Metric definition stability; benchmark comparison consistency |
+| 01 — Business Model Understanding | Structural margin and unit-economics trajectory across periods |
+| 02 — Business Dynamics | Lead-lag pair recurrence; conversion chain stability; stress and feedback sequencing |
+| 03 — Causal Understanding | Attribution sequencing; gap between stated cause and what actually moved |
+| 04 — Business Memory | Decision pattern recurrence across pressure episodes |
+| 05 — Narrative Understanding | Linguistic fingerprints; sequencing habits; what appears vs what is absent |
+| 06 — Forecast and Plan Behavior | Revision direction and magnitude recurrence; planning bias stability |
 
 The fact extraction prompt is the injection point for pattern direction. When the blueprint specifies what form patterns take, the fact extractor captures not just values but recurrence signals — the actual language used, the structural positions occupied, what appeared vs what was absent. Without pattern direction, the extractor captures point-in-time readings. With it, it captures evidence that accumulates into fingerprints.
 

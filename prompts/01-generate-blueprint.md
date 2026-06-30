@@ -49,7 +49,7 @@ Before anything else, state what is known about this entity from the foundation,
 
 **What the foundation pre-specifies**: [Only what was explicitly provided at setup — entity identity and document types. Do not invent the business model, operating chain, or behavioral patterns. These are discovered from documents.]
 
-**What will be discovered from documents**: [Name the areas the belief streams will build as they read: the operating model (Stream 02 relationship claims), the factual baseline (Stream 04), the communication patterns (Stream 03), the delivery track record (Stream 01), and the strategic character (Stream 05). On first document, these areas are hypotheses, not facts.]
+**What will be discovered from documents**: [Name the areas the belief streams will build as they read: the operating model (Stream 02 — Business Dynamics — relationship claims), the factual baseline (Stream 00 — Factual Understanding), the economic engine (Stream 01 — Business Model Understanding), the attribution pattern (Stream 03 — Causal Understanding), the decision pattern under pressure (Stream 04 — Business Memory), the communication patterns (Stream 05 — Narrative Understanding), and the planning behavior (Stream 06 — Forecast and Plan Behavior). On first document, these areas are hypotheses, not facts.]
 
 **Known prior context** (if any): [If the user provided any context about how the business works — a specific relationship they believe exists, a metric they know is important — encode it here as a starting hypothesis, clearly labeled as user-provided rather than document-derived. It will be treated as a Candidate belief seed, not as established fact.]
 ```
@@ -147,7 +147,7 @@ This is the pattern direction — what the fact extractor must watch for. Choose
 - **Behavioral markers**: what the entity consistently does or consistently omits
 - **Measure relationships**: how specific measures are positioned relative to each other across documents
 
-For the **Learning How This Business Generates and Loses Value** angle, three additional pattern forms are required. These must be explicitly answered in the blueprint even if the first documents cannot yet confirm them — they are the hypotheses the belief engine will be looking to build over time:
+For the **Stream 02 — Business Dynamics** stream, three additional pattern forms are required. These must be explicitly answered in the blueprint even if the first documents cannot yet confirm them — they are the hypotheses the belief engine will be looking to build over time:
 
 - **Operating chain mapping**: What is the complete causal sequence connecting the thesis metrics for this entity, from first input to final outcome? Name each metric in the chain, the mechanism connecting it to the next, and the estimated lag. Example: "Spend → CPX → Demand volume (same period) → Bookings (lag: 0–7 days) → Revenue (lag: 30–45 days) → Contribution margin (same period as revenue)." This is the engine of the business and the most important systemic belief the stream will build.
 
@@ -155,7 +155,7 @@ For the **Learning How This Business Generates and Loses Value** angle, three ad
 
 - **Feedback loop detection**: Is this business likely to self-correct under pressure, or does pressure in one metric amplify into others? State the hypothesis — which direction, through which mechanism — and what signal in a future document would confirm a self-correcting vs self-reinforcing dynamic.
 
-For this entity in this angle, which of the standard forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
+For this entity in this stream, which of the standard forms are most likely to carry the durable patterns? Be explicit about which to prioritize. Ground this in the foundation's narration design section.
 
 **3.5 — What can these documents NOT give this stream, no matter how carefully they are read?**
 

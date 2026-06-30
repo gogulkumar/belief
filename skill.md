@@ -109,7 +109,7 @@ Document producer: [Who creates the documents this system will read]
 [Only what the user provided. If nothing: "None identified."]
 
 ## Discovered Understanding
-[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 relationship beliefs, Stream 01 delivery track record, etc. The business model lives here once the system has earned it from reading.]
+[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. The business model lives here once the system has earned it from reading.]
 ```
 
 **Success check — Stage 1:**
@@ -439,7 +439,7 @@ For each belief with a Falsification test that could trigger in this document:
 [Belief #N — claim]: Watch for [what would challenge it]. If seen: [what to do].
 
 ### Relationship Chain Status
-[List the established operating chain links from Stream 02 in order: A → B (lag X) → C (lag Y)...]
+[List the established operating chain links from Stream 02 (Business Dynamics) in order: A → B (lag X) → C (lag Y)...]
 What this document should confirm or update: [which chain links this document type can carry evidence for]
 
 ### What to Ignore
@@ -468,12 +468,12 @@ Belief #N ([Status]): [What this belief says that is relevant. Quote the stateme
 ```
 
 **Examples of questions this handles:**
-- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 ratio relationship belief answers
-- "What drives revenue in this business?" → Stream 02 relationship beliefs answer
-- "Should I be concerned about the revenue miss?" → Stream 01 delivery track record answers with base rate and context
-- "Is this business self-correcting or does a miss compound?" → Stream 02 feedback dynamics belief answers (if established)
-- "What language shift should make me worried?" → Stream 03 communication pattern beliefs answer
-- "What is the normal booking range for Q2?" → Stream 01 or Stream 04 baseline answers
+- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
+- "What drives revenue in this business?" → Stream 02 (Business Dynamics) relationship beliefs answer
+- "Should I be concerned about the revenue miss?" → Stream 02 (Business Dynamics) delivery track record answers with base rate and context
+- "Is this business self-correcting or does a miss compound?" → Stream 02 (Business Dynamics) feedback dynamics belief answers (if established)
+- "What language shift should make me worried?" → Stream 05 (Narrative Understanding) communication pattern beliefs answer
+- "What is the normal booking range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
 
 ### Use Case C — Meeting Preparation
 

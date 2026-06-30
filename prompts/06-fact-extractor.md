@@ -159,43 +159,48 @@ Enforce the pattern evidence standard explicitly.
 ```
 ## Pattern Evidence Standards
 
-For language-based signals (Learning How Documents Frame the Story):
+For language-based signals (Stream 05 — Narrative Understanding):
 - Capture VERBATIM quotes — the exact words used, not a paraphrase
 - Capture structural position — where in the document this language appears (e.g., "first item in the performance section", "appears only in the appendix", "lead sentence of the executive summary")
 - Note what language was absent if absence is meaningful (e.g., "the word 'headwinds' does not appear in this document; the foundation notes this entity uses it consistently in weak periods")
 
-For number-based signals (Learning What Finance Has Recorded as True, Learning How This Business Generates and Loses Value, Learning What Kind of Business This Actually Is, Learning What the Business Has Consistently Shown):
+For number-based signals (Stream 00 — Factual Understanding, Stream 01 — Business Model Understanding, Stream 02 — Business Dynamics, Stream 03 — Causal Understanding, Stream 06 — Forecast and Plan Behavior):
 - Capture: metric name + value + period + comparison benchmark
 - Do not strip any of these four elements — an incomplete number is not a signal, it is a fragment
 - Capture the label the document uses for the metric — not a normalized version
 - Cross-reference the foundation's normalization model: note whether the reading is within normal range, at a deviation threshold, or outside normal range
 - Note if the metric definition changed from prior documents
-- For Learning What the Business Has Consistently Shown: also note whether this reading continues, breaks, or is silent on an existing delivery pattern
+- For Stream 06: also note whether this reading is the original Plan, a revision, or an Actual — and which prior Plan/Forecast it should be compared against
 
-For operating chain signals (Learning How This Business Generates and Loses Value):
+For conversion chain signals (Stream 02 — Business Dynamics):
 - Capture which metric moved in this document and what the document shows moved with it or after it
 - Note the apparent lag: if metric A moved in a prior period and metric B moved now, capture both readings and the gap between them — this is evidence for or against a chain link
 - Capture any explicit statement in the document connecting one metric's movement to another ("bookings growth translated into revenue X weeks later") — verbatim
 - Note which chain links are silent in this document: if the document shows spend and revenue but not the intermediate conversion metrics, record that gap explicitly
 - If a chain link appears to have broken — a metric that normally follows another did not move as expected — capture this as a leading indicator for a stress behavior or feedback belief
 
-For system stress behavior signals (Learning How This Business Generates and Loses Value):
+For system stress behavior signals (Stream 02 — Business Dynamics, Stream 04 — Business Memory):
 - When the document reports a miss or degradation in any thesis metric: capture which metric degraded, the magnitude, and what other metrics are reported alongside it
 - Capture the sequence: did the document show demand softness before cost impact, or cost impact before volume impact? The order of degradation is the signal
 - Capture what the document shows held or improved while other metrics degraded — this is evidence for what the business protects under stress
 - Capture any explicit management statement about prioritization under pressure ("we chose to hold X and accept lower Y") — verbatim
 
-For feedback dynamics signals (Learning How This Business Generates and Loses Value):
+For feedback dynamics signals (Stream 02 — Business Dynamics):
 - Capture whether the document reports a recovery after a prior-period stress, and if so, what drove it — internal (efficiency improvement, cost reduction) or external (market recovery, seasonal normalization)
 - If recovery appears self-driven, capture the specific mechanic described
 - If recovery appears absent after a prior-period miss, capture that silence — the absence of recovery is the feedback signal
 - Capture any document showing that a prior-period cut (cost, marketing, headcount) led to a constraint in a current-period metric — this is the self-amplifying loop in evidence
 
-For attribution signals (Learning What Kind of Business This Actually Is):
+For attribution signals (Stream 03 — Causal Understanding):
 - Capture the exact cause named, in the exact language used
 - Capture the order in which causes are named (what comes first matters)
 - Note whether the cause is framed as controllable or external — the foundation's narration design section describes this entity's habits
 - Note what causes are NOT named if their absence is meaningful given the foundation's narration design
+
+For decision-pattern signals (Stream 04 — Business Memory):
+- Capture what got protected and what got cut under a pressure episode, and the order in which cuts were made
+- Capture any explicit statement of prioritization made under pressure — verbatim
+- Note whether this episode's decision pattern matches or breaks from a prior pressure episode
 ```
 
 ---

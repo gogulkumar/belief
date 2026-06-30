@@ -17,16 +17,18 @@ belief_config:
   # Documents below this limit run as a single extraction pass.
   token_limit_per_chunk: 50000
 
-  # ─── ACTIVE BELIEF ANGLES ──────────────────────────────────────────────────
-  # Standard belief angles available for stream setup.
-  # Each stream selects one angle at setup time (Step 0).
-  # Custom angles can be defined during the Prompt 00 interview.
-  standard_angles:
-    - business_memory          # 01 — Learning What the Business Has Consistently Shown
-    - business_dynamics        # 02 — Learning How This Business Generates and Loses Value
-    - narrative_understanding  # 03 — Learning How Documents Frame the Story
-    - factual_understanding    # 04 — Learning What Finance Has Recorded as True
-    - causal_understanding     # 05 — Learning What Kind of Business This Actually Is
+  # ─── ACTIVE BELIEF STREAMS ──────────────────────────────────────────────────
+  # Standard belief streams available for stream setup.
+  # Each stream selects one of these at setup time (Step 0).
+  # Custom streams can be defined during the Prompt 00 interview.
+  standard_streams:
+    - factual_understanding       # 00 — Factual Understanding
+    - business_model_understanding # 01 — Business Model Understanding
+    - business_dynamics           # 02 — Business Dynamics
+    - causal_understanding        # 03 — Causal Understanding
+    - business_memory             # 04 — Business Memory
+    - narrative_understanding     # 05 — Narrative Understanding
+    - forecast_and_plan_behavior  # 06 — Forecast and Plan Behavior
 
   # ─── MATURITY LADDER ───────────────────────────────────────────────────────
   # Documents required to advance through the durability stages.

@@ -41,7 +41,7 @@ The foundation is built once per entity. All streams for that entity inherit it.
 **Scope:** Capture three things: the entity, the requested belief stream (angle), and the document set that will feed it.
 **Output:** A stream setup record: entity, belief stream name, document set
 
-The belief stream may be one of the five standard angles (Learning What the Business Has Consistently Shown, Learning How This Business Generates and Loses Value, Learning What Kind of Business This Actually Is, Learning How Documents Frame the Story, Learning What Finance Has Recorded as True) or a custom angle (Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined angle). The user chooses. The documents determine what can be grounded.
+The belief stream may be one of the seven standard streams (00 — Factual Understanding, 01 — Business Model Understanding, 02 — Business Dynamics, 03 — Causal Understanding, 04 — Business Memory, 05 — Narrative Understanding, 06 — Forecast and Plan Behavior) or a custom stream (Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined stream). The user chooses. The documents determine what can be grounded.
 
 This step only captures intent. The system grounds it in Steps 1 and 2.
 

@@ -72,7 +72,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ## Examples
 
-### Stream 03 example — document-level patterns
+### Stream 05 example — Narrative Understanding, document-level patterns
 
 ```markdown
 ## Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.   [DEEPEN]   Status: Confirmed
@@ -90,7 +90,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-### Stream 01 example — performance track record
+### Stream 02 example — Business Dynamics, performance track record component
 
 ```markdown
 ## Belief #3 — Revenue guidance has been met or exceeded in 7 of 8 comparable quarters; the one miss was preceded by a distinct language shift in the prior period.   [DEEPEN]   Status: Established
@@ -108,7 +108,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-### Stream 02 example — relationship belief, initialized from document one, deepened across 6 cycles
+### Stream 02 example — Business Dynamics, relationship belief, initialized from document one, deepened across 6 cycles
 
 ```markdown
 ## Belief #5 — S&M spend in Q1 drives bookings recovery in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
@@ -134,7 +134,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 ## Changelog — {doc_id} — {timestamp}
 
 ### Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.
-<!-- Stream 03 — document-level patterns -->
+<!-- Stream 05 — Narrative Understanding -->
 **Action:** [DEEPEN]
 **Previous statement:** (unchanged)
 **New statement:** (unchanged)
@@ -143,7 +143,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 **What next document should test:** Whether volume-first ordering holds in a period where volume is negative or flat.
 
 ### Belief #4 — Management attributes margin misses exclusively to external cost inflation.
-<!-- Stream 03 — attribution habits -->
+<!-- Stream 03 — Causal Understanding -->
 **Action:** [TENSION]
 **Previous statement:** Management attributes margin misses exclusively to external cost inflation.
 **New statement:** (unchanged — held under tension)

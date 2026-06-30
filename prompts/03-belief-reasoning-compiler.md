@@ -132,24 +132,30 @@ If the answer to any of these is no, don't write the belief.
 
 State the numbers rule for this angle explicitly. Derive it from Blueprint Section 3.4.
 
-For Learning How This Business Generates and Loses Value:
-> **Relationship beliefs** (the primary belief type for this stream): state the two metrics connected, the direction (A drives B), the lag if established, and the verbatim source language. On first document, this is a Candidate from a single explicit statement — mark it as such. On second document confirming the same relationship: Provisional. A relationship belief that has been stated explicitly in a document doesn't require observing the relationship play out — the statement is the primary evidence; the observation across periods is confirmation.
-> 
-> **Structural ratio beliefs**: the ratio, the benchmark, the trend direction. For operating chain beliefs: metric names + estimated lag at each step + the mechanism connecting each link. For system stress behavior beliefs: the sequence of metric degradation — qualitative ordering required, magnitude optional. For feedback dynamics beliefs: the direction of the loop (self-correcting or self-amplifying), the mechanism, and the condition under which it triggers. No period-specific revenue or cost totals except where they establish the normal range for a chain link.
-
-For Learning What the Business Has Consistently Shown:
-> Numbers are required. The delivery record is the belief — counts, percentages, and ranges across comparable periods. Example: "above FC in 9 of 12 comparable periods, median beat 3.2%" rather than "consistently beats FC." Every belief must state: the metric, the direction, the count of periods, and the magnitude where relevant. Period-specific totals are not the belief — the cross-period pattern is.
-
-For Learning How Documents Frame the Story:
-> Zero numbers. This angle is entirely about language, sequencing, emphasis, and framing choices. Numbers don't belong in beliefs for this angle.
-
-For Learning What Finance Has Recorded as True:
+For Stream 00 — Factual Understanding:
 > Numbers ARE the belief. Every factual belief entry must state: the metric name, the value, the period, and the comparison benchmark. Missing any of these makes the entry incomplete.
 
-For Learning What Kind of Business This Actually Is:
-> Include magnitude only to describe the scale of attributed gaps. No full period totals. The pattern is the belief, not the absolute numbers.
+For Stream 01 — Business Model Understanding:
+> Include magnitude only to describe the scale of the economic pattern (e.g., margin structure, price/volume split). No full period totals. The pattern is the belief, not the absolute numbers.
 
-For user-defined angles:
+For Stream 02 — Business Dynamics:
+> **Relationship beliefs** (the primary belief type for this stream): state the two metrics connected, the direction (A drives B), the lag if established, and the verbatim source language. On first document, this is a Candidate from a single explicit statement — mark it as such. On second document confirming the same relationship: Provisional. A relationship belief that has been stated explicitly in a document doesn't require observing the relationship play out — the statement is the primary evidence; the observation across periods is confirmation.
+> 
+> **Structural ratio beliefs**: the ratio, the benchmark, the trend direction. For conversion chain beliefs: metric names + estimated lag at each step + the mechanism connecting each link. For stress behavior beliefs: the sequence of metric degradation — qualitative ordering required, magnitude optional. For feedback dynamics beliefs: the direction of the loop (self-correcting or self-amplifying), the mechanism, and the condition under which it triggers. No period-specific revenue or cost totals except where they establish the normal range for a chain link.
+
+For Stream 03 — Causal Understanding:
+> Include magnitude only to describe the scale of attributed gaps between stated cause and what Stream 02 shows actually moved. No full period totals. The pattern is the belief, not the absolute numbers.
+
+For Stream 04 — Business Memory:
+> Numbers are required only to anchor the pressure episode being compared (e.g., the magnitude of the miss that triggered the decision). The decision pattern across episodes is the belief, not the period totals.
+
+For Stream 05 — Narrative Understanding:
+> Zero numbers. This stream is entirely about language, sequencing, emphasis, and framing choices. Numbers don't belong in beliefs for this stream.
+
+For Stream 06 — Forecast and Plan Behavior:
+> Numbers are required. The bias pattern is the belief — direction and magnitude of revisions, hit/miss counts across comparable periods. Example: "Plan revised down in 7 of 9 comparable cycles, median revision -4%" rather than "Plan is usually too aggressive." Period-specific totals are not the belief — the cross-period revision pattern is.
+
+For user-defined streams:
 > [Derive the numbers policy from Blueprint Section 3.1 worked example and Section 3.4 pattern direction.]
 
 ---

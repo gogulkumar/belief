@@ -66,23 +66,25 @@ For each document type, you will need to assess — after the interview — what
 
 You need to understand what type of business understanding the user wants to accumulate from these documents.
 
-Present the five standard angles. Ask which one fits best — or whether a different angle is needed.
+Present the seven standard streams. Ask which one fits best — or whether a different stream is needed.
 
-> The five standard angles are:
+> The seven standard streams are:
 >
-> | Angle | What it accumulates |
-> |-------|---------------------|
-> | **Learning What the Business Has Consistently Shown** | The factual performance track record — what this entity has actually delivered across comparable periods, where it is reliable and where it is not |
-> | **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships that hold independent of any specific period |
-> | **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, emphasizes, or avoids across recurring documents |
-> | **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a baseline for what is normal |
-> | **Learning What Kind of Business This Actually Is** | Durable interpretations of cause and effect — which attributed drivers appear repeatedly, and which signals tend to precede which outcomes |
+> | Stream | What it accumulates |
+> |--------|---------------------|
+> | **00 — Factual Understanding** | What is verifiably true about how the business is measured — metric definitions, calculation bases, the stable factual record |
+> | **01 — Business Model Understanding** | The underlying economic engine — the profitability thesis, and whether it is holding |
+> | **02 — Business Dynamics** | How the parts of the business move relative to each other — lead-lag relationships, conversion chains, stress and feedback behavior |
+> | **03 — Causal Understanding** | What the team attributes as the causes of performance — and whether that attribution is honest, selective, or strategically chosen |
+> | **04 — Business Memory** | How this organization behaves as a decision-making system under pressure — what it actually does, not says |
+> | **05 — Narrative Understanding** | How this business tells its story — what the framing reveals versus what the numbers actually show |
+> | **06 — Forecast and Plan Behavior** | How this business plans, forecasts, and revises — systematic biases in how it sets and updates expectations |
 >
-> Custom angles are also supported. Examples: "Forecast Reliability" (how consistently plans are revised), "Commitment Tracking" (how consistently commitments in one document are addressed in the next), "Risk Language" (how the entity frames uncertainty and downside).
+> Custom streams are also supported. Examples: "Forecast Reliability" (how consistently plans are revised), "Commitment Tracking" (how consistently commitments in one document are addressed in the next), "Risk Language" (how the entity frames uncertainty and downside).
 
 Questions to resolve:
-- Which of these angles best matches what you want to understand about this entity from these documents?
-- If a custom angle is needed: what would you call it, and what does it track?
+- Which of these streams best matches what you want to understand about this entity from these documents?
+- If a custom stream is needed: what would you call it, and what does it track?
 - Is there a specific question you want the belief stream to help answer over time?
 
 ---
