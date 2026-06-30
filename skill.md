@@ -79,7 +79,7 @@ Ask:
 
 ### Group 3 — Any Known Context (Optional)
 Ask:
-- Is there anything specific about this entity that you already know and want the system to start from? (e.g., "I know this business is marketing-led" or "the key metric is NBV") — this is optional. If you say nothing, the system will discover the business model by reading the documents.
+- Is there anything specific about this entity that you already know and want the system to start from? (e.g., "I know this business is marketing-led" or "the key metric is core volume growth") — this is optional. If you say nothing, the system will discover the business model by reading the documents.
 - Are there any known quirks in the documents that might mislead an AI reader? (e.g., "Q1 always looks weak due to seasonality" or "they use non-standard metric names")
 
 Do NOT ask about the business model, operating chain, causal relationships, thesis metrics, normal ranges, or narration patterns. These will be discovered from documents. The user is not expected to know them upfront — that is precisely what the belief system is for.

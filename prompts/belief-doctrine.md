@@ -90,9 +90,9 @@ This is not falsifiable — every team cares about performance.
 
 A stronger belief:
 
-> The team consistently uses bookings variance against plan as the first narrative anchor before explaining downstream revenue and margin movement.
+> The team consistently uses demand variance against plan as the first narrative anchor before explaining downstream revenue and margin movement.
 
-This is falsifiable because a future document could stop leading with plan variance, shift the anchor to a different comparison, or explain margin independently of bookings.
+This is falsifiable because a future document could stop leading with plan variance, shift the anchor to a different comparison, or explain margin independently of demand.
 
 ### 3. Actionable
 

@@ -149,7 +149,7 @@ This is the pattern direction — what the fact extractor must watch for. Choose
 
 For the **Stream 02 — Business Dynamics** stream, three additional pattern forms are required. These must be explicitly answered in the blueprint even if the first documents cannot yet confirm them — they are the hypotheses the belief engine will be looking to build over time:
 
-- **Operating chain mapping**: What is the complete causal sequence connecting the thesis metrics for this entity, from first input to final outcome? Name each metric in the chain, the mechanism connecting it to the next, and the estimated lag. Example: "Spend → CPX → Demand volume (same period) → Bookings (lag: 0–7 days) → Revenue (lag: 30–45 days) → Contribution margin (same period as revenue)." This is the engine of the business and the most important systemic belief the stream will build.
+- **Operating chain mapping**: What is the complete causal sequence connecting the thesis metrics for this entity, from first input to final outcome? Name each metric in the chain, the mechanism connecting it to the next, and the estimated lag. Example: "Spend → Cost per conversion → Demand volume (same period) → Completed transactions (lag: 0–7 days) → Revenue (lag: 30–45 days) → Contribution margin (same period as revenue)." This is the engine of the business and the most important systemic belief the stream will build.
 
 - **Stress sequencing**: When this business is under pressure, which metric is likely to degrade first, which is likely to hold, and which is the last to recover? Ground this in the foundation's business model and thesis metrics. Name the expected degradation sequence and what a document would need to show to confirm or contradict it.
 

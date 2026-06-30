@@ -32,7 +32,7 @@ The fact extractor must capture:
 
 A relationship claim is any statement where the document asserts that:
 - A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
-- A precedes or predicts B ("bookings typically convert to revenue within 30–45 days")
+- A precedes or predicts B ("completed transactions typically convert to revenue within 30–45 days")
 - A is a function of B ("take rate improves as transaction volume scales above X")
 - A and B move together or diverge in a meaningful way ("volume was flat while revenue grew — price is doing the work")
 - A condition changes B's behavior ("when spend falls below this threshold, conversion efficiency deteriorates")
@@ -175,7 +175,7 @@ For number-based signals (Stream 00 — Factual Understanding, Stream 01 — Bus
 For conversion chain signals (Stream 02 — Business Dynamics):
 - Capture which metric moved in this document and what the document shows moved with it or after it
 - Note the apparent lag: if metric A moved in a prior period and metric B moved now, capture both readings and the gap between them — this is evidence for or against a chain link
-- Capture any explicit statement in the document connecting one metric's movement to another ("bookings growth translated into revenue X weeks later") — verbatim
+- Capture any explicit statement in the document connecting one metric's movement to another ("demand growth translated into revenue X weeks later") — verbatim
 - Note which chain links are silent in this document: if the document shows spend and revenue but not the intermediate conversion metrics, record that gap explicitly
 - If a chain link appears to have broken — a metric that normally follows another did not move as expected — capture this as a leading indicator for a stress behavior or feedback belief
 

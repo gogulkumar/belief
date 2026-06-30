@@ -16,9 +16,9 @@ The difference:
 
 | Without belief activation | With belief activation |
 |--------------------------|------------------------|
-| "Q1 S&M spend was 32% of NBV, 200bps above FC." | "Q1 S&M at 32% is within the established 28–34% normal range for this business's seasonal mechanic (Belief #5, Established). This is the thesis executing, not an overrun. Watch Q2 bookings recovery at the 6–8 week mark." |
+| "Q1 spend was 32% of the core volume metric, 200bps above FC." | "Q1 spend at 32% is within the established 28–34% normal range for this business's seasonal mechanic (Belief #5, Established). This is the thesis executing, not an overrun. Watch Q2 demand recovery at the 6–8 week mark." |
 | "Revenue growth has been strong." | "Revenue guidance has been met or exceeded in 7 of 8 comparable quarters at a median beat of 1.4% (Belief #3, Established). The one miss was preceded by a specific language shift in the prior document. No such language shift is visible in the current document — the baseline expectation is a beat." |
-| "Marketing drives demand." | "Belief #5 (Established, 6 cycles confirmed): S&M spend in Q1 drives bookings recovery in Q2 with a 6–8 week lag. This relationship was first stated explicitly in the Q1 2023 earnings transcript and has been confirmed in every subsequent Q1→Q2 cycle. The chain connecting spend to bookings is the primary operating mechanic the system has documented for this business." |
+| "Marketing drives demand." | "Belief #5 (Established, 6 cycles confirmed): Spend in Q1 drives demand recovery in Q2 with a 6–8 week lag. This relationship was first stated explicitly in the first document reviewed and has been confirmed in every subsequent Q1→Q2 cycle. The chain connecting spend to demand is the primary operating mechanic the system has documented for this business." |
 
 Activated beliefs answer calibrated questions. Unactivated documents answer literal questions.
 
@@ -108,9 +108,9 @@ For Stream 02 relationship beliefs:
 
 **Examples of questions this use case handles:**
 
-- "Is Q1 S&M spend a problem?" → Belief #5 says no; explain why
+- "Is Q1 spend a problem?" → Belief #5 says no; explain why
 - "Should I be worried about the revenue miss?" → Belief #3 says assess the magnitude and check for prior-period language shift
-- "What is the relationship between spend and bookings in this business?" → Stream 02 operating chain beliefs answer directly
+- "What is the relationship between spend and demand in this business?" → Stream 02 operating chain beliefs answer directly
 - "Is this business self-correcting or does it amplify pressure?" → Feedback dynamics belief answers if established; if Candidate or absent, say so explicitly
 - "What is normal for this metric in this period?" → Normal baseline from the relevant belief
 
@@ -170,7 +170,7 @@ For Stream 02 relationship beliefs:
 
 **Relationship claims are the connective tissue.** When answering questions about why a metric moved, always check Stream 02 relationship beliefs first. The operating chain is the most important context for interpreting any individual metric.
 
-**Don't summarize the document.** If the analyst asks "what does this deck say about S&M spend?", the answer is not a summary of the S&M slides. It's what Belief #5 says about the context in which the S&M reading should be interpreted.
+**Don't summarize the document.** If the analyst asks "what does this deck say about spend?", the answer is not a summary of the spend slides. It's what Belief #5 says about the context in which the spend reading should be interpreted.
 
 ---
 
