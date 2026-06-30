@@ -22,6 +22,14 @@ In this system, a belief is a **durable, falsifiable, and actionable interpretat
 
 A belief is the kind of interpretation a strong senior analyst would carry in their head after reading many recurring documents from the same entity. It's not something they would abandon after reading one more document unless that document provides meaningful contradictory evidence.
 
+**The master test: a belief must say something the document does not say.**
+
+If you can find the belief by reading the document, it is an extraction, not a belief. The documents contain facts, signals, and patterns. Beliefs live between documents — in the judgment of someone who has read all of them and concluded something that none of them state explicitly.
+
+The question to ask before writing any belief: *if a smart person who knows this sector but has never read this entity's documents reads this belief — do they learn something new and specifically important about how this business works that they couldn't have inferred from general knowledge? And does reading it change how they approach the next document?*
+
+If the statement describes what happened, it is a fact. If it restates what the document says in different words, it is a summary. If it could apply to any company in this sector without modification, it is sector knowledge, not a belief. A belief is what a six-month reader sees that a first-time reader misses entirely — and what drives that distinction is interpretation, not observation.
+
 **A belief can also be a discovered relationship** — a durable claim that one metric in this business drives another, with a stated direction, lag, and mechanism. These relationship beliefs are the connective tissue that turns isolated metric observations into a working model of the business. They are discovered from what the documents say, not pre-specified by the user. When a document states explicitly that A drives B, that is a relationship claim — the most structurally important signal the system can extract. It becomes a Candidate belief on the first document it appears in, and is confirmed or contradicted as more documents arrive.
 
 A belief helps answer:
@@ -82,9 +90,9 @@ This is not falsifiable — every team cares about performance.
 
 A stronger belief:
 
-> The team consistently uses bookings variance against plan as the first narrative anchor before explaining downstream revenue and margin movement.
+> The team consistently uses demand variance against plan as the first narrative anchor before explaining downstream revenue and margin movement.
 
-This is falsifiable because a future document could stop leading with plan variance, shift the anchor to a different comparison, or explain margin independently of bookings.
+This is falsifiable because a future document could stop leading with plan variance, shift the anchor to a different comparison, or explain margin independently of demand.
 
 ### 3. Actionable
 
@@ -219,61 +227,90 @@ In any belief stream, beliefs must be careful because documents often contain st
 
 Each belief stream accumulates a different type of durable understanding. A strong belief belongs to exactly one stream — and the stream determines what form the belief takes.
 
-**Stream 01 — Learning What the Business Has Consistently Shown**
+**Stream 00 — Factual Understanding**
 
-A strong belief in this stream is about the delivery record: what this business has actually produced across comparable periods, not what it says or intends. Strong beliefs in this stream look like:
+This stream holds what is verifiably true about how the business is measured — not what the numbers mean, but what they definitively are and whether definitions are consistent.
 
-- whether guidance is reliably met, beaten, or missed — and by how much, across how many comparable periods
-- whether specific thesis metrics are consistent or volatile across comparable periods
-- whether commitments made in one period are reliably honored in the next — the track record of stated expectations vs. actual outcomes
-- what leading signals have historically preceded beats or misses
+Strong beliefs look like:
+- how a key metric is defined and whether that definition has held stable across documents
+- what the benchmark sequence is and whether it ever shifts
+- how a calculation basis differs from industry convention — and what that means for comparisons
+- which data systems produce which metrics — and whether source consistency has held
 
-A belief in this stream must carry counts (N of M periods), magnitudes (median beat/miss), and direction. Pattern language alone is insufficient.
+The test: any analyst with the source document can verify this belief independently. If it requires interpretation, it belongs in a different stream.
 
-**Stream 02 — Learning How This Business Generates and Loses Value**
+**Stream 01 — Business Model Understanding**
 
-A strong belief in this stream is about the financial mechanics and systemic behavior: how the business is actually wired. Strong beliefs look like:
+This stream holds durable interpretations of how this specific business makes money — not what it reported, but what the underlying economic engine is.
 
-- ratio relationships and efficiency ranges that define normal operating leverage (e.g., S&M/NBV in the 28–34% range)
-- the operating chain: the causal sequence connecting thesis metrics with named lag at each step (e.g., spend → bookings in 6–8 weeks → revenue in 30–45 days)
-- stress sequencing: which metric degrades first under pressure, which holds, and which recovers last — revealing what this business structurally protects
-- feedback dynamics: whether the business self-corrects under pressure or amplifies pressure through a reinforcing loop (cost cuts → demand shortfall → further cuts)
+Strong beliefs look like:
+- what the profitability thesis is and whether it is holding
+- whether growth is price-driven or volume-driven — and what that reveals about competitive position and ceiling risk
+- where margin is structurally made and where it leaks
+- whether the unit economics are improving or degrading across comparable periods
 
-Operating chain, stress behavior, and feedback dynamics beliefs require multiple comparable documents. They cannot be initialized from the first document alone.
+The test: this belief is true regardless of which specific period is being reviewed. If it depends on a particular quarter's result, it's a delivery observation (Stream 01 is about the model, not the track record).
 
-**Stream 03 — Learning How Documents Frame the Story**
+**Stream 02 — Business Dynamics**
 
-A strong belief in this stream is about how this entity communicates in recurring documents. Strong beliefs look like:
+This stream holds how the parts of the business move relative to each other — lead-lag relationships, conversion chains, seasonal cycles, stress behavior, and feedback loops.
 
-- how the team repeatedly explains performance or outcomes — which causes it names, in what order, framed how
-- which comparison it uses as the primary narrative anchor (plan, forecast, prior period, target)
-- how it distinguishes controllable drivers from external drivers — and whether that framing shifts under pressure
-- what language recurs — specific words or phrases that appear consistently in specific contexts
-- how positive or negative performance is framed — the structural pattern of how good news leads and bad news follows
-- what topics appear, disappear, move earlier in the document, or get buried — structural sequencing across comparable documents
+Strong beliefs look like:
+- which metric moves first and which follows, with an established lag
+- the conversion chain: from spend to output, step by step, with efficiency at each link
+- what happens under pressure — which metric degrades first, which holds, which recovers last
+- whether the system is self-correcting or self-amplifying
 
-A belief in this stream must be grounded in document-level evidence (verbatim language, structural position, sequencing). It must not be grounded in business outcomes.
+Relationship claims (explicit management statements that A drives B) can initialize a Candidate belief on the first document. Stress and feedback beliefs require observing at least one pressure episode.
 
-**Stream 04 — Learning What Finance Has Recorded as True**
+**Stream 03 — Causal Understanding**
 
-A strong belief in this stream is about what the entity has formally stated as a metric reading. Strong beliefs look like:
+This stream holds what the team attributes as the causes of performance movement — and whether those attributions are honest, selective, or strategically chosen.
 
-- the actual value of a thesis metric, with period, benchmark, and comparison basis
-- a factual account of how a key metric has moved across comparable periods — the recorded history of specific readings
-- a structural fact about how a measure is defined or calculated in this entity's documents (metric name, denominator, normalization approach)
+Strong beliefs look like:
+- which causes appear first in the bridge and which appear last — the systematic sequencing of attribution
+- whether external factors are consistently used to explain controllable misses
+- what the gap is between stated attribution and what the dynamics stream shows actually moved
+- whether the attribution pattern is consistent across comparable periods or shifts under different performance conditions
 
-Every belief in this stream must carry: the metric name, the value, the period, and the comparison benchmark. Missing any of these makes the entry a fragment, not a belief.
+The test: a new analyst reading this belief would know what the team will say before opening the document — and would know whether to believe it. If the belief is about what actually caused performance (not what the team said caused it), it belongs in Stream 02.
 
-**Stream 05 — Learning What Kind of Business This Actually Is**
+**Stream 04 — Business Memory**
 
-A strong belief in this stream is about strategic character — observed from what the business actually does, not from what its documents say. Strong beliefs look like:
+This stream holds how this organization behaves as a decision-making system under different conditions — what it actually does when performance is under pressure.
 
-- whether this business competes primarily on price, volume, efficiency, or product advantage — revealed by where margin is made and lost across periods, not from stated strategy
-- how it responds under pressure — whether it protects investment and accepts short-term margin compression, or cuts and accepts long-term risk
-- what kind of growth this business actually runs (unit expansion, price increase, mix shift, geographic spread) — revealed by what drives the revenue line across comparable periods
-- where the structural advantages and vulnerabilities appear from repeated financial outcomes
+Strong beliefs look like:
+- what gets protected and what gets cut, in what order, under pressure
+- whether stated priorities survive contact with a difficult period
+- what the organization has consistently treated as structurally untouchable regardless of conditions
+- the behavioral pattern that repeats across multiple pressure episodes — not what happened once
 
-A belief in this stream must be grounded in observed business outcomes — not deck observations or management claims.
+The test: a new analyst reading this belief would know what the organization will do before it does it. If the belief is about what the document says about decisions (not the actual decision pattern evidenced across documents), it belongs in Stream 05.
+
+**Stream 05 — Narrative Understanding**
+
+This stream holds how this business tells its story — the deliberate communication choices that reveal what leadership wants you to think versus what the numbers actually show.
+
+Strong beliefs look like:
+- what the document leads with and what that choice signals about the underlying result
+- how confidence language shifts under different performance conditions
+- what topics disappear from the main document as they deteriorate
+- specific words or phrases that recur with consistent meanings
+- the gap between the framing and reality — what is being emphasized and what is being minimized
+
+The test: a reader who had never opened this entity's document could predict the narrative structure before reading it. If the belief is about what actually happened (not how it was framed), it belongs in another stream.
+
+**Stream 06 — Forecast and Plan Behavior**
+
+This stream holds how this business plans, forecasts, and revises — the systematic behavioral patterns in how it sets and updates expectations.
+
+Strong beliefs look like:
+- whether Plan is set aggressively, conservatively, or realistically — and whether that varies by metric or period
+- the direction, magnitude, and timing of forecast revisions across comparable periods
+- systematic bias patterns — early-year optimism, late-year conservatism, or metric-specific tendencies
+- whether stated risk and upside language materializes or is consistently wrong in the same direction
+
+The test: a reader of this belief can predict, before the new forecast is released, approximately what it will say and in which direction it will be revised. If the belief is about what actual forecast vs actual values were in a specific period, it belongs in Stream 00.
 
 ---
 
@@ -281,13 +318,24 @@ A belief in this stream must be grounded in observed business outcomes — not d
 
 A belief isn't a raw reading of a single measure. It isn't a single result from one period. It isn't an unsupported causal claim. It isn't a generic statement that applies to any entity in any domain. It isn't a deck observation dressed as business insight.
 
-**The belief must carry interpretation. The interpretation must be grounded in the foundation.**
+**The belief must carry interpretation. The interpretation must say something the document does not say.**
 
 ---
 
 ## Belief Quality Test
 
-Before creating or updating a belief, ask:
+Before checking the numbered questions below, apply the master test:
+
+- Does this say something the document does not say explicitly?
+- Would a smart analyst who knows this sector but has never seen this entity's documents understand something new and specifically important about this business by reading it?
+- Does this reveal something that requires having read multiple documents — not inferrable from one?
+- Does reading this change how you approach the next comparable document?
+
+If the answer to any of these is no, the statement is a fact, a signal, or sector knowledge — not a belief. Don't write it.
+
+---
+
+Before creating or updating a belief, also ask:
 
 1. Is this more than a one-period fact?
 2. Is this supported by document evidence?

@@ -60,17 +60,19 @@ A **skill** does the task — pulls the numbers, builds the report. A **belief**
 
 ---
 
-## The Five Belief Types
+## The Seven Belief Streams
 
-Every document is read through five belief types. Each asks a different question about the same entity. All five write into one belief memory — one living model of one entity.
+Every document is read through seven belief streams. Each asks a different question about the same entity. All seven write into one belief memory — one living model of one entity. The governing rule across every stream: a belief must say something the document does not say.
 
-| # | Belief Type | What It Asks |
-|---|-------------|-------------|
-| 01 | Learning What the Business Has Consistently Shown | What has this business actually delivered across comparable periods — where is performance reliable, where is it not? |
-| 02 | Learning How This Business Generates and Loses Value | How do the numbers work as a system — ratio relationships, lead-lag mechanics, conversion chains? |
-| 03 | Learning How Documents Frame the Story | How does the document tell the story — structure, sequencing, language patterns, what leads and what is buried? |
-| 04 | Learning What Finance Has Recorded as True | What specific metric readings, variances, and commitments has this entity stated — the verified factual record? |
-| 05 | Learning What Kind of Business This Actually Is | What is the durable strategic character of this business — what thesis it operates under, how it competes, what it protects? |
+| # | Stream | What It Asks |
+|---|--------|-------------|
+| 00 | Factual Understanding | What is verifiably true about how the business is measured — metric definitions, calculation bases, the stable factual record? |
+| 01 | Business Model Understanding | What is the underlying economic engine — the profitability thesis, and whether it is holding? |
+| 02 | Business Dynamics | How do the parts of the business move relative to each other — lead-lag relationships, conversion chains, stress and feedback behavior? |
+| 03 | Causal Understanding | What does the team attribute as the causes of performance — and is that attribution honest, selective, or strategically chosen? |
+| 04 | Business Memory | How does this organization behave as a decision-making system under pressure — what does it actually do, not say? |
+| 05 | Narrative Understanding | How does this business tell its story — what does the framing reveal versus what the numbers actually show? |
+| 06 | Forecast and Plan Behavior | How does this business plan, forecast, and revise — what systematic biases show up in how it sets and updates expectations? |
 
 Custom belief streams are also supported: Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined angle.
 
@@ -80,10 +82,10 @@ Custom belief streams are also supported: Marketing Efficiency Memory, Forecast 
 
 0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model isn't pre-specified — it's discovered from documents.
 1. **Stream setup** — defines the entity, the angle, and the document set
-2. **Blueprint compiled** — defines what a belief looks like for this entity in this angle; seeds 8–15 candidate hypotheses including relationship hypotheses for Stream 02
+2. **Blueprint compiled** — defines what a belief looks like for this entity in this stream; seeds 8–15 candidate hypotheses including relationship hypotheses for Stream 02 (Business Dynamics)
 3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt
 4. **Document arrives** — any format: deck, transcript, report, audio
-5. **Signals extracted** — first pass: relationship claims (explicit statements connecting metrics); second pass: candidate signals. Relationship claims from the first document initialize Stream 02 Candidate beliefs immediately.
+5. **Signals extracted** — first pass: relationship claims (explicit statements connecting metrics); second pass: candidate signals. Relationship claims from the first document initialize Stream 02 (Business Dynamics) Candidate beliefs immediately.
 6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list. Relationship beliefs confirmed across periods build the operating model of the business.
 7. **Belief activated** — at any point, the belief memory can be queried: pre-read briefing before the next document, a calibrated answer to a specific question, or a meeting brief with what to push on and what to accept.
 8. **Silence by default** — most inputs produce no update. The gate is the mechanism.

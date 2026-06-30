@@ -79,7 +79,7 @@ Ask:
 
 ### Group 3 — Any Known Context (Optional)
 Ask:
-- Is there anything specific about this entity that you already know and want the system to start from? (e.g., "I know this business is marketing-led" or "the key metric is NBV") — this is optional. If you say nothing, the system will discover the business model by reading the documents.
+- Is there anything specific about this entity that you already know and want the system to start from? (e.g., "I know this business is marketing-led" or "the key metric is core volume growth") — this is optional. If you say nothing, the system will discover the business model by reading the documents.
 - Are there any known quirks in the documents that might mislead an AI reader? (e.g., "Q1 always looks weak due to seasonality" or "they use non-standard metric names")
 
 Do NOT ask about the business model, operating chain, causal relationships, thesis metrics, normal ranges, or narration patterns. These will be discovered from documents. The user is not expected to know them upfront — that is precisely what the belief system is for.
@@ -109,7 +109,7 @@ Document producer: [Who creates the documents this system will read]
 [Only what the user provided. If nothing: "None identified."]
 
 ## Discovered Understanding
-[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 relationship beliefs, Stream 01 delivery track record, etc. The business model lives here once the system has earned it from reading.]
+[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. The business model lives here once the system has earned it from reading.]
 ```
 
 **Success check — Stage 1:**
@@ -125,15 +125,17 @@ Ask the user three things:
 
 **1. Which belief stream do you want to run?**
 
-Present the five standard options:
+Present the seven standard options:
 
 | Stream | What it accumulates |
 |--------|---------------------|
-| **Learning What the Business Has Consistently Shown** | The performance track record — what this entity has actually delivered across comparable periods, where it is reliable and where it is not |
-| **Learning How This Business Generates and Loses Value** | How the business structurally makes money — ratios, mechanics, and relationships between measures |
-| **Learning How Documents Frame the Story** | Persistent framing choices — what the entity leads with, buries, or emphasizes across recurring documents |
-| **Learning What Finance Has Recorded as True** | Stable, verifiable readings of specific metrics over time — building toward a factual baseline |
-| **Learning What Kind of Business This Actually Is** | Durable interpretations of the business's strategic character — what kind of company this is and why it performs the way it does |
+| **00 — Factual Understanding** | The stable factual record — metric definitions, calculation bases, benchmark sequences, and whether they hold consistent across documents |
+| **01 — Business Model Understanding** | The economic engine — how this specific business makes money, what the profitability thesis is, and whether it is working |
+| **02 — Business Dynamics** | Mechanical relationships between metrics — lead-lag patterns, seasonal cycles, conversion chains, and feedback loops |
+| **03 — Causal Understanding** | What the team attributes as causes of performance movement — and whether those attributions are honest, selective, or strategically chosen |
+| **04 — Business Memory** | Decision patterns under pressure — what the organization consistently protects, cuts, and sacrifices when forced to choose |
+| **05 — Narrative Understanding** | Communication choices — what the document leads with, what that signals, and the gap between framing and what the numbers actually show |
+| **06 — Forecast and Plan Behavior** | Planning and revision patterns — the systematic biases in how this business sets and updates expectations |
 
 Custom streams are also supported. If the user names something not on this list, ask them to define it in one sentence: what does a belief in this stream look like?
 
@@ -437,7 +439,7 @@ For each belief with a Falsification test that could trigger in this document:
 [Belief #N — claim]: Watch for [what would challenge it]. If seen: [what to do].
 
 ### Relationship Chain Status
-[List the established operating chain links from Stream 02 in order: A → B (lag X) → C (lag Y)...]
+[List the established operating chain links from Stream 02 (Business Dynamics) in order: A → B (lag X) → C (lag Y)...]
 What this document should confirm or update: [which chain links this document type can carry evidence for]
 
 ### What to Ignore
@@ -466,12 +468,12 @@ Belief #N ([Status]): [What this belief says that is relevant. Quote the stateme
 ```
 
 **Examples of questions this handles:**
-- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 ratio relationship belief answers
-- "What drives revenue in this business?" → Stream 02 relationship beliefs answer
-- "Should I be concerned about the revenue miss?" → Stream 01 delivery track record answers with base rate and context
-- "Is this business self-correcting or does a miss compound?" → Stream 02 feedback dynamics belief answers (if established)
-- "What language shift should make me worried?" → Stream 03 communication pattern beliefs answer
-- "What is the normal booking range for Q2?" → Stream 01 or Stream 04 baseline answers
+- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
+- "What drives revenue in this business?" → Stream 02 (Business Dynamics) relationship beliefs answer
+- "Should I be concerned about the revenue miss?" → Stream 02 (Business Dynamics) delivery track record answers with base rate and context
+- "Is this business self-correcting or does a miss compound?" → Stream 02 (Business Dynamics) feedback dynamics belief answers (if established)
+- "What language shift should make me worried?" → Stream 05 (Narrative Understanding) communication pattern beliefs answer
+- "What is the normal booking range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
 
 ### Use Case C — Meeting Preparation
 

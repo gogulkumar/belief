@@ -72,7 +72,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ## Examples
 
-### Stream 03 example — document-level patterns
+### Stream 05 example — Narrative Understanding, document-level patterns
 
 ```markdown
 ## Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.   [DEEPEN]   Status: Confirmed
@@ -90,7 +90,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-### Stream 01 example — performance track record
+### Stream 02 example — Business Dynamics, performance track record component
 
 ```markdown
 ## Belief #3 — Revenue guidance has been met or exceeded in 7 of 8 comparable quarters; the one miss was preceded by a distinct language shift in the prior period.   [DEEPEN]   Status: Established
@@ -108,20 +108,20 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 
 ---
 
-### Stream 02 example — relationship belief, initialized from document one, deepened across 6 cycles
+### Stream 02 example — Business Dynamics, relationship belief, initialized from document one, deepened across 6 cycles
 
 ```markdown
-## Belief #5 — S&M spend in Q1 drives bookings recovery in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
+## Belief #5 — Spend in Q1 drives demand recovery in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
 
-**Statement**: This business runs a deliberate spend-ahead-of-season mechanic. S&M/NBV compresses in Q1 (typically 28–34%), which drives Q2 bookings recovery within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When S&M/NBV falls below 26% in Q1, Q2 bookings recovery has underperformed by a median of 4.2 percentage points.
+**Statement**: This business runs a deliberate spend-ahead-of-season mechanic. The spend ratio against the core volume metric compresses in Q1 (typically 28–34%), which drives Q2 demand recovery within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When the spend ratio falls below 26% in Q1, Q2 demand recovery has underperformed by a median of 4.2 percentage points.
 
-**Why it matters**: The foundation identifies S&M spend and NBV as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 booking conversion is the single most predictive mechanic in the business. Understanding where S&M/NBV sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 bookings will recover on cycle or disappoint.
+**Why it matters**: The foundation identifies spend and the core volume metric as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 demand conversion is the single most predictive mechanic in the business. Understanding where the spend ratio sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 demand will recover on cycle or disappoint.
 
-**Evolution trail**: This relationship belief was initialized on the first document — the Q1 2023 earnings transcript included an explicit management statement: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into bookings over the following 6–8 weeks." I captured this as a RELATIONSHIP CLAIM and initialized a Candidate belief on that statement alone. The statement was the evidence; I did not wait for the relationship to play out. Q1–Q2 2023 confirmed the lag: S&M/NBV at 31% in Q1, bookings up 8.4% in Q2 within 7 weeks — Provisional. Three confirmed cycles by Q1 2024 — Confirmed. The sub-claim about the 26% threshold emerged in Q1 2024 when S&M/NBV fell to 24.8% and Q2 bookings recovered only 3.1%. Q1–Q2 2025 added a sixth cycle. The threshold sub-claim rests on two datapoints — Provisional sub-claim inside an Established primary claim.
+**Evolution trail**: This relationship belief was initialized on the first document — the first document reviewed included an explicit management statement: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into demand over the following 6–8 weeks." I captured this as a RELATIONSHIP CLAIM and initialized a Candidate belief on that statement alone. The statement was the evidence; I did not wait for the relationship to play out. The first Q1–Q2 cycle confirmed the lag: spend ratio at 31% in Q1, demand up 8.4% in Q2 within 7 weeks — Provisional. Three confirmed cycles by the third Q1 — Confirmed. The sub-claim about the 26% threshold emerged when the spend ratio fell to 24.8% in a Q1 and Q2 demand recovered only 3.1%. A later Q1–Q2 cycle added a sixth cycle. The threshold sub-claim rests on two datapoints — Provisional sub-claim inside an Established primary claim.
 
-**Normal baseline**: Q1 S&M/NBV in the 28–34% range should produce Q2 bookings recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 bookings expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
+**Normal baseline**: Q1 spend ratio in the 28–34% range should produce Q2 demand recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 demand expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
 
-**Falsification test**: A cycle where S&M/NBV sits within the 28–34% normal range in Q1 but Q2 bookings fail to recover within 6–10% would break this belief. A cycle where S&M/NBV falls below 26% but Q2 bookings still recover on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
+**Falsification test**: A cycle where the spend ratio sits within the 28–34% normal range in Q1 but Q2 demand fails to recover within 6–10% would break this belief. A cycle where the spend ratio falls below 26% but Q2 demand still recovers on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
 ```
 
 ---
@@ -134,7 +134,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 ## Changelog — {doc_id} — {timestamp}
 
 ### Belief #1 — The business leads every quarterly review with volume growth before any cost discussion.
-<!-- Stream 03 — document-level patterns -->
+<!-- Stream 05 — Narrative Understanding -->
 **Action:** [DEEPEN]
 **Previous statement:** (unchanged)
 **New statement:** (unchanged)
@@ -143,7 +143,7 @@ After every document, `belief_changelog.md` records what changed — one entry p
 **What next document should test:** Whether volume-first ordering holds in a period where volume is negative or flat.
 
 ### Belief #4 — Management attributes margin misses exclusively to external cost inflation.
-<!-- Stream 03 — attribution habits -->
+<!-- Stream 03 — Causal Understanding -->
 **Action:** [TENSION]
 **Previous statement:** Management attributes margin misses exclusively to external cost inflation.
 **New statement:** (unchanged — held under tension)
