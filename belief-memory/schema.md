@@ -43,20 +43,32 @@ Each belief is one numbered block inside `belief.md`. The heading is the claim i
 **Normal baseline**: What the next comparable document should show if this belief is holding, expressed in terms of the foundation's normalization model. On the first document: "not yet established — awaiting second comparable document."
 
 **Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. For Candidate stage: "fails to recur in the next comparable document." For mature beliefs: name a specific reversal — a concrete signal that would force revision.
+
+**Provenance**:
+- Foundation dependency: [the specific foundation claim this belief relies on]
+- Confirming documents: [doc_ids]
+- Blind passes: [doc_ids where this pattern was independently re-derived with no visibility into the prior belief — empty until one has run]
+- Contradiction searches: [doc_ids checked, and what was found — "searched, none found" counts as a result; an absent line does not]
+- Related beliefs: [belief IDs, in this stream or another, sharing the same underlying phenomenon — empty if none identified yet]
+- Last checked: [doc_id of the most recent document that produced any action on this belief, including SILENCE]
 ```
+
+The narrative fields are for humans and for agent-generated explanation. The Provenance record is structured and machine-checkable — it is what lets an agent citing a belief, or a person auditing one, determine trustworthiness without parsing prose. A well-written Evolution trail and an actually-verified belief must not be allowed to look identical.
 
 ---
 
 ## Durability Ladder
 
-The **Status** field tracks how many comparable documents have supported the pattern. Don't skip stages.
+The **Status** field tracks how many comparable documents have supported the pattern. Don't skip stages — and don't promote a stage without the verification it requires (see the Provenance record above).
 
-| Stage | Documents | Meaning |
-|-------|-----------|---------|
-| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. Every first-document entry is Candidate. |
-| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
-| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
-| **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal, not noise. |
+| Stage | Documents | Meaning | Verification required to enter this stage |
+|-------|-----------|---------|----------------------------------------------|
+| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. Every first-document entry is Candidate. | None — nothing exists yet to check blind against. |
+| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. | A blind pass on the second document independently found the same pattern. A confirmation seen only by a pass already shown the Candidate belief does not promote — flag for review instead. |
+| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. | An active contradiction search on the third document found nothing. Confirmation without a contradiction search is an echo, not confirmation. |
+| **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal, not noise. | Holds across multiple document types if applicable. Still traces to a foundation claim that has not since changed. |
+
+**Decay**: an Established belief untouched by relevant signal across 4 consecutive comparable documents (configurable per stream) downgrades to Confirmed automatically. Tag `[DECAY]` in the changelog — distinct from `[SILENCE]`, which notes an individual document's silence without changing Status.
 
 A Candidate entry is subject to confirmation by the next comparable document. An Established belief requires substantially stronger contradicting evidence before revision.
 
@@ -122,6 +134,14 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 **Normal baseline**: Q1 spend ratio in the 28–34% range should produce Q2 demand recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 demand expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
 
 **Falsification test**: A cycle where the spend ratio sits within the 28–34% normal range in Q1 but Q2 demand fails to recover within 6–10% would break this belief. A cycle where the spend ratio falls below 26% but Q2 demand still recovers on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
+
+**Provenance**:
+- Foundation dependency: spend and the core volume metric are the two primary thesis metrics (foundation, thesis metrics section)
+- Confirming documents: doc_1, doc_2, doc_3, doc_4, doc_5, doc_6
+- Blind passes: doc_3 (independently re-derived the same Q1/Q2 lag with no visibility into the Provisional belief before promotion to Confirmed)
+- Contradiction searches: doc_4 (searched, none found), doc_6 (searched, none found)
+- Related beliefs: none identified yet
+- Last checked: doc_6
 ```
 
 ---
@@ -150,6 +170,15 @@ After every document, `belief_changelog.md` records what changed — one entry p
 **Reason:** Q2 document included one reference to internal procurement inefficiency contributing to cost pressure — first internal attribution observed. Single document; not yet sufficient to revise.
 **Maturity impact:** None — held at Confirmed pending next document
 **What next document should test:** Whether internal attribution recurs or Q2 reference was isolated.
+
+### Belief #9 — This entity treats headcount as the primary lever under margin pressure, cutting it before any other cost line.
+<!-- Stream 04 — Business Memory -->
+**Action:** [DECAY]
+**Previous statement:** (unchanged)
+**New statement:** (unchanged — Status downgraded only)
+**Reason:** Fourth consecutive comparable document with no pressure episode to test this belief against — the business has not been under margin pressure since the belief reached Established. Silence across four documents, not contradiction.
+**Maturity impact:** Established → Confirmed
+**What next document should test:** Whether the pattern reconfirms at the next pressure episode. A confirming episode restores Established; a contradicting one triggers [CONTRADICT] instead.
 ```
 
 ### Changelog Action Tags

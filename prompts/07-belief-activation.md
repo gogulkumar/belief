@@ -168,6 +168,8 @@ For Stream 02 relationship beliefs:
 
 **Status matters.** An Established belief and a Candidate belief are not the same weight of evidence. Every output must communicate the status alongside the claim.
 
+**Status is not the same as verified.** Before citing a belief at Provisional or above, check its Provenance record. A belief sitting at "Confirmed" with no recorded blind pass or contradiction search has a status ahead of its evidence — flag this in the output rather than citing it with unqualified confidence.
+
 **Relationship claims are the connective tissue.** When answering questions about why a metric moved, always check Stream 02 relationship beliefs first. The operating chain is the most important context for interpreting any individual metric.
 
 **Don't summarize the document.** If the analyst asks "what does this deck say about spend?", the answer is not a summary of the spend slides. It's what Belief #5 says about the context in which the spend reading should be interpreted.

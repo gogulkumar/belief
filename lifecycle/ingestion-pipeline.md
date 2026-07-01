@@ -163,21 +163,36 @@ If the document exceeds the token window, it is processed in chunks. Each chunk 
 
 The belief engine never receives the raw document. It reads the fact log.
 
+**Two extraction modes — belief-aware pass vs. blind pass:**
+
+- **Belief-aware pass** (default): the existing belief is included in the input. The extractor is told what pattern it is checking for and reports confirm / contradict / silent.
+- **Blind pass**: the existing belief is withheld from the input entirely. The extractor reads the document fresh and reports whatever pattern it independently finds, with no framing toward what it "should" see.
+
+Run a blind pass whenever a belief is up for promotion — Candidate → Provisional, or Provisional → Confirmed (see Step 7). Outside of promotion decisions, a single belief-aware pass is sufficient for routine reconfirmation once a belief has reached Confirmed or Established with a clean verification history. Re-trigger a blind pass if something looks off: a silence, a near-miss, or a change to the foundation claim the belief depends on. This keeps cost bounded — full two-pass extraction is reserved for the moments where independent verification actually changes the outcome, not run on every document for every belief.
+
 ---
 
 ### Step 7 — Fact Log + Existing Belief → Evolved belief.md
 
 **Who:** LLM, using `belief_reasoning_prompt.md` as system prompt
-**Input:** `belief_reasoning_prompt.md` (system) + `{{EXISTING_DURABLE_BELIEF}}` (belief.md or NULL) + `{{NEW_CHRONOLOGICAL_FACT_LOG}}`
+**Input:** `belief_reasoning_prompt.md` (system) + `{{EXISTING_DURABLE_BELIEF}}` (belief.md or NULL) + `{{NEW_CHRONOLOGICAL_FACT_LOG}}` (+ blind-pass fact log, when one was run)
 **Output:** `streams/{stream_id}/belief.md` (evolved)
 
 **On first document (belief.md is NULL):**
-Initialize between 8 and 15 specific Candidate beliefs drawn from the fact log. Beliefs must use the candidate seed set from Blueprint Section 4 as a starting frame, but are grounded in what the first document actually showed. Every entry marked Status: Candidate. Evolution trail says "First seen in [doc_id] — [brief observation]." Normal baseline: "not yet established." No umbrella beliefs.
+Initialize between 8 and 15 specific Candidate beliefs drawn from the fact log. Beliefs must use the candidate seed set from Blueprint Section 4 as a starting frame, but are grounded in what the first document actually showed. Every entry marked Status: Candidate. Evolution trail says "First seen in [doc_id] — [brief observation]." Normal baseline: "not yet established." Provenance record initialized with the foundation dependency named and all other fields empty — nothing exists yet to check blind against. No umbrella beliefs.
 
 **Volume check:** If the active belief count falls below 8, audit for umbrella beliefs that conflate multiple distinct patterns and split them. Record the split in the changelog as [SPLIT_BELIEF].
 
 **On subsequent documents:**
 For each existing belief, decide: deepen / narrow / contradict / tension / silence / retire / no change. Update only when the evolution trail, baseline, or falsification test changes. Check contradiction and silence BEFORE deepening.
+
+**Promotion gating — do not advance a stage without its required verification:**
+- **Candidate → Provisional** requires a blind pass on this document that independently found the same pattern the belief-aware pass reports as confirming. If the blind pass found nothing related, do not promote — hold at Candidate and flag for review; the belief-aware confirmation may be an echo.
+- **Provisional → Confirmed** requires an active contradiction search on this document, reported explicitly ("searched, none found") rather than assumed from silence. Confirmation without a reported contradiction search does not promote.
+- **Confirmed → Established** requires the belief to hold across multiple document types where applicable, and its named foundation claim to be unchanged since the belief was created.
+- **Established, decay:** if 4 consecutive comparable documents (configurable per stream) pass with no relevant signal for an Established belief, downgrade it to Confirmed. Tag `[DECAY]` — this is a Status change, distinct from `[SILENCE]`, which just notes an individual document's silence without consequence.
+
+Every promotion, confirmation, and contradiction search updates the belief's **Provenance record** — Confirming documents, Blind passes, Contradiction searches, Last checked — with the current doc_id. The Evolution trail is written as a narrative account of what the Provenance record shows; the two must agree.
 
 The belief engine does NOT invent evidence. Only holds what the fact log provides.
 
@@ -212,6 +227,7 @@ For each belief affected, records:
 | `[RETIRE]` | Belief archived — pattern ended; number kept, marked RETIRED |
 | `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
 | `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
+| `[DECAY]` | Established belief downgraded to Confirmed after N consecutive silent comparable documents — a Status change, not a contradiction |
 | `[NO CHANGE]` | Document processed; no update warranted for this belief |
 
 The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.
@@ -266,11 +282,13 @@ The fact extraction pass (Step 6) and belief evolution pass (Step 7) are the mos
 
 The compiled prompts are stream-specific and run separately per stream. Multiple streams processing the same document each get their own extracted fact log.
 
+**Blind-pass cost management:** running a blind pass alongside the belief-aware pass roughly doubles extraction cost for the documents where it's required. Reserve it for promotion decisions (Candidate → Provisional, Provisional → Confirmed) and periodic spot-checks on Established beliefs — not every document for every belief. At large document-set scale, batch documents into windows (e.g., quarters, if monthly cadence) rather than running the full pipeline as one long sequential chain: each window promotes what survives, and a process failure partway through is caught at the next window checkpoint rather than propagating silently through every remaining document.
+
 ---
 
 ## Failure Recovery
 
 - **L3 is immutable:** if processing fails mid-pipeline, the raw extract is preserved. Reprocessing restarts from Step 6.
-- **Fact log is ephemeral:** if the extraction pass fails, it can be re-run against the preserved L3 units.
+- **Fact log is permanent, not ephemeral:** it is the memory layer belief Provenance records point back into (see the doctrine's "Fact Logs Are Memory, Not Scratch Paper"). If an extraction pass fails before producing a complete fact log, re-run it against the preserved L3 units — but once a fact log is finalized and a belief cites it, it is retained indefinitely, addressable by doc_id.
 - **belief.md is surgical:** a failed evolution pass does not corrupt existing beliefs. The pre-evolution state is unchanged until the write completes.
 - **Changelog is append-only:** an absent changelog entry for a document means the pipeline did not complete for that document.

@@ -42,6 +42,35 @@ That expectation is what makes the belief useful. For relationship beliefs, it a
 
 ---
 
+## The Two-Test Gate
+
+Every belief must pass two independent tests. Passing one does not excuse the other.
+
+**Content Test — is it insightful?** This is the master test above: does the belief say something the document does not say? A belief that fails this is an extraction, a summary, or sector knowledge — no matter how carefully it was derived.
+
+**Process Test — is it trustworthy?** Was the belief actually checked for being wrong, not just checked for being right? A pattern that was only ever confirmed — never actively searched for contradiction, never independently re-derived without the prior belief already in view — is unproven, no matter how many documents it has "held" across.
+
+A belief can fail either test on its own:
+
+- **Insightful but unproven** — a genuinely non-obvious claim that has only ever been confirmed by an extraction pass that already knew what belief it was supposed to find. Its apparent multi-document confirmation may be repetition of the same confirmation bias, not independent evidence.
+- **Rigorously tested but trivial** — a belief with a clean audit trail — blind passes, active contradiction searches, clean provenance — that turns out to be something any competent analyst would already know without reading a single document from this entity.
+
+Both tests are required before a belief is promoted past Candidate.
+
+### Blind Pass vs. Belief-Aware Pass
+
+The Process Test only means something if the system distinguishes these two extraction modes:
+
+**Belief-aware pass** — the extractor is shown the existing belief before reading the new document, and asked whether the document confirms, contradicts, or is silent on it. This is the default mode for routine document processing.
+
+**Blind pass** — the extractor reads the new document with no visibility into the existing belief, and independently reports whatever pattern it finds. This is the only way to prove a pattern is really there, rather than being an echo of what the extractor was told to look for.
+
+A blind pass is required before a belief is promoted from Candidate to Provisional, and again before Provisional to Confirmed. If the blind pass at Provisional independently finds the same pattern the belief-aware pass reports as confirming, promote. If the blind pass finds nothing related while the belief-aware pass reports confirmation, do not promote — flag the belief for review instead; the confirmation may be an echo.
+
+Once a belief reaches Established with a clean contradiction-search history, routine reconfirmation can run belief-aware only. Re-trigger a blind pass if something looks off — a silence, a near-miss, or a change to the foundation claim the belief depends on.
+
+---
+
 ## The Claim Is the Heading
 
 The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a category label. Not a topic name.
@@ -62,21 +91,27 @@ Beliefs are numbered once. Numbers are permanent. Retired beliefs keep their num
 
 ---
 
-## The Three Required Properties
+## The Four Required Properties
 
-Every belief must have three properties.
+Every belief must have four properties. Each is written below as a procedural test — not a descriptive claim anyone could assert with confident prose, but a check for what process must have actually happened before the property can be claimed.
 
 ### 1. Durable
+
+Not: confirmed across N documents when the extractor saw the prior belief each time.
+But: independently re-derived across N documents, with at least one extraction pass performed blind — with no visibility into the existing belief statement.
 
 A belief must hold across multiple comparable documents, reporting periods, or recurring business reviews. A single document can suggest a possible belief, but one document alone cannot prove durability.
 
 For example, if one business review says marketing efficiency improved because spend was reallocated across channels, that is not yet a belief. It is a candidate signal.
 
-If several comparable business reviews repeatedly frame marketing efficiency as a controllable lever that explains downstream margin movement, then the system may begin to hold a belief about how this entity frames marketing efficiency.
+If several comparable business reviews repeatedly frame marketing efficiency as a controllable lever that explains downstream margin movement, then the system may begin to hold a belief about how this entity frames marketing efficiency — but only once at least one of those confirmations came from a pass that had no visibility into the belief it was confirming.
 
-Durability means the pattern is not random, not one-period noise, and not merely a document summary.
+Durability means the pattern is not random, not one-period noise, and not merely a document summary. A belief confirmed only through belief-aware passes has not demonstrated durability — it has demonstrated that the extractor is consistent, which is a different property. Durability requires proof the pattern is really there, not just proof the system keeps agreeing with itself.
 
 ### 2. Falsifiable
+
+Not: a falsification condition can be named in the entry.
+But: the falsification condition has been actively searched for on every relevant document pass, with equal or greater priority than confirmation.
 
 A belief must be capable of being proven wrong, narrowed, weakened, or retired by future documents.
 
@@ -94,7 +129,21 @@ A stronger belief:
 
 This is falsifiable because a future document could stop leading with plan variance, shift the anchor to a different comparison, or explain margin independently of demand.
 
-### 3. Actionable
+Naming a falsification test at creation means nothing if every subsequent pass only ever looked for confirming evidence. Contradiction-search must be an explicit, equally-weighted instruction on every pass — not a field filled in once and never revisited.
+
+### 3. Grounded
+
+Not: connects to the foundation at creation.
+But: carries an explicit dependency on a named foundation claim, and is automatically flagged for re-review if that claim changes.
+
+A belief that cannot be connected to the foundation — to the business model, the thesis metrics, or the narration design — is either too generic or based on a document artifact rather than how the business works. But "grounded in the foundation," checked once at creation and never revisited, means that if the foundation itself becomes outdated or wrong, every belief built on it stays wrong silently, with no mechanism to catch it.
+
+Every belief entry names the specific foundation claim it depends on. If that claim is later revised, the belief is automatically flagged for re-review — not left standing on a foundation that no longer says what it said when the belief was created.
+
+### 4. Actionable
+
+Not: "would help an analyst read the next document."
+But: a specific before/after answer to a stated example query can be produced, showing the belief changes the conclusion.
 
 A belief must help an analyst read the next document better. It should create a useful expectation, baseline, or warning signal.
 
@@ -107,7 +156,7 @@ A belief should help the analyst know:
 - what changed from prior behavior
 - what deserves investigation
 
-If a statement does not improve the analyst's next read, it is probably not a belief.
+"Would help an analyst" is a narrative claim anyone can assert after the fact. The test requires naming one concrete example query and showing the answer actually differs with the belief present versus absent. If that before/after pair cannot be produced, the belief does not qualify, regardless of how well it reads.
 
 ---
 
@@ -176,18 +225,25 @@ The system must distinguish these four levels and must not skip between them.
 
 The system must not jump from fact to belief. It must move carefully: fact → signal → pattern → belief.
 
+The fact log a signal or pattern was drawn from is not discarded once it has served that purpose. It is retained, permanently and addressably, as the memory a belief's Provenance record points back into. See "Fact Logs Are Memory, Not Scratch Paper" below.
+
 ---
 
 ## The Durability Ladder
 
-Beliefs mature over time. The system must not treat all beliefs as equally strong.
+Beliefs mature over time. The system must not treat all beliefs as equally strong — and must not promote a stage without the verification that stage requires.
 
-| Stage | Documents | Meaning |
-|-------|-----------|---------|
-| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. |
-| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
-| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
-| **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal. |
+| Stage | Documents | Meaning | Verification required to enter this stage |
+|-------|-----------|---------|---------------------------------------------|
+| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Explicitly subject to confirmation. | None — nothing exists yet to check blind against. |
+| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. | A blind pass on the second document must have independently found the same pattern. Belief-aware-only confirmation does not promote — flag for review instead. |
+| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. | An active contradiction search on the third document must have found nothing. Confirmation without a contradiction search is an echo, not confirmation. |
+| **Established** | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal. | Holds across multiple document types if applicable. Still traces to a foundation claim that has not since changed. |
+| **Retired / Contradicted** | — | A document broke the belief outright, its foundation claim was revised, or it went stale beyond the decay window. | Never deleted — kept and marked, so the system retains the memory that it was once believed and later proven wrong or allowed to expire. |
+
+### Established Beliefs Decay Without New Evidence
+
+An Established belief untouched by any relevant signal across N subsequent comparable documents downgrades to Confirmed automatically — not because it was proven wrong, but because "established and confirmed several documents ago" and "established and still being actively tested" are different confidence levels the system must be able to distinguish. Tag this action `[DECAY]` in the changelog — distinct from `[SILENCE]`, which notes an individual document's silence without consequence. `[DECAY]` fires once silence accumulates past the stream's configured threshold (system default: 4 consecutive silent comparable documents).
 
 ---
 
@@ -203,7 +259,7 @@ The purpose of the volume check is not to manufacture beliefs. It is to prevent 
 
 ## Belief Entry Structure
 
-Every belief entry must use this structure. The heading is the claim. The five fields ground and test it.
+Every belief entry must use this structure. The heading is the claim. The five narrative fields ground and test it. The Provenance record makes that testing checkable without parsing prose.
 
 ```markdown
 ## Belief #N — [The claim stated as a complete, falsifiable sentence.]   [ACTION_TAG]   Status: Candidate | Provisional | Confirmed | Established | Retired
@@ -217,7 +273,31 @@ Every belief entry must use this structure. The heading is the claim. The five f
 **Normal baseline**: What the next comparable document should show if this belief is holding, per the foundation's normalization model. On the first document: "not yet established — awaiting second comparable document."
 
 **Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. Candidate: "fails to recur in the next comparable document." Mature beliefs: name a specific reversal.
+
+**Provenance**:
+- Foundation dependency: [the specific foundation claim this belief relies on]
+- Confirming documents: [doc_ids]
+- Blind passes: [doc_ids where this pattern was independently re-derived with no visibility into the prior belief — empty until one has run]
+- Contradiction searches: [doc_ids checked, and what was found — "searched, none found" counts as a result; an absent line does not]
+- Related beliefs: [belief IDs, in this stream or another, that share the same underlying phenomenon — empty if none identified yet]
+- Last checked: [doc_id of the most recent document that produced any action on this belief, including SILENCE]
 ```
+
+A well-written Evolution trail and an actually-verified belief must not be allowed to look identical. The Provenance record is the difference — it is what lets an agent citing a belief, or a person auditing one, determine trustworthiness without reading every sentence of the prose.
+
+---
+
+## Fact Logs Are Memory, Not Scratch Paper
+
+Facts, memory, and beliefs are three different things, and the system must not collapse them:
+
+- **Facts** are what a document literally states. A fact log captures them per document.
+- **Memory** is the full, permanent, addressable record of every fact log ever produced — never compressed, never discarded once a belief has been drawn from it.
+- **Beliefs** are the compressed, tested conclusions drawn from memory. Not memory itself — a claim about what memory, examined carefully and checked for contradiction, implies.
+
+The per-document fact log is not disposable intermediate output consumed once and thrown away. It is the memory that belief entries point back into via their Provenance record's Confirming documents, Blind passes, and Contradiction searches lines. The Evolution trail is a readable narrative view generated from that memory — it does not compete with the Provenance record for truth, and it is not itself the record of what happened.
+
+This distinction matters most when a belief turns out to be wrong. Marking a belief Retired or Contradicted tells you it failed. It does not tell you *why* the belief-formation process failed — whether the verification broke down, whether the foundation claim it depended on was wrong, or whether the sample was simply unlucky. That diagnosis is only possible if the memory a belief was built from is still there to trace back to.
 
 ---
 
@@ -324,7 +404,9 @@ A belief isn't a raw reading of a single measure. It isn't a single result from 
 
 ## Belief Quality Test
 
-Before checking the numbered questions below, apply the master test:
+Before checking the numbered questions below, apply the Two-Test Gate.
+
+**Content Test:**
 
 - Does this say something the document does not say explicitly?
 - Would a smart analyst who knows this sector but has never seen this entity's documents understand something new and specifically important about this business by reading it?
@@ -332,6 +414,14 @@ Before checking the numbered questions below, apply the master test:
 - Does reading this change how you approach the next comparable document?
 
 If the answer to any of these is no, the statement is a fact, a signal, or sector knowledge — not a belief. Don't write it.
+
+**Process Test:**
+
+- Has this pattern been independently re-derived by at least one blind pass — not just confirmed by a pass that already knew what belief it was checking?
+- Has a contradiction search actually been run and reported, rather than assumed because nothing contradicting happened to surface?
+- Does the Provenance record support the Status this belief is claiming, or does it show gaps that mean the status is aspirational?
+
+If the answer to any of these is no, hold the belief at its current stage — or at Candidate if it has none of this evidence yet — regardless of how insightful the content is.
 
 ---
 
@@ -348,6 +438,8 @@ Before creating or updating a belief, also ask:
 9. Does it identify what would confirm, weaken, or invalidate it?
 10. Does it belong in a durable belief memory rather than a normal summary?
 11. Is the heading a specific, testable claim — not a category label?
-12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
+12. Is this grounded in the entity foundation — connected to the business thesis, not floating, with the specific foundation claim named?
+13. Does the Provenance record match the Status being claimed — blind pass for Provisional and above, contradiction search for Confirmed and above?
+14. Does this share an underlying phenomenon with any other belief in this or another stream? If so, is it cross-referenced under Related beliefs?
 
 If the answer is no to any of these, don't create a belief. Record the item as a fact, signal, candidate, or unsupported interpretation instead.

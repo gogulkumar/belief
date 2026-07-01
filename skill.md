@@ -298,6 +298,13 @@ For relationship beliefs:
 **Evolution trail**: First stated in [doc_id] — document explicitly said: "[verbatim]". Initialized as Candidate from explicit management statement. Not yet confirmed by observation across periods.
 **Normal baseline**: Not yet established — will be set once the relationship has been observed playing out in a subsequent document.
 **Falsification test**: A document where [A] moves but [B] does not follow within the stated lag, with no management explanation for the break, would challenge this relationship.
+**Provenance**:
+- Foundation dependency: [named foundation claim this relies on]
+- Confirming documents: [doc_id]
+- Blind passes: (none yet — nothing exists to check blind against on the first document)
+- Contradiction searches: (none yet)
+- Related beliefs: (none identified yet)
+- Last checked: [doc_id]
 ```
 
 Then initialize all other Candidate beliefs from named candidate signals. Total first-document beliefs: 8–15 Candidates.
@@ -311,6 +318,13 @@ Every non-relationship belief entry:
 **Evolution trail**: First seen in [doc_id] — [brief observation of what this document showed]
 **Normal baseline**: Not yet established — awaiting second comparable document.
 **Falsification test**: [What a future document must show to break this]
+**Provenance**:
+- Foundation dependency: [named foundation claim this relies on]
+- Confirming documents: [doc_id]
+- Blind passes: (none yet)
+- Contradiction searches: (none yet)
+- Related beliefs: (none identified yet)
+- Last checked: [doc_id]
 ```
 
 Then produce `belief_changelog.md`:
@@ -327,6 +341,7 @@ Show the belief memory. Ask:
 - Are there at least 8 beliefs total? If fewer, audit for umbrella claims to split
 - Are the relationship belief claims specific enough to be confirmed or broken — is the lag stated, the direction clear, the mechanism named?
 - Does anything feel like a document summary rather than a durable pattern?
+- Does every entry's Provenance record have the foundation dependency named? (Blind passes and Contradiction searches stay empty on the first document — nothing exists yet to check against.)
 
 Wait for confirmation. Then say: "Belief memory initialized. Stream is live. When the next document arrives, run Stage 5. To use the belief memory now — to answer a question or prepare for a meeting — run Stage 7."
 
@@ -346,9 +361,11 @@ If any of the compiled prompts are missing, say so and offer to rebuild them fro
 
 ### Step 6 — Extract Signals from New Document
 
-Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6.
+Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6. This is a **belief-aware pass** — the existing belief memory is part of the input.
 
-**Success check:** Show the fact log. Ask for confirmation before proceeding.
+**Check for promotion candidates first.** Before running the belief-aware pass, scan the existing belief memory for any Candidate belief that would reach Provisional with one more confirmation, or any Provisional belief that would reach Confirmed. For each one, also run a **blind pass**: extract from the new document with the existing belief withheld entirely, and record independently whatever pattern is found. Do this only for beliefs actually up for promotion this round — not for the whole memory, and not for beliefs already Confirmed or Established with a clean history.
+
+**Success check:** Show the fact log (and any blind-pass results run this round). Ask for confirmation before proceeding.
 
 ### Step 7 — Evolve the Belief Memory
 
@@ -364,13 +381,16 @@ Using the `belief_reasoning_prompt.md` as your system context, read both the exi
 | `[RETIRE]` | Pattern has ended — archive the belief, keep the number, mark RETIRED |
 | `[MERGE_BELIEFS]` | Two beliefs are now better stated as one |
 | `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it |
+| `[DECAY]` | Established belief has had 4 consecutive silent comparable documents — downgrade to Confirmed |
 | `[NO CHANGE]` | No update warranted |
 
-**Maturity ladder:**
-- 1 document with supporting signal → Candidate
-- 2 comparable documents → Provisional
-- 3 comparable documents → Confirmed
-- 4+ comparable documents → Established
+**Maturity ladder — do not advance without the verification each stage requires:**
+- 1 document with supporting signal → Candidate. Nothing to verify yet.
+- 2 comparable documents → Provisional. Requires the blind pass from Step 6 to have independently found the same pattern. If the blind pass found nothing related, do not promote — hold at Candidate, note it as flagged for review, and record why in the changelog.
+- 3 comparable documents → Confirmed. Requires an active contradiction search this round, reported as "searched, none found" in the Provenance record — not just the absence of a contradicting signal showing up unprompted.
+- 4+ comparable documents → Established. Requires holding across document types where applicable, and the named foundation claim still being current.
+
+Every action that touches a belief updates its **Provenance record** — add the current doc_id to Confirming documents, Blind passes, and/or Contradiction searches as applicable, and update Last checked regardless of action (including `[SILENCE]` and `[NO CHANGE]`, since Last checked is what the `[DECAY]` count is measured from).
 
 **Volume check:** If active beliefs fall below 8, audit for umbrella beliefs and split before completing the pass.
 
@@ -381,8 +401,8 @@ Produce:
 **Success check — Stage 5:**
 Show a summary of what changed:
 - How many beliefs were updated and with what action
-- Whether any beliefs advanced maturity
-- Whether any beliefs were retired or split
+- Whether any beliefs advanced maturity — and whether the required verification (blind pass, contradiction search) actually ran, or whether a promotion was held back pending it
+- Whether any beliefs were retired, decayed, or split
 - Current belief count and maturity distribution
 
 Ask: Does this look right? Is there anything the document contained that the update missed?

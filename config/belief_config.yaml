@@ -39,7 +39,21 @@ belief_config:
     provisional_to_confirmed: 3
     confirmed_to_established: 4
 
-  # ─── DECAY SETTINGS ────────────────────────────────────────────────────────
+  # ─── VERIFICATION GATING (Process Test) ────────────────────────────────────
+  # A belief cannot advance a durability stage on confirmation alone — see
+  # belief-doctrine.md "The Two-Test Gate." These flags control when the
+  # extractor must run a second, blind pass (no visibility into the existing
+  # belief) instead of the default belief-aware pass.
+  require_blind_pass_for_promotion: true      # Candidate→Provisional, Provisional→Confirmed
+  require_contradiction_search_for_confirmed: true   # must be reported, not just absent
+
+  # ─── ESTABLISHED DECAY (document-count-based, distinct from day-based decay below) ──
+  # An Established belief with no relevant signal across this many consecutive
+  # comparable documents downgrades to Confirmed (tag: [DECAY]). This is a
+  # Status change, separate from the Confidence-score decay settings below.
+  established_decay_after_silent_documents: 4
+
+  # ─── DECAY SETTINGS (Confidence score, not Status) ─────────────────────────
   # Beliefs not confirmed within this many days begin losing confidence.
   decay_threshold_days: 90
 
