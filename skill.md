@@ -112,6 +112,8 @@ Document producer: [Who creates the documents this system will read]
 [Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. The business model lives here once the system has earned it from reading.]
 ```
 
+**Corpus grounding — after the third document.** Once three comparable documents have been processed, revisit this foundation: read all the fact logs together and pull out what recurred *identically* in every one — metric definitions, benchmark sequences, the fixed reporting scaffold. Those become foundation claims with stable claim IDs (`foundation.metrics.{name}` etc.), labeled `source: corpus`. Anything the user stated at setup that the fact logs corroborated gets relabeled `interview+corpus`; anything contradicted gets surfaced to the user before changing. The test: recurs identically and is definitional → foundation claim; could vary period to period and needs testing → belief.
+
 **Success check — Stage 1:**
 Show the foundation. Ask: Is the entity identity correct? Are the document types right? Anything you want to add to the known prior context?
 
@@ -200,7 +202,7 @@ Entity, scope, stream name, angle, document types, purpose statement.
 For each document type: what it CAN and CANNOT give this stream. The trigger question for each type.
 
 **Section 3 — Belief Definition for This Stream**
-- What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full five-field format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test)
+- What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full entry format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test / Provenance)
 - What a weak belief entry looks like and why it fails
 - What makes a belief durable for this cadence (e.g., two consecutive quarters = Provisional; three = Confirmed)
 - What pattern forms to watch for (language recurrence, structural choices, attribution habits, sequencing, behavioral markers, measure relationships)
@@ -215,7 +217,7 @@ Show the blueprint. Ask: Does this capture how the business actually behaves, in
 
 ### Stage 3b — Belief Reasoning Prompt
 
-Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules, the volume check, the numbers policy, the five-field format, and exactly what the engine must and must not do.
+Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules, the promotion gating (blind pass, contradiction search), the volume check, the numbers policy, the entry format (five narrative fields plus Provenance), and exactly what the engine must and must not do.
 
 This prompt is used as-is at runtime. Write it for an AI that will receive it as a system prompt with no other context.
 
@@ -299,7 +301,7 @@ For relationship beliefs:
 **Normal baseline**: Not yet established — will be set once the relationship has been observed playing out in a subsequent document.
 **Falsification test**: A document where [A] moves but [B] does not follow within the stated lag, with no management explanation for the break, would challenge this relationship.
 **Provenance**:
-- Foundation dependency: [named foundation claim this relies on]
+- Foundation dependency: [named foundation claim ID this relies on, e.g. `foundation.business_model`]
 - Confirming documents: [doc_id]
 - Blind passes: (none yet — nothing exists to check blind against on the first document)
 - Contradiction searches: (none yet)
@@ -319,7 +321,7 @@ Every non-relationship belief entry:
 **Normal baseline**: Not yet established — awaiting second comparable document.
 **Falsification test**: [What a future document must show to break this]
 **Provenance**:
-- Foundation dependency: [named foundation claim this relies on]
+- Foundation dependency: [named foundation claim ID this relies on, e.g. `foundation.business_model`]
 - Confirming documents: [doc_id]
 - Blind passes: (none yet)
 - Contradiction searches: (none yet)
@@ -382,6 +384,8 @@ Using the `belief_reasoning_prompt.md` as your system context, read both the exi
 | `[MERGE_BELIEFS]` | Two beliefs are now better stated as one |
 | `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it |
 | `[DECAY]` | Established belief has had 4 consecutive silent comparable documents — downgrade to Confirmed |
+| `[FOUNDATION_REVIEW]` | This belief just reached Confirmed/Established while bearing on a foundation claim — Foundation Review triggered, resolution recorded |
+| `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised elsewhere — held pending re-grounding |
 | `[NO CHANGE]` | No update warranted |
 
 **Maturity ladder — do not advance without the verification each stage requires:**
@@ -394,15 +398,25 @@ Every action that touches a belief updates its **Provenance record** — add the
 
 **Volume check:** If active beliefs fall below 8, audit for umbrella beliefs and split before completing the pass.
 
+### Step 7.5 — Foundation Review Trigger Check
+
+For every belief that just reached Confirmed or Established this round, check whether its Statement adds meaningful precision to, narrows, or contradicts the foundation claim named in its Provenance → Foundation dependency. A Candidate or Provisional belief never triggers this.
+
+If it does, run `prompts/-1-generate-foundation.md` in Foundation Review mode: show the current foundation claim, the triggering belief's Statement and Evolution trail, and ask the user to resolve it — **Adopt** (rewrite the claim, log the revision in `foundation.md`'s Foundation Revision Log, and flag every other belief across every stream naming that claim ID as `[FOUNDATION_CHANGED]`), **Hold** (keep the claim, treat the belief's finding as a narrower sub-case), or **Defer** (not enough evidence yet). Record `[FOUNDATION_REVIEW]` in the changelog either way.
+
+Do not resolve Adopt vs. Hold yourself. Surface the conflict and let the user decide.
+
 Produce:
 1. Updated `belief.md` — surgical changes only; unchanged beliefs stay as-is
-2. Appended `belief_changelog.md` — one entry per affected belief
+2. Appended `belief_changelog.md` — one entry per affected belief, including any `[FOUNDATION_REVIEW]` / `[FOUNDATION_CHANGED]` entries
+3. If a review resolved Adopt: updated `foundation.md` with an appended Foundation Revision Log entry
 
 **Success check — Stage 5:**
 Show a summary of what changed:
 - How many beliefs were updated and with what action
 - Whether any beliefs advanced maturity — and whether the required verification (blind pass, contradiction search) actually ran, or whether a promotion was held back pending it
 - Whether any beliefs were retired, decayed, or split
+- Whether a Foundation Review was triggered this round, and how it was resolved
 - Current belief count and maturity distribution
 
 Ask: Does this look right? Is there anything the document contained that the update missed?
@@ -545,7 +559,7 @@ If there are gaps, note them explicitly. Gaps in the belief memory are signals t
 
 ## Reference: Belief Entry Format
 
-Every belief uses this five-field structure:
+Every belief uses this structure: five narrative fields plus a structured Provenance record.
 
 ```
 ## Belief #N — [The claim as a complete, falsifiable sentence]   [ACTION_TAG]   Status: [Candidate / Provisional / Confirmed / Established]
@@ -555,6 +569,14 @@ Every belief uses this five-field structure:
 **Evolution trail**: [First-person, per-document account of how the pattern developed]
 **Normal baseline**: [What the next comparable document should show if holding]
 **Falsification test**: [What a future document must show to break, narrow, or retire this]
+
+**Provenance**:
+- Foundation dependency: [the specific foundation claim ID this belief relies on, e.g. `foundation.business_model` — not a paraphrase]
+- Confirming documents: [doc_ids]
+- Blind passes: [doc_ids where independently re-derived with no visibility into the prior belief]
+- Contradiction searches: [doc_ids checked, and what was found]
+- Related beliefs: [belief IDs sharing the same underlying phenomenon]
+- Last checked: [doc_id of the most recent document that produced any action, including SILENCE]
 ```
 
 Rules:
@@ -563,6 +585,8 @@ Rules:
 - Do not invent facts not in the fact log
 - Do not update a belief if the fact log has no signal for it
 - Active belief count must stay at or above 8
+- Do not advance Status past Candidate without the verification the Durability Ladder requires (blind pass for Provisional, contradiction search for Confirmed) — the Provenance record is what shows that verification happened
+- A belief reaching Confirmed or Established that adds precision to, narrows, or contradicts its named foundation claim triggers a Foundation Review (Step 7.5) — resolved by the user as Adopt, Hold, or Defer, never silently
 
 ---
 

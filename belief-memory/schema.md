@@ -45,7 +45,7 @@ Each belief is one numbered block inside `belief.md`. The heading is the claim i
 **Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. For Candidate stage: "fails to recur in the next comparable document." For mature beliefs: name a specific reversal — a concrete signal that would force revision.
 
 **Provenance**:
-- Foundation dependency: [the specific foundation claim this belief relies on]
+- Foundation dependency: [the specific foundation claim ID this belief relies on, e.g. `foundation.business_model` — not a paraphrase]
 - Confirming documents: [doc_ids]
 - Blind passes: [doc_ids where this pattern was independently re-derived with no visibility into the prior belief — empty until one has run]
 - Contradiction searches: [doc_ids checked, and what was found — "searched, none found" counts as a result; an absent line does not]
@@ -98,6 +98,14 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 **Normal baseline**: Next comparable document should open with volume performance on slides 2–4, with cost/margin content not appearing until at least slide 6. If the ordering inverts, note it as a signal worth watching.
 
 **Falsification test**: Two consecutive quarterly reviews that lead with margin or cost performance before volume would break this belief. A single inversion is worth noting as TENSION but not yet sufficient to revise.
+
+**Provenance**:
+- Foundation dependency: `foundation.metrics.volume_growth` — volume growth is the primary thesis metric
+- Confirming documents: Q4 2025, Q1 2026, Q2 2026
+- Blind passes: Q1 2026 (independently re-derived the same slide-ordering pattern with no visibility into the Q4 2025 Candidate belief, before promotion to Provisional)
+- Contradiction searches: Q2 2026 (searched, none found — checked specifically whether the ordering inverted in the one period where volume growth had slowed; it held)
+- Related beliefs: none identified yet
+- Last checked: Q2 2026
 ```
 
 ---
@@ -116,6 +124,14 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 **Normal baseline**: Next comparable document should show revenue within 0–2.5% above guidance. A beat of more than 3% or a miss of any size is worth flagging against this baseline. If the prior-period document contained hedged commitment language, weight a miss more heavily.
 
 **Falsification test**: Two consecutive guidance misses would break the delivery reliability belief. A pattern where hedged language precedes beats — not misses — would retire the language-as-leading-indicator sub-claim, narrowing the belief to the delivery rate alone.
+
+**Provenance**:
+- Foundation dependency: `foundation.metrics.revenue_delivery` — revenue delivery is the primary commitment metric
+- Confirming documents: Q4 2023, Q1 2024, Q2 2024, Q3 2024, Q4 2024, Q1 2025, Q2 2025
+- Blind passes: Q1 2024 (independently re-derived the same beat pattern with no visibility into the Q4 2023 Candidate belief, before promotion to Provisional)
+- Contradiction searches: Q2 2024 (searched, none found, before promotion to Confirmed); Q3 2024 (searched — found the miss and the preceding language shift, recorded as TENSION rather than a break); Q1 2025 (searched, none found)
+- Related beliefs: none identified yet
+- Last checked: Q2 2025
 ```
 
 ---
@@ -136,7 +152,7 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 **Falsification test**: A cycle where the spend ratio sits within the 28–34% normal range in Q1 but Q2 demand fails to recover within 6–10% would break this belief. A cycle where the spend ratio falls below 26% but Q2 demand still recovers on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
 
 **Provenance**:
-- Foundation dependency: spend and the core volume metric are the two primary thesis metrics (foundation, thesis metrics section)
+- Foundation dependency: `foundation.metrics.spend_and_core_volume` — spend and the core volume metric are the two primary thesis metrics
 - Confirming documents: doc_1, doc_2, doc_3, doc_4, doc_5, doc_6
 - Blind passes: doc_3 (independently re-derived the same Q1/Q2 lag with no visibility into the Provisional belief before promotion to Confirmed)
 - Contradiction searches: doc_4 (searched, none found), doc_6 (searched, none found)

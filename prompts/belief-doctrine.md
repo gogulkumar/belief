@@ -138,7 +138,7 @@ But: carries an explicit dependency on a named foundation claim, and is automati
 
 A belief that cannot be connected to the foundation — to the business model, the thesis metrics, or the narration design — is either too generic or based on a document artifact rather than how the business works. But "grounded in the foundation," checked once at creation and never revisited, means that if the foundation itself becomes outdated or wrong, every belief built on it stays wrong silently, with no mechanism to catch it.
 
-Every belief entry names the specific foundation claim it depends on. If that claim is later revised, the belief is automatically flagged for re-review — not left standing on a foundation that no longer says what it said when the belief was created.
+Every belief entry names the specific foundation claim it depends on — by claim ID (e.g. `foundation.business_model`), not a vague prose reference. This is what makes the flagging mechanism real rather than aspirational: when a belief reaches Confirmed or Established while adding precision to, narrowing, or contradicting the claim it depends on, that triggers a Foundation Review (see `lifecycle/ingestion-pipeline.md`, Step 7.5). If the review Adopts a revised claim, every other belief across every stream naming that claim ID is flagged `[FOUNDATION_CHANGED]` and held at its current Status until it re-confirms grounding on its next document pass — not left standing on a foundation that no longer says what it said when the belief was created.
 
 ### 4. Actionable
 
@@ -275,7 +275,7 @@ Every belief entry must use this structure. The heading is the claim. The five n
 **Falsification test**: What a future document must show to prove this wrong, narrow its scope, or retire it. Candidate: "fails to recur in the next comparable document." Mature beliefs: name a specific reversal.
 
 **Provenance**:
-- Foundation dependency: [the specific foundation claim this belief relies on]
+- Foundation dependency: [the specific foundation claim ID this belief relies on, e.g. `foundation.business_model` — not a paraphrase]
 - Confirming documents: [doc_ids]
 - Blind passes: [doc_ids where this pattern was independently re-derived with no visibility into the prior belief — empty until one has run]
 - Contradiction searches: [doc_ids checked, and what was found — "searched, none found" counts as a result; an absent line does not]

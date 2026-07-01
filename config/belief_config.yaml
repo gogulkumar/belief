@@ -53,6 +53,27 @@ belief_config:
   # Status change, separate from the Confidence-score decay settings below.
   established_decay_after_silent_documents: 4
 
+  # ─── FOUNDATION CORPUS GROUNDING ────────────────────────────────────────────
+  # After this many documents' fact logs exist, Prompt -1 runs its corpus
+  # grounding pass: read all fact logs together, extract what recurred
+  # identically (definitional claims -> source: corpus), corroborate or
+  # challenge interview claims. Interview-only claims remain labeled
+  # hypotheses until corroborated.
+  foundation_grounding_min_documents: 3
+
+  # ─── FOUNDATION REVIEW ──────────────────────────────────────────────────────
+  # A belief reaching this status while bearing on a named foundation claim
+  # triggers Foundation Review (lifecycle/ingestion-pipeline.md, Step 7.5).
+  # A Candidate or Provisional belief never triggers this — see belief-doctrine.md.
+  foundation_review_trigger_status: Confirmed   # Confirmed or Established
+
+  # How the Adopt/Hold/Defer decision gets made. "user_confirm" surfaces the
+  # conflict and waits for the analyst; "automatic" lets the engine Adopt
+  # without confirmation whenever the triggering belief is Established.
+  # Default is user_confirm — silent foundation edits are the failure mode
+  # Grounded exists to prevent.
+  foundation_review_resolution: user_confirm    # user_confirm | automatic
+
   # ─── DECAY SETTINGS (Confidence score, not Status) ─────────────────────────
   # Beliefs not confirmed within this many days begin losing confidence.
   decay_threshold_days: 90
@@ -85,6 +106,12 @@ belief_config:
 
   # ─── CONFIDENCE ARITHMETIC ─────────────────────────────────────────────────
   # Standard update values. Match the belief reasoning system prompts.
+  # NOTE: Confidence is bookkeeping, not trust. Status (Candidate/Provisional/
+  # Confirmed/Established) is earned through verification -- blind passes and
+  # contradiction searches recorded in the Provenance record -- and governs how
+  # a belief may be cited. Confidence tracks strengthening/staleness WITHIN a
+  # status and drives archival. It can never promote a belief past the
+  # verification its status requires.
   confirm_delta: +0.08
   contradict_delta: -0.15
   new_prior_confidence: 0.20

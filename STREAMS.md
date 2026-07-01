@@ -3,6 +3,11 @@
 *The authoritative reference for what each belief stream covers,
 what it must never do, and what a real belief looks like per stream.*
 
+*Role in the repo: this file is the single home for full worked
+examples. `BELIEF.md` Section 03 carries the compact spec-level
+definitions and points here — one authority per concern, so the
+spec and the reference cannot drift apart.*
+
 ---
 
 > **The single rule underlying all streams:**
@@ -151,6 +156,19 @@ co-funding contributions in the numerator, or an explicit footnote
 stating that the calculation basis has changed. Either would
 retire this belief and require recalibration of every efficiency
 comparison made to date.
+
+Provenance:
+- Foundation dependency: the efficiency ratio is a thesis-defining
+  metric whose calculation basis is expected to be stable (foundation,
+  thesis metrics section)
+- Confirming documents: document 1–4
+- Blind passes: document 2 (independently re-derived the same
+  footnote language with no visibility into the document-1 Candidate
+  belief, before promotion to Provisional)
+- Contradiction searches: document 3 (searched, none found), document 4
+  (searched, none found, before promotion to Established)
+- Related beliefs: none identified yet
+- Last checked: document 4
 ```
 
 ---
@@ -263,6 +281,19 @@ demand engine restarted and this belief was wrong about the
 structural nature of the volume stagnation. One period of strong
 volume is not enough — the pattern needs to hold for two periods
 before the belief is retired.
+
+Provenance:
+- Foundation dependency: the growth engine's price vs. volume
+  composition is a thesis-defining question (foundation, profitability
+  thesis section)
+- Confirming documents: document 1–4
+- Blind passes: document 2 (independently re-derived the same
+  price/volume split with no visibility into the document-1 Candidate
+  belief, before promotion to Provisional)
+- Contradiction searches: document 3 (searched, none found), document 4
+  (searched, none found, before promotion to Established)
+- Related beliefs: none identified yet
+- Last checked: document 4
 ```
 
 ---
@@ -372,6 +403,19 @@ metrics have decoupled — which would itself be a significant
 signal worth understanding because it would mean the chain
 between demand quality and volume realization has changed
 structurally.
+
+Provenance:
+- Foundation dependency: the conversion chain connecting demand to
+  the primary volume metric is a thesis-relevant mechanic (foundation,
+  operating chain section)
+- Confirming documents: periods 1–5
+- Blind passes: period 2 (independently re-derived the same lead-lag
+  pattern with no visibility into the period-1 Candidate belief,
+  before promotion to Provisional)
+- Contradiction searches: period 3 (searched, none found, before
+  promotion to Confirmed)
+- Related beliefs: none identified yet
+- Last checked: period 5
 ```
 
 ---
@@ -484,6 +528,23 @@ the operational miss is undeniable, the team's communication
 strategy has fundamentally changed, or new leadership is
 running a different framing approach. Any of those would be
 a significant signal worth understanding beyond the miss itself.
+
+Provenance:
+- Foundation dependency: narration design consistently frames
+  controllable misses as external where possible (foundation,
+  narration design section)
+- Confirming documents: miss periods 1–4
+- Blind passes: miss period 2 (independently re-derived the same
+  external-first sequencing with no visibility into the miss-period-1
+  Candidate belief, before promotion to Provisional)
+- Contradiction searches: miss period 3 (searched, none found), miss
+  period 4 (searched, none found, before promotion to Established —
+  cross-referenced against the Dynamics stream's conversion-ratio
+  belief in the same periods)
+- Related beliefs: business_dynamics.2 (conversion-ratio lead-lag
+  belief — same underlying phenomenon, viewed from attribution vs.
+  mechanics)
+- Last checked: miss period 4
 ```
 
 ---
@@ -600,6 +661,19 @@ thesis about demand-spend return has changed — which changes
 everything downstream about how to read the business. When this
 happens, do not read it as a cost efficiency move. Read it as
 leadership questioning the model.
+
+Provenance:
+- Foundation dependency: demand investment is treated as the primary
+  thesis-defining spend line (foundation, thesis metrics section)
+- Confirming documents: pressure periods 1–4
+- Blind passes: pressure period 2 (independently re-derived the same
+  overhead-first cutting order with no visibility into the
+  pressure-period-1 Candidate belief, before promotion to Provisional)
+- Contradiction searches: pressure period 3 (searched, none found),
+  pressure period 4 (searched, none found, before promotion to
+  Established)
+- Related beliefs: none identified yet
+- Last checked: pressure period 4
 ```
 
 ---
@@ -722,6 +796,20 @@ they want misses framed — possibly because the miss is so large
 that leading with cost is not viable, or because a new
 communication approach is being tested. Either way it would break
 this belief and would itself be a signal worth investigating.
+
+Provenance:
+- Foundation dependency: narration design uses the efficiency ratio
+  as the preferred confidence signal (foundation, narration design
+  section)
+- Confirming documents: document 1–6
+- Blind passes: document 2 (independently re-derived the same
+  opening-section-predicts-result pattern with no visibility into the
+  document-1 Candidate belief, before promotion to Provisional)
+- Contradiction searches: document 4 (searched, none found), document 6
+  (searched, none found — cross-referenced against the Dynamics
+  stream's conversion reading, which was healthy)
+- Related beliefs: none identified yet
+- Last checked: document 6
 ```
 
 ---
@@ -841,6 +929,20 @@ understanding which one it is matters significantly for how to
 read forward guidance. A late-year miss of any size is an even
 stronger falsification — it means the conservative cushion
 failed, which has not happened in any period reviewed.
+
+Provenance:
+- Foundation dependency: the planning process's calibration against
+  thesis metrics is expected to be consistent year over year
+  (foundation, thesis metrics section)
+- Confirming documents: early-year and late-year FC across 2
+  comparable years (4 comparable periods)
+- Blind passes: year 2's early-year FC (independently re-derived the
+  same optimistic/conservative split with no visibility into the
+  year-1 Candidate belief, before promotion to Provisional)
+- Contradiction searches: year 2's late-year FC (searched, none found,
+  before promotion to Established)
+- Related beliefs: none identified yet
+- Last checked: year 2's late-year FC
 ```
 
 ---

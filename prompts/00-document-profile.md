@@ -60,6 +60,8 @@ Questions to resolve:
 
 For each document type, you will need to assess — after the interview — what it can and cannot carry for the chosen angle. Capture the raw facts here; the assessment goes into the output.
 
+**If sample documents are available, skim them for structure — nothing more.** Look at what sections exist, what recurring layout the document follows, which benchmarks appear, what a typical page or slide carries. This is capability assessment: it sharpens the CAN/CANNOT sections below with evidence instead of guesswork. It is NOT signal extraction — no facts, no metrics, no patterns, no candidate beliefs come out of this skim. Signal extraction happens at ingestion (Step 6), against the compiled extractor prompt, one document at a time.
+
 ---
 
 ### Area 3 — Angle

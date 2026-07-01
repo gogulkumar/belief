@@ -57,7 +57,7 @@ A change to the blueprint automatically propagates to:
 - The fact extraction prompt (Layer 2B)
 - The belief memory (Layer 3)
 
-A refinement to the foundation propagates to every belief stream for that entity.
+A refinement to the foundation propagates to every belief stream for that entity — and because every belief names the foundation claim ID it depends on, an Adopted revision automatically flags every dependent belief `[FOUNDATION_CHANGED]` for re-grounding rather than leaving them standing on a claim that changed under them.
 
 No code changes required. The compilers are generic. Only the foundation and blueprint are entity-specific.
 
@@ -148,15 +148,26 @@ intake.py          ← uploaded document (any format)
 fact_extractor.py  ← fact_extractor_prompt.md (system)
                    + L3 units + topics_touched
                    → L2_factlogs/{doc_id}_fact_log.md
+                   (belief-aware pass by default; a BLIND pass —
+                    existing belief withheld — runs additionally
+                    whenever a belief is up for promotion)
 
 belief_engine.py   ← belief_reasoning_prompt.md (system)
                    + existing belief.md (or NULL)
-                   + fact log
-                   → belief.md (evolved)
+                   + fact log (+ blind-pass fact log when run)
+                   → belief.md (evolved, Provenance records updated)
                    → belief_changelog.md (appended)
+                   (promotion gated: blind pass for Provisional,
+                    reported contradiction search for Confirmed)
+
+foundation review  ← any belief reaching Confirmed/Established that
+(Step 7.5)           bears on its named foundation claim
+                   → user resolves Adopt / Hold / Defer
+                   → foundation.md revised + revision logged (if Adopt)
+                   → dependent beliefs flagged [FOUNDATION_CHANGED]
 ```
 
-The belief engine at runtime receives only its compiled prompt, the existing belief memory, and the fact log. It never receives the raw document, the foundation, or the blueprint. This is the contract that makes the system reproducible and auditable.
+The belief engine at runtime receives only its compiled prompt, the existing belief memory, and the fact log(s). It never receives the raw document, the foundation, or the blueprint. This is the contract that makes the system reproducible and auditable.
 
 ---
 
@@ -164,9 +175,9 @@ The belief engine at runtime receives only its compiled prompt, the existing bel
 
 | Layer | Purpose | Mutability |
 |-------|---------|------------|
-| **Entity Foundation** | Business understanding for the entity — thesis, metrics, normalization, narration. One `foundation.md` per entity. | Updated when streams reveal deeper understanding |
+| **Entity Foundation** | Business understanding for the entity — thesis, metrics, normalization, narration. Every atomic claim carries a stable claim ID that belief Provenance records point to. One `foundation.md` per entity. | Revised only through Foundation Review (Adopt/Hold/Defer, logged in the Foundation Revision Log) — never by silent edit |
 | **L1 — Belief Memory** | Living belief memory. One `belief.md` per stream. Loaded into agent context. | Surgically updated per document |
-| **L2 — Fact Logs** | Per-document extracted signals. | Written once per document |
+| **L2 — Fact Logs** | Per-document extracted signals — the permanent, addressable memory layer that belief Provenance records cite by doc_id. | Written once per document; retained indefinitely once a belief cites it |
 | **L3 — Raw Archive** | Original document content verbatim. | Immutable. Written once. |
 
 ---
@@ -199,8 +210,8 @@ A belief system that updates on everything is a summarizer.
 
 ## The Compounding Effect
 
-After 3 documents: thin, uncertain beliefs at confidence 0.20–0.40.
-After 10 documents: solidifying patterns at 0.50–0.70.
-After 30+ documents: high-confidence structural understanding at 0.75+.
+After 3 documents: Candidates and first Provisionals — patterns spotted, the first blind passes run.
+After 10 documents: Confirmed baselines — patterns that survived independent re-derivation and contradiction searches.
+After 30+ documents: Established structural understanding — beliefs with multiple blind passes and empty contradiction searches on record.
 
-The belief memory becomes more valuable the longer it runs. This is the behavior of understanding, not retrieval.
+What compounds is not just document count — it is survived verification. A belief's trustworthiness is read from its Status and its Provenance record, not from a confidence number alone. The belief memory becomes more valuable the longer it runs. This is the behavior of understanding, not retrieval.

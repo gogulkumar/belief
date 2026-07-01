@@ -10,6 +10,28 @@ Without the foundation, a belief stream produces document-level facts. With it, 
 
 ---
 
+## Where Foundation Claims Come From
+
+Foundation claims have two sources, and every claim is labeled with its source. The label is part of the claim, not metadata to skip.
+
+**Source 1 — Interview (cold start).** The structured interview below, run before any document is read. Everything it produces is the user's stated understanding — a useful prior, but a *hypothesis*, not evidence. Label: `source: interview`.
+
+**Source 2 — Corpus grounding (once fact logs exist).** After the first several documents have been processed (default: 3 — see `belief_config.yaml`), run a **corpus grounding pass**: read all fact logs produced so far *together*, and extract only what recurred *identically* across every one — the definitional, structural facts. Metric definitions that never varied. The benchmark sequence that appeared the same way every time. The decomposition structure, the segmentation, the fixed scaffold of how this business reports itself. Label: `source: corpus`, with the doc_ids that ground it.
+
+The discriminating test between a foundation claim and a belief:
+
+> **Recurs identically in every document and is definitional — it describes how the business is structured or measured, not how it performed → foundation claim.**
+> **Could vary period to period and needs testing across documents → belief. It goes to a stream, not the foundation.**
+
+The corpus grounding pass also reconciles the two sources:
+- An interview claim the fact logs **corroborate** is relabeled `source: interview+corpus` — the hypothesis earned its grounding.
+- An interview claim the fact logs **contradict** triggers an immediate Foundation Review (below). Do not silently keep the interview version, and do not silently overwrite it.
+- An interview claim the fact logs are **silent on** stays `source: interview` — still a hypothesis, still awaiting evidence. Beliefs grounded on interview-only claims carry that softness: their grounding is a stated assumption, not an observed constant.
+
+This ordering preserves the system's core principle — *the business model is discovered by reading* — while still letting a cold start proceed: the interview gets the system moving; the corpus pass is what makes the foundation earned rather than asserted.
+
+---
+
 ## Interview Structure
 
 Conduct a focused interview in five areas. Ask one question at a time. Do not move to the next area until the current one is answered. Do not invent content — only record what the user tells you.
@@ -72,6 +94,10 @@ Record: A what-matters-vs-noise section. Two lists: signals to stress, and thing
 
 Produce the foundation document in this structure. Every section must be answered with entity-specific content. No placeholders.
 
+Every atomic claim carries a stable **claim ID** — an HTML comment immediately below its heading, in the form `<!-- claim: foundation.{section}[.{item}] -->`. This is not decoration. A belief's Provenance record names the specific foundation claim it depends on by this ID (e.g., `foundation.metrics.revenue_growth`) — without a stable ID, "grounded in the foundation" is an unenforceable claim. Once assigned, a claim ID is never renamed, mirroring the rule that belief numbers are never reused. If a claim is later split or merged (see "Foundation Review" below), the old ID is retired, not repurposed.
+
+Every claim also carries a **source line** immediately after its claim ID comment: `source: interview` | `source: corpus (doc_1, doc_2, doc_3)` | `source: interview+corpus (doc_ids)`. This is how a reader — human or agent — tells a stated assumption from an observed constant without leaving the file.
+
 ```markdown
 # [Entity Name] — Business Foundation
 
@@ -83,6 +109,7 @@ Produce the foundation document in this structure. Every section must be answere
 ---
 
 ## Business Model and Profitability Thesis
+<!-- claim: foundation.business_model -->
 
 [One to two paragraphs. What kind of business this is. How it makes money. What its profitability thesis rests on. Specific enough that any reader immediately understands what this business cares about most.]
 
@@ -90,30 +117,34 @@ Produce the foundation document in this structure. Every section must be answere
 
 ## Thesis-Defining Metrics
 
-[For each thesis-defining metric:]
+[For each thesis-defining metric, its own claim ID:]
 
+<!-- claim: foundation.metrics.{metric_slug} -->
 **[Metric Name]** — [Why it is thesis-defining, not just important. What a meaningful move in this metric means for the profitability thesis.]
 
 Normal range: [What normal looks like]
 What a deviation means: [How to interpret a move outside the normal range]
 
-[Repeat for each thesis-defining metric]
+[Repeat for each thesis-defining metric, each with its own `foundation.metrics.{metric_slug}` claim ID]
 
 ---
 
 ## Normalization Model
+<!-- claim: foundation.normalization -->
 
 [Table or structured list of expected operating ranges, seasonal patterns, and deviation thresholds for each thesis metric. Include known recurring one-time effects.]
 
 ---
 
 ## Narration Design
+<!-- claim: foundation.narration_design -->
 
 [How this entity communicates. What it leads with. How good news is framed. How bad news is framed. The order in which topics typically appear. Language the entity uses repeatedly that has specific meaning. What to expect when reading the next document from this entity.]
 
 ---
 
 ## What Matters vs. Noise
+<!-- claim: foundation.signals_vs_noise -->
 
 **Stress these signals:**
 - [Signal 1 — why it matters]
@@ -128,7 +159,45 @@ What a deviation means: [How to interpret a move outside the normal range]
 **Known document quirks:**
 - [Quirk 1 — what it is and why it could mislead]
 - [...]
+
+---
+
+## Foundation Revision Log
+
+Append-only. Empty at creation: "No revisions yet — foundation built from initial interview only."
+
+[Each entry, once a revision occurs, uses this structure — see "Foundation Review" below for when an entry is created:]
+
 ```
+### Revision — [date] — [claim_id]
+**Triggered by**: Belief #N ([stream_id]) reached [status] and its Statement [confirms with more precision / contradicts] this claim as originally recorded.
+**Original claim**: [the claim text as it stood before this revision]
+**Evidence from belief stream**: [what the triggering belief independently found, and across how many documents]
+**Resolution**: [Adopted — claim rewritten to match evidence / Held — original claim kept, evidence treated as a narrower sub-case / Deferred — insufficient evidence yet, no change]
+**Updated claim** (if Adopted): [the new claim text]
+**Beliefs flagged for re-grounding**: [belief IDs, across any stream, whose Provenance names this claim ID]
+```
+```
+
+---
+
+## Foundation Review
+
+The foundation is not append-only prose that sits untouched once written — see "The foundation is a living document" below. But it also cannot be silently rewritten by an automated pass every time a belief seems to add nuance; a claim built from a five-minute interview and a claim built from twelve documents of evidence are different kinds of authority, and the resolution between them should be visible, not silent.
+
+**This agent runs a second mode, distinct from the initial interview: Foundation Review.** It is invoked by the belief pipeline (see `lifecycle/ingestion-pipeline.md`, Step 7.5) when a belief in any stream meets the review trigger — reaching Confirmed or Established status while its Statement adds meaningful precision to, narrows, or outright contradicts the foundation claim named in its own Provenance → Foundation dependency field. A single Candidate or Provisional belief never triggers this; the evidence has to have already survived the Two-Test Gate.
+
+**On a review call, you receive:** the current text of the flagged claim (with its claim ID), the triggering belief's Statement and Evolution trail, and its Provenance record.
+
+**You do:**
+1. State plainly what the foundation currently claims and what the belief independently found.
+2. Ask the user to resolve it — three options only:
+   - **Adopt**: rewrite the claim to match the evidence. Append a Foundation Revision Log entry. Every other belief across every stream whose Provenance names this claim ID must now be flagged — record `[FOUNDATION_CHANGED]` against each in the changelog, and hold their Status where it is (not retired, not silently kept as-is) until their next document pass re-confirms grounding against the revised claim.
+   - **Hold**: the original claim stands. The belief's finding is treated as a narrower sub-case or a document-specific deviation, not a correction to the foundation. No Revision Log entry — this is a decision, not a change, but log the decision was considered and rejected, with why.
+   - **Defer**: not enough evidence yet to decide either way. No change. Note what would resolve it — typically, more documents confirming the same tension.
+3. Do not decide Adopt vs. Hold yourself by default. Surface the conflict and let the user resolve it, unless the entity's configuration has explicitly set automatic resolution (see `belief_config.yaml`).
+
+**You must never:** rewrite a claim without logging the revision. Silently absorb a contradiction into the foundation's prose without a Revision Log entry — that is exactly the silent-drift failure Grounded exists to prevent. Treat a Candidate or Provisional belief as sufficient grounds for a review call.
 
 ---
 
@@ -142,4 +211,6 @@ What a deviation means: [How to interpret a move outside the normal range]
 
 **Be specific.** Vague foundations produce generic beliefs. The test for every sentence: would this tell an AI something it could not infer from knowing the entity's industry alone?
 
-**The foundation is a living document.** After several streams have run and the evolution trails reveal deeper understanding, the foundation may be refined. Refinement carries forward to every stream for this entity.
+**The foundation is a living document — but only through Foundation Review, never by quiet edit.** After several streams have run and a belief reaches Confirmed or Established while bearing on a specific foundation claim, that claim may be refined through the Foundation Review process above. Refinement carries forward to every stream for this entity — and every belief whose Provenance names the revised claim ID is flagged for re-grounding, not silently left standing on a claim that no longer says what it said when the belief was created.
+
+**Claim IDs are permanent.** Once `foundation.metrics.revenue_growth` exists, it is never reassigned to mean something else. If the claim needs to split into two distinct claims, retire the original ID in the Revision Log and mint new ones — don't overload one ID with a different meaning than the beliefs pointing to it expected.
