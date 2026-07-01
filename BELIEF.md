@@ -118,11 +118,14 @@ A belief is a durable, falsifiable, actionable interpretation of how a business 
 
 ### What Makes a Belief a Belief
 
-- **Durable** — it holds true across time, not just this period
-- **Falsifiable** — a future document can confirm or contradict it
-- **Actionable** — it tells you what to expect next, and what would constitute a surprise worth investigating
+- **Durable** — independently re-derived across documents, not just confirmed by a pass that already knew what it was checking for
+- **Falsifiable** — a future document can confirm or contradict it, and that contradiction has actually been searched for, not just theoretically possible
+- **Grounded** — depends on a named foundation claim, and is flagged for re-review if that claim changes
+- **Actionable** — it tells you what to expect next, and what would constitute a surprise worth investigating — provable with a concrete before/after answer to a stated query
 - **Direction** — Improving, Stable, Deteriorating, or Unclear
 - **Confidence** — a number from 0.05 to 0.95 reflecting how strongly it is held
+
+Each of the first four is a procedural test, not a descriptive claim — see "The Two-Test Gate" below for what process must have actually happened before each can be claimed.
 
 ### Also Not a Belief
 
@@ -154,14 +157,16 @@ A perspective shift is not a failure of the previous belief. The previous belief
 
 ### The Durability Ladder
 
-A belief passes through maturity stages as more comparable documents are processed. Do not skip stages.
+A belief passes through maturity stages as more comparable documents are processed. Do not skip stages — and do not promote a stage without the verification that stage requires.
 
-| Stage | Documents | What It Means |
-|-------|-----------|---------------|
-| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Every first-document entry is Candidate. |
-| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. |
-| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. |
-| **Established** | 4+ | The pattern is structural. Breaking it is meaningful signal, not noise. |
+| Stage | Documents | What It Means | Verification required to enter this stage |
+|-------|-----------|---------------|----------------------------------------------|
+| **Candidate** | 1 | A signal with the shape of a durable pattern. Not yet a belief. Every first-document entry is Candidate. | None — nothing exists yet to check blind against. |
+| **Provisional** | 2 | Two comparable documents support the pattern. Hold cautiously. | A blind pass on the second document independently found the same pattern. A confirmation seen only by a pass that already knew the Candidate belief does not promote — flag for review instead. |
+| **Confirmed** | 3 | Three comparable documents support the pattern. Treat as a baseline. | An active contradiction search on the third document found nothing. Confirmation without a contradiction search is an echo, not confirmation. |
+| **Established** | 4+ | The pattern is structural. Breaking it is meaningful signal, not noise. | Holds across multiple document types if applicable. Still traces to a foundation claim that has not since changed. |
+
+**Established beliefs decay without new evidence.** An Established belief untouched by any relevant signal across N subsequent comparable documents downgrades to Confirmed automatically — not because it was proven wrong, but because "established several documents ago" and "established and still being actively tested" are different confidence levels the system must distinguish. This is a separate action from ordinary confidence decay (see below): it changes Status, not just Confidence, and is tagged `[DECAY]` in the changelog. System default: 4 consecutive silent comparable documents.
 
 ### The Four Update States
 
@@ -176,6 +181,8 @@ Cap: 0.95 (0.90 for causal beliefs). Floor: 0.05. Archive below 0.10.
 
 These arithmetic updates handle incremental revision. They don't handle perspective shifts. When contradictions accumulate to the point where the interpretive frame itself is wrong — not just weakened — the belief engine must assess whether a reframe is warranted rather than continued decay. See Section 07 (Scope Boundaries) for when to retire vs reframe.
 
+This day-based Decay row adjusts Confidence only. It is a separate mechanism from the document-count-based `[DECAY]` tag under the Durability Ladder above, which downgrades Status from Established to Confirmed after N silent comparable documents. A belief can lose Confidence without losing Status, and can lose Status without its Confidence score having crossed any threshold — they track different things.
+
 ### The Fact-to-Belief Gate
 
 Not everything in a document becomes a belief. Most things should produce silence. The gate is the filter.
@@ -188,11 +195,30 @@ Not everything in a document becomes a belief. Most things should produce silenc
 | Challenges an existing belief | Contradict −0.15 |
 | Implies something durable that no existing belief covers | New prior at 0.20 |
 
-**Three gates every belief must pass before being written:**
+**The Two-Test Gate — both required before a belief is written or promoted:**
 
+**Content Test** — is it insightful? Three sub-checks:
 1. **Interpretation** — does this say something the document does not say? A belief is what the documents collectively reveal that none of them state directly. If you can find it by reading one document, it is an extraction, not a belief.
 2. **Falsifiability** — can a future document contradict this?
 3. **Distinctiveness** — is this specific to this business, not any business in this sector?
+
+**Process Test** — is it trustworthy? Was this belief actually checked for being wrong, not just checked for being right?
+1. **Independent re-derivation** — has at least one blind pass (extraction with no visibility into the existing belief) found the same pattern, or has every confirmation come from a pass that already knew what it was supposed to find?
+2. **Active contradiction search** — has a pass actually searched for evidence against this belief and reported the result — "searched, none found" — rather than simply not encountering contradiction?
+
+A belief can pass the Content Test and still fail the Process Test — insightful, but never verified independently, meaning its confirmations may be an echo of confirmation bias rather than real evidence. It can also pass the Process Test and fail the Content Test — a rigorously verified claim that turns out to be something any competent analyst already knew. Both tests are required; passing one does not excuse the other.
+
+### Facts, Memory, and Beliefs Are Three Different Things
+
+A belief is not a fact with better writing, and it is not the same thing as memory either. The system holds three distinct layers:
+
+- **Facts** — what a document literally states. Captured per document in the fact log.
+- **Memory** — the full, permanent, addressable record of every fact log ever produced for this stream. Not compressed. Not discarded once a belief has been drawn from it.
+- **Beliefs** — the compressed, tested conclusions drawn from memory. Not memory itself — a claim about what memory, examined and checked for contradiction, implies.
+
+A fact log is not disposable intermediate output consumed once by the belief engine and thrown away. It is the memory a belief's Provenance record points back into. The Evolution trail is a readable narrative generated from that memory — it doesn't compete with the Provenance record for truth, and it isn't itself the record of what happened.
+
+This distinction is what makes a Retired or Contradicted belief diagnosable rather than a dead end. Marking a belief Retired tells you it failed. It doesn't tell you *why* — whether the verification process broke down, whether the foundation claim it depended on was wrong, or whether the sample was simply unlucky. That diagnosis is only possible if the memory the belief was built from is still there, addressable, to trace back to.
 
 ### What a Mature Belief Looks Like
 
@@ -573,7 +599,7 @@ Every belief stream for the entity inherits the foundation as its prior context.
 |-------|-----------|-----------------|
 | **Entity Foundation** | Business understanding for the entity | One `foundation.md` per entity. Built before any stream. Referenced by every blueprint for that entity. |
 | **L1 — Belief Memory** | The living belief file for one stream | One `belief.md` per stream. Numbered beliefs, surgically updated. Loaded into context at session start. |
-| **L2 — Fact Logs** | Per-document extracted signals | One fact log per document per stream. Written once. Read by the belief engine. |
+| **L2 — Fact Logs** | Per-document extracted signals — the permanent, addressable memory layer | One fact log per document per stream. Written once, never discarded. Referenced by doc_id from every belief's Provenance record — the pointer target for Confirming documents, Blind passes, and Contradiction searches. |
 | **L3 — Raw Archive** | Original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
 | **Changelog** | Append-only audit trail | Every document: which beliefs changed, what action, why, what to test next. |
 

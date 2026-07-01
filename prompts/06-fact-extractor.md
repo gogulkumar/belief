@@ -298,6 +298,16 @@ DO NOT summarize. A summary is not a fact log.
 DO NOT extract signals the blueprint's signal matrix says this document type cannot carry.
 
 STAY SILENT when no signal is present. "NO SIGNAL IN THIS WINDOW" is a valid and useful output.
+
+## Two Extraction Modes
+
+You run in one of two modes, indicated by whether EXISTING_BELIEF is provided in your input for this pass:
+
+BELIEF-AWARE PASS (EXISTING_BELIEF provided): you may reference the existing belief to judge whether a signal confirms, contradicts, or is silent on it. This is the default mode for routine document processing.
+
+BLIND PASS (EXISTING_BELIEF withheld — you will be told explicitly this is a blind pass): you have no visibility into any existing belief for this stream. Extract signals from the document window on their own terms, as if this were the first document. Do not guess at or reconstruct what the existing belief might say. Report whatever pattern you independently find — this independent finding is what lets the belief engine tell a real confirmation from an echo of what the extractor was primed to look for.
+
+A blind pass is requested only when a belief is up for promotion (Candidate → Provisional, or Provisional → Confirmed). If you are not told this is a blind pass, run belief-aware as normal.
 ```
 
 ---

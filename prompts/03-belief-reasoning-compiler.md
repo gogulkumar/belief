@@ -94,12 +94,22 @@ Don't skip between levels. Move carefully: Fact → Signal → Pattern → Belie
 
 ## The Durability Ladder
 
-| Stage | Documents | Meaning |
-|-------|-----------|---------|
-| Candidate | 1 | A signal with the shape of a durable pattern. Not yet a belief. |
-| Provisional | 2 | Two comparable documents support the pattern. Hold cautiously. |
-| Confirmed | 3 | Three comparable documents support the pattern. Treat as a baseline. |
-| Established | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal. |
+| Stage | Documents | Meaning | Verification required to enter this stage |
+|-------|-----------|---------|----------------------------------------------|
+| Candidate | 1 | A signal with the shape of a durable pattern. Not yet a belief. | None — nothing exists yet to check blind against. |
+| Provisional | 2 | Two comparable documents support the pattern. Hold cautiously. | A blind pass on the second document independently found the same pattern. A belief-aware-only confirmation does not promote. |
+| Confirmed | 3 | Three comparable documents support the pattern. Treat as a baseline. | An active contradiction search on the third document found nothing. |
+| Established | 4+ | Four or more documents support the pattern. Breaking it is meaningful signal. | Holds across document types where applicable. Foundation dependency unchanged. Decays to Confirmed after 4 consecutive silent comparable documents — tag [DECAY]. |
+
+## The Two-Test Gate
+
+Every belief must pass both tests. Passing one does not excuse the other.
+
+**Content Test** — does this say something the document does not say? If it can be found by reading one document, it is an extraction, not a belief, regardless of how well it was derived.
+
+**Process Test** — was this belief actually checked for being wrong, not just checked for being right? A pattern only ever confirmed by a pass that already knew what it was checking for — never independently re-derived blind, never actively searched for contradiction — is unproven, no matter how many documents it has "held" across.
+
+**Blind pass vs. belief-aware pass:** a belief-aware pass shows the extractor the existing belief and asks confirm/contradict/silent. A blind pass withholds the existing belief entirely and asks the extractor to report independently whatever it finds. Promotion from Candidate to Provisional, and Provisional to Confirmed, requires a blind pass — a belief-aware-only confirmation is an echo, not evidence.
 
 ## The Volume Check
 
@@ -121,9 +131,10 @@ Before writing or updating a belief, confirm:
 9. Does it identify what would confirm, weaken, or invalidate it?
 10. Does it belong in a durable belief memory rather than a normal summary?
 11. Is the heading a specific, testable claim — not a category label?
-12. Is this grounded in the entity foundation — connected to the business thesis, not floating?
+12. Is this grounded in the entity foundation — connected to the business thesis, not floating, with the specific foundation claim named in its Provenance record?
+13. If claiming Provisional or above, does the Provenance record show a blind pass? If claiming Confirmed or above, does it show a reported contradiction search?
 
-If the answer to any of these is no, don't write the belief.
+If the answer to any of these is no, don't write the belief — or don't promote it past its current stage.
 ```
 
 ---
@@ -184,10 +195,11 @@ Encode the cadence-specific durability rules from Blueprint Section 3.3.
 
 ```
 For this entity's document cadence:
-- One document showing a pattern: Candidate — record but don't hold as belief
-- [N] comparable documents showing the pattern: Provisional — hold cautiously
-- [N+1] comparable documents: Confirmed — treat as a baseline
-- [N+2 or more] comparable documents, or pattern confirmed across multiple document types: Established — breaking it is meaningful signal
+- One document showing a pattern: Candidate — record but don't hold as belief. Nothing to verify yet.
+- [N] comparable documents showing the pattern: Provisional — hold cautiously. Requires a blind pass on document [N] that independently found the pattern; a belief-aware-only confirmation does not promote.
+- [N+1] comparable documents: Confirmed — treat as a baseline. Requires an active contradiction search on document [N+1], reported explicitly even when nothing was found.
+- [N+2 or more] comparable documents, or pattern confirmed across multiple document types: Established — breaking it is meaningful signal. Requires the foundation claim this belief depends on to still be current.
+- Established beliefs with 4 consecutive comparable documents showing no relevant signal downgrade to Confirmed automatically — tag [DECAY]. This is a Status change, not a contradiction.
 ```
 
 ---
@@ -211,20 +223,28 @@ Every initialized entry:
 - Evolution trail: "First seen in [doc_id] — [brief observation, including whether this was stated explicitly in the document or inferred from metric movements]."
 - Normal baseline: "not yet established — awaiting second comparable document."
 - Falsification test: for relationship beliefs — "a document where A moves but B does not follow within the stated lag would challenge this relationship." For other beliefs — "fails to recur in the next comparable document."
+- Provenance: foundation dependency named; Confirming documents = [doc_id]; Blind passes, Contradiction searches, and Related beliefs empty (nothing exists yet to check against); Last checked = [doc_id].
 
 ## On subsequent documents
 
 For each existing belief, decide one action per document:
 
-- Fact log CONFIRMS: extend the evolution trail with what this document added. Update normal baseline if the picture has sharpened. Advance stage if threshold met. Tag: [DEEPEN]
+- Fact log CONFIRMS: extend the evolution trail with what this document added. Update normal baseline if the picture has sharpened. Add [doc_id] to Provenance → Confirming documents. Tag: [DEEPEN]
 - Fact log CONTRADICTS strongly: revise the statement. Update the evolution trail to explain what changed and why. Tag: [CONTRADICT]
 - Fact log shows TENSION: note the contradicting signal in the evolution trail. Don't revise yet. Tag: [TENSION]
-- Fact log is SILENT for this belief: note silence. No update. Tag: [SILENCE]
+- Fact log is SILENT for this belief: note silence. No update to the claim. Update Provenance → Last checked regardless — silence still counts as a checked document for decay purposes. Tag: [SILENCE]
 - Fact log supports NARROWING the scope: narrow the claim. Explain what the belief no longer covers. Tag: [NARROW]
 - Pattern has ENDED: archive the belief. Keep the number. Mark RETIRED. Tag: [RETIRE]
 
+**Advancing stage is a separate decision from confirming.** A document can CONFIRM a belief without the belief being eligible to advance stage this round:
+- Advancing Candidate → Provisional requires this document's pass to include a **blind pass** (fact extraction run with the existing belief withheld) that independently found the same pattern. If only a belief-aware pass confirmed it, extend the evolution trail with [DEEPEN] but do not change Status — note in the changelog that promotion is pending a blind pass.
+- Advancing Provisional → Confirmed requires an **active contradiction search** this round, with the result recorded in Provenance → Contradiction searches even when nothing was found ("searched, none found"). A document that confirms without a reported contradiction search does not advance Status.
+- Advancing Confirmed → Established requires the belief to hold across document types where applicable, and its named foundation claim to be unchanged.
+- **Established decay:** if an Established belief accumulates 4 consecutive [SILENCE] actions (or the stream's configured threshold), downgrade it to Confirmed. Tag: [DECAY]. This changes Status only — it is not a contradiction, and the Statement is unchanged.
+
 If two beliefs are now better stated as one: merge. Tag: [MERGE_BELIEFS]
 If one belief conflates distinct patterns: split. Tag: [SPLIT_BELIEF]
+If a belief shares its underlying phenomenon with another belief (in this stream or another): add each to the other's Provenance → Related beliefs.
 Volume check: if active beliefs fall below 8, audit and split umbrella beliefs before ending the pass.
 
 ## Changelog entries
@@ -239,6 +259,7 @@ After updating the belief memory, record one changelog entry per affected belief
 - [RETIRE]: pattern ended; number kept, marked RETIRED
 - [MERGE_BELIEFS]: two beliefs collapsed into one
 - [SPLIT_BELIEF]: one belief divided into two
+- [DECAY]: Established belief downgraded to Confirmed after consecutive silence — Status change, not contradiction
 - [NO CHANGE]: no update warranted
 ```
 
@@ -260,11 +281,12 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 ## Inputs You Receive at Runtime
 
 1. EXISTING_DURABLE_BELIEF — the current belief memory for this belief stream. May be NULL if this is the first document.
-2. NEW_CHRONOLOGICAL_FACT_LOG — the structured fact log from the current document.
+2. NEW_CHRONOLOGICAL_FACT_LOG — the structured fact log from the current document, produced by a belief-aware pass.
+3. BLIND_PASS_FACT_LOG — optional. Present only when a belief in this stream is up for promotion this round (Candidate → Provisional, or Provisional → Confirmed). Produced by a fact extraction pass that had no visibility into EXISTING_DURABLE_BELIEF.
 
 ## What You Must Produce
 
-1. An updated belief memory — same structure as input, with surgical changes applied. Numbered beliefs, claim-as-heading, 5-field format.
+1. An updated belief memory — same structure as input, with surgical changes applied. Numbered beliefs, claim-as-heading, 5-field format, plus the Provenance record.
 2. A changelog — one entry per affected belief, tagged with the action.
 
 ## What You Must Not Do
@@ -280,6 +302,9 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 - Don't use category labels as headings. The heading must be the claim.
 - Don't renumber beliefs. Once a belief has a number, that number is permanent.
 - Don't let the active belief count fall below 8 without auditing for umbrella beliefs.
+- Don't advance a belief's Status without the verification that stage requires — a belief-aware confirmation alone never promotes past Candidate.
+- Don't let the Evolution trail claim confirmation, a blind pass, or a contradiction search that the Provenance record does not also show. The two must agree.
+- Don't leave an Established belief's Status untouched after 4 consecutive [SILENCE] actions — apply [DECAY].
 ```
 
 ---
