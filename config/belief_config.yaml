@@ -53,6 +53,19 @@ belief_config:
   # Status change, separate from the Confidence-score decay settings below.
   established_decay_after_silent_documents: 4
 
+  # ─── FOUNDATION REVIEW ──────────────────────────────────────────────────────
+  # A belief reaching this status while bearing on a named foundation claim
+  # triggers Foundation Review (lifecycle/ingestion-pipeline.md, Step 7.5).
+  # A Candidate or Provisional belief never triggers this — see belief-doctrine.md.
+  foundation_review_trigger_status: Confirmed   # Confirmed or Established
+
+  # How the Adopt/Hold/Defer decision gets made. "user_confirm" surfaces the
+  # conflict and waits for the analyst; "automatic" lets the engine Adopt
+  # without confirmation whenever the triggering belief is Established.
+  # Default is user_confirm — silent foundation edits are the failure mode
+  # Grounded exists to prevent.
+  foundation_review_resolution: user_confirm    # user_confirm | automatic
+
   # ─── DECAY SETTINGS (Confidence score, not Status) ─────────────────────────
   # Beliefs not confirmed within this many days begin losing confidence.
   decay_threshold_days: 90

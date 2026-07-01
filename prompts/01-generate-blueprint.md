@@ -125,7 +125,7 @@ The example must follow the full belief entry structure:
 **Falsification test**: [What a future document must show to break this. Candidate: "fails to recur."]
 
 **Provenance**:
-- Foundation dependency: [the specific foundation claim this belief relies on]
+- Foundation dependency: [the specific foundation claim ID this belief relies on, e.g. `foundation.business_model` — read the claim ID comments in the foundation, don't paraphrase]
 - Confirming documents: [doc_id]
 - Blind passes: (none yet — nothing exists to check blind against on the first document)
 - Contradiction searches: (none yet)

@@ -120,7 +120,7 @@ A belief is a durable, falsifiable, actionable interpretation of how a business 
 
 - **Durable** — independently re-derived across documents, not just confirmed by a pass that already knew what it was checking for
 - **Falsifiable** — a future document can confirm or contradict it, and that contradiction has actually been searched for, not just theoretically possible
-- **Grounded** — depends on a named foundation claim, and is flagged for re-review if that claim changes
+- **Grounded** — depends on a named foundation claim (by claim ID, e.g. `foundation.business_model`), and is flagged `[FOUNDATION_CHANGED]` if a Foundation Review revises that claim
 - **Actionable** — it tells you what to expect next, and what would constitute a surprise worth investigating — provable with a concrete before/after answer to a stated query
 - **Direction** — Improving, Stable, Deteriorating, or Unclear
 - **Confidence** — a number from 0.05 to 0.95 reflecting how strongly it is held
@@ -241,7 +241,7 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Falsification test:** A headline that opens with a miss, headwind, or structural deterioration before stating any positive contributor would indicate a break in the team's narrative sequencing convention and should be investigated immediately.
 
-**Provenance:** Foundation dependency: narration design consistently frames results positive-first (foundation, narration design section) | Confirming documents: Doc 1–5 | Blind passes: Document 2 (independently re-derived the same positive-first ordering with no visibility into the Document 1 Candidate belief, before promotion to Provisional) | Contradiction searches: Document 4 (searched, none found), Document 5 (searched, none found — this was the weakest-result document and still confirmed) | Related beliefs: none identified yet | Last checked: Document 5
+**Provenance:** Foundation dependency: `foundation.narration_design` — narration design consistently frames results positive-first | Confirming documents: Doc 1–5 | Blind passes: Document 2 (independently re-derived the same positive-first ordering with no visibility into the Document 1 Candidate belief, before promotion to Provisional) | Contradiction searches: Document 4 (searched, none found), Document 5 (searched, none found — this was the weakest-result document and still confirmed) | Related beliefs: none identified yet | Last checked: Document 5
 
 ---
 
@@ -260,7 +260,7 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Falsification test:** Two consecutive misses without a prior-period language shift would break the guidance reliability belief. A language shift that does not precede a miss would narrow the leading indicator belief.
 
-**Provenance:** Foundation dependency: revenue delivery is the primary commitment metric (foundation, thesis metrics section) | Confirming documents: Q1–Q8 (8 comparable quarters) | Blind passes: Q2 (independently re-derived the same beat pattern with no visibility into the Q1 Candidate belief, before promotion to Provisional) | Contradiction searches: Q3 (searched — found the miss and the preceding language shift, recorded as the leading-indicator sub-claim rather than a break), Q6 (searched, none found) | Related beliefs: none identified yet | Last checked: Q8
+**Provenance:** Foundation dependency: `foundation.metrics.revenue_delivery` — revenue delivery is the primary commitment metric | Confirming documents: Q1–Q8 (8 comparable quarters) | Blind passes: Q2 (independently re-derived the same beat pattern with no visibility into the Q1 Candidate belief, before promotion to Provisional) | Contradiction searches: Q3 (searched — found the miss and the preceding language shift, recorded as the leading-indicator sub-claim rather than a break), Q6 (searched, none found) | Related beliefs: none identified yet | Last checked: Q8
 
 ---
 
@@ -279,7 +279,7 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Falsification test:** A Q1 with the spend ratio in range that does not produce Q2 demand recovery by week 10 would indicate the mechanic has broken. Management no longer describing the Q1 spend as an intentional demand investment — a language shift in how they explain Q1 — would be an early warning signal worth tracking before the next cycle confirms or denies the break.
 
-**Provenance:** Foundation dependency: spend and the core volume metric are the two primary thesis metrics (foundation, thesis metrics section) | Confirming documents: cycles 1–6 | Blind passes: cycle 2 (independently re-derived the same Q1→Q2 lag with no visibility into the cycle-1 Candidate belief, before promotion to Provisional) | Contradiction searches: cycle 3 (searched, none found, before promotion to Confirmed), cycle 5 (searched, none found) | Related beliefs: none identified yet | Last checked: cycle 6
+**Provenance:** Foundation dependency: `foundation.metrics.spend_and_core_volume` — spend and the core volume metric are the two primary thesis metrics | Confirming documents: cycles 1–6 | Blind passes: cycle 2 (independently re-derived the same Q1→Q2 lag with no visibility into the cycle-1 Candidate belief, before promotion to Provisional) | Contradiction searches: cycle 3 (searched, none found, before promotion to Confirmed), cycle 5 (searched, none found) | Related beliefs: none identified yet | Last checked: cycle 6
 
 ---
 
@@ -593,7 +593,7 @@ The foundation captures three things: entity identity (name, organizational scop
 
 On the first 1–3 documents, Stream 02 (Business Dynamics) operates in model-discovery mode: its primary job is to extract explicit relationship claims from documents and initialize them as Candidate beliefs. Those accumulated beliefs become the discovered business model. Stream 00 (Factual Understanding) builds the metric definition baseline. Stream 05 (Narrative Understanding) begins mapping communication patterns. Stream 01 (Business Model Understanding) starts forming interpretations of the economic engine. By document 3–4, the belief memory holds a preliminary model of the business — built from what the documents said, not from what the user specified.
 
-The foundation is updated — not rewritten — as the streams accumulate understanding. When Stream 02 establishes a durable operating chain belief, that belief can be referenced by the foundation as a confirmed mechanic. The understanding flows from reading to foundation, not the other way around.
+The foundation is updated — not rewritten — as the streams accumulate understanding, and only through a defined **Foundation Review** (see `lifecycle/ingestion-pipeline.md`, Step 7.5), never by silent edit. Each atomic foundation claim carries a stable claim ID that belief Provenance records reference directly. When a belief reaches Confirmed or Established while adding precision to, narrowing, or contradicting the claim it depends on, that triggers a review: the user resolves it as Adopt (the foundation claim is revised, logged in the Foundation Revision Log, and every other belief citing that claim ID is flagged `[FOUNDATION_CHANGED]` for re-grounding), Hold (the original claim stands), or Defer (not enough evidence yet). The understanding flows from reading to foundation, not the other way around — but that flow is now an auditable, triggered process rather than an implied one.
 
 Every belief stream for the entity inherits the foundation as its prior context. The foundation keeps the streams aligned to the same entity definition, even as each stream builds its own understanding independently.
 

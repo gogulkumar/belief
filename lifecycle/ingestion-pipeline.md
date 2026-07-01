@@ -31,7 +31,7 @@ Produces the institutional business understanding that every belief stream for t
 
 Without the foundation, a belief stream produces document-level facts. With it, it produces grounded business judgment.
 
-The foundation is built once per entity. All streams for that entity inherit it. The foundation is a living document — it can be refined as streams accumulate deeper understanding.
+The foundation is built once per entity. All streams for that entity inherit it. The foundation is a living document — but it is only ever refined through the Foundation Review process (Step 7.5 below), never by silent edit. Every atomic claim in the output carries a stable claim ID (e.g. `foundation.business_model`) that belief Provenance records reference directly.
 
 ---
 
@@ -114,7 +114,7 @@ Different document types in the same stream get different compiled extractor pro
 
 ---
 
-## Phase 2 — Document Ingestion (Steps 5 – 8)
+## Phase 2 — Document Ingestion (Steps 5 – 8, including 7.5)
 
 Runs every time a new document arrives.
 
@@ -198,6 +198,24 @@ The belief engine does NOT invent evidence. Only holds what the fact log provide
 
 ---
 
+### Step 7.5 — Foundation Review Trigger Check
+
+**Who:** Same engine pass as Step 7, or a lightweight follow-up check
+**Input:** The just-updated `belief.md`, each affected belief's Provenance → Foundation dependency, and `entities/{entity_id}/foundation.md`
+**Output:** Zero or more `[FOUNDATION_REVIEW]` changelog entries; if resolved this round, an updated `foundation.md` with an appended Foundation Revision Log entry
+
+For every belief touched this round (any action in Step 7, not just DEEPEN), check: did this belief just reach Confirmed or Established status, and does its Statement add meaningful precision to, narrow, or contradict the foundation claim named in its own Provenance? A Candidate or Provisional belief never triggers this — the evidence has to have survived the Two-Test Gate first.
+
+If the trigger fires, hand off to Prompt −1 running in **Foundation Review** mode (see `prompts/-1-generate-foundation.md`, "Foundation Review"). That pass surfaces the conflict between the recorded claim and the belief's independent finding, and the user resolves it as Adopt, Hold, or Defer.
+
+- **Adopt**: `foundation.md`'s claim text is rewritten, a Foundation Revision Log entry is appended, and every other belief in every stream whose Provenance names that claim ID is flagged `[FOUNDATION_CHANGED]` in its own changelog — its Status is held, not retired, until its next document pass re-confirms grounding against the revised claim.
+- **Hold**: no foundation change. The changelog records `[FOUNDATION_REVIEW]` with the resolution noted as Held and why.
+- **Defer**: no foundation change. The changelog records `[FOUNDATION_REVIEW]` with the resolution noted as Deferred and what would resolve it.
+
+This step never runs silently to a conclusion — Adopt vs. Hold is a decision surfaced to the user, not one the belief engine makes on its own, unless the stream's configuration explicitly sets automatic resolution.
+
+---
+
 ### Step 8 — Changelog
 
 **Who:** Same engine pass as Step 7, second output
@@ -228,6 +246,8 @@ For each belief affected, records:
 | `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
 | `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
 | `[DECAY]` | Established belief downgraded to Confirmed after N consecutive silent comparable documents — a Status change, not a contradiction |
+| `[FOUNDATION_REVIEW]` | A belief reaching Confirmed or Established triggered a Foundation Review; resolution (Adopt/Hold/Defer) recorded |
+| `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised (Adopted) elsewhere; this belief is held pending re-grounding on its next document pass |
 | `[NO CHANGE]` | Document processed; no update warranted for this belief |
 
 The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.

@@ -242,6 +242,8 @@ For each existing belief, decide one action per document:
 - Advancing Confirmed → Established requires the belief to hold across document types where applicable, and its named foundation claim to be unchanged.
 - **Established decay:** if an Established belief accumulates 4 consecutive [SILENCE] actions (or the stream's configured threshold), downgrade it to Confirmed. Tag: [DECAY]. This changes Status only — it is not a contradiction, and the Statement is unchanged.
 
+**Foundation Review trigger:** whenever a belief reaches Confirmed or Established this round, check whether its Statement adds meaningful precision to, narrows, or contradicts the foundation claim named in its Provenance → Foundation dependency. If so, this is not a decision the belief engine makes alone — surface it for Foundation Review (a separate pass, see `lifecycle/ingestion-pipeline.md` Step 7.5). Tag [FOUNDATION_REVIEW] and record the resolution: Adopt (foundation claim revised — every other belief across every stream naming that claim ID gets tagged [FOUNDATION_CHANGED] and holds its Status pending re-grounding), Hold (claim unchanged, finding treated as a narrower sub-case), or Defer (insufficient evidence).
+
 If two beliefs are now better stated as one: merge. Tag: [MERGE_BELIEFS]
 If one belief conflates distinct patterns: split. Tag: [SPLIT_BELIEF]
 If a belief shares its underlying phenomenon with another belief (in this stream or another): add each to the other's Provenance → Related beliefs.
@@ -260,6 +262,8 @@ After updating the belief memory, record one changelog entry per affected belief
 - [MERGE_BELIEFS]: two beliefs collapsed into one
 - [SPLIT_BELIEF]: one belief divided into two
 - [DECAY]: Established belief downgraded to Confirmed after consecutive silence — Status change, not contradiction
+- [FOUNDATION_REVIEW]: belief reaching Confirmed/Established triggered a review of its named foundation claim; resolution recorded
+- [FOUNDATION_CHANGED]: a foundation claim this belief depends on was revised elsewhere; held pending re-grounding
 - [NO CHANGE]: no update warranted
 ```
 
@@ -305,6 +309,8 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 - Don't advance a belief's Status without the verification that stage requires — a belief-aware confirmation alone never promotes past Candidate.
 - Don't let the Evolution trail claim confirmation, a blind pass, or a contradiction search that the Provenance record does not also show. The two must agree.
 - Don't leave an Established belief's Status untouched after 4 consecutive [SILENCE] actions — apply [DECAY].
+- Don't resolve a Foundation Review yourself. Surface the conflict between a Confirmed/Established belief and its named foundation claim; the Adopt/Hold/Defer decision belongs to the user.
+- Don't silently absorb a contradiction into the foundation without a Revision Log entry, and don't leave other beliefs citing a changed claim ID unflagged.
 ```
 
 ---
