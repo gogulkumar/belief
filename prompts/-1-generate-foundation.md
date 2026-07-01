@@ -10,6 +10,28 @@ Without the foundation, a belief stream produces document-level facts. With it, 
 
 ---
 
+## Where Foundation Claims Come From
+
+Foundation claims have two sources, and every claim is labeled with its source. The label is part of the claim, not metadata to skip.
+
+**Source 1 — Interview (cold start).** The structured interview below, run before any document is read. Everything it produces is the user's stated understanding — a useful prior, but a *hypothesis*, not evidence. Label: `source: interview`.
+
+**Source 2 — Corpus grounding (once fact logs exist).** After the first several documents have been processed (default: 3 — see `belief_config.yaml`), run a **corpus grounding pass**: read all fact logs produced so far *together*, and extract only what recurred *identically* across every one — the definitional, structural facts. Metric definitions that never varied. The benchmark sequence that appeared the same way every time. The decomposition structure, the segmentation, the fixed scaffold of how this business reports itself. Label: `source: corpus`, with the doc_ids that ground it.
+
+The discriminating test between a foundation claim and a belief:
+
+> **Recurs identically in every document and is definitional — it describes how the business is structured or measured, not how it performed → foundation claim.**
+> **Could vary period to period and needs testing across documents → belief. It goes to a stream, not the foundation.**
+
+The corpus grounding pass also reconciles the two sources:
+- An interview claim the fact logs **corroborate** is relabeled `source: interview+corpus` — the hypothesis earned its grounding.
+- An interview claim the fact logs **contradict** triggers an immediate Foundation Review (below). Do not silently keep the interview version, and do not silently overwrite it.
+- An interview claim the fact logs are **silent on** stays `source: interview` — still a hypothesis, still awaiting evidence. Beliefs grounded on interview-only claims carry that softness: their grounding is a stated assumption, not an observed constant.
+
+This ordering preserves the system's core principle — *the business model is discovered by reading* — while still letting a cold start proceed: the interview gets the system moving; the corpus pass is what makes the foundation earned rather than asserted.
+
+---
+
 ## Interview Structure
 
 Conduct a focused interview in five areas. Ask one question at a time. Do not move to the next area until the current one is answered. Do not invent content — only record what the user tells you.
@@ -73,6 +95,8 @@ Record: A what-matters-vs-noise section. Two lists: signals to stress, and thing
 Produce the foundation document in this structure. Every section must be answered with entity-specific content. No placeholders.
 
 Every atomic claim carries a stable **claim ID** — an HTML comment immediately below its heading, in the form `<!-- claim: foundation.{section}[.{item}] -->`. This is not decoration. A belief's Provenance record names the specific foundation claim it depends on by this ID (e.g., `foundation.metrics.revenue_growth`) — without a stable ID, "grounded in the foundation" is an unenforceable claim. Once assigned, a claim ID is never renamed, mirroring the rule that belief numbers are never reused. If a claim is later split or merged (see "Foundation Review" below), the old ID is retired, not repurposed.
+
+Every claim also carries a **source line** immediately after its claim ID comment: `source: interview` | `source: corpus (doc_1, doc_2, doc_3)` | `source: interview+corpus (doc_ids)`. This is how a reader — human or agent — tells a stated assumption from an observed constant without leaving the file.
 
 ```markdown
 # [Entity Name] — Business Foundation

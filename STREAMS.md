@@ -3,6 +3,11 @@
 *The authoritative reference for what each belief stream covers,
 what it must never do, and what a real belief looks like per stream.*
 
+*Role in the repo: this file is the single home for full worked
+examples. `BELIEF.md` Section 03 carries the compact spec-level
+definitions and points here — one authority per concern, so the
+spec and the reference cannot drift apart.*
+
 ---
 
 > **The single rule underlying all streams:**

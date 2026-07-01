@@ -290,7 +290,7 @@ Tell the belief engine exactly what inputs it will receive and what it must prod
 
 ## What You Must Produce
 
-1. An updated belief memory — same structure as input, with surgical changes applied. Numbered beliefs, claim-as-heading, 5-field format, plus the Provenance record.
+1. An updated belief memory — same structure as input, with surgical changes applied. Numbered beliefs, claim-as-heading, five narrative fields plus the Provenance record.
 2. A changelog — one entry per affected belief, tagged with the action.
 
 ## What You Must Not Do

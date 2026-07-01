@@ -23,15 +23,17 @@ A single document can never manufacture a belief. Beliefs are earned across comp
 
 ### Step −1 — Entity Foundation (Prompt −1)
 
-**Who:** LLM, running a structured interview with the user — once per entity, before any belief stream is created
-**Input:** User interview across five areas: business model, thesis-defining metrics, normalization model, narration design, what matters vs. noise
+**Who:** LLM, in two passes — a structured interview with the user at setup, and a corpus grounding pass once the first fact logs exist
+**Input:** Pass 1: user interview across five areas (business model, thesis-defining metrics, normalization model, narration design, what matters vs. noise). Pass 2: all fact logs produced so far, read together (default trigger: 3 fact logs — `foundation_grounding_min_documents` in config)
 **Output:** `entities/{entity_id}/foundation.md`
 
 Produces the institutional business understanding that every belief stream for this entity reads as its prior. Not a document summary. Not a belief. The mental model a strong analyst carries before opening any document — what kind of business this is, what its profitability thesis rests on, which metrics are thesis-defining, what normal looks like, and how this entity narrates its own performance.
 
+**Every claim is labeled with its source.** Interview claims are hypotheses (`source: interview`) — the user's stated understanding, useful but unverified. The corpus grounding pass reads the first N fact logs together and extracts what recurred *identically* across all of them — the definitional scaffold: metric definitions, benchmark sequences, decomposition structure. Those claims are `source: corpus`. Interview claims the corpus corroborates become `interview+corpus`; claims the corpus contradicts trigger an immediate Foundation Review; claims the corpus is silent on remain labeled hypotheses. The test separating a foundation claim from a belief: recurs identically and is definitional → foundation; could vary period to period and needs testing → belief.
+
 Without the foundation, a belief stream produces document-level facts. With it, it produces grounded business judgment.
 
-The foundation is built once per entity. All streams for that entity inherit it. The foundation is a living document — but it is only ever refined through the Foundation Review process (Step 7.5 below), never by silent edit. Every atomic claim in the output carries a stable claim ID (e.g. `foundation.business_model`) that belief Provenance records reference directly.
+The foundation is built once per entity. All streams for that entity inherit it. The foundation is a living document — but it is only ever refined through the corpus grounding pass and the Foundation Review process (Step 7.5 below), never by silent edit. Every atomic claim in the output carries a stable claim ID (e.g. `foundation.business_model`) that belief Provenance records reference directly.
 
 ---
 
@@ -49,15 +51,15 @@ This step only captures intent. The system grounds it in Steps 1 and 2.
 
 ### Step 1 — Document Profile (Prompt 00)
 
-**Who:** LLM, once at setup, against the first uploaded documents
-**Input:** requested belief stream, uploaded documents, transcriptions, metadata, optional user purpose
+**Who:** LLM, once at setup — an interview about the documents, plus a structural skim of any sample documents provided
+**Input:** requested belief stream, document descriptions from the user, sample documents if available (skimmed for structure only — sections, recurring layout, benchmarks present), optional user purpose
 **Output:** `compiled/{stream_id}/document_profile.md`
 
-Profiles what these documents can ground for the requested stream. Identifies facts, signals, candidate patterns, and gaps. Does NOT create beliefs. Does NOT reject the stream.
+Profiles what these documents can ground for the requested stream — what each document type CAN and CANNOT carry for the chosen angle. Does NOT create beliefs. Does NOT extract signals — signal extraction is Step 6's job, against the compiled extractor prompt. Does NOT reject the stream.
 
 The profile answers: what kind of durable beliefs could these documents eventually support if similar signals recur across comparable documents?
 
-Strongest allowed language at this step: "candidate signal" or "possible pattern."
+Strongest allowed language at this step: "this document type can carry X" or "this document type cannot carry Y."
 
 ---
 
@@ -73,7 +75,7 @@ The blueprint has five sections:
 - **Section 0** — Foundation reference (how the entity foundation grounds this specific stream — which thesis metrics are relevant, which normalization model applies, what narration patterns are background knowledge)
 - **Section 1** — Belief stream identity (entity, scope, exclusions)
 - **Section 2** — Document types and signal matrix (what each document CAN and CANNOT carry, numbers policy, template artifact risk, trigger question)
-- **Section 3** — Belief definition for this stream (what a belief is here, claim-as-heading rule, 5-field structure, durability test for this cadence, strong worked example, weak example, volume check rule — all in entity vocabulary)
+- **Section 3** — Belief definition for this stream (what a belief is here, claim-as-heading rule, entry structure (five narrative fields plus Provenance), durability test for this cadence, strong worked example, weak example, volume check rule — all in entity vocabulary)
 - **Section 4** — Candidate belief seed set (8–15 specific candidate claims grounded in foundation knowledge; each is a complete falsifiable sentence about how this entity behaves)
 
 Every section is answered with entity-specific content. No placeholders.
@@ -88,7 +90,7 @@ The angle is a hypothesis, not a constraint. If the documents cannot carry the r
 **Input:** `strategic_blueprint.md`
 **Output:** `compiled/{stream_id}/belief_reasoning_prompt.md`
 
-Compiles the blueprint into a self-contained runtime system prompt for the belief engine. At runtime the belief engine sees ONLY this prompt, the existing `belief.md` (or NULL), and the new fact log. So everything it needs must be inside: the belief doctrine, the entity-specific definition, the candidate belief seed set, the claim-heading rule, the 5-field format, the numbers policy, the durability ladder, the volume check, the first-document rule, the subsequent-document rule, the no-renumber rule, contradiction and silence handling, and all evolution actions.
+Compiles the blueprint into a self-contained runtime system prompt for the belief engine. At runtime the belief engine sees ONLY this prompt, the existing `belief.md` (or NULL), and the new fact log. So everything it needs must be inside: the belief doctrine, the entity-specific definition, the candidate belief seed set, the claim-heading rule, the entry format (five narrative fields plus Provenance), the numbers policy, the durability ladder with its promotion gating, the volume check, the first-document rule, the subsequent-document rule, the no-renumber rule, contradiction and silence handling, and all evolution actions.
 
 Does NOT re-derive the belief definition from generic rules — reads Blueprint Section 3 directly.
 

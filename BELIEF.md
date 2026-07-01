@@ -100,7 +100,7 @@ The belief memory carries four kinds of institutional understanding:
 
 These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time. The belief memory is the institutional knowledge; the raw documents are the evidence it was built from. Once the belief exists, the document doesn't need to be re-read.
 
-Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
+Each belief entry has five narrative fields — **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test** — plus a structured **Provenance** record that makes the verification behind the narrative machine-checkable.
 
 ### Skills and Beliefs
 
@@ -183,6 +183,8 @@ These arithmetic updates handle incremental revision. They don't handle perspect
 
 This day-based Decay row adjusts Confidence only. It is a separate mechanism from the document-count-based `[DECAY]` tag under the Durability Ladder above, which downgrades Status from Established to Confirmed after N silent comparable documents. A belief can lose Confidence without losing Status, and can lose Status without its Confidence score having crossed any threshold — they track different things.
 
+**Status outranks Confidence.** The two signals answer different questions and are not interchangeable. Status is earned through verification — a blind pass to reach Provisional, a reported contradiction search to reach Confirmed — and is the signal that governs how a belief may be cited. Confidence is arithmetic bookkeeping: it tracks incremental strengthening and staleness *within* a status and drives archival of neglected beliefs. Confidence can never promote a belief past the verification its status requires. A belief at Confidence 0.90 whose Provenance shows no blind pass is still a Candidate, must be cited as a Candidate, and its high score means only that it has been repeatedly echoed — which is precisely the condition the Process Test exists to catch.
+
 ### The Fact-to-Belief Gate
 
 Not everything in a document becomes a belief. Most things should produce silence. The gate is the filter.
@@ -222,7 +224,7 @@ This distinction is what makes a Retired or Contradicted belief diagnosable rath
 
 ### What a Mature Belief Looks Like
 
-After five or more comparable documents, a belief entry looks like this. The heading is a complete, specific, falsifiable sentence — not a category label. The same five-field structure applies to every stream, but what it contains differs by stream.
+After five or more comparable documents, a belief entry looks like this. The heading is a complete, specific, falsifiable sentence — not a category label. The same structure — five narrative fields plus the Provenance record — applies to every stream, but what it contains differs by stream.
 
 ---
 
@@ -349,6 +351,8 @@ Seven streams. Each owns exactly one discriminating axis — one type of underst
 
 Each stream also has a test — a single question that separates beliefs that belong here from beliefs that don't.
 
+This section carries the spec-level definition of each stream. The full worked examples — one complete belief entry per stream, with Provenance — live in `STREAMS.md` and only there.
+
 ---
 
 ### Stream 00 — Factual Understanding
@@ -366,19 +370,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** Any analyst with the source document can verify this belief independently. It is re-checkable.
 
-**Example belief:**
-
-> **Belief #1 — [Entity] calculates its primary efficiency ratio on a net basis excluding partner contributions, making it structurally lower than how competitors report the same ratio.**
->
-> **Statement:** The efficiency ratio excludes partner co-contributions from the numerator. This has been consistent across every document reviewed. The ratio is therefore not directly comparable to any external benchmark that includes gross spend.
->
-> **Why it matters:** Every comparison between this entity's efficiency ratio and an industry figure or competitor is comparing different things. The number looks more efficient than it actually is on a gross basis. Understanding this prevents misreading efficiency improvements as real when they may reflect partner mix changes.
->
-> **Evolution trail:** Confirmed in the first document. Verified across all subsequent documents — definition unchanged. Four documents. Established.
->
-> **Normal baseline:** Every document reports the ratio on this net basis. A shift to gross reporting would change the ratio materially and would require restatement of prior periods.
->
-> **Falsification test:** A document that reports the ratio on a gross basis, or an explicit statement that the calculation basis changed.
+**Worked example:** see `STREAMS.md` — Stream 00 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -398,19 +390,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** This belief is true regardless of which specific period is being reviewed. It describes how the business works, not what it did.
 
-**Example belief:**
-
-> **Belief #1 — [Entity] is extracting more from existing demand rather than expanding demand — and the gap between those two things is getting harder to see in the headline numbers.**
->
-> **Statement:** Revenue growth is being driven by price realization while core volume remains flat or grows minimally. The business is monetizing its existing customer base more intensively rather than bringing new customers in. This is a fundamentally different economic engine from what the headline metric suggests.
->
-> **Why it matters:** Price-driven growth has a ceiling. When pricing power runs out — either because the market pushes back or because the addressable premium is already captured — there is no volume engine behind it. Any document showing flat volume alongside strong revenue is showing this pattern. It is not sophistication. It is volume stagnation dressed as efficiency.
->
-> **Evolution trail:** First identified when revenue grew 8% and core volume grew 2%. Treated as noise. Second comparable period repeated it. Third confirmed it. By the fourth comparable document, this stopped being a timing question and became a structural interpretation. Four documents. Established.
->
-> **Normal baseline:** Any period where core volume grows less than 3% while revenue grows more than 5% is confirming this belief. A genuine departure would be volume growing faster than revenue for two consecutive periods.
->
-> **Falsification test:** Two consecutive periods where volume growth exceeds revenue growth — meaning demand is genuinely expanding faster than price. That would mean the demand engine restarted and this belief was wrong about the structural nature of the stagnation.
+**Worked example:** see `STREAMS.md` — Stream 01 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -440,19 +420,7 @@ Each stream also has a test — a single question that separates beliefs that be
 | Stress behavior | After first pressure episode | Requires observing at least one pressure period |
 | Feedback dynamics | After two comparable episodes | Requires two stress or recovery periods |
 
-**Example belief:**
-
-> **Belief #2 — The conversion break in the demand-to-completion chain is the earliest signal that something in the demand chain is wrong — and it appears 4–6 weeks before it shows up in the primary volume metric.**
->
-> **Statement:** When paid channel demand grows faster than completed transactions — meaning the demand-to-completion conversion ratio falls below 0.88 — the primary volume metric misses its forecast in the following period in every instance reviewed. The conversion ratio is a leading indicator with a 4–6 week lag. It does not feature in the main document narrative.
->
-> **Why it matters:** By the time the volume miss shows up in the bridge, the conversion problem already happened a month ago. Watching the conversion ratio gives a 4–6 week early warning that the document itself does not provide.
->
-> **Evolution trail:** First noticed when conversion dropped and the volume metric missed the following period. Tested against four subsequent periods. When conversion is above 0.92, the volume metric meets or beats forecast. When it drops below 0.88, it misses. Five observations. Confirmed.
->
-> **Normal baseline:** Conversion ratio between 0.90–0.96 is healthy. Below 0.88 is an early warning.
->
-> **Falsification test:** A period where conversion drops below 0.88 and the volume metric meets or beats forecast anyway. That would break the lead-lag relationship and mean the two metrics have decoupled.
+**Worked example:** see `STREAMS.md` — Stream 02 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -471,19 +439,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** A new analyst reading this belief would know what the team will say before opening the document — and would know whether to believe it.
 
-**Example belief:**
-
-> **Belief #2 — The team leads every miss explanation with an external factor first, always — and the real operational driver appears third or not at all.**
->
-> **Statement:** In every miss period reviewed, the variance explanation leads with external or macro factors, names channel mix second, and either buries operational drivers third or omits them entirely. This sequencing is not accidental. It reflects a consistent communication strategy that frames shortfalls as primarily external and largely uncontrollable.
->
-> **Why it matters:** The sequencing tells you where the team wants attention to land. External factors cannot be questioned. Channel mix is semi-controllable. Conversion, product decisions, pricing execution — the genuinely controllable drivers — almost never appear in the top two positions. When you read the bridge, mentally reorder it. The third item is usually the real story.
->
-> **Evolution trail:** Tested against four miss periods. An external factor led in three of four. Channel mix led in one but an external factor appeared second. Controllable drivers led in zero of four. Four documents. Established.
->
-> **Normal baseline:** In any miss period, the first two bridge items will be external or semi-external. An anomaly is a miss where a controllable driver leads — that signals the problem is too large or too visible to frame externally.
->
-> **Falsification test:** A miss period where a controllable driver — conversion rate, a pricing decision, a channel investment choice — leads the variance bridge. That would mean either the miss is undeniable or the team's communication strategy has fundamentally changed.
+**Worked example:** see `STREAMS.md` — Stream 03 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -502,19 +458,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** A new analyst reading this belief would know what the organization will do before it does it — because the behavior has been consistent enough to predict.
 
-**Example belief:**
-
-> **Belief #3 — Demand investment is the last thing that gets cut under pressure — and when it finally does get cut, something fundamental has changed in how leadership views the business.**
->
-> **Statement:** In every pressure period reviewed, overhead was reduced and hiring was deferred before any demand investment was considered. Demand spend was never cut. The organizational rule is that demand investment is the revenue engine and everything else is the buffer. The first demand spend cut — when it eventually happens — is not a cost management decision. It is a thesis decision. It means leadership no longer believes demand investment is buying profitable results at the current rate.
->
-> **Why it matters:** When you see overhead cut, performance is under pressure but the thesis is intact. When you see demand spend cut, the thesis itself is being questioned. The two signals look similar in a cost bridge but mean completely different things. Watching which line moves first tells you more about leadership's confidence in the business model than any single metric.
->
-> **Evolution trail:** Four pressure periods reviewed. Overhead reduced in all four. Demand spend held in all four. Pattern is consistent and deliberate. Established.
->
-> **Normal baseline:** Under pressure, expect overhead reduction and hiring deferral. Expect demand investment to hold or increase. Any deviation is the most important signal this business can emit.
->
-> **Falsification test:** A pressure period where demand investment is reduced before overhead is fully exhausted. That single event breaks this belief and signals that the organizational thesis has changed.
+**Worked example:** see `STREAMS.md` — Stream 04 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -534,19 +478,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** A reader who had never opened the document could predict the narrative structure before reading it. And when the structure deviates, they notice immediately.
 
-**Example belief:**
-
-> **Belief #1 — The opening section is a confidence signal, not a content decision — and the team has been consistent enough that you can read the performance result from the section choice before you find the number.**
->
-> **Statement:** When the team opens the document on the efficiency metric, the primary volume metric is within 2% of plan. When they open on cost discipline or margin, it has missed plan by more than 4%. The opening section choice is a leading indicator of the volume result. The template doesn't mandate the opening — the team chooses it. And they consistently lead with the metric they most want leadership to anchor on.
->
-> **Why it matters:** You don't need to find the volume number to know whether the period was good or bad. Open the document and look at the first section title. The opening choice tells you. And when the opening shifts, you already know the performance direction before the team states it.
->
-> **Evolution trail:** Tested across six periods. Three opened on the efficiency metric — all three were within 1.5% of plan. Two opened on cost or margin — both missed by more than 4%. Six for six. Established.
->
-> **Normal baseline:** Opening section is the efficiency metric. Any other opening is a signal.
->
-> **Falsification test:** A period where the volume metric misses by more than 4% but the document opens on the efficiency metric anyway. That would mean the team changed how they frame misses — or the miss is being minimized in a way that itself becomes a signal.
+**Worked example:** see `STREAMS.md` — Stream 05 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -565,19 +497,7 @@ Each stream also has a test — a single question that separates beliefs that be
 
 **The test:** A reader of this belief can predict, before the new forecast is released, approximately what it will say and in which direction it will be revised.
 
-**Example belief:**
-
-> **Belief #1 — The early-year forecast is always optimistic and the late-year forecast is always conservative — and the team knows this, which means the revisions are not corrections, they are scheduled.**
->
-> **Statement:** The early-year forecast has come in above eventual actuals in every comparable period reviewed. The late-year forecast has come in below eventual actuals in every comparable period reviewed. The bias is directionally consistent and magnitude-consistent. This is not random forecasting error — it is a systematic pattern that suggests the planning process deliberately or structurally produces optimistic early-year and conservative late-year assumptions.
->
-> **Why it matters:** When actuals miss the early-year forecast, that is not underperformance — it is the expected bias materializing. When actuals beat the late-year forecast, that is not outperformance — it is the conservative cushion being released. Reading either as genuine signal leads to wrong conclusions. The forecast is a communication artifact with a known directional bias you have to adjust for before interpreting results.
->
-> **Evolution trail:** Early-year forecast above actuals in four consecutive comparable periods. Late-year forecast below actuals in four consecutive comparable periods. Consistent across two years. Established.
->
-> **Normal baseline:** Early-year actuals will miss forecast. Late-year actuals will beat forecast. Both are expected. Signal is when the result exceeds the known bias — a miss worse than the typical range, or a late-year miss.
->
-> **Falsification test:** An early-year period where actuals meet or beat forecast. That would mean either the planning process changed or the business genuinely outperformed — and you need to understand which.
+**Worked example:** see `STREAMS.md` — Stream 06 carries the full worked example — five narrative fields plus the Provenance record. Worked examples live there and only there, so the spec and the reference cannot drift apart.
 
 ---
 
@@ -664,7 +584,7 @@ Three phases. Entity foundation runs once per entity. Stream setup runs once per
 |--------|-------------|
 | **Prompt 00 — Document Profile** | Interview agent. Discovers document types, cadence, chosen angle, and what each document type can and cannot carry. Produces a structured Document Profile. |
 | **Prompt 01 — Strategic Blueprint** | Reads the entity foundation and the Document Profile together. Produces the master configuration document: stream identity, signal matrix, belief definition, and candidate belief seed set (8–15 hypotheses). For Stream 02, the seed set includes relationship hypotheses — not pre-specified relationships, but prompts for what to look for in the first document. |
-| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Encodes the candidate seed set, claim-heading rule, 5-field format, volume check, no-renumber rule, relationship belief initialization rules, and all evolution actions. |
+| **Prompt 03 — Belief Reasoning Compiler** | Reads the blueprint and compiles a self-contained runtime system prompt for the belief engine. Encodes the candidate seed set, claim-heading rule, entry format (five narrative fields plus Provenance), promotion gating (blind pass, contradiction search), volume check, no-renumber rule, relationship belief initialization rules, and all evolution actions. |
 | **Prompt 06 — Fact Extraction Compiler** | Reads the blueprint and compiles the runtime system prompt for the fact extractor. Places RELATIONSHIP CLAIM extraction as the top priority signal type. Mandates granularity to support 8–15 Candidate beliefs on the first document. One compiled extractor per document type. |
 
 ### Phase 2 — Document Ingestion (runs for every document)
@@ -673,7 +593,7 @@ Three phases. Entity foundation runs once per entity. Stream setup runs once per
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
 | **fact_extractor.py** | Reads L3 units. First pass: scan for RELATIONSHIP CLAIMS — explicit statements connecting one metric to another. Second pass: extract individual metric signals, attribution statements, structural observations. Writes fact log to L2. Does not interpret — only captures. |
-| **belief_engine.py** | Reads the fact log and the existing belief memory. Relationship claims from the fact log initialize Stream 02 Candidate beliefs on first document. Numbered beliefs, claim-as-heading, 5-field format. Surgical updates to `belief.md`. Volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
+| **belief_engine.py** | Reads the fact log and the existing belief memory. Relationship claims from the fact log initialize Stream 02 Candidate beliefs on first document. Numbered beliefs, claim-as-heading, five narrative fields plus Provenance. Promotion gated by blind pass and contradiction search. Surgical updates to `belief.md`. Volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
 
 ### Phase 3 — Belief Activation (runs on demand)
 
@@ -745,8 +665,11 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 
 - Create beliefs. The foundation is the prior that beliefs are grounded in — it is not a belief and carries no confidence or direction.
 - Describe documents. The foundation is about how the business works, not about how its documents are written. Document format belongs in the document profile and blueprint.
-- Invent content. Only record what the user told you. If information is missing, say so explicitly and note what is unknown.
+- Invent content. Only record what the user told you — or, in corpus grounding, what recurred identically across the fact logs. If information is missing, say so explicitly and note what is unknown.
 - Produce generic content. Every sentence must be specific enough that any reader immediately understands what this business cares about most — not what any business in its industry cares about.
+- Revise a claim silently. Every change to a foundation claim goes through Foundation Review with a Revision Log entry — and the Adopt/Hold/Defer decision belongs to the user, never to the agent alone.
+- Reassign a claim ID. Once minted, a claim ID means one thing forever; a claim that needs to split gets new IDs and the old one is retired in the log.
+- Promote an interview answer to corpus-grounded. A claim's source label (interview / corpus / interview+corpus) reflects where the evidence actually came from — an interview claim stays labeled a hypothesis until fact logs corroborate it.
 
 ### What the Document Profile (Prompt 00) Must Never Do
 
@@ -806,7 +729,7 @@ Same underlying concept, different names across fields. Naming it honestly avoid
 These are unresolved architectural decisions. They are documented here to prevent them from being re-litigated from scratch each time the system is extended.
 
 **01 — Belief entry field structure** *(resolved in v4)*
-The belief entry now uses five fields: Statement, Why it matters, Evolution trail, Normal baseline, and Falsification test. The old concern about a separate "pattern fingerprint" field is resolved — the Evolution trail carries the concrete per-document evidence (specific language, structural positions, behavioral markers) as a first-person narrative of how the pattern developed. The Falsification test carries what would break it. No separate fingerprint field is needed.
+The belief entry now uses five narrative fields — Statement, Why it matters, Evolution trail, Normal baseline, Falsification test — plus the structured Provenance record. The old concern about a separate "pattern fingerprint" field is resolved — the Evolution trail carries the concrete per-document evidence (specific language, structural positions, behavioral markers) as a first-person narrative of how the pattern developed, the Falsification test carries what would break it, and the Provenance record carries the audit data (confirming documents, blind passes, contradiction searches) so the narrative never has to double as the evidence log.
 
 **02 — Anomaly detection as a first-class output**
 Should the pipeline produce an explicit anomaly report when a new document breaks an established pattern? Currently the changelog records that a belief changed but not why it changed or what the anomaly was. A dedicated anomaly output would be more actionable for the pre-reading use case.

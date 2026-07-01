@@ -54,7 +54,7 @@ The belief memory carries four kinds of institutional understanding:
 
 These four things — loaded into an agent at the start of a drafting, validation, or flagging task — replace the need to re-teach the model from raw decks every time.
 
-Each belief entry has five fields: **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test**.
+Each belief entry has five narrative fields — **Statement**, **Why it matters**, **Evolution trail**, **Normal baseline**, **Falsification test** — plus a structured **Provenance** record: which documents confirmed it, which pass independently re-derived it blind, which contradiction searches came back empty, and which foundation claim it depends on.
 
 A **skill** does the task — pulls the numbers, builds the report. A **belief** is the understanding the task is performed from. Skills take the doing; beliefs take the thinking.
 
@@ -80,13 +80,13 @@ Custom belief streams are also supported: Marketing Efficiency Memory, Forecast 
 
 ## How Belief Works
 
-0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model isn't pre-specified — it's discovered from documents.
+0. **Entity foundation built** — a 5-minute setup captures entity identity and document types only. The business model isn't pre-specified — it's discovered from documents. Once the first few fact logs exist, a corpus grounding pass extracts the definitional constants (metric definitions, benchmark structure) into foundation claims, each with a stable claim ID that beliefs reference.
 1. **Stream setup** — defines the entity, the angle, and the document set
 2. **Blueprint compiled** — defines what a belief looks like for this entity in this stream; seeds 8–15 candidate hypotheses including relationship hypotheses for Stream 02 (Business Dynamics)
 3. **Prompts compiled** — one belief reasoning prompt and one fact extraction prompt
 4. **Document arrives** — any format: deck, transcript, report, audio
 5. **Signals extracted** — first pass: relationship claims (explicit statements connecting metrics); second pass: candidate signals. Relationship claims from the first document initialize Stream 02 (Business Dynamics) Candidate beliefs immediately.
-6. **Belief evolves** — the belief engine reads the signals and makes surgical updates to the numbered belief list. Relationship beliefs confirmed across periods build the operating model of the business.
+6. **Belief evolves — and is verified, not just confirmed** — the belief engine makes surgical updates to the numbered belief list, but promotion is gated: advancing to Provisional requires a blind pass (extraction with the existing belief withheld) to independently re-derive the pattern; advancing to Confirmed requires an actively-reported contradiction search. A belief that was only ever echoed never climbs the ladder.
 7. **Belief activated** — at any point, the belief memory can be queried: pre-read briefing before the next document, a calibrated answer to a specific question, or a meeting brief with what to push on and what to accept.
 8. **Silence by default** — most inputs produce no update. The gate is the mechanism.
 
@@ -97,6 +97,7 @@ Each belief carries:
 - **Evolution trail** — first-person, per-document journey of how the pattern developed
 - **Normal baseline** — what the next comparable document should show if holding
 - **Falsification test** — what a future document must show to break, narrow, or retire it
+- **Provenance** — the machine-checkable audit record: confirming documents, blind passes, contradiction searches, the foundation claim ID it depends on, related beliefs, last checked
 
 ---
 
@@ -106,6 +107,7 @@ Each belief carries:
 belief/
 ├── README.md                               ← you are here
 ├── BELIEF.md                               ← full specification
+├── STREAMS.md                              ← the seven streams in depth — one full worked example per stream
 ├── usage.md                                ← how beliefs accumulate and how to use them
 │
 ├── architecture/

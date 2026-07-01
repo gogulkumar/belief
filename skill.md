@@ -112,6 +112,8 @@ Document producer: [Who creates the documents this system will read]
 [Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. The business model lives here once the system has earned it from reading.]
 ```
 
+**Corpus grounding — after the third document.** Once three comparable documents have been processed, revisit this foundation: read all the fact logs together and pull out what recurred *identically* in every one — metric definitions, benchmark sequences, the fixed reporting scaffold. Those become foundation claims with stable claim IDs (`foundation.metrics.{name}` etc.), labeled `source: corpus`. Anything the user stated at setup that the fact logs corroborated gets relabeled `interview+corpus`; anything contradicted gets surfaced to the user before changing. The test: recurs identically and is definitional → foundation claim; could vary period to period and needs testing → belief.
+
 **Success check — Stage 1:**
 Show the foundation. Ask: Is the entity identity correct? Are the document types right? Anything you want to add to the known prior context?
 
@@ -200,7 +202,7 @@ Entity, scope, stream name, angle, document types, purpose statement.
 For each document type: what it CAN and CANNOT give this stream. The trigger question for each type.
 
 **Section 3 — Belief Definition for This Stream**
-- What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full five-field format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test)
+- What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full entry format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test / Provenance)
 - What a weak belief entry looks like and why it fails
 - What makes a belief durable for this cadence (e.g., two consecutive quarters = Provisional; three = Confirmed)
 - What pattern forms to watch for (language recurrence, structural choices, attribution habits, sequencing, behavioral markers, measure relationships)
@@ -215,7 +217,7 @@ Show the blueprint. Ask: Does this capture how the business actually behaves, in
 
 ### Stage 3b — Belief Reasoning Prompt
 
-Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules, the volume check, the numbers policy, the five-field format, and exactly what the engine must and must not do.
+Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules, the promotion gating (blind pass, contradiction search), the volume check, the numbers policy, the entry format (five narrative fields plus Provenance), and exactly what the engine must and must not do.
 
 This prompt is used as-is at runtime. Write it for an AI that will receive it as a system prompt with no other context.
 
