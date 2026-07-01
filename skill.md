@@ -545,7 +545,7 @@ If there are gaps, note them explicitly. Gaps in the belief memory are signals t
 
 ## Reference: Belief Entry Format
 
-Every belief uses this five-field structure:
+Every belief uses this structure: five narrative fields plus a structured Provenance record.
 
 ```
 ## Belief #N — [The claim as a complete, falsifiable sentence]   [ACTION_TAG]   Status: [Candidate / Provisional / Confirmed / Established]
@@ -555,6 +555,14 @@ Every belief uses this five-field structure:
 **Evolution trail**: [First-person, per-document account of how the pattern developed]
 **Normal baseline**: [What the next comparable document should show if holding]
 **Falsification test**: [What a future document must show to break, narrow, or retire this]
+
+**Provenance**:
+- Foundation dependency: [the specific foundation claim this belief relies on]
+- Confirming documents: [doc_ids]
+- Blind passes: [doc_ids where independently re-derived with no visibility into the prior belief]
+- Contradiction searches: [doc_ids checked, and what was found]
+- Related beliefs: [belief IDs sharing the same underlying phenomenon]
+- Last checked: [doc_id of the most recent document that produced any action, including SILENCE]
 ```
 
 Rules:
@@ -563,6 +571,7 @@ Rules:
 - Do not invent facts not in the fact log
 - Do not update a belief if the fact log has no signal for it
 - Active belief count must stay at or above 8
+- Do not advance Status past Candidate without the verification the Durability Ladder requires (blind pass for Provisional, contradiction search for Confirmed) — the Provenance record is what shows that verification happened
 
 ---
 

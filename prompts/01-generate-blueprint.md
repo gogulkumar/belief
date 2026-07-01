@@ -123,7 +123,17 @@ The example must follow the full belief entry structure:
 **Normal baseline**: [What the next comparable document should show if holding, per the foundation's normalization model. On first document: "not yet established."]
 
 **Falsification test**: [What a future document must show to break this. Candidate: "fails to recur."]
+
+**Provenance**:
+- Foundation dependency: [the specific foundation claim this belief relies on]
+- Confirming documents: [doc_id]
+- Blind passes: (none yet — nothing exists to check blind against on the first document)
+- Contradiction searches: (none yet)
+- Related beliefs: (none identified yet)
+- Last checked: [doc_id]
 ```
+
+The Provenance block is required in every worked example, not optional decoration — it is what the belief engine copies the structure from. An example that omits it produces a compiled prompt that never asks for it either.
 
 **3.2 — What does a weak or invalid belief entry look like?**
 

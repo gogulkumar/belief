@@ -241,6 +241,8 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Falsification test:** A headline that opens with a miss, headwind, or structural deterioration before stating any positive contributor would indicate a break in the team's narrative sequencing convention and should be investigated immediately.
 
+**Provenance:** Foundation dependency: narration design consistently frames results positive-first (foundation, narration design section) | Confirming documents: Doc 1–5 | Blind passes: Document 2 (independently re-derived the same positive-first ordering with no visibility into the Document 1 Candidate belief, before promotion to Provisional) | Contradiction searches: Document 4 (searched, none found), Document 5 (searched, none found — this was the weakest-result document and still confirmed) | Related beliefs: none identified yet | Last checked: Document 5
+
 ---
 
 **Stream 02 example — performance track record**
@@ -258,6 +260,8 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Falsification test:** Two consecutive misses without a prior-period language shift would break the guidance reliability belief. A language shift that does not precede a miss would narrow the leading indicator belief.
 
+**Provenance:** Foundation dependency: revenue delivery is the primary commitment metric (foundation, thesis metrics section) | Confirming documents: Q1–Q8 (8 comparable quarters) | Blind passes: Q2 (independently re-derived the same beat pattern with no visibility into the Q1 Candidate belief, before promotion to Provisional) | Contradiction searches: Q3 (searched — found the miss and the preceding language shift, recorded as the leading-indicator sub-claim rather than a break), Q6 (searched, none found) | Related beliefs: none identified yet | Last checked: Q8
+
 ---
 
 **Stream 02 example — relationship claim initialized from document one, then deepened**
@@ -274,6 +278,8 @@ After five or more comparable documents, a belief entry looks like this. The hea
 **Normal baseline:** Q1 spend ratio in 28–34% range. Q2 core volume metric at or above FC by mid-quarter. Lag between peak Q1 spend and demand recovery: 6–8 weeks.
 
 **Falsification test:** A Q1 with the spend ratio in range that does not produce Q2 demand recovery by week 10 would indicate the mechanic has broken. Management no longer describing the Q1 spend as an intentional demand investment — a language shift in how they explain Q1 — would be an early warning signal worth tracking before the next cycle confirms or denies the break.
+
+**Provenance:** Foundation dependency: spend and the core volume metric are the two primary thesis metrics (foundation, thesis metrics section) | Confirming documents: cycles 1–6 | Blind passes: cycle 2 (independently re-derived the same Q1→Q2 lag with no visibility into the cycle-1 Candidate belief, before promotion to Provisional) | Contradiction searches: cycle 3 (searched, none found, before promotion to Confirmed), cycle 5 (searched, none found) | Related beliefs: none identified yet | Last checked: cycle 6
 
 ---
 
