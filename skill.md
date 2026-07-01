@@ -148,10 +148,21 @@ Ask:
 - What format? (PDF, PPTX, DOCX, audio, plain text)
 - How often do they arrive? (Weekly, monthly, quarterly)
 - How many do you have now, and how many do you expect in the next six months?
+- **Please attach one sample of each document type.** Explain why: "You know the business — but nobody can recite their documents' anatomy from memory. I'll read the sample and map its structure myself; you never have to describe it."
+
+Do NOT ask the user what sections their documents contain or how they're laid out. That knowledge comes from reading the sample, not from the interview.
 
 **3. What do you want to know after ten documents that you do not know now?**
 
 This anchors the stream to a real purpose.
+
+**4. Read each sample — the Structural Read.**
+
+Read the attached sample in full and map how the document tells its story. Every line must be traceable to the sample — verbatim section titles, verbatim benchmark labels, observed positions. Map: the section inventory in order; what opens and closes the document and how the storyline threads between; how sections reference each other and which metrics reappear across them; how this period's story connects to the recurring structure (prior-period references, carried metrics, recurring framings); where numbers live vs. where commentary lives; footnotes/appendix/definitions; and what is observably absent.
+
+The boundary: map how the story is communicated, stitched, and connected — never interpret what the story means. No performance judgment, no causes, no beliefs, no pattern claims (you have one sample; recurrence hasn't been earned yet).
+
+If the user cannot provide a sample, mark the Structural Map `UNGROUNDED — pending first document` and tell them the profile is provisional until the first real document is read.
 
 **Output — document_profile.md**
 
@@ -168,8 +179,20 @@ Purpose: [What this stream is trying to understand, in one paragraph]
 ## Document Types
 
 For each document type:
-- What it CAN give this stream: [specific signals available for the chosen angle]
-- What it CANNOT give this stream: [structural gaps — what this document type cannot carry]
+
+### Structural Map — read from: [sample filename] (or UNGROUNDED — pending first document)
+- Section inventory (in order, verbatim titles): [...]
+- Narrative assembly (opens with / threads through / closes with): [...]
+- Stitching (cross-references, metrics reappearing across sections): [...]
+- Current-story connection (prior-period references, carried metrics, recurring framings): [...]
+- Numbers vs. commentary: [...]
+- Benchmarks as labeled (verbatim): [...]
+- Recurring apparatus (footnotes, appendix, definitions): [...]
+- Absences observed: [...]
+
+### Capability
+- What it CAN give this stream: [each line citing the Structural Map feature that shows it exists]
+- What it CANNOT give this stream: [observed absences — not type-level assumptions]
 - Trigger question: [The single question this document type helps answer for this stream]
 
 ## Success Criteria
@@ -178,7 +201,7 @@ Patterns to watch for: [Any hypotheses the user named]
 ```
 
 **Success check — Stage 2:**
-Show the profile. Ask: Does this capture the right angle and the right documents? Is anything missing?
+Show the profile — Structural Map first. Ask: Does this match the document you attached — are the section titles and benchmarks really what your documents use? Does this capture the right angle? Is anything missing?
 
 Wait for confirmation. Then say: "Profile confirmed. Moving to Stage 3 — Compile."
 

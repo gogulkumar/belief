@@ -673,11 +673,14 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 
 ### What the Document Profile (Prompt 00) Must Never Do
 
-- Create beliefs. The interview only captures intent.
+- Create beliefs. The interview captures intent; the Structural Read captures architecture. Neither produces interpretation.
 - Re-interview about the business. The entity foundation already exists and captures business model, metrics, and behavioral patterns. Prompt 00 focuses on documents and angle only.
-- Interpret documents. If documents are available at setup, it profiles them — it does not extract signals.
+- Ask the user to describe document structure. Users know the business, not their documents' anatomy — structure comes from reading the sample, never from the interview.
+- Skip the Structural Read when a sample exists. A profile whose CAN/CANNOT sections were guessed from a document-type label is confident-sounding fiction, and every compiled prompt downstream inherits the fiction.
+- Interpret the story. It maps how the story is communicated, stitched together, and connected — never what the story means, whether the period was good, or what caused what.
+- Claim recurrence from one sample. One document shows its own architecture; patterns across documents are earned at ingestion.
 - Decide what signals matter. That is the blueprint's job.
-- Invent document characteristics the user did not describe.
+- Invent document characteristics — neither ones the user didn't state nor ones the sample doesn't show. Every Structural Map line must be traceable to the sample.
 
 ### What the Strategic Blueprint (Prompt 01) Must Never Do
 

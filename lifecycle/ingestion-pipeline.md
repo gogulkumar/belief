@@ -51,15 +51,17 @@ This step only captures intent. The system grounds it in Steps 1 and 2.
 
 ### Step 1 — Document Profile (Prompt 00)
 
-**Who:** LLM, once at setup — an interview about the documents, plus a structural skim of any sample documents provided
-**Input:** requested belief stream, document descriptions from the user, sample documents if available (skimmed for structure only — sections, recurring layout, benchmarks present), optional user purpose
-**Output:** `compiled/{stream_id}/document_profile.md`
+**Who:** LLM, once at setup — a short interview for what only the user knows, plus a **mandatory structural read** of one sample per document type
+**Input:** requested belief stream, the user's answers (scope, document types, cadence, success criteria), one sample document per type, optional user purpose
+**Output:** `compiled/{stream_id}/document_profile.md`, containing a **Structural Map** per document type
 
-Profiles what these documents can ground for the requested stream — what each document type CAN and CANNOT carry for the chosen angle. Does NOT create beliefs. Does NOT extract signals — signal extraction is Step 6's job, against the compiled extractor prompt. Does NOT reject the stream.
+The division of knowledge: the user knows the business — that's the foundation. The documents are the only reliable witness to their own structure — users cannot recite their deck's anatomy, and asking them produces guesses. So Prompt 00 reads the samples and maps how each document tells its story: section inventory in order (verbatim titles), narrative assembly (what opens, what threads, what closes), how the pieces are stitched together, how the current period's story connects to the recurring structure, where numbers vs. commentary live, benchmarks as labeled, recurring apparatus, and observed absences.
+
+The boundary: **map the telling, not the tale.** How the story is communicated, stitched, and connected — yes. What the story means — never. No performance judgment, no causal reading, no candidate beliefs, no cross-document pattern claims from a single sample. Does NOT extract signals — signal extraction is Step 6's job, against the compiled extractor prompt.
+
+The CAN/CANNOT capability assessment is derived from the Structural Map, each line citing observed structure — never from type-level intuition. If no sample is available, the Structural Map is marked `UNGROUNDED — pending first document`, the CAN/CANNOT sections are explicitly provisional, and the first document processed at Step 6 must trigger completing the map and revisiting the profile before the compiled prompts are trusted.
 
 The profile answers: what kind of durable beliefs could these documents eventually support if similar signals recur across comparable documents?
-
-Strongest allowed language at this step: "this document type can carry X" or "this document type cannot carry Y."
 
 ---
 
@@ -264,8 +266,9 @@ FOUNDATION (once per entity)
            → entities/{entity_id}/foundation.md
 
 SETUP (once per stream)
-  Prompt 00 ← (requested_stream, documents, transcriptions, metadata, purpose)
-           → document_profile.md
+  Prompt 00 ← (requested_stream, user answers, ONE SAMPLE DOCUMENT
+              PER TYPE — read in full for the Structural Map, purpose)
+           → document_profile.md (Structural Map per document type)
 
   Prompt 01 ← (foundation.md, document_profile.md, requested_stream, purpose, history)
            → strategic_blueprint.md

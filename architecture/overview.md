@@ -126,8 +126,10 @@ Prompt -1 ← (user interview: business model, thesis metrics, normalization, na
 ### Setup — runs once per belief stream
 
 ```
-Prompt 00 ← (entity, document types, angle, prior knowledge)
-          → document_profile.md
+Prompt 00 ← (entity, document types, angle, prior knowledge,
+             + one SAMPLE DOCUMENT per type — read in full for the
+             Structural Map: how the document tells its story)
+          → document_profile.md (with Structural Map per doc type)
 
 Prompt 01 ← (foundation.md, document_profile.md, stated purpose)
           → strategic_blueprint.md
