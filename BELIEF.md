@@ -524,7 +524,7 @@ Every belief stream for the entity inherits the foundation as its prior context.
 | Layer | What It Is | Characteristics |
 |-------|-----------|-----------------|
 | **Entity Foundation** | Business understanding for the entity | One `foundation.md` per entity. Built before any stream. Referenced by every blueprint for that entity. |
-| **L1 — Belief Memory** | The living belief file for one stream | One `belief.md` per stream. Numbered beliefs, surgically updated. Loaded into context at session start. |
+| **L1 — Belief Memory** | The living belief file for one stream | One `belief.md` per stream. Numbered beliefs, surgically updated. Loaded into context at session start. Snapshotted to `belief_versions/{doc_id}_belief.md` after every document — the changelog records diffs, the snapshots preserve states. |
 | **L2 — Fact Logs** | Per-document extracted signals — the permanent, addressable memory layer | One fact log per document per stream. Written once, never discarded. Referenced by doc_id from every belief's Provenance record — the pointer target for Confirming documents, Blind passes, and Contradiction searches. |
 | **L3 — Raw Archive** | Original document content | Immutable. Written once. Never reprocessed. Source of truth for evidence retrieval. |
 | **Changelog** | Append-only audit trail | Every document: which beliefs changed, what action, why, what to test next. |

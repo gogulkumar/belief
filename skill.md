@@ -363,6 +363,8 @@ Then produce `belief_changelog.md`:
 [NEW_BELIEF] Belief #N — [claim] — [Relationship belief: initialized from explicit statement. Other: initialized from first observed signal.] Status: Candidate.
 ```
 
+Then snapshot the initialized memory to `belief_versions/{doc_id}_belief.md` — version 1 of the belief memory's history.
+
 **Success check — Step 7:**
 Show the belief memory. Ask:
 - How many relationship claims from the document became Candidate beliefs? (If zero but the document discussed how the business works, the extraction may have missed statements)
@@ -377,15 +379,17 @@ Wait for confirmation. Then say: "Belief memory initialized. Stream is live. Whe
 
 ## Stage 5 — Update Existing Stream (New Document)
 
-*Run this stage when beliefs already exist and a new document has arrived.*
+*Run this stage when beliefs already exist and a new document has arrived. Setup is never re-run — the foundation, profile, blueprint, and compiled prompts stay put. This is the shortcut path: pick the stream, attach the new document(s), go.*
 
 ### What you need
 - The existing `belief.md` (paste it in or confirm it is loaded)
 - The existing `belief_reasoning_prompt.md`
 - The existing `fact_extractor_prompt.md`
-- The new document
+- The new document(s)
 
 If any of the compiled prompts are missing, say so and offer to rebuild them from the blueprint before proceeding.
+
+**If more than one document arrived: ask the user for the reading order, then process strictly one at a time.** Order matters — a belief evolves differently depending on what came before it, and each document must see the belief memory as it stood after the previous one. Run the full Step 6 → 6.5 → 7 → 7.5 cycle for document one, snapshot the result, and only then start document two. Never merge multiple documents into one pass.
 
 ### Step 6 — Extract Signals from New Document
 
@@ -447,8 +451,11 @@ Do not resolve Adopt vs. Hold yourself. Surface the conflict and let the user de
 
 Produce:
 1. Updated `belief.md` — surgical changes only; unchanged beliefs stay as-is
-2. Appended `belief_changelog.md` — one entry per affected belief, including any `[FOUNDATION_REVIEW]` / `[FOUNDATION_CHANGED]` entries
-3. If a review resolved Adopt: updated `foundation.md` with an appended Foundation Revision Log entry
+2. A snapshot copy: `belief_versions/{doc_id}_belief.md` — the belief memory as it stands after this document, preserved forever (the changelog records the diffs; the snapshots preserve the states)
+3. Appended `belief_changelog.md` — one entry per affected belief, including any `[FOUNDATION_REVIEW]` / `[FOUNDATION_CHANGED]` entries
+4. If a review resolved Adopt: updated `foundation.md` with an appended Foundation Revision Log entry
+
+If more documents are queued, move to the next one only now — it must see the belief memory as it stands after this snapshot.
 
 **Success check — Stage 5:**
 Show a summary of what changed:

@@ -117,7 +117,14 @@ belief_config:
   # streams/ holds the living belief memory, fact logs, and raw archive per stream.
   entities_path: ./entities/             # entities/{entity_id}/foundation.md
   compiled_path: ./compiled/             # compiled/{stream_id}/
-  streams_path: ./streams/              # streams/{stream_id}/belief.md, L2_factlogs/, L3_raw/
+  streams_path: ./streams/              # streams/{stream_id}/belief.md, belief_versions/, L2_factlogs/, L3_raw/
+
+  # ─── VERSION HISTORY ────────────────────────────────────────────────────────
+  # After every document pass, belief.md is snapshotted to
+  # belief_versions/{doc_id}_belief.md. The changelog records diffs; snapshots
+  # preserve states -- the belief memory after any document stays readable
+  # forever, which is what makes a wrong belief diagnosable rather than gone.
+  keep_belief_snapshots: true
 
   # ─── CONFIDENCE ARITHMETIC ─────────────────────────────────────────────────
   # Standard update values. Match the belief reasoning system prompts.

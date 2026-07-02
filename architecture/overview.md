@@ -64,8 +64,10 @@ Belief is built in four layers plus an activation surface. Quality flows **forwa
 
 PERMANENT MEMORY (nothing a belief cites is ever discarded):
   L3 raw archive · L2 fact logs (addressable by doc_id — the
-  pointer target of every Provenance record) · L1 belief.md ·
-  changelog · Foundation Revision Log · Structural Map Revision Log
+  pointer target of every Provenance record) · L1 belief.md
+  + belief_versions/ snapshots (the memory's state after every
+  document, forever) · changelog · Foundation Revision Log ·
+  Structural Map Revision Log
 ```
 
 ### The Three Return Loops

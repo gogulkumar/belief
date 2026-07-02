@@ -17,13 +17,23 @@ compiled/{stream_id}/
 └── fact_extractor_prompt.md
 
 streams/{stream_id}/
-├── belief.md                    ← the belief memory (L1)
+├── belief.md                    ← the belief memory (L1) — current state
+├── belief_versions/
+│   └── {doc_id}_belief.md      ← snapshot of belief.md after each document (version history)
 ├── belief_changelog.md          ← append-only audit trail
 ├── L2_factlogs/
 │   └── {doc_id}_fact_log.md    ← per-document extracted signals
 └── L3_raw/
     └── {doc_id}.json            ← immutable transcription archive
 ```
+
+---
+
+## Version History
+
+Every time the belief engine finishes a document pass, the resulting `belief.md` is snapshotted to `belief_versions/{doc_id}_belief.md` before the next document is processed. The changelog records the *diffs*; the snapshots preserve the *states* — so anyone can see exactly what the belief memory looked like after document 3 versus after document 7, and trace how a belief evolved rather than only ever seeing the current, final state.
+
+This is the memory principle applied to the beliefs themselves: nothing the system once held is discarded. A belief that was later revised, narrowed, or retired is still readable exactly as it stood at every point along the way — which is what makes a wrong belief diagnosable (where did the reasoning turn?) rather than just gone.
 
 ---
 

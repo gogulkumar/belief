@@ -205,7 +205,7 @@ Like Foundation Review, the Recalibrate-vs-Signal decision is surfaced to the us
 
 **Who:** LLM, using `belief_reasoning_prompt.md` as system prompt
 **Input:** `belief_reasoning_prompt.md` (system) + `{{EXISTING_DURABLE_BELIEF}}` (belief.md or NULL) + `{{NEW_CHRONOLOGICAL_FACT_LOG}}` (+ blind-pass fact log, when one was run)
-**Output:** `streams/{stream_id}/belief.md` (evolved)
+**Output:** `streams/{stream_id}/belief.md` (evolved) + a snapshot copy at `streams/{stream_id}/belief_versions/{doc_id}_belief.md` — the version history. The changelog records the diffs; the snapshots preserve the states, so the belief memory as it stood after any document remains readable forever.
 
 **On first document (belief.md is NULL):**
 Initialize between 8 and 15 specific Candidate beliefs drawn from the fact log. Beliefs must use the candidate seed set from Blueprint Section 4 as a starting frame, but are grounded in what the first document actually showed. Every entry marked Status: Candidate. Evolution trail says "First seen in [doc_id] — [brief observation]." Normal baseline: "not yet established." Provenance record initialized with the foundation dependency named and all other fields empty — nothing exists yet to check blind against. No umbrella beliefs.
@@ -324,9 +324,12 @@ DOC 4+ ─ steady state, every document, in order:
       │   7.5  FOUNDATION REVIEW — fires on Confirmed/Established
       │        transitions that bear on a named claim ID
       │   8    changelog appended — every pass, no exceptions
+      │        + belief.md snapshotted to belief_versions/{doc_id}
       ▼
   ...next document repeats this same cycle indefinitely
 ```
+
+**The chain is strictly sequential — never a batch dump.** When several documents arrive at once, the user puts them in the order they should be read, and the system works through them one at a time: read the document through the stream's lens, produce the learning, evolve the belief, snapshot the new version — and only then move to the next document. Order matters because a belief evolves differently depending on what came before it: each document must see the belief memory *as it stood after the previous one*, otherwise the story the belief is telling loses its sense of time. Processing five documents in one merged pass is not an optimization — it is a different (and wrong) computation.
 
 Weakening is graduated, never abrupt: one contradiction on a mature belief → `[TENSION]` (held, under challenge). Repeated contradiction → `[NARROW]` or `[CONTRADICT]`. Pattern genuinely over → `[RETIRE]` (number kept, entry preserved). Silence accumulating on an Established belief → `[DECAY]`. No belief is ever retired on one weak contradiction — and none survives indefinitely without being re-tested.
 
@@ -393,4 +396,5 @@ The compiled prompts are stream-specific and run separately per stream. Multiple
 - **L3 is immutable:** if processing fails mid-pipeline, the raw extract is preserved. Reprocessing restarts from Step 6.
 - **Fact log is permanent, not ephemeral:** it is the memory layer belief Provenance records point back into (see the doctrine's "Fact Logs Are Memory, Not Scratch Paper"). If an extraction pass fails before producing a complete fact log, re-run it against the preserved L3 units — but once a fact log is finalized and a belief cites it, it is retained indefinitely, addressable by doc_id.
 - **belief.md is surgical:** a failed evolution pass does not corrupt existing beliefs. The pre-evolution state is unchanged until the write completes.
+- **belief_versions/ is the state history:** one snapshot per document processed, written after the evolution pass completes. If belief.md is ever corrupted or an evolution needs to be unwound, the last good snapshot is the recovery point — and the full sequence of snapshots is what makes a wrong belief diagnosable after the fact.
 - **Changelog is append-only:** an absent changelog entry for a document means the pipeline did not complete for that document.
