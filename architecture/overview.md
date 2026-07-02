@@ -150,9 +150,19 @@ intake.py          ← uploaded document (any format)
 fact_extractor.py  ← fact_extractor_prompt.md (system)
                    + L3 units + topics_touched
                    → L2_factlogs/{doc_id}_fact_log.md
-                   (belief-aware pass by default; a BLIND pass —
+                   (opens with STRUCTURE OBSERVED — the skeleton
+                    walked through, deviations from the Structural
+                    Map reported, never silently absorbed;
+                    belief-aware pass by default; a BLIND pass —
                     existing belief withheld — runs additionally
                     whenever a belief is up for promotion)
+
+structural drift   ← STRUCTURE OBSERVED vs the profile's Structural Map
+check (Step 6.5)   → match: no action
+                   → drift: Recalibrate (map revised + logged,
+                     extractor recompiled) / Signal (the change is
+                     communication behavior — feeds the belief
+                     engine) / Defer (watch next document)
 
 belief_engine.py   ← belief_reasoning_prompt.md (system)
                    + existing belief.md (or NULL)

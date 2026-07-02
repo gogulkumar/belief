@@ -200,6 +200,20 @@ If a custom angle was defined:
 **What the user expects to know after 10 documents**: [Stated in the user's language]
 **Specific patterns to watch for**: [Any hypotheses or suspicions the user named during the interview]
 **Known gaps the stream may help resolve**: [What the user does not yet know that the stream might illuminate]
+
+---
+
+## Structural Map Revision Log
+
+Append-only. Empty at creation: "No revisions yet — map read from the setup sample only."
+
+[Each entry, once the Structural Drift Check (ingestion Step 6.5) resolves a drift as Recalibrate:]
+
+### Revision — [date] — [document type]
+**Triggered by**: [doc_id] — STRUCTURE OBSERVED deviated from the map: [what changed]
+**Resolution**: Recalibrate — [why this was judged a template/format change rather than a communication choice]
+**Map updated**: [what the map now says that it didn't before]
+**Downstream**: Blueprint Section 2 revisited: [yes/no + what changed]. Extractor prompt recompiled: [yes/no]
 ```
 
 ---
@@ -211,6 +225,8 @@ If a custom angle was defined:
 **Business questions go to the user; structure questions go to the documents.** Never ask the user what sections their documents contain, what leads, or where the numbers live — read the sample. Never derive from a sample what only the user can state — their intent, their scope, their success criteria.
 
 **Every Structural Map line must be traceable to the sample.** Verbatim section titles, verbatim benchmark labels, observed positions. If you can't point to it in the document, it doesn't go in the map. A fluent, plausible-sounding map that wasn't actually read is exactly the failure this step exists to prevent.
+
+**The map is only ever revised through the Structural Drift Check.** At ingestion, every fact log opens with a STRUCTURE OBSERVED block that is compared against this map (Step 6.5). Deviations resolve as Recalibrate (template changed — map revised, logged in the Structural Map Revision Log, extractor recompiled), Signal (the change is a communication choice — it feeds the belief engine, the map stands), or Defer (watch the next document). The map is never silently rewritten to match a drifting document — that decision is made visibly, because a document changing shape is sometimes the story.
 
 **Map the telling, not the tale.** How the story is communicated, stitched together, and connected — yes. What the story means, whether the period was good, what caused what — never. Interpretation belongs to the belief engine, across many documents. You have one sample; one document cannot even establish recurrence, let alone meaning.
 

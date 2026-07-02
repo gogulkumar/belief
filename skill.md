@@ -274,6 +274,9 @@ Once the document is provided:
 
 Using the `fact_extractor_prompt.md` as your system context, read the document and produce a `fact_log.md`.
 
+**Part 0 — Structure Observed (always opens the fact log):**
+Record the skeleton you walked through: section inventory in order (verbatim titles), benchmarks as labeled (verbatim), apparatus present (footnotes/appendix/definitions), and every deviation from the profile's Structural Map — sections added, removed, renamed, reordered; benchmarks changed; anything expected but absent. If the profile's map was marked `UNGROUNDED — pending first document`, this block becomes the Structural Map: ground it, mark the profile grounded, and revisit the CAN/CANNOT sections and compiled extractor prompt against it before trusting their output. Never adapt to a changed structure silently — report the difference; deciding what it means happens in the drift check, not here.
+
 **First pass — Relationship Discovery:**
 Before anything else, scan the entire document for explicit relationship claims — any statement where the document says that one metric, factor, or business component drives, causes, enables, or predicts another. These are the most valuable signals in the document because they reveal how the business works. Capture every one.
 
@@ -386,11 +389,23 @@ If any of the compiled prompts are missing, say so and offer to rebuild them fro
 
 ### Step 6 — Extract Signals from New Document
 
-Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6. This is a **belief-aware pass** — the existing belief memory is part of the input.
+Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6 — including the **Structure Observed** block that opens the fact log. This is a **belief-aware pass** — the existing belief memory is part of the input.
 
 **Check for promotion candidates first.** Before running the belief-aware pass, scan the existing belief memory for any Candidate belief that would reach Provisional with one more confirmation, or any Provisional belief that would reach Confirmed. For each one, also run a **blind pass**: extract from the new document with the existing belief withheld entirely, and record independently whatever pattern is found. Do this only for beliefs actually up for promotion this round — not for the whole memory, and not for beliefs already Confirmed or Established with a clean history.
 
 **Success check:** Show the fact log (and any blind-pass results run this round). Ask for confirmation before proceeding.
+
+### Step 6.5 — Structural Drift Check
+
+Compare the fact log's Structure Observed block against the profile's Structural Map for this document type.
+
+- **Match** — say so in one line and move on.
+- **Drift** — show the user exactly what changed (sections added/removed/renamed/reordered, benchmarks changed, apparatus moved) and ask them to resolve it:
+  - **Recalibrate** — "the template changed." Revise the Structural Map (append a Structural Map Revision Log entry — never a silent rewrite), revisit the Blueprint Section 2 CAN/CANNOT for this type, and recompile the extractor prompt. Still record the change as a structural observation in the fact log — a redesign can carry meaning.
+  - **Signal** — "the document is telling me something." A section that quietly disappeared or a benchmark that stopped being shown is communication behavior — exactly what Stream 05 tracks. Keep the map; let the deviation flow to the belief engine as an absence/emphasis signal.
+  - **Defer** — seen once, might be a one-off. Watch the next document. If the same drift recurs in 2 consecutive comparable documents, it can no longer be deferred — force the Recalibrate-or-Signal decision.
+
+Record `[STRUCTURE_DRIFT]` in the changelog with the resolution. Never absorb drift silently — a document changing shape is sometimes the story.
 
 ### Step 7 — Evolve the Belief Memory
 
@@ -407,6 +422,7 @@ Using the `belief_reasoning_prompt.md` as your system context, read both the exi
 | `[MERGE_BELIEFS]` | Two beliefs are now better stated as one |
 | `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it |
 | `[DECAY]` | Established belief has had 4 consecutive silent comparable documents — downgrade to Confirmed |
+| `[STRUCTURE_DRIFT]` | Document-level entry from Step 6.5 — observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded |
 | `[FOUNDATION_REVIEW]` | This belief just reached Confirmed/Established while bearing on a foundation claim — Foundation Review triggered, resolution recorded |
 | `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised elsewhere — held pending re-grounding |
 | `[NO CHANGE]` | No update warranted |

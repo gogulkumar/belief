@@ -548,9 +548,14 @@ DOCUMENT ARRIVES (any format)
 │  system: compiled fact_extractor_prompt   │
 │  input:  L3 units + topics_touched        │
 │  output: L2 fact log (per-stream)         │
+│  opens with STRUCTURE OBSERVED block      │
 │  captures signals at belief-claim level   │
 │  surfaces distinct patterns separately    │
 └──────────────────────────────────────────┘
+          │
+          ▼  STRUCTURE OBSERVED vs Structural Map
+          │  (Step 6.5 — drift resolves:
+          │   Recalibrate / Signal / Defer)
           │
           ▼  FACT LOG → belief engine
           │
@@ -592,7 +597,7 @@ Three phases. Entity foundation runs once per entity. Stream setup runs once per
 | Component | What It Does |
 |-----------|-------------|
 | **intake.py** | Routes by format, transcribes, and splits into meaningful units. Writes immutable raw transcript to L3. |
-| **fact_extractor.py** | Reads L3 units. First pass: scan for RELATIONSHIP CLAIMS — explicit statements connecting one metric to another. Second pass: extract individual metric signals, attribution statements, structural observations. Writes fact log to L2. Does not interpret — only captures. |
+| **fact_extractor.py** | Reads L3 units. Opens the fact log with a STRUCTURE OBSERVED block — the skeleton walked through, with every deviation from the profile's Structural Map reported (drift resolves at Step 6.5: Recalibrate / Signal / Defer). First pass: scan for RELATIONSHIP CLAIMS — explicit statements connecting one metric to another. Second pass: extract individual metric signals, attribution statements, structural observations. Writes fact log to L2. Does not interpret — only captures. |
 | **belief_engine.py** | Reads the fact log and the existing belief memory. Relationship claims from the fact log initialize Stream 02 Candidate beliefs on first document. Numbered beliefs, claim-as-heading, five narrative fields plus Provenance. Promotion gated by blind pass and contradiction search. Surgical updates to `belief.md`. Volume check (≥8 beliefs). Appends to `belief_changelog.md`. |
 
 ### Phase 3 — Belief Activation (runs on demand)
@@ -696,6 +701,7 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Invent signals the document does not contain. "No signal in this window" is a valid and useful output.
 - Extract signals the blueprint's signal matrix says the document type cannot carry.
 - Create or update beliefs. It reads documents; it does not reason about them.
+- Silently adapt to a changed document structure. Every fact log opens with a STRUCTURE OBSERVED block; deviations from the profile's Structural Map are reported there, and resolved visibly at the Structural Drift Check (Recalibrate / Signal / Defer) — never absorbed. A document changing shape is sometimes the story, and the extractor is not the one who decides which.
 
 ### What the Belief Engine Must Never Do
 

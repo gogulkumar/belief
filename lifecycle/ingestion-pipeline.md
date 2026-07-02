@@ -118,7 +118,7 @@ Different document types in the same stream get different compiled extractor pro
 
 ---
 
-## Phase 2 — Document Ingestion (Steps 5 – 8, including 7.5)
+## Phase 2 — Document Ingestion (Steps 5 – 8, including 6.5 and 7.5)
 
 Runs every time a new document arrives.
 
@@ -173,6 +173,31 @@ The belief engine never receives the raw document. It reads the fact log.
 - **Blind pass**: the existing belief is withheld from the input entirely. The extractor reads the document fresh and reports whatever pattern it independently finds, with no framing toward what it "should" see.
 
 Run a blind pass whenever a belief is up for promotion — Candidate → Provisional, or Provisional → Confirmed (see Step 7). Outside of promotion decisions, a single belief-aware pass is sufficient for routine reconfirmation once a belief has reached Confirmed or Established with a clean verification history. Re-trigger a blind pass if something looks off: a silence, a near-miss, or a change to the foundation claim the belief depends on. This keeps cost bounded — full two-pass extraction is reserved for the moments where independent verification actually changes the outcome, not run on every document for every belief.
+
+Every fact log opens with a **STRUCTURE OBSERVED** block — the skeleton the extractor walked through (verbatim section inventory, benchmarks as labeled, apparatus, deviations from the Expected Structure embedded in its compiled prompt). This costs nothing extra — the extractor is already reading the whole document — and it is the input to Step 6.5.
+
+---
+
+### Step 6.5 — Structural Drift Check
+
+**Who:** Same pass as Step 6 output review, or a lightweight follow-up check
+**Input:** The fact log's STRUCTURE OBSERVED block + the Document Profile's Structural Map for this document type
+**Output:** Either nothing (match), or a drift report with a resolution; on Recalibrate — a revised Structural Map (logged), a revisited Blueprint Section 2, and a recompiled `fact_extractor_prompt.md` for this document type
+
+This is the profiling equivalent of Foundation Review. The compiled extractor prompt was calibrated against the Structural Map — if the real documents stop matching the map, the machinery is extracting against a fiction, and nothing else in the pipeline would notice. Documents drift: templates get redesigned, sections get renamed mid-year, benchmark sets change. This step is what keeps the configuration layer honest against the documents as they actually arrive.
+
+**Compare** the STRUCTURE OBSERVED block against the Structural Map:
+
+- **Match** — structure consistent. No action, no entry.
+- **Drift detected** — sections added/removed/renamed/reordered, benchmarks changed, apparatus moved. Record `[STRUCTURE_DRIFT]` in the changelog and resolve it one of three ways:
+  - **Recalibrate** — this is a template or format change. Revise the Structural Map (append an entry to the profile's Structural Map Revision Log — never a silent rewrite), revisit the Blueprint Section 2 CAN/CANNOT for this document type, and recompile `fact_extractor_prompt.md`. Even then, record the change as a structural observation in the fact log — a template redesign can itself carry meaning.
+  - **Signal** — this is not a template change; it is a communication choice. A section that quietly disappears, a benchmark that stops being shown, commentary that moves to the appendix — that is exactly the behavior Stream 05 (Narrative Understanding) exists to track. Keep the Structural Map as-is, and let the deviation flow to the belief engine as a signal (an absence or emphasis observation) rather than being laundered into template noise.
+  - **Defer** — seen once, could be a one-off (a special quarter with an extra deep-dive section). No change; watch the next comparable document. Drift that recurs across 2 consecutive documents of the same type (configurable) can no longer be Deferred — it must resolve to Recalibrate or Signal.
+- **UNGROUNDED completion** — if the profile's Structural Map was marked `UNGROUNDED — pending first document`, this document's STRUCTURE OBSERVED block becomes the Structural Map (grounding it, logged as such), and the Blueprint Section 2 assessment plus the compiled extractor prompt must be revisited against it before their output is trusted.
+
+**The one rule that governs this step:** drift is never silently absorbed. The extractor reports it, this step resolves it visibly, and the resolution is on the record. "The document changed shape" is information — sometimes about the template, sometimes about the story — and deciding which is a resolution, not a default.
+
+Like Foundation Review, the Recalibrate-vs-Signal decision is surfaced to the user by default (`structural_drift_resolution` in config), because the two readings lead in opposite directions: one updates the machinery, the other feeds the beliefs.
 
 ---
 
@@ -250,6 +275,7 @@ For each belief affected, records:
 | `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
 | `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
 | `[DECAY]` | Established belief downgraded to Confirmed after N consecutive silent comparable documents — a Status change, not a contradiction |
+| `[STRUCTURE_DRIFT]` | The document's observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded — document-level entry, not per-belief |
 | `[FOUNDATION_REVIEW]` | A belief reaching Confirmed or Established triggered a Foundation Review; resolution (Adopt/Hold/Defer) recorded |
 | `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised (Adopted) elsewhere; this belief is held pending re-grounding on its next document pass |
 | `[NO CHANGE]` | Document processed; no update warranted for this belief |
@@ -286,6 +312,9 @@ RUNTIME (per document)
   fact_extractor.py ← fact_extractor_prompt.md (system)
                     + L3 units + topics_touched + optional existing belief
                     → L2_factlogs/{doc_id}_fact_log.md
+                      (opens with STRUCTURE OBSERVED block →
+                       compared against the Structural Map in Step 6.5;
+                       drift resolves Recalibrate / Signal / Defer)
 
   belief_engine.py  ← belief_reasoning_prompt.md (system)
                     + {{EXISTING_DURABLE_BELIEF}} = belief.md or NULL

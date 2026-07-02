@@ -262,6 +262,7 @@ After updating the belief memory, record one changelog entry per affected belief
 - [MERGE_BELIEFS]: two beliefs collapsed into one
 - [SPLIT_BELIEF]: one belief divided into two
 - [DECAY]: Established belief downgraded to Confirmed after consecutive silence — Status change, not contradiction
+- [STRUCTURE_DRIFT]: document-level entry (not per-belief) — the document's observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded. When resolved as Signal, the deviation enters the fact log as an absence/emphasis observation for the relevant beliefs.
 - [FOUNDATION_REVIEW]: belief reaching Confirmed/Established triggered a review of its named foundation claim; resolution recorded
 - [FOUNDATION_CHANGED]: a foundation claim this belief depends on was revised elsewhere; held pending re-grounding
 - [NO CHANGE]: no update warranted

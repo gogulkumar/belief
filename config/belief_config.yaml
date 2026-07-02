@@ -61,6 +61,21 @@ belief_config:
   # hypotheses until corroborated.
   foundation_grounding_min_documents: 3
 
+  # ─── STRUCTURAL DRIFT CHECK (ingestion Step 6.5) ───────────────────────────
+  # Every fact log opens with a STRUCTURE OBSERVED block, compared against the
+  # Document Profile's Structural Map. Drift resolves as Recalibrate (template
+  # changed -> map revised + extractor recompiled), Signal (communication
+  # choice -> feeds the belief engine), or Defer (watch next document).
+  # Deferred drift recurring across this many consecutive comparable documents
+  # forces a Recalibrate-or-Signal decision:
+  structural_drift_escalation_documents: 2
+
+  # Who resolves Recalibrate vs Signal. The two readings lead in opposite
+  # directions (update the machinery vs feed the beliefs), so default is
+  # user_confirm; "automatic" lets the engine resolve only unambiguous cases
+  # (e.g., pure renames with identical content position).
+  structural_drift_resolution: user_confirm     # user_confirm | automatic
+
   # ─── FOUNDATION REVIEW ──────────────────────────────────────────────────────
   # A belief reaching this status while bearing on a named foundation claim
   # triggers Foundation Review (lifecycle/ingestion-pipeline.md, Step 7.5).

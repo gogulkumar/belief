@@ -220,9 +220,18 @@ What this document CANNOT give this belief stream:
 
 Trigger question this document helps answer:
 [From Blueprint Section 2 trigger question for this document type]
+
+## Expected Structure (from the Document Profile's Structural Map)
+
+[Embed the Structural Map for this document type verbatim: section
+inventory in order, narrative assembly, benchmarks as labeled,
+recurring apparatus. This is what the document is EXPECTED to look
+like. The extractor compares what it actually walks through against
+this and reports every deviation in the STRUCTURE OBSERVED block —
+it never silently adapts to a changed structure.]
 ```
 
-This section prevents the fact extractor from hallucinating signals the document cannot structurally carry.
+This section prevents the fact extractor from hallucinating signals the document cannot structurally carry — and gives it the baseline against which structural drift is detected.
 
 ---
 
@@ -233,7 +242,23 @@ Tell the fact extractor exactly how to format its output.
 ```
 ## Output Format
 
-**Part 1 — Relationship Claims** (always first in the output)
+**Part 0 — Structure Observed** (always opens the fact log)
+
+You read the whole document to extract signals — record the skeleton you walked through. Every line verbatim and traceable to this document.
+
+---
+## STRUCTURE OBSERVED
+
+**Section inventory (in order, verbatim titles)**: [...]
+**Benchmarks as labeled (verbatim)**: [...]
+**Apparatus present**: [footnotes / appendix / definitions — as found]
+**Deviations from Expected Structure**: [Compare against the Expected Structure block in this prompt. List every difference: sections added, removed, renamed, reordered; benchmarks changed; apparatus moved or gone. If none: "NONE — structure matches the Structural Map."]
+**Expected but absent**: [Anything the Expected Structure says should be here that is not — absence is a recorded observation, not a silent skip]
+---
+
+Do NOT interpret deviations. A missing section might be a template change or a communication choice — deciding which is the Structural Drift Check's job (Step 6.5), not yours. Report the difference; never adapt to it silently.
+
+**Part 1 — Relationship Claims** (always first among signals)
 
 For each relationship claim found:
 
