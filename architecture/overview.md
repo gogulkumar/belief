@@ -1,54 +1,88 @@
 # Architecture Overview — Belief in the Stack
 
-## The Four-Layer Architecture
+## The Architecture: A Cascade With Three Return Loops
 
-Belief is built in four layers. Each layer has a distinct responsibility and runs at a different time.
+Belief is built in four layers plus an activation surface. Quality flows **forward** through the cascade — foundation grounds configuration, configuration compiles into runtime prompts, runtime prompts govern execution. What makes the system robust rather than fragile is that evidence also flows **backward** through three return loops: execution is continuously allowed to correct the layers above it. A pipeline with no return arrows can only ever be as good as its setup guesses; this one recalibrates itself against the documents as they actually arrive.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │  LAYER 0 — ENTITY FOUNDATION                                  │
-│  foundation.md                                               │
-│  Business model · Profitability thesis · Thesis metrics       │
-│  Normalization model · Narration design · Signals vs noise    │
-│  Runs: once per entity, before any belief stream             │
+│  foundation.md — atomic claims with stable claim IDs          │
+│  Every claim labeled: source: interview | corpus | both       │
+│  Pass 1 (setup): interview → hypotheses                       │
+│  Pass 2 (after first N fact logs): corpus grounding →         │◄──┐
+│    what recurred identically becomes source: corpus           │   │
+│  Revised ONLY via Foundation Review — never silent edit       │◄──┼─┐
+└──────────────────────────┬───────────────────────────────────┘   │ │
+                           │  (read by every stream for this entity)│ │
+                           ▼                                        │ │
+┌──────────────────────────────────────────────────────────────┐   │ │
+│  LAYER 1 — CONFIGURATION (once per stream)                    │   │ │
+│  Document Profile: interview (user knows the business)        │   │ │
+│    + mandatory STRUCTURAL READ of sample docs (documents      │   │ │
+│    know themselves) → Structural Map, verbatim + traceable    │◄──┼─┼─┐
+│  Strategic Blueprint: signal matrix CITES the Structural      │   │ │ │
+│    Map — type-level inference banned · seed set (8–15)        │   │ │ │
+└──────────────────────────┬───────────────────────────────────┘   │ │ │
+                           ▼                                        │ │ │
+┌──────────────────────────────────────────────────────────────┐   │ │ │
+│  LAYER 2 — COMPILATION (once per stream / doc type)           │   │ │ │
+│  belief_reasoning_prompt — doctrine, promotion gating,        │   │ │ │
+│    Provenance format, evolution actions                       │   │ │ │
+│  fact_extractor_prompt — Expected Structure embedded,         │◄──┼─┼─┤
+│    two extraction modes (belief-aware / blind)                │   │ │ │
+└──────────────────────────┬───────────────────────────────────┘   │ │ │
+                           ▼                                        │ │ │
+┌──────────────────────────────────────────────────────────────┐   │ │ │
+│  LAYER 3 — EXECUTION (every new document)                     │   │ │ │
+│  5   intake → L3 raw units (immutable, once)                  │   │ │ │
+│  6   extract → L2 fact log:                                   │   │ │ │
+│        opens with STRUCTURE OBSERVED (skeleton walked)        │   │ │ │
+│        + BLIND PASS in parallel when a belief is up           │   │ │ │
+│          for promotion (belief withheld from extractor)       │   │ │ │
+│  6.5 STRUCTURAL DRIFT CHECK — observed vs Structural Map:     │───┼─┼─┘
+│        match / Recalibrate (map revised + logged,             │   │ │
+│        extractor recompiled) / Signal (change is              │   │ │
+│        communication behavior → feeds beliefs) / Defer        │   │ │
+│  7   evolve belief.md — promotion GATED by Provenance:        │   │ │
+│        blind pass → Provisional · contradiction search        │   │ │
+│        → Confirmed · doc-type + current claim → Established   │   │ │
+│        · 4 silent docs → [DECAY] back to Confirmed            │   │ │
+│  7.5 FOUNDATION REVIEW — Confirmed/Established belief vs      │───┼─┘
+│        its named claim ID: Adopt (revise + flag dependents    │   │
+│        [FOUNDATION_CHANGED]) / Hold / Defer — user decides    │   │
+│  8   changelog — append-only, one action per belief           │   │
+│      (fact logs accumulate → corpus grounding, Pass 2)        │───┘
 └──────────────────────────┬───────────────────────────────────┘
-                           │  (read by every belief stream for this entity)
                            ▼
 ┌──────────────────────────────────────────────────────────────┐
-│  LAYER 1 — CONFIGURATION                                      │
-│  Strategic Blueprint                                          │
-│  Who the entity is · what angle · candidate belief seed set   │
-│  What patterns look like · what a belief looks like here      │
-│  Runs: once per belief stream at setup time                   │
-└──────────────────────────┬───────────────────────────────────┘
-                           │  (read once, flows into both compilers)
-            ┌──────────────┴──────────────────┐
-            ▼                                  ▼
-┌─────────────────────────┐       ┌──────────────────────────┐
-│  LAYER 2 — COMPILATION  │       │  LAYER 2 — COMPILATION   │
-│  Belief Reasoning Prompt│       │  Fact Extraction Prompt  │
-│  (angle-aware,          │       │  (foundation-grounded,   │
-│   foundation-grounded)  │       │   pattern-direction-aware)│
-│  Runs: once per stream  │       │  Runs: once per doc type  │
-└────────────┬────────────┘       └──────────────┬───────────┘
-             │                                    │
-             └──────────────┬─────────────────────┘
-                            ▼
-┌──────────────────────────────────────────────────────────────┐
-│  LAYER 3 — EXECUTION                                          │
-│  Document → L3 units (transcription windows)                  │
-│          → L2 fact log (per document, angle-scoped)           │
-│          → belief evolution (existing belief + fact log)      │
-│          → changelog (what changed, what drifted)             │
-│  Runs: every new document                                     │
+│  ACTIVATION (on demand — Prompt 07)                           │
+│  Pre-read briefing · Analytical Q&A · Meeting prep            │
+│  Every citation carries Status + Provenance — a belief        │
+│  whose status outruns its verification is flagged, not cited  │
 └──────────────────────────────────────────────────────────────┘
+
+PERMANENT MEMORY (nothing a belief cites is ever discarded):
+  L3 raw archive · L2 fact logs (addressable by doc_id — the
+  pointer target of every Provenance record) · L1 belief.md ·
+  changelog · Foundation Revision Log · Structural Map Revision Log
 ```
+
+### The Three Return Loops
+
+The forward cascade sets quality; the return loops keep it honest. Each loop has the same shape: execution observes something the setup layer assumed wrong or incompletely, the conflict is surfaced visibly (never silently absorbed), and the resolution is logged.
+
+| Loop | From → To | Trigger | Resolution |
+|------|-----------|---------|------------|
+| **Corpus grounding** | Fact logs → Foundation | First N fact logs exist (default 3) | What recurred identically becomes `source: corpus`; contradicted interview claims go to Foundation Review |
+| **Foundation Review** (Step 7.5) | Belief memory → Foundation | A belief reaches Confirmed/Established bearing on its named claim ID | Adopt (claim revised, logged, dependents flagged) / Hold / Defer — user decides |
+| **Structural Drift Check** (Step 6.5) | Fact log → Profile + Compiled prompts | STRUCTURE OBSERVED deviates from the Structural Map | Recalibrate (map revised, extractor recompiled) / Signal (feeds beliefs) / Defer |
 
 ### The Cascade Principle
 
-The foundation (Layer 0) grounds the blueprint (Layer 1), which is compiled into the runtime prompts (Layer 2). Every downstream step inherits its quality from this two-tiered cascade. If the foundation is precise and entity-specific, everything below it is precise. If the blueprint is correct, the execution prompts are correct without additional configuration.
+The foundation (Layer 0) grounds the blueprint (Layer 1), which is compiled into the runtime prompts (Layer 2). Every downstream step inherits its quality from this cascade. If the foundation is precise and entity-specific, everything below it is precise. If the blueprint is correct, the execution prompts are correct without additional configuration.
 
-Quality is injected at Layers 0 and 1 and propagates forward. Debugging a bad belief output should start by examining the foundation and blueprint, not the execution prompt.
+Quality is injected at Layers 0 and 1 and propagates forward. Debugging a bad belief output should start by examining the foundation and blueprint, not the execution prompt — and if the blueprint was wrong about the documents, the drift check is the mechanism that catches it in production rather than never.
 
 ### What Changes Cascade
 
