@@ -284,6 +284,54 @@ The changelog is append-only. An absent changelog entry for a document means the
 
 ---
 
+## The Steady-State Loop
+
+Setup runs once. After that, Phase 2 is a loop that fires for every document, forever. `belief.md` is versioned by evolution — each pass re-reads the current state, applies surgical changes, and appends to the changelog. The maturity ladder climbs across passes — but every rung is a **gate**, not a count. Document count is necessary and never sufficient.
+
+```
+SETUP (once)
+  foundation (interview → hypotheses) · profile + STRUCTURAL READ
+  → blueprint → compile both prompts
+      │
+      ▼
+DOC 1 ── intake → fact log (opens with STRUCTURE OBSERVED)
+      │   belief.md NULL → v1: 8–15 Candidates, Provenance
+      │   initialized, changelog: [NEW_BELIEF]
+      ▼
+DOC 2 ── belief-aware pass + BLIND PASS (promotions pending)
+      │   6.5 drift check · then evolve → v2
+      │   Candidate → Provisional ONLY where the blind pass
+      │   independently re-derived the pattern — otherwise the
+      │   belief is confirmed but HELD, promotion pending
+      ▼
+DOC 3 ── + contradiction search, reported ("searched, none found")
+      │   Provisional → Confirmed only through that gate
+      │   ★ corpus grounding fires (first N fact logs read
+      │     together) → foundation claims earn source: corpus;
+      │     contradicted interview claims → Foundation Review
+      ▼
+DOC 4+ ─ steady state, every document, in order:
+      │   6    extract — belief-aware; blind pass only when a
+      │        promotion is pending this round
+      │   6.5  STRUCTURAL DRIFT CHECK — match / Recalibrate
+      │        (map revised, extractor recompiled) / Signal
+      │        (feeds beliefs) / Defer
+      │   7    evolve — DEEPEN / TENSION / NARROW / CONTRADICT /
+      │        SILENCE / RETIRE per belief; Confirmed →
+      │        Established gated (doc types + foundation claim
+      │        still current); 4 consecutive silences on an
+      │        Established belief → [DECAY] → Confirmed
+      │   7.5  FOUNDATION REVIEW — fires on Confirmed/Established
+      │        transitions that bear on a named claim ID
+      │   8    changelog appended — every pass, no exceptions
+      ▼
+  ...next document repeats this same cycle indefinitely
+```
+
+Weakening is graduated, never abrupt: one contradiction on a mature belief → `[TENSION]` (held, under challenge). Repeated contradiction → `[NARROW]` or `[CONTRADICT]`. Pattern genuinely over → `[RETIRE]` (number kept, entry preserved). Silence accumulating on an Established belief → `[DECAY]`. No belief is ever retired on one weak contradiction — and none survives indefinitely without being re-tested.
+
+---
+
 ## The Runtime Contract
 
 ```
