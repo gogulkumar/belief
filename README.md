@@ -32,7 +32,7 @@ Belief reads business process deliverables — the recurring decks, transcripts,
 
 Not what any single document says. The pattern of behavior visible only across many comparable documents over time.
 
-**The system discovers the business model by reading. The user doesn't need to explain it upfront.** The documents contain the model — management explains how the business works every period. When a transcript says "Q1 marketing investment drives Q2 demand recovery with a 6–8 week lag," that is a relationship claim. The belief system extracts it, initializes a Candidate belief on the first document it appears in, and confirms or contradicts it as more documents arrive. By document 3–4, the belief memory contains a preliminary working model of the business — discovered from reading, not specified from assumption.
+**The system discovers the business model by reading. The user doesn't need to explain it upfront.** The documents contain the model — management explains how the business works every period. When a transcript says "Q1 marketing investment drives new customer volume in Q2 with a 6–8 week lag," that is a relationship claim. The belief system extracts it, initializes a Candidate belief on the first document it appears in, and confirms or contradicts it as more documents arrive. By document 3–4, the belief memory contains a preliminary working model of the business — discovered from reading, not specified from assumption.
 
 It doesn't store facts. It accumulates **beliefs**.
 

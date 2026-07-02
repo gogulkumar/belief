@@ -31,7 +31,7 @@ The fact extractor must capture:
 **The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they appear in documents far more often than analysts expect.
 
 A relationship claim is any statement where the document asserts that:
-- A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
+- A causes or drives B ("our Q1 marketing investment drove Q2 new customer volume")
 - A precedes or predicts B ("completed transactions typically convert to revenue within 30–45 days")
 - A is a function of B ("take rate improves as transaction volume scales above X")
 - A and B move together or diverge in a meaningful way ("volume was flat while revenue grew — price is doing the work")

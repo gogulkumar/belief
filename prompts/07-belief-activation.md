@@ -16,9 +16,9 @@ The difference:
 
 | Without belief activation | With belief activation |
 |--------------------------|------------------------|
-| "Q1 spend was 32% of the core volume metric, 200bps above FC." | "Q1 spend at 32% is within the established 28–34% normal range for this business's seasonal mechanic (Belief #5, Established). This is the thesis executing, not an overrun. Watch Q2 demand recovery at the 6–8 week mark." |
+| "Q1 spend was 32% of the core volume metric, 200bps above FC." | "Q1 spend at 32% is within the established 28–34% normal range for this business's acquisition mechanic (Belief #5, Established). This is the thesis executing, not an overrun. Watch Q2 new customer volume at the 6–8 week mark." |
 | "Revenue growth has been strong." | "Revenue guidance has been met or exceeded in 7 of 8 comparable quarters at a median beat of 1.4% (Belief #3, Established). The one miss was preceded by a specific language shift in the prior document. No such language shift is visible in the current document — the baseline expectation is a beat." |
-| "Marketing drives demand." | "Belief #5 (Established, 6 cycles confirmed): Spend in Q1 drives demand recovery in Q2 with a 6–8 week lag. This relationship was first stated explicitly in the first document reviewed and has been confirmed in every subsequent Q1→Q2 cycle. The chain connecting spend to demand is the primary operating mechanic the system has documented for this business." |
+| "Marketing drives demand." | "Belief #5 (Established, 6 cycles confirmed): Spend in Q1 drives new customer volume in Q2 with a 6–8 week lag. This relationship was first stated explicitly in the first document reviewed and has been confirmed in every subsequent Q1→Q2 cycle. The chain connecting spend to acquisition is the primary operating mechanic the system has documented for this business." |
 
 Activated beliefs answer calibrated questions. Unactivated documents answer literal questions.
 

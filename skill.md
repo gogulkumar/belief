@@ -602,12 +602,12 @@ Belief #N ([Status]): [What this belief says that is relevant. Quote the stateme
 ```
 
 **Examples of questions this handles:**
-- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
+- "Is Q1 marketing spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
 - "What drives revenue in this business?" → Stream 02 (Business Dynamics) relationship beliefs answer
 - "Should I be concerned about the revenue miss?" → Stream 02 (Business Dynamics) delivery track record answers with base rate and context
 - "Is this business self-correcting or does a miss compound?" → Stream 02 (Business Dynamics) feedback dynamics belief answers (if established)
 - "What language shift should make me worried?" → Stream 05 (Narrative Understanding) communication pattern beliefs answer
-- "What is the normal booking range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
+- "What is the normal volume range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
 
 ### Use Case C — Meeting Preparation
 

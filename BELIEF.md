@@ -46,7 +46,7 @@ It doesn't store facts. It accumulates beliefs. And beliefs are different.
 
 A critical design principle: **the system discovers the business model by reading — it doesn't require the user to describe it upfront.**
 
-The documents already contain the business model. Every quarterly review, earnings transcript, or board deck includes management's explanation of what drove the results: "Q1 marketing investment drove Q2 demand recovery," "when transaction volume crosses this threshold, supplier economics improve," "the cost structure is largely fixed, so volume softness flows directly to margin." These are explicit relationship claims — statements connecting one metric to another with direction, lag, and mechanism.
+The documents already contain the business model. Every quarterly review, earnings transcript, or board deck includes management's explanation of what drove the results: "Q1 marketing investment drove Q2 new customer volume," "when transaction volume crosses this threshold, supplier economics improve," "the cost structure is largely fixed, so volume softness flows directly to margin." These are explicit relationship claims — statements connecting one metric to another with direction, lag, and mechanism.
 
 The belief system treats these relationship claims as its most valuable signal type. When a document says A drives B, that is not a framing observation — it is a structural claim about how the business works. It should become a belief from the moment it first appears, marked Candidate, and confirmed or contradicted as more documents arrive.
 
@@ -268,18 +268,18 @@ After five or more comparable documents, a belief entry looks like this. The hea
 
 **Stream 02 example — relationship claim initialized from document one, then deepened**
 
-**## Belief #5 — Spend Compression Against the Core Volume Metric in Q1 Drives Demand Recovery in Q2 With a 6–8 Week Lag; the Chain Has Held in 6 Consecutive Cycles**
+**## Belief #5 — Spend Concentration Against the Core Volume Metric in Q1 Drives New Customer Volume in Q2 With a 6–8 Week Lag; the Chain Has Held in 6 Consecutive Cycles**
 **Status:** Established | **Confidence:** 0.78 | **Direction:** Stable
 
-**Statement:** This business runs a deliberate spend-ahead-of-season mechanic. Marketing spend compresses against the core volume metric in Q1 (typically 28–34% range) as the business invests ahead of the Q2 demand peak. New demand volume recovers in Q2 with a 6–8 week lag from peak Q1 spend. This mechanic was first stated explicitly by management in the first document reviewed and has been confirmed across 6 consecutive Q1→Q2 cycles. Q1 spend compression is not a problem — it is the thesis executing.
+**Statement:** This business runs a deliberate spend-to-acquisition mechanic. Marketing spend rises against the core volume metric in Q1 (typically 28–34% range) as the business runs a concentrated acquisition push. New customer volume follows in Q2 with a 6–8 week lag from peak Q1 spend. This mechanic was first stated explicitly by management in the first document reviewed and has been confirmed across 6 consecutive Q1→Q2 cycles. Q1 spend concentration is not a problem — it is the thesis executing.
 
-**Why it matters:** An agent reading the Q1 spend ratio in isolation will flag it as elevated. An agent that holds this belief will correctly interpret it as the seasonal investment phase of a mechanic that management has stated explicitly and that the delivery record has confirmed across 6 cycles. The calibration changes the entire downstream interpretation.
+**Why it matters:** An agent reading the Q1 spend ratio in isolation will flag it as elevated. An agent that holds this belief will correctly interpret it as the acquisition-investment phase of a mechanic that management has stated explicitly and that the delivery record has confirmed across 6 cycles. The calibration changes the entire downstream interpretation.
 
-**Evolution trail:** First seen in the first document reviewed — management stated: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into demand volume over the following 6–8 weeks." I initialized this as a Candidate relationship belief on the first document where it appeared — the explicit causal claim was sufficient to warrant tracking. The first Q1→Q2 cycle confirmed the timing. The second cycle the same. By the third cycle I had observed the mechanic in three cycles and advanced to Confirmed. Cycles 4–6 narrowed the spend range to 28–34% and confirmed the 6–8 week lag. The chain is now Established — deviation in either direction is the signal worth investigating, not the compression itself.
+**Evolution trail:** First seen in the first document reviewed — management stated: "our Q1 marketing investment is designed to drive new customer signups; we typically see conversion into new customer volume over the following 6–8 weeks." I initialized this as a Candidate relationship belief on the first document where it appeared — the explicit causal claim was sufficient to warrant tracking. The first Q1→Q2 cycle confirmed the timing. The second cycle the same. By the third cycle I had observed the mechanic in three cycles and advanced to Confirmed. Cycles 4–6 narrowed the spend range to 28–34% and confirmed the 6–8 week lag. The chain is now Established — deviation in either direction is the signal worth investigating, not the concentration itself.
 
-**Normal baseline:** Q1 spend ratio in 28–34% range. Q2 core volume metric at or above FC by mid-quarter. Lag between peak Q1 spend and demand recovery: 6–8 weeks.
+**Normal baseline:** Q1 spend ratio in 28–34% range. Q2 core volume metric at or above FC by mid-quarter. Lag between peak Q1 spend and new customer volume: 6–8 weeks.
 
-**Falsification test:** A Q1 with the spend ratio in range that does not produce Q2 demand recovery by week 10 would indicate the mechanic has broken. Management no longer describing the Q1 spend as an intentional demand investment — a language shift in how they explain Q1 — would be an early warning signal worth tracking before the next cycle confirms or denies the break.
+**Falsification test:** A Q1 with the spend ratio in range that does not produce Q2 new customer volume by week 10 would indicate the mechanic has broken. Management no longer describing the Q1 spend as an intentional acquisition investment — a language shift in how they explain Q1 — would be an early warning signal worth tracking before the next cycle confirms or denies the break.
 
 **Provenance:** Foundation dependency: `foundation.metrics.spend_and_core_volume` — spend and the core volume metric are the two primary thesis metrics | Confirming documents: cycles 1–6 | Blind passes: cycle 2 (independently re-derived the same Q1→Q2 lag with no visibility into the cycle-1 Candidate belief, before promotion to Provisional) | Contradiction searches: cycle 3 (searched, none found, before promotion to Confirmed), cycle 5 (searched, none found) | Related beliefs: none identified yet | Last checked: cycle 6
 
@@ -314,9 +314,9 @@ The second version makes a claim someone could argue with. It names something th
 **Pair 2 — Sector knowledge vs. entity-specific understanding**
 
 *Extraction (fails the master test):*
-> Q1 marketing spend concentration is the structural lead signal for Q2 volume recovery — a deliberate seasonal mechanic, not a cost problem.
+> Q1 marketing spend concentration is the structural lead signal for Q2 volume growth — a deliberate acquisition mechanic, not a cost problem.
 
-This applies equally to any business in this sector. Any travel or retail company invests ahead of its demand season. An analyst who has never read a single document from this entity could write this from general knowledge. It reveals nothing specific about how this business actually works.
+This applies equally to any business in this sector. Any subscription or consumer business invests ahead of an acquisition push. An analyst who has never read a single document from this entity could write this from general knowledge. It reveals nothing specific about how this business actually works.
 
 *Belief (passes the master test):*
 > Under pressure, this entity manages the narrative before it manages the problem. Every miss period in the record follows the same attribution sequence: external factors first, channel mix second, volume third. Controllable decisions come last or not at all. But the dynamics stream shows the actual primary driver in miss periods is consistently conversion efficiency — how efficiently demand becomes completed transactions. That metric rarely leads the bridge. The team has learned that external attribution is accepted more readily than operational attribution, so the story is structured to lead with what cannot be controlled before reaching what can.
@@ -622,7 +622,7 @@ See [`lifecycle/ingestion-pipeline.md`](lifecycle/ingestion-pipeline.md) for the
 Before reading the next document, an analyst loads the belief memory into Prompt 07 and gets a briefing: here is what this document is expected to show, here is what normal looks like for each area it will cover, and here is what would constitute a signal worth investigating — deviation from a held belief. They walk in with priors, not cold.
 
 **02 — Analytical Q&A**
-An analyst asks a specific question: "Is the Q1 spend compression a problem?" Prompt 07 reads the belief memory and answers from it: "Belief #5 says no — this business runs a deliberate spend-ahead-of-season mechanic, confirmed in 6 consecutive cycles. Q1 compression is the thesis executing. The question to watch is whether Q2 demand recovers on the 6–8 week timeline, not whether Q1 spend was elevated." The answer is not a summary of the current document. It is calibrated judgment from accumulated evidence.
+An analyst asks a specific question: "Is the Q1 spend concentration a problem?" Prompt 07 reads the belief memory and answers from it: "Belief #5 says no — this business runs a deliberate spend-to-acquisition mechanic, confirmed in 6 consecutive cycles. Q1 concentration is the thesis executing. The question to watch is whether Q2 new customer volume lands on the 6–8 week timeline, not whether Q1 spend was elevated." The answer is not a summary of the current document. It is calibrated judgment from accumulated evidence.
 
 **03 — Anomaly detection**
 The belief sets the normal. When a new document arrives, the question is not "what does this document say?" but "what does this document do differently from what was expected?" Without a precise baseline, anomalies are invisible. With a belief, they surface immediately — not because a rule was triggered, but because the expected state is known and the deviation from it is specific.
