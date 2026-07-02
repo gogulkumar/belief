@@ -17,13 +17,23 @@ compiled/{stream_id}/
 └── fact_extractor_prompt.md
 
 streams/{stream_id}/
-├── belief.md                    ← the belief memory (L1)
+├── belief.md                    ← the belief memory (L1) — current state
+├── belief_versions/
+│   └── {doc_id}_belief.md      ← snapshot of belief.md after each document (version history)
 ├── belief_changelog.md          ← append-only audit trail
 ├── L2_factlogs/
 │   └── {doc_id}_fact_log.md    ← per-document extracted signals
 └── L3_raw/
     └── {doc_id}.json            ← immutable transcription archive
 ```
+
+---
+
+## Version History
+
+Every time the belief engine finishes a document pass, the resulting `belief.md` is snapshotted to `belief_versions/{doc_id}_belief.md` before the next document is processed. The changelog records the *diffs*; the snapshots preserve the *states* — so anyone can see exactly what the belief memory looked like after document 3 versus after document 7, and trace how a belief evolved rather than only ever seeing the current, final state.
+
+This is the memory principle applied to the beliefs themselves: nothing the system once held is discarded. A belief that was later revised, narrowed, or retired is still readable exactly as it stood at every point along the way — which is what makes a wrong belief diagnosable (where did the reasoning turn?) rather than just gone.
 
 ---
 
@@ -139,15 +149,15 @@ On the first document, the belief engine must initialize between 8 and 15 specif
 ### Stream 02 example — Business Dynamics, relationship belief, initialized from document one, deepened across 6 cycles
 
 ```markdown
-## Belief #5 — Spend in Q1 drives demand recovery in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
+## Belief #5 — Spend in Q1 drives new customer volume in Q2 with a 6–8 week lag — stated explicitly by management, confirmed in 6 consecutive cycles.   [DEEPEN]   Status: Established
 
-**Statement**: This business runs a deliberate spend-ahead-of-season mechanic. The spend ratio against the core volume metric compresses in Q1 (typically 28–34%), which drives Q2 demand recovery within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When the spend ratio falls below 26% in Q1, Q2 demand recovery has underperformed by a median of 4.2 percentage points.
+**Statement**: This business runs a deliberate spend-to-acquisition mechanic. The spend ratio against the core volume metric rises in Q1 (typically 28–34%), which drives new customer volume in Q2 within 6–8 weeks. The chain has held in all 6 comparable cycles observed. When the spend ratio falls below 26% in Q1, Q2 new customer volume has underperformed by a median of 4.2 percentage points.
 
-**Why it matters**: The foundation identifies spend and the core volume metric as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 demand conversion is the single most predictive mechanic in the business. Understanding where the spend ratio sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 demand will recover on cycle or disappoint.
+**Why it matters**: The foundation identifies spend and the core volume metric as the two primary thesis metrics. The 6–8 week lag between Q1 spend and Q2 acquisition conversion is the single most predictive mechanic in the business. Understanding where the spend ratio sits in Q1 — relative to the 28–34% normal range — is the earliest leading signal for whether Q2 volume will land on cycle or disappoint.
 
-**Evolution trail**: This relationship belief was initialized on the first document — the first document reviewed included an explicit management statement: "our Q1 marketing investment is designed to capture the Q2 demand window; we typically see conversion into demand over the following 6–8 weeks." I captured this as a RELATIONSHIP CLAIM and initialized a Candidate belief on that statement alone. The statement was the evidence; I did not wait for the relationship to play out. The first Q1–Q2 cycle confirmed the lag: spend ratio at 31% in Q1, demand up 8.4% in Q2 within 7 weeks — Provisional. Three confirmed cycles by the third Q1 — Confirmed. The sub-claim about the 26% threshold emerged when the spend ratio fell to 24.8% in a Q1 and Q2 demand recovered only 3.1%. A later Q1–Q2 cycle added a sixth cycle. The threshold sub-claim rests on two datapoints — Provisional sub-claim inside an Established primary claim.
+**Evolution trail**: This relationship belief was initialized on the first document — the first document reviewed included an explicit management statement: "our Q1 marketing investment is designed to drive new customer signups; we typically see conversion into new volume over the following 6–8 weeks." I captured this as a RELATIONSHIP CLAIM and initialized a Candidate belief on that statement alone. The statement was the evidence; I did not wait for the relationship to play out. The first Q1–Q2 cycle confirmed the lag: spend ratio at 31% in Q1, new volume up 8.4% in Q2 within 7 weeks — Provisional. Three confirmed cycles by the third Q1 — Confirmed. The sub-claim about the 26% threshold emerged when the spend ratio fell to 24.8% in a Q1 and Q2 volume grew only 3.1%. A later Q1–Q2 cycle added a sixth cycle. The threshold sub-claim rests on two datapoints — Provisional sub-claim inside an Established primary claim.
 
-**Normal baseline**: Q1 spend ratio in the 28–34% range should produce Q2 demand recovery of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 demand expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
+**Normal baseline**: Q1 spend ratio in the 28–34% range should produce Q2 new customer volume growth of 6–10% within 6–8 weeks of Q1 close. Any Q1 reading below 26% should lower the Q2 volume expectation by approximately 4 percentage points. Any Q1 reading above 36% (which has not yet occurred) is outside the observed range and requires a new baseline.
 
 **Falsification test**: A cycle where the spend ratio sits within the 28–34% normal range in Q1 but Q2 demand fails to recover within 6–10% would break this belief. A cycle where the spend ratio falls below 26% but Q2 demand still recovers on the normal range would retire the threshold sub-claim. Either outcome would force a fundamental re-examination of the operating chain.
 

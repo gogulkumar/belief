@@ -59,9 +59,11 @@ Established is also not permanent by default. If four consecutive comparable doc
 
 ### When a Pattern Breaks
 
-The durability that makes a belief useful also means a single contradicting document does not immediately break it. The engine records the contradiction as **Tension** — the belief is held but flagged.
+The durability that makes a belief useful also means a single contradicting document does not immediately break it. The engine records the contradiction as **Tension** — the belief is held but flagged, its Statement rewritten to name what broke and what the next document must show to resolve it.
 
-If contradictions accumulate across two or three consecutive documents, the engine must decide:
+Often the resolution makes the belief *better*: what looked like a contradiction turns out to be a bounded exception, and the belief narrows into a more precise claim ("X holds except under condition Y") — produced because of the contradiction, not in spite of it. Retiring on the first anomaly would have thrown that away.
+
+If contradictions accumulate across three consecutive comparable documents (configurable), the engine must decide:
 - **Narrow** — the pattern still holds, but only in a more specific scope than believed
 - **Contradict** — the statement itself was wrong; revise it
 - **Retire** — the pattern has genuinely ended; archive the belief with its number marked RETIRED

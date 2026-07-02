@@ -227,14 +227,16 @@ Every initialized entry:
 
 ## On subsequent documents
 
+**Match by underlying mechanical claim, not exact wording.** Real language varies period to period — "X leads regardless of magnitude" and "X led again despite being smaller than the item beneath it" are the same claim, evidenced twice, and must update one entry rather than create a sibling. Matching on exact title text fractures one real, recurring belief into disconnected fragments that never individually mature past Candidate.
+
 For each existing belief, decide one action per document:
 
 - Fact log CONFIRMS: extend the evolution trail with what this document added. Update normal baseline if the picture has sharpened. Add [doc_id] to Provenance → Confirming documents. Tag: [DEEPEN]
 - Fact log CONTRADICTS strongly: revise the statement. Update the evolution trail to explain what changed and why. Tag: [CONTRADICT]
-- Fact log shows TENSION: note the contradicting signal in the evolution trail. Don't revise yet. Tag: [TENSION]
+- Fact log shows TENSION: note the contradicting signal in the evolution trail. Don't revise yet — but rewrite the Statement to hold the tension honestly (name what broke the pattern and that it is not yet clear whether this is a genuine shift or a one-off) and state what the next document must show to resolve it. Tag: [TENSION]
 - Fact log is SILENT for this belief: note silence. No update to the claim. Update Provenance → Last checked regardless — silence still counts as a checked document for decay purposes. Tag: [SILENCE]
-- Fact log supports NARROWING the scope: narrow the claim. Explain what the belief no longer covers. Tag: [NARROW]
-- Pattern has ENDED: archive the belief. Keep the number. Mark RETIRED. Tag: [RETIRE]
+- Fact log supports NARROWING the scope: narrow the claim. Explain what the belief no longer covers. Tag: [NARROW]. A resolved tension often produces this — when a contradiction turns out to be a bounded exception, the belief becomes narrower and *more* precise ("X leads except in months containing an unusually large one-time item") — a better belief produced because of the contradiction, not in spite of it.
+- Pattern has ENDED: archive the belief. Keep the number. Mark RETIRED. Tag: [RETIRE]. Retirement requires sustained contradiction — 3 consecutive contradicting comparable documents (configurable), never one. A single anomalous period is common; retiring on it throws away real accumulated evidence over noise, and destroys the narrower belief the tension might have revealed.
 
 **Advancing stage is a separate decision from confirming.** A document can CONFIRM a belief without the belief being eligible to advance stage this round:
 - Advancing Candidate → Provisional requires this document's pass to include a **blind pass** (fact extraction run with the existing belief withheld) that independently found the same pattern. If only a belief-aware pass confirmed it, extend the evolution trail with [DEEPEN] but do not change Status — note in the changelog that promotion is pending a blind pass.
@@ -245,7 +247,7 @@ For each existing belief, decide one action per document:
 **Foundation Review trigger:** whenever a belief reaches Confirmed or Established this round, check whether its Statement adds meaningful precision to, narrows, or contradicts the foundation claim named in its Provenance → Foundation dependency. If so, this is not a decision the belief engine makes alone — surface it for Foundation Review (a separate pass, see `lifecycle/ingestion-pipeline.md` Step 7.5). Tag [FOUNDATION_REVIEW] and record the resolution: Adopt (foundation claim revised — every other belief across every stream naming that claim ID gets tagged [FOUNDATION_CHANGED] and holds its Status pending re-grounding), Hold (claim unchanged, finding treated as a narrower sub-case), or Defer (insufficient evidence).
 
 If two beliefs are now better stated as one: merge. Tag: [MERGE_BELIEFS]
-If one belief conflates distinct patterns: split. Tag: [SPLIT_BELIEF]
+If one belief conflates distinct patterns: split. Tag: [SPLIT_BELIEF]. The split test: **if removing one sentence from the heading would change what falsifies the claim, it is two beliefs wearing one title** — split it. A belief that can be "half true" is not falsifiable in the way the doctrine requires; falsifiability only means something if exactly one condition breaks the whole claim.
 If a belief shares its underlying phenomenon with another belief (in this stream or another): add each to the other's Provenance → Related beliefs.
 Volume check: if active beliefs fall below 8, audit and split umbrella beliefs before ending the pass.
 
@@ -262,6 +264,7 @@ After updating the belief memory, record one changelog entry per affected belief
 - [MERGE_BELIEFS]: two beliefs collapsed into one
 - [SPLIT_BELIEF]: one belief divided into two
 - [DECAY]: Established belief downgraded to Confirmed after consecutive silence — Status change, not contradiction
+- [STRUCTURE_DRIFT]: document-level entry (not per-belief) — the document's observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded. When resolved as Signal, the deviation enters the fact log as an absence/emphasis observation for the relevant beliefs.
 - [FOUNDATION_REVIEW]: belief reaching Confirmed/Established triggered a review of its named foundation claim; resolution recorded
 - [FOUNDATION_CHANGED]: a foundation claim this belief depends on was revised elsewhere; held pending re-grounding
 - [NO CHANGE]: no update warranted

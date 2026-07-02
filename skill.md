@@ -1,15 +1,17 @@
 # Belief Skill
 
-> Paste the skill prompt below into Claude (or any capable AI) and follow the steps. No prior knowledge of the system required — the skill walks you through every stage, shows you what it produced, and asks before it moves on.
+> Paste the skill prompt below into Claude Code (or any capable AI) and follow the steps. No prior knowledge of the system required — the skill walks you through every stage, produces every artifact, writes it to disk when it can, and asks before it moves on.
 
 ---
 
 ## How to Use This
 
 1. Copy everything inside the **SKILL PROMPT** section below
-2. Paste it into a new Claude conversation (or any AI assistant)
+2. Paste it into a new Claude Code session (or any AI conversation)
 3. Attach any documents the AI needs at the step it asks for them
-4. Follow the conversation — the AI will produce each intermediate output and confirm with you before proceeding
+4. Follow the conversation — the AI will produce each intermediate output, persist it, and confirm with you before proceeding
+
+In **Claude Code** (or any environment with file tools), the skill writes every artifact to its canonical path automatically — the foundation, the profile, the compiled prompts, the belief memory, snapshots, fact logs, and changelog all become real files you can commit. In a plain chat with no file access, it shows each artifact in full and tells you exactly where to save it.
 
 The skill handles two situations automatically:
 - **New stream** — no beliefs exist yet; the AI runs the full setup before processing any document
@@ -28,6 +30,23 @@ The skill handles two situations automatically:
 You are running the **Belief pipeline** — a system that reads recurring business documents and accumulates durable, falsifiable beliefs about how an entity behaves across comparable documents over time.
 
 Your job is to walk the user through every stage in order, produce the output for each stage, show it to the user, wait for confirmation, and then proceed. Do not skip steps. Do not combine steps unless explicitly told to. At every stage, tell the user what you produced, what it means, and what comes next.
+
+**Persist everything.** If you have file tools (you do in Claude Code), create this layout at the start and write every artifact to its path the moment it is confirmed — never keep an artifact only in conversation:
+
+```
+entities/{entity_id}/foundation.md
+compiled/{stream_id}/document_profile.md
+compiled/{stream_id}/strategic_blueprint.md
+compiled/{stream_id}/belief_reasoning_prompt.md
+compiled/{stream_id}/fact_extractor_prompt.md
+streams/{stream_id}/belief.md
+streams/{stream_id}/belief_versions/{doc_id}_belief.md
+streams/{stream_id}/belief_changelog.md
+streams/{stream_id}/L2_factlogs/{doc_id}_fact_log.md
+streams/{stream_id}/L3_raw/{doc_id}.md
+```
+
+On every later run, read the current state from these files rather than asking the user to paste anything that already exists on disk. If you have no file access, show each artifact in full and tell the user exactly where to save it — and ask them to paste artifacts back in when a later stage needs them.
 
 ---
 
@@ -86,30 +105,44 @@ Do NOT ask about the business model, operating chain, causal relationships, thes
 
 **Output — foundation.md**
 
+Every atomic claim carries a stable claim ID (an HTML comment) and a source label. Belief Provenance records will point at these IDs — once minted, an ID is never renamed or reused. Interview answers are labeled `source: interview` (hypotheses); corpus grounding later relabels what the documents corroborate.
+
 ```
 # [Entity Name] — Foundation
 
 Built: [date]
 
 ## Entity Identity
+<!-- claim: foundation.identity -->
+source: interview
 Name: [Entity name]
 Type: [What kind of entity — one sentence]
 Document producer: [Who creates the documents this system will read]
 
 ## Documents
+<!-- claim: foundation.documents -->
+source: interview
 [For each document type:]
 - Type: [Name]
 - Cadence: [How often it arrives]
 - Format: [PDF, PPTX, transcript, etc.]
 
 ## Known Prior Context
+<!-- claim: foundation.prior_context.{slug} — one ID per distinct claim the user states -->
+source: interview
 [Only what the user provided. If nothing: "None — business model and operating mechanics will be discovered from documents."]
 
 ## Known Document Quirks
+<!-- claim: foundation.quirks -->
+source: interview
 [Only what the user provided. If nothing: "None identified."]
 
 ## Discovered Understanding
-[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. The business model lives here once the system has earned it from reading.]
+[Leave blank at setup. This section is populated as belief streams accumulate knowledge — Stream 02 (Business Dynamics) relationship beliefs, Stream 01 (Business Model Understanding) thesis findings, etc. Claims added here from corpus grounding carry `source: corpus (doc_ids)` and their own claim IDs. The business model lives here once the system has earned it from reading.]
+
+## Foundation Revision Log
+No revisions yet — foundation built from initial interview only.
+[Append-only. Every later change to a claim goes through Foundation Review or corpus grounding and gets an entry here: what changed, why, triggered by what, and which beliefs were flagged for re-grounding. Never edit a claim silently.]
 ```
 
 **Corpus grounding — after the third document.** Once three comparable documents have been processed, revisit this foundation: read all the fact logs together and pull out what recurred *identically* in every one — metric definitions, benchmark sequences, the fixed reporting scaffold. Those become foundation claims with stable claim IDs (`foundation.metrics.{name}` etc.), labeled `source: corpus`. Anything the user stated at setup that the fact logs corroborated gets relabeled `interview+corpus`; anything contradicted gets surfaced to the user before changing. The test: recurs identically and is definitional → foundation claim; could vary period to period and needs testing → belief.
@@ -141,6 +174,8 @@ Present the seven standard options:
 
 Custom streams are also supported. If the user names something not on this list, ask them to define it in one sentence: what does a belief in this stream look like?
 
+Tell the user plainly: the scope they name here is a **fence** — it permanently bounds what this stream is allowed to learn. A fascinating out-of-scope aside in a future document stays outside the fence by design. And it is *business* scope, not file scope — "what parts of the business I care about," never "what files I'll upload."
+
 **2. What documents will flow through this stream?**
 
 Ask:
@@ -148,10 +183,23 @@ Ask:
 - What format? (PDF, PPTX, DOCX, audio, plain text)
 - How often do they arrive? (Weekly, monthly, quarterly)
 - How many do you have now, and how many do you expect in the next six months?
+- **Please attach one sample of each document type.** Explain why: "You know the business — but nobody can recite their documents' anatomy from memory. I'll read the sample and map its structure myself; you never have to describe it."
+
+Do NOT ask the user what sections their documents contain or how they're laid out. That knowledge comes from reading the sample, not from the interview.
 
 **3. What do you want to know after ten documents that you do not know now?**
 
 This anchors the stream to a real purpose.
+
+**4. Read each sample — the Structural Read (two parts, in order).**
+
+**Part 1 — the x-ray, stream-blind.** Read the attached sample in full and map its internal logic *as if you had never heard which stream was requested* — the test: could this exact map have been written by someone who never knew the angle? Every line must be traceable to the sample — verbatim section titles, verbatim benchmark labels, observed positions. Map: the section inventory in order; what opens and closes the document and how the storyline threads between; how sections reference each other and which metrics reappear across them; how this period's story connects to the recurring structure (prior-period references, carried metrics, recurring framings); where numbers live vs. where commentary lives; **composed metrics as name-relationships** (no values — test whether each composition reconciles at every cut shown; where it breaks, say which cut and how many of how many, name every candidate explanation the document leaves open, and choose none); **behavioral patterns in non-metric sections** (pattern shape + how often it occurs in this document); footnotes/appendix/definitions; and absences — **actively hunted**, including cross-granularity ones (a component tracked at the whole-business level but never per line means no per-line belief about it can ever form).
+
+**Part 2 — the scouting read, stream-aware.** Only after the x-ray: given this skeleton, what can this stream's lens learn from it? This fills the CAN/CANNOT sections, each line citing the x-ray.
+
+Guardrails: zero metric values in the x-ray, even to prove a composition breaks (structural counts are fine). No vocabulary the sample never used. No maturity-gap filler ("cannot confirm from one document" is true of every document ever profiled). Never smooth an inconsistency into an average — "described once as firm policy, once as a temporary exception" IS the signal. And the boundary: map how the story is communicated, stitched, and connected — never interpret what the story means. No performance judgment, no causes, no beliefs, no pattern claims (you have one sample; recurrence hasn't been earned yet).
+
+If the user cannot provide a sample, mark the Structural Map `UNGROUNDED — pending first document` and tell them the profile is provisional until the first real document is read.
 
 **Output — document_profile.md**
 
@@ -168,8 +216,20 @@ Purpose: [What this stream is trying to understand, in one paragraph]
 ## Document Types
 
 For each document type:
-- What it CAN give this stream: [specific signals available for the chosen angle]
-- What it CANNOT give this stream: [structural gaps — what this document type cannot carry]
+
+### Structural Map — read from: [sample filename] (or UNGROUNDED — pending first document)
+- Section inventory (in order, verbatim titles): [...]
+- Narrative assembly (opens with / threads through / closes with): [...]
+- Stitching (cross-references, metrics reappearing across sections): [...]
+- Current-story connection (prior-period references, carried metrics, recurring framings): [...]
+- Numbers vs. commentary: [...]
+- Benchmarks as labeled (verbatim): [...]
+- Recurring apparatus (footnotes, appendix, definitions): [...]
+- Absences observed: [...]
+
+### Capability
+- What it CAN give this stream: [each line citing the Structural Map feature that shows it exists]
+- What it CANNOT give this stream: [observed absences — not type-level assumptions]
 - Trigger question: [The single question this document type helps answer for this stream]
 
 ## Success Criteria
@@ -178,7 +238,7 @@ Patterns to watch for: [Any hypotheses the user named]
 ```
 
 **Success check — Stage 2:**
-Show the profile. Ask: Does this capture the right angle and the right documents? Is anything missing?
+Show the profile — Structural Map first. Ask: Does this match the document you attached — are the section titles and benchmarks really what your documents use? Does this capture the right angle? Is anything missing?
 
 Wait for confirmation. Then say: "Profile confirmed. Moving to Stage 3 — Compile."
 
@@ -199,7 +259,9 @@ Which thesis metrics are most visible in these documents. What the normalization
 Entity, scope, stream name, angle, document types, purpose statement.
 
 **Section 2 — Signal Matrix**
-For each document type: what it CAN and CANNOT give this stream. The trigger question for each type.
+For each document type: what it CAN and CANNOT give this stream, with every line citing the profile's Structural Map — observed sections, benchmarks, and absences, never type-level intuition ("decks are usually thin" is not evidence). The trigger question for each type. If the Structural Map is marked UNGROUNDED, say so here and mark the whole matrix provisional.
+
+Also declare **cross-stream noise** plainly: raw facts adjacent streams would prize that are noise for *this* lens (e.g., a sequencing habit is prime material for Narrative Understanding and irrelevant noise for Business Dynamics). Stating this explicitly is what guarantees the same raw signal gets radically different treatment per lens by design, not by accident of which pass noticed it first.
 
 **Section 3 — Belief Definition for This Stream**
 - What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full entry format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test / Provenance)
@@ -217,7 +279,7 @@ Show the blueprint. Ask: Does this capture how the business actually behaves, in
 
 ### Stage 3b — Belief Reasoning Prompt
 
-Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules, the promotion gating (blind pass, contradiction search), the volume check, the numbers policy, the entry format (five narrative fields plus Provenance), and exactly what the engine must and must not do.
+Read the blueprint. Produce a `belief_reasoning_prompt.md` — the system prompt the belief engine runs at every document. It must be fully self-contained: the entity context, the belief definition, the seed set, the evolution rules and all action tags (including `[DECAY]` — Established downgrades to Confirmed after 4 consecutive silent documents — and the Foundation Review trigger when a belief reaches Confirmed/Established bearing on its named foundation claim), the promotion gating (blind pass to reach Provisional, reported contradiction search to reach Confirmed — document count alone never promotes), the volume check, the numbers policy, the entry format (five narrative fields plus Provenance), and exactly what the engine must and must not do.
 
 This prompt is used as-is at runtime. Write it for an AI that will receive it as a system prompt with no other context.
 
@@ -227,9 +289,14 @@ Show the first 30 lines of the compiled prompt and the seed set section. Ask: Do
 ### Stage 3c — Fact Extractor Prompt
 
 Read the blueprint and the belief reasoning prompt. Produce a `fact_extractor_prompt.md` — the system prompt the fact extractor runs against each document window. It must tell the extractor:
+- The **Expected Structure**, embedded verbatim from the profile's Structural Map — what this document type is supposed to look like, so deviations can be reported rather than silently absorbed
+- The output opens with **Part 0 — STRUCTURE OBSERVED**: the skeleton actually walked through (verbatim section titles in order, benchmarks as labeled, apparatus) plus every deviation from the Expected Structure and anything expected but absent
 - What to look for per candidate (verbatim language, numeric context, structural position, comparison basis)
 - What NOT to extract for each candidate
 - The granularity rule: distinct patterns are separate entries; the extractor must support 8–15 Candidate beliefs on the first document
+- The **two extraction modes**: belief-aware (existing belief provided — the default) and blind (existing belief withheld — used when a promotion is pending, so confirmation can be independently re-derived rather than echoed)
+- The **humility cap**: everything produced is "newly noticed in this document — could matter, could be nothing." The extractor never claims confirmation, recurrence, or comparison across documents — it hasn't seen last month, on purpose. Recurrence is the belief engine's judgment.
+- Lens isolation: this stream's lens only, deliberately blind to other streams
 - Output format for each extracted signal
 
 **Success check — Stage 3c:**
@@ -245,11 +312,14 @@ Ask the user to share the first document.
 
 > Please attach or paste the document you want to process. If it is a PDF, deck, or audio file, describe what it is and I will tell you how to share the content with me.
 
-Once the document is provided:
+Once the document is provided, assign it a `doc_id` (e.g., `2026-06_monthly_review`) and — if you have file tools — persist the raw content to `streams/{stream_id}/L3_raw/{doc_id}.md` before extracting anything. L3 is the immutable archive: written once, never edited, the ultimate source every fact log and belief traces back to. Then:
 
 ### Step 6 — Extract Signals
 
 Using the `fact_extractor_prompt.md` as your system context, read the document and produce a `fact_log.md`.
+
+**Part 0 — Structure Observed (always opens the fact log):**
+Record the skeleton you walked through: section inventory in order (verbatim titles), benchmarks as labeled (verbatim), apparatus present (footnotes/appendix/definitions), and every deviation from the profile's Structural Map — sections added, removed, renamed, reordered; benchmarks changed; anything expected but absent. If the profile's map was marked `UNGROUNDED — pending first document`, this block becomes the Structural Map: ground it, mark the profile grounded, and revisit the CAN/CANNOT sections and compiled extractor prompt against it before trusting their output. Never adapt to a changed structure silently — report the difference; deciding what it means happens in the drift check, not here.
 
 **First pass — Relationship Discovery:**
 Before anything else, scan the entire document for explicit relationship claims — any statement where the document says that one metric, factor, or business component drives, causes, enables, or predicts another. These are the most valuable signals in the document because they reveal how the business works. Capture every one.
@@ -277,10 +347,14 @@ Signal type: [PRIMARY SIGNAL / PATTERN EVIDENCE / BASELINE READING / LEADING IND
 Content: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 Source position: [Where in the document this appeared]
 Comparison basis: [What benchmark or reference point, if applicable]
+Why this could recur: [The narrower condition that would need to hold next document — not "this is a pattern"]
+Next-document check: [What specifically the next comparable document must show]
 Absent signals: [What was expected but not present, if meaningful]
 ```
 
 If no signal for a named candidate: output `CANDIDATE #N — NO SIGNAL IN THIS WINDOW`
+
+**Always close the fact log with a Gaps section** — one line per learning direction with no evidence in this document, so a later reader never wonders whether gaps were simply forgotten. And enforce the banned words: "confirmed," "again," "consistently," "as before," "still," "continues" — this pass has seen one document and structurally cannot know if those are true. Out-of-lens observations are omitted silently, never surfaced with a caveat.
 
 **Success check — Step 6:**
 Show the fact log, starting with any relationship claims found. Ask: Do these relationship claims accurately represent what the document stated? Did the extraction miss any explicit causal statements? Do the named candidate signals look accurate?
@@ -337,6 +411,8 @@ Then produce `belief_changelog.md`:
 [NEW_BELIEF] Belief #N — [claim] — [Relationship belief: initialized from explicit statement. Other: initialized from first observed signal.] Status: Candidate.
 ```
 
+Then snapshot the initialized memory to `belief_versions/{doc_id}_belief.md` — version 1 of the belief memory's history.
+
 **Success check — Step 7:**
 Show the belief memory. Ask:
 - How many relationship claims from the document became Candidate beliefs? (If zero but the document discussed how the business works, the extraction may have missed statements)
@@ -351,39 +427,54 @@ Wait for confirmation. Then say: "Belief memory initialized. Stream is live. Whe
 
 ## Stage 5 — Update Existing Stream (New Document)
 
-*Run this stage when beliefs already exist and a new document has arrived.*
+*Run this stage when beliefs already exist and a new document has arrived. Setup is never re-run — the foundation, profile, blueprint, and compiled prompts stay put. This is the shortcut path: pick the stream, attach the new document(s), go.*
 
 ### What you need
 - The existing `belief.md` (paste it in or confirm it is loaded)
 - The existing `belief_reasoning_prompt.md`
 - The existing `fact_extractor_prompt.md`
-- The new document
+- The new document(s)
 
 If any of the compiled prompts are missing, say so and offer to rebuild them from the blueprint before proceeding.
 
+**If more than one document arrived: ask the user for the reading order, then process strictly one at a time.** Order matters — a belief evolves differently depending on what came before it, and each document must see the belief memory as it stood after the previous one. Run the full Step 6 → 6.5 → 7 → 7.5 cycle for document one, snapshot the result, and only then start document two. Never merge multiple documents into one pass.
+
 ### Step 6 — Extract Signals from New Document
 
-Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6. This is a **belief-aware pass** — the existing belief memory is part of the input.
+Using the `fact_extractor_prompt.md`, extract signals from the new document as in Stage 4 Step 6 — including the **Structure Observed** block that opens the fact log. This is a **belief-aware pass** — the existing belief memory is part of the input.
 
 **Check for promotion candidates first.** Before running the belief-aware pass, scan the existing belief memory for any Candidate belief that would reach Provisional with one more confirmation, or any Provisional belief that would reach Confirmed. For each one, also run a **blind pass**: extract from the new document with the existing belief withheld entirely, and record independently whatever pattern is found. Do this only for beliefs actually up for promotion this round — not for the whole memory, and not for beliefs already Confirmed or Established with a clean history.
 
 **Success check:** Show the fact log (and any blind-pass results run this round). Ask for confirmation before proceeding.
 
+### Step 6.5 — Structural Drift Check
+
+Compare the fact log's Structure Observed block against the profile's Structural Map for this document type.
+
+- **Match** — say so in one line and move on.
+- **Drift** — show the user exactly what changed (sections added/removed/renamed/reordered, benchmarks changed, apparatus moved) and ask them to resolve it:
+  - **Recalibrate** — "the template changed." Revise the Structural Map (append a Structural Map Revision Log entry — never a silent rewrite), revisit the Blueprint Section 2 CAN/CANNOT for this type, and recompile the extractor prompt. Still record the change as a structural observation in the fact log — a redesign can carry meaning.
+  - **Signal** — "the document is telling me something." A section that quietly disappeared or a benchmark that stopped being shown is communication behavior — exactly what Stream 05 tracks. Keep the map; let the deviation flow to the belief engine as an absence/emphasis signal.
+  - **Defer** — seen once, might be a one-off. Watch the next document. If the same drift recurs in 2 consecutive comparable documents, it can no longer be deferred — force the Recalibrate-or-Signal decision.
+
+Record `[STRUCTURE_DRIFT]` in the changelog with the resolution. Never absorb drift silently — a document changing shape is sometimes the story.
+
 ### Step 7 — Evolve the Belief Memory
 
-Using the `belief_reasoning_prompt.md` as your system context, read both the existing belief memory and the new fact log. For each belief, decide and apply one action:
+Using the `belief_reasoning_prompt.md` as your system context, read both the existing belief memory and the new fact log. **Match incoming learnings to existing beliefs by underlying mechanical claim, not exact wording** — "X leads regardless of magnitude" and "X led again despite being smaller" are the same claim, evidenced twice; exact-title matching fractures one real belief into fragments that never mature. For each belief, decide and apply one action:
 
 | Action | When to use |
 |--------|-------------|
 | `[DEEPEN]` | Fact log confirms the pattern — extend the evolution trail, sharpen the normal baseline, advance stage if threshold met |
 | `[CONTRADICT]` | Fact log provides strong contrary evidence — revise the statement, update evolution trail to explain the shift |
-| `[TENSION]` | A contradicting signal appeared but not yet strong enough to revise — note in evolution trail |
+| `[TENSION]` | A contradicting signal appeared but not yet strong enough to revise — rewrite the Statement to hold the tension honestly and name what the next document must show to resolve it |
 | `[NARROW]` | Scope of the belief has become more specific — narrow the claim, explain what it no longer covers |
 | `[SILENCE]` | Document covered this area but showed no signal — note silence, no revision |
-| `[RETIRE]` | Pattern has ended — archive the belief, keep the number, mark RETIRED |
+| `[RETIRE]` | Pattern has ended — archive the belief, keep the number, mark RETIRED. Requires 3 consecutive contradicting comparable documents — never one anomalous period |
 | `[MERGE_BELIEFS]` | Two beliefs are now better stated as one |
-| `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it |
+| `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it. The test: if removing one sentence from the heading would change what falsifies the claim, it's two beliefs wearing one title |
 | `[DECAY]` | Established belief has had 4 consecutive silent comparable documents — downgrade to Confirmed |
+| `[STRUCTURE_DRIFT]` | Document-level entry from Step 6.5 — observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded |
 | `[FOUNDATION_REVIEW]` | This belief just reached Confirmed/Established while bearing on a foundation claim — Foundation Review triggered, resolution recorded |
 | `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised elsewhere — held pending re-grounding |
 | `[NO CHANGE]` | No update warranted |
@@ -408,8 +499,15 @@ Do not resolve Adopt vs. Hold yourself. Surface the conflict and let the user de
 
 Produce:
 1. Updated `belief.md` — surgical changes only; unchanged beliefs stay as-is
-2. Appended `belief_changelog.md` — one entry per affected belief, including any `[FOUNDATION_REVIEW]` / `[FOUNDATION_CHANGED]` entries
-3. If a review resolved Adopt: updated `foundation.md` with an appended Foundation Revision Log entry
+2. A snapshot copy: `belief_versions/{doc_id}_belief.md` — the belief memory as it stands after this document, preserved forever (the changelog records the diffs; the snapshots preserve the states)
+3. Appended `belief_changelog.md` — one entry per affected belief, including any `[FOUNDATION_REVIEW]` / `[FOUNDATION_CHANGED]` entries
+4. If a review resolved Adopt: updated `foundation.md` with an appended Foundation Revision Log entry
+
+If more documents are queued, move to the next one only now — it must see the belief memory as it stands after this snapshot.
+
+### Corpus Grounding Check (fires once, after the third comparable document)
+
+If this pass just produced the third fact log for this stream (configurable), run the corpus grounding pass before continuing: read all fact logs so far *together* and pull out what recurred **identically** in every one — metric definitions, benchmark sequences, the fixed reporting scaffold. Write those into the foundation's Discovered Understanding as claims with stable claim IDs and `source: corpus (doc_ids)`. Then reconcile: interview claims the corpus corroborates get relabeled `interview+corpus`; interview claims the corpus **contradicts** get surfaced to the user (never silently changed — log the resolution in the Foundation Revision Log); claims the corpus is silent on stay labeled hypotheses. The test: recurs identically and is definitional → foundation claim; could vary period to period and needs testing → belief. Tell the user this fired and show what was grounded.
 
 **Success check — Stage 5:**
 Show a summary of what changed:
@@ -457,6 +555,8 @@ Ask which use case:
 > - **Answer a question** — I have a specific question about how this business works or what a metric means
 > - **Meeting prep** — I'm about to go into a business review and want to know what to push on
 
+**Rules for every use case:** cite beliefs by number and Status ("Belief #5, Established"). Status is not the same as verified — before citing a belief at Provisional or above, check its Provenance record: a belief sitting at Confirmed with no blind pass or contradiction search on record has a status ahead of its evidence, and must be flagged as such rather than cited with unqualified confidence. Name gaps honestly; never fill them from general knowledge.
+
 ### Use Case A — Pre-Read Briefing
 
 Ask the user to paste in (or confirm) the current `belief.md`. Then produce:
@@ -502,12 +602,12 @@ Belief #N ([Status]): [What this belief says that is relevant. Quote the stateme
 ```
 
 **Examples of questions this handles:**
-- "Is Q1 S&M spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
+- "Is Q1 marketing spend elevated or is this normal?" → Stream 02 (Business Dynamics) ratio relationship belief answers
 - "What drives revenue in this business?" → Stream 02 (Business Dynamics) relationship beliefs answer
 - "Should I be concerned about the revenue miss?" → Stream 02 (Business Dynamics) delivery track record answers with base rate and context
 - "Is this business self-correcting or does a miss compound?" → Stream 02 (Business Dynamics) feedback dynamics belief answers (if established)
 - "What language shift should make me worried?" → Stream 05 (Narrative Understanding) communication pattern beliefs answer
-- "What is the normal booking range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
+- "What is the normal volume range for Q2?" → Stream 02 (Business Dynamics) or Stream 00 (Factual Understanding) baseline answers
 
 ### Use Case C — Meeting Preparation
 
@@ -546,13 +646,16 @@ If there are gaps, note them explicitly. Gaps in the belief memory are signals t
 
 | Stage | Output | Where it lives |
 |-------|--------|----------------|
-| 1 — Foundation | `foundation.md` | `entities/{entity_id}/` |
-| 2 — Stream Setup | `document_profile.md` | `compiled/{stream_id}/` |
+| 1 — Foundation | `foundation.md` (claim IDs + source labels + Revision Log) | `entities/{entity_id}/` |
+| 2 — Stream Setup | `document_profile.md` (Structural Map per doc type + Structural Map Revision Log) | `compiled/{stream_id}/` |
 | 3a — Blueprint | `strategic_blueprint.md` | `compiled/{stream_id}/` |
 | 3b — Belief Reasoning Prompt | `belief_reasoning_prompt.md` | `compiled/{stream_id}/` |
-| 3c — Fact Extractor Prompt | `fact_extractor_prompt.md` | `compiled/{stream_id}/` |
-| 4/5 Step 6 — Signal Extraction | `{doc_id}_fact_log.md` | `streams/{stream_id}/L2_factlogs/` |
-| 4/5 Step 7 — Belief Evolution | `belief.md` + `belief_changelog.md` | `streams/{stream_id}/` |
+| 3c — Fact Extractor Prompt | `fact_extractor_prompt.md` (Expected Structure embedded) | `compiled/{stream_id}/` |
+| 4/5 Step 6 — Signal Extraction | `{doc_id}_fact_log.md` (opens with STRUCTURE OBSERVED) | `streams/{stream_id}/L2_factlogs/` |
+| 4/5 Step 6.5 — Structural Drift Check | `[STRUCTURE_DRIFT]` changelog entry when drift found; map revision + recompile on Recalibrate | `streams/{stream_id}/` + `compiled/{stream_id}/` |
+| 4/5 Step 7 — Belief Evolution | `belief.md` + snapshot `belief_versions/{doc_id}_belief.md` + `belief_changelog.md` | `streams/{stream_id}/` |
+| 5 Step 7.5 — Foundation Review | `[FOUNDATION_REVIEW]` entry; on Adopt: revised `foundation.md` + Revision Log entry + `[FOUNDATION_CHANGED]` flags | `entities/{entity_id}/` + `streams/{stream_id}/` |
+| 5 — Corpus Grounding (once, after doc 3) | Foundation claims relabeled/added with `source: corpus` | `entities/{entity_id}/foundation.md` |
 | 7 — Belief Activation | Pre-read briefing / Q&A answer / Meeting brief | Not stored — produced on demand |
 
 ---

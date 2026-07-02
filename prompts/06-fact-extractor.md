@@ -31,7 +31,7 @@ The fact extractor must capture:
 **The highest-priority signal type is the RELATIONSHIP CLAIM.** Before scanning for any other signal, scan the entire document window for explicit statements connecting one metric, factor, or business component to another. These are the signals that reveal how the business works — and they appear in documents far more often than analysts expect.
 
 A relationship claim is any statement where the document asserts that:
-- A causes or drives B ("our Q1 marketing investment drove Q2 demand recovery")
+- A causes or drives B ("our Q1 marketing investment drove Q2 new customer volume")
 - A precedes or predicts B ("completed transactions typically convert to revenue within 30–45 days")
 - A is a function of B ("take rate improves as transaction volume scales above X")
 - A and B move together or diverge in a meaningful way ("volume was flat while revenue grew — price is doing the work")
@@ -220,9 +220,18 @@ What this document CANNOT give this belief stream:
 
 Trigger question this document helps answer:
 [From Blueprint Section 2 trigger question for this document type]
+
+## Expected Structure (from the Document Profile's Structural Map)
+
+[Embed the Structural Map for this document type verbatim: section
+inventory in order, narrative assembly, benchmarks as labeled,
+recurring apparatus. This is what the document is EXPECTED to look
+like. The extractor compares what it actually walks through against
+this and reports every deviation in the STRUCTURE OBSERVED block —
+it never silently adapts to a changed structure.]
 ```
 
-This section prevents the fact extractor from hallucinating signals the document cannot structurally carry.
+This section prevents the fact extractor from hallucinating signals the document cannot structurally carry — and gives it the baseline against which structural drift is detected.
 
 ---
 
@@ -233,7 +242,23 @@ Tell the fact extractor exactly how to format its output.
 ```
 ## Output Format
 
-**Part 1 — Relationship Claims** (always first in the output)
+**Part 0 — Structure Observed** (always opens the fact log)
+
+You read the whole document to extract signals — record the skeleton you walked through. Every line verbatim and traceable to this document.
+
+---
+## STRUCTURE OBSERVED
+
+**Section inventory (in order, verbatim titles)**: [...]
+**Benchmarks as labeled (verbatim)**: [...]
+**Apparatus present**: [footnotes / appendix / definitions — as found]
+**Deviations from Expected Structure**: [Compare against the Expected Structure block in this prompt. List every difference: sections added, removed, renamed, reordered; benchmarks changed; apparatus moved or gone. If none: "NONE — structure matches the Structural Map."]
+**Expected but absent**: [Anything the Expected Structure says should be here that is not — absence is a recorded observation, not a silent skip]
+---
+
+Do NOT interpret deviations. A missing section might be a template change or a communication choice — deciding which is the Structural Drift Check's job (Step 6.5), not yours. Report the difference; never adapt to it silently.
+
+**Part 1 — Relationship Claims** (always first among signals)
 
 For each relationship claim found:
 
@@ -263,11 +288,17 @@ For each signal extracted for a named candidate:
 **Content**: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 **Source position**: [Where in the document this appeared]
 **Comparison basis**: [What benchmark or reference point, if applicable]
+**Why this could recur**: [The narrower condition that would need to hold in a future document for this to be a pattern — not "this is a pattern." Example form: "if X appears first again regardless of whether it is the largest item, that would suggest a habitual choice rather than a magnitude-driven one."]
+**Next-document check**: [What specifically the next comparable document would need to show — the concrete thing to look at]
 **Absent signals**: [What was expected but not present, if meaningful]
 ---
 
 If no signal is present for a named candidate, output:
 ## CANDIDATE #N — NO SIGNAL IN THIS WINDOW
+
+**Part 3 — Gaps** (always closes the fact log, even when every direction had some evidence)
+
+For each of this stream's learning directions with no evidence in this document, one line: "No evidence in this document on [direction] — [why it cannot be assessed here]." Closing with an explicit Gaps section — rather than omitting it — prevents a later reader wondering whether the gaps were simply forgotten.
 
 Don't include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
 ```
@@ -298,6 +329,14 @@ DO NOT summarize. A summary is not a fact log.
 DO NOT extract signals the blueprint's signal matrix says this document type cannot carry.
 
 STAY SILENT when no signal is present. "NO SIGNAL IN THIS WINDOW" is a valid and useful output.
+
+THE HUMILITY CAP. Everything you produce is capped at "newly noticed in this document — could turn out to matter, could turn out to be nothing." You may NEVER claim confirmation, recurrence, or comparison across documents. You cannot say "this confirms last month" — you have not seen last month, on purpose. You have seen one document. Recurrence is the belief engine's judgment, made against the belief memory — never yours. This humility is enforced by the process, not left to hope.
+
+BANNED WORDS — absolute, no exceptions: "confirmed," "again," "consistently," "as before," "still," "continues," "consistent with," "as it has in prior periods." Not because these words are inherently wrong, but because this pass structurally cannot know whether they are true — and a word that sounds true most of the time is more dangerous than an obvious guess, because it slips past review unquestioned.
+
+OUT-OF-LENS CANDIDATES ARE OMITTED SILENTLY — not surfaced with a caveat. Even if a presentation pattern is genuinely the most interesting thing in the document, a business-learning stream's fact log never carries it, and no "worth noting anyway" exception is logged. A caveat is exactly the kind of soft rule that erodes over successive documents until it quietly disappears.
+
+STAY IN YOUR LANE. You extract through this one stream's lens, and only this lens — deliberately blind to the other streams. A communication-pattern signal and a structural-economics signal must never blur into each other, even when they come from the same page.
 
 ## Two Extraction Modes
 

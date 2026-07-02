@@ -76,24 +76,29 @@ This is the identity record. Downstream prompts read this to know what entity an
 
 ### Section 2 — Document Types and Signal Matrix
 
-For each document type in scope, answer these questions explicitly. Don't list what you guess might be in the document. Answer based on what the Document Profile told you — and what can realistically be inferred about documents of this type for this entity at this cadence.
+For each document type in scope, answer these questions explicitly. Don't list what you guess might be in the document. Answer from the Document Profile's **Structural Map** — the observed section inventory, narrative assembly, benchmark labels, and absences that Prompt 00 read from an actual sample. Type-level inference ("documents like this usually carry X") is not a source; if the Structural Map doesn't show it, it doesn't go in the matrix.
+
+If the profile's Structural Map is marked `UNGROUNDED — pending first document`, say so at the top of this section and mark the entire signal matrix provisional — the compiled prompts built from it must be revisited once the first real document has been read.
 
 For each document type:
 
 ```markdown
 **Document type**: [Name]
 **Cadence**: [How often it arrives]
+**Grounding**: [Structural Map read from sample / UNGROUNDED — provisional]
 **What this document CAN give this belief stream**:
-  - [Specific signals available for the chosen angle — be concrete]
+  - [Specific signals available for the chosen angle — each citing the Structural Map feature that shows it exists]
   - [...]
 **What this document CANNOT give this belief stream**:
-  - [Explicit gaps — what signals this document type structurally cannot carry]
+  - [Explicit gaps — observed absences from the Structural Map, not assumptions about the type]
   - [...]
 **Trigger question**: What single question does this document type help answer for the belief stream?
   > [One sentence]
 ```
 
 The "cannot give" list matters as much as the "can give" list. Beliefs built on what a document cannot actually carry are wrong from the start.
+
+Close the section with a **cross-stream noise declaration**: name the raw facts that adjacent streams would treat as prime belief material but that are noise for *this* stream's lens (a variance-explanation sequencing habit is prime material for Narrative Understanding and irrelevant to Business Dynamics; a structural ratio is the reverse). The blueprint states this plainly so the belief engine never considers out-of-lens signals — the same raw fact must get radically different treatment depending on which lens reads it, and that difference must be explicit, never an accident of which pass happened to notice the fact first.
 
 ---
 

@@ -45,21 +45,23 @@ The foundation is built once per entity. All streams for that entity inherit it.
 
 The belief stream may be one of the seven standard streams (00 — Factual Understanding, 01 — Business Model Understanding, 02 — Business Dynamics, 03 — Causal Understanding, 04 — Business Memory, 05 — Narrative Understanding, 06 — Forecast and Plan Behavior) or a custom stream (Marketing Efficiency Memory, Forecast Reliability, Operational Risk Memory, Investor Messaging, Margin Quality, Forecast Bias, or any user-defined stream). The user chooses. The documents determine what can be grounded.
 
-This step only captures intent. The system grounds it in Steps 1 and 2.
+This step only captures intent. The system grounds it in Steps 1 and 2. Two rules govern it: the stated scope is a **fence** — it permanently bounds what the system is allowed to learn, and an out-of-scope aside in a future document stays outside the fence by design, not by failure. And scope is *business* scope, never document scope — conflating "what parts of the business I care about" with "what files I'll upload" produces streams that are secretly about file formats. Setup never validates intent against document content (that would tempt it into promises the profile then has to walk back); if the requested angle and the actual documents disagree, Step 1 records the mismatch honestly and the user decides.
 
 ---
 
 ### Step 1 — Document Profile (Prompt 00)
 
-**Who:** LLM, once at setup — an interview about the documents, plus a structural skim of any sample documents provided
-**Input:** requested belief stream, document descriptions from the user, sample documents if available (skimmed for structure only — sections, recurring layout, benchmarks present), optional user purpose
-**Output:** `compiled/{stream_id}/document_profile.md`
+**Who:** LLM, once at setup — a short interview for what only the user knows, plus a **mandatory structural read** of one sample per document type
+**Input:** requested belief stream, the user's answers (scope, document types, cadence, success criteria), one sample document per type, optional user purpose
+**Output:** `compiled/{stream_id}/document_profile.md`, containing a **Structural Map** per document type
 
-Profiles what these documents can ground for the requested stream — what each document type CAN and CANNOT carry for the chosen angle. Does NOT create beliefs. Does NOT extract signals — signal extraction is Step 6's job, against the compiled extractor prompt. Does NOT reject the stream.
+The division of knowledge: the user knows the business — that's the foundation. The documents are the only reliable witness to their own structure — users cannot recite their deck's anatomy, and asking them produces guesses. So Prompt 00 reads the samples in two parts with a hard boundary between them. **Part 1, the x-ray, is stream-blind**: it maps the document's internal logic as if the profiler had never heard which stream was requested — section inventory in order (verbatim titles), narrative assembly, how the pieces are stitched, how the current period's story connects to the recurring structure, numbers vs. commentary, benchmarks as labeled, composed metrics as name-relationships (with reconciliation tested at every cut and breaks reported precisely — counts allowed, values banned), behavioral patterns in non-metric sections, recurring apparatus, and actively-hunted absences (including cross-granularity ones). The x-ray must be reproducible identically no matter which stream asks, and is shared across streams of the same document family — if it isn't reproducible, stream bias has leaked into what was considered worth noticing. **Part 2, the scouting read, is stream-aware**: given this skeleton, what could this particular lens learn from it?
+
+The boundary: **map the telling, not the tale.** How the story is communicated, stitched, and connected — yes. What the story means — never. No performance judgment, no causal reading, no candidate beliefs, no cross-document pattern claims from a single sample. Does NOT extract signals — signal extraction is Step 6's job, against the compiled extractor prompt.
+
+The CAN/CANNOT capability assessment is derived from the Structural Map, each line citing observed structure — never from type-level intuition. If no sample is available, the Structural Map is marked `UNGROUNDED — pending first document`, the CAN/CANNOT sections are explicitly provisional, and the first document processed at Step 6 must trigger completing the map and revisiting the profile before the compiled prompts are trusted.
 
 The profile answers: what kind of durable beliefs could these documents eventually support if similar signals recur across comparable documents?
-
-Strongest allowed language at this step: "this document type can carry X" or "this document type cannot carry Y."
 
 ---
 
@@ -116,7 +118,7 @@ Different document types in the same stream get different compiled extractor pro
 
 ---
 
-## Phase 2 — Document Ingestion (Steps 5 – 8, including 7.5)
+## Phase 2 — Document Ingestion (Steps 5 – 8, including 6.5 and 7.5)
 
 Runs every time a new document arrives.
 
@@ -172,13 +174,38 @@ The belief engine never receives the raw document. It reads the fact log.
 
 Run a blind pass whenever a belief is up for promotion — Candidate → Provisional, or Provisional → Confirmed (see Step 7). Outside of promotion decisions, a single belief-aware pass is sufficient for routine reconfirmation once a belief has reached Confirmed or Established with a clean verification history. Re-trigger a blind pass if something looks off: a silence, a near-miss, or a change to the foundation claim the belief depends on. This keeps cost bounded — full two-pass extraction is reserved for the moments where independent verification actually changes the outcome, not run on every document for every belief.
 
+Every fact log opens with a **STRUCTURE OBSERVED** block — the skeleton the extractor walked through (verbatim section inventory, benchmarks as labeled, apparatus, deviations from the Expected Structure embedded in its compiled prompt). This costs nothing extra — the extractor is already reading the whole document — and it is the input to Step 6.5.
+
+---
+
+### Step 6.5 — Structural Drift Check
+
+**Who:** Same pass as Step 6 output review, or a lightweight follow-up check
+**Input:** The fact log's STRUCTURE OBSERVED block + the Document Profile's Structural Map for this document type
+**Output:** Either nothing (match), or a drift report with a resolution; on Recalibrate — a revised Structural Map (logged), a revisited Blueprint Section 2, and a recompiled `fact_extractor_prompt.md` for this document type
+
+This is the profiling equivalent of Foundation Review. The compiled extractor prompt was calibrated against the Structural Map — if the real documents stop matching the map, the machinery is extracting against a fiction, and nothing else in the pipeline would notice. Documents drift: templates get redesigned, sections get renamed mid-year, benchmark sets change. This step is what keeps the configuration layer honest against the documents as they actually arrive.
+
+**Compare** the STRUCTURE OBSERVED block against the Structural Map:
+
+- **Match** — structure consistent. No action, no entry.
+- **Drift detected** — sections added/removed/renamed/reordered, benchmarks changed, apparatus moved. Record `[STRUCTURE_DRIFT]` in the changelog and resolve it one of three ways:
+  - **Recalibrate** — this is a template or format change. Revise the Structural Map (append an entry to the profile's Structural Map Revision Log — never a silent rewrite), revisit the Blueprint Section 2 CAN/CANNOT for this document type, and recompile `fact_extractor_prompt.md`. Even then, record the change as a structural observation in the fact log — a template redesign can itself carry meaning.
+  - **Signal** — this is not a template change; it is a communication choice. A section that quietly disappears, a benchmark that stops being shown, commentary that moves to the appendix — that is exactly the behavior Stream 05 (Narrative Understanding) exists to track. Keep the Structural Map as-is, and let the deviation flow to the belief engine as a signal (an absence or emphasis observation) rather than being laundered into template noise.
+  - **Defer** — seen once, could be a one-off (a special quarter with an extra deep-dive section). No change; watch the next comparable document. Drift that recurs across 2 consecutive documents of the same type (configurable) can no longer be Deferred — it must resolve to Recalibrate or Signal.
+- **UNGROUNDED completion** — if the profile's Structural Map was marked `UNGROUNDED — pending first document`, this document's STRUCTURE OBSERVED block becomes the Structural Map (grounding it, logged as such), and the Blueprint Section 2 assessment plus the compiled extractor prompt must be revisited against it before their output is trusted.
+
+**The one rule that governs this step:** drift is never silently absorbed. The extractor reports it, this step resolves it visibly, and the resolution is on the record. "The document changed shape" is information — sometimes about the template, sometimes about the story — and deciding which is a resolution, not a default.
+
+Like Foundation Review, the Recalibrate-vs-Signal decision is surfaced to the user by default (`structural_drift_resolution` in config), because the two readings lead in opposite directions: one updates the machinery, the other feeds the beliefs.
+
 ---
 
 ### Step 7 — Fact Log + Existing Belief → Evolved belief.md
 
 **Who:** LLM, using `belief_reasoning_prompt.md` as system prompt
 **Input:** `belief_reasoning_prompt.md` (system) + `{{EXISTING_DURABLE_BELIEF}}` (belief.md or NULL) + `{{NEW_CHRONOLOGICAL_FACT_LOG}}` (+ blind-pass fact log, when one was run)
-**Output:** `streams/{stream_id}/belief.md` (evolved)
+**Output:** `streams/{stream_id}/belief.md` (evolved) + a snapshot copy at `streams/{stream_id}/belief_versions/{doc_id}_belief.md` — the version history. The changelog records the diffs; the snapshots preserve the states, so the belief memory as it stood after any document remains readable forever.
 
 **On first document (belief.md is NULL):**
 Initialize between 8 and 15 specific Candidate beliefs drawn from the fact log. Beliefs must use the candidate seed set from Blueprint Section 4 as a starting frame, but are grounded in what the first document actually showed. Every entry marked Status: Candidate. Evolution trail says "First seen in [doc_id] — [brief observation]." Normal baseline: "not yet established." Provenance record initialized with the foundation dependency named and all other fields empty — nothing exists yet to check blind against. No umbrella beliefs.
@@ -248,11 +275,63 @@ For each belief affected, records:
 | `[MERGE_BELIEFS]` | Two beliefs collapsed into one more precise claim |
 | `[SPLIT_BELIEF]` | One belief divided into two distinct, separately falsifiable claims |
 | `[DECAY]` | Established belief downgraded to Confirmed after N consecutive silent comparable documents — a Status change, not a contradiction |
+| `[STRUCTURE_DRIFT]` | The document's observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded — document-level entry, not per-belief |
 | `[FOUNDATION_REVIEW]` | A belief reaching Confirmed or Established triggered a Foundation Review; resolution (Adopt/Hold/Defer) recorded |
 | `[FOUNDATION_CHANGED]` | A foundation claim this belief depends on was revised (Adopted) elsewhere; this belief is held pending re-grounding on its next document pass |
 | `[NO CHANGE]` | Document processed; no update warranted for this belief |
 
 The changelog is append-only. An absent changelog entry for a document means the pipeline did not complete for that document.
+
+---
+
+## The Steady-State Loop
+
+Setup runs once. After that, Phase 2 is a loop that fires for every document, forever. `belief.md` is versioned by evolution — each pass re-reads the current state, applies surgical changes, and appends to the changelog. The maturity ladder climbs across passes — but every rung is a **gate**, not a count. Document count is necessary and never sufficient.
+
+```
+SETUP (once)
+  foundation (interview → hypotheses) · profile + STRUCTURAL READ
+  → blueprint → compile both prompts
+      │
+      ▼
+DOC 1 ── intake → fact log (opens with STRUCTURE OBSERVED)
+      │   belief.md NULL → v1: 8–15 Candidates, Provenance
+      │   initialized, changelog: [NEW_BELIEF]
+      ▼
+DOC 2 ── belief-aware pass + BLIND PASS (promotions pending)
+      │   6.5 drift check · then evolve → v2
+      │   Candidate → Provisional ONLY where the blind pass
+      │   independently re-derived the pattern — otherwise the
+      │   belief is confirmed but HELD, promotion pending
+      ▼
+DOC 3 ── + contradiction search, reported ("searched, none found")
+      │   Provisional → Confirmed only through that gate
+      │   ★ corpus grounding fires (first N fact logs read
+      │     together) → foundation claims earn source: corpus;
+      │     contradicted interview claims → Foundation Review
+      ▼
+DOC 4+ ─ steady state, every document, in order:
+      │   6    extract — belief-aware; blind pass only when a
+      │        promotion is pending this round
+      │   6.5  STRUCTURAL DRIFT CHECK — match / Recalibrate
+      │        (map revised, extractor recompiled) / Signal
+      │        (feeds beliefs) / Defer
+      │   7    evolve — DEEPEN / TENSION / NARROW / CONTRADICT /
+      │        SILENCE / RETIRE per belief; Confirmed →
+      │        Established gated (doc types + foundation claim
+      │        still current); 4 consecutive silences on an
+      │        Established belief → [DECAY] → Confirmed
+      │   7.5  FOUNDATION REVIEW — fires on Confirmed/Established
+      │        transitions that bear on a named claim ID
+      │   8    changelog appended — every pass, no exceptions
+      │        + belief.md snapshotted to belief_versions/{doc_id}
+      ▼
+  ...next document repeats this same cycle indefinitely
+```
+
+**The chain is strictly sequential — never a batch dump.** When several documents arrive at once, the user puts them in the order they should be read, and the system works through them one at a time: read the document through the stream's lens, produce the learning, evolve the belief, snapshot the new version — and only then move to the next document. Order matters because a belief evolves differently depending on what came before it: each document must see the belief memory *as it stood after the previous one*, otherwise the story the belief is telling loses its sense of time. Processing five documents in one merged pass is not an optimization — it is a different (and wrong) computation.
+
+Weakening is graduated, never abrupt: one contradiction on a mature belief → `[TENSION]` (held, under challenge). Repeated contradiction → `[NARROW]` or `[CONTRADICT]`. Pattern genuinely over → `[RETIRE]` (number kept, entry preserved). Silence accumulating on an Established belief → `[DECAY]`. No belief is ever retired on one weak contradiction — and none survives indefinitely without being re-tested.
 
 ---
 
@@ -264,8 +343,9 @@ FOUNDATION (once per entity)
            → entities/{entity_id}/foundation.md
 
 SETUP (once per stream)
-  Prompt 00 ← (requested_stream, documents, transcriptions, metadata, purpose)
-           → document_profile.md
+  Prompt 00 ← (requested_stream, user answers, ONE SAMPLE DOCUMENT
+              PER TYPE — read in full for the Structural Map, purpose)
+           → document_profile.md (Structural Map per document type)
 
   Prompt 01 ← (foundation.md, document_profile.md, requested_stream, purpose, history)
            → strategic_blueprint.md
@@ -283,6 +363,9 @@ RUNTIME (per document)
   fact_extractor.py ← fact_extractor_prompt.md (system)
                     + L3 units + topics_touched + optional existing belief
                     → L2_factlogs/{doc_id}_fact_log.md
+                      (opens with STRUCTURE OBSERVED block →
+                       compared against the Structural Map in Step 6.5;
+                       drift resolves Recalibrate / Signal / Defer)
 
   belief_engine.py  ← belief_reasoning_prompt.md (system)
                     + {{EXISTING_DURABLE_BELIEF}} = belief.md or NULL
@@ -313,4 +396,5 @@ The compiled prompts are stream-specific and run separately per stream. Multiple
 - **L3 is immutable:** if processing fails mid-pipeline, the raw extract is preserved. Reprocessing restarts from Step 6.
 - **Fact log is permanent, not ephemeral:** it is the memory layer belief Provenance records point back into (see the doctrine's "Fact Logs Are Memory, Not Scratch Paper"). If an extraction pass fails before producing a complete fact log, re-run it against the preserved L3 units — but once a fact log is finalized and a belief cites it, it is retained indefinitely, addressable by doc_id.
 - **belief.md is surgical:** a failed evolution pass does not corrupt existing beliefs. The pre-evolution state is unchanged until the write completes.
+- **belief_versions/ is the state history:** one snapshot per document processed, written after the evolution pass completes. If belief.md is ever corrupted or an evolution needs to be unwound, the last good snapshot is the recovery point — and the full sequence of snapshots is what makes a wrong belief diagnosable after the fact.
 - **Changelog is append-only:** an absent changelog entry for a document means the pipeline did not complete for that document.
