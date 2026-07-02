@@ -174,6 +174,8 @@ Present the seven standard options:
 
 Custom streams are also supported. If the user names something not on this list, ask them to define it in one sentence: what does a belief in this stream look like?
 
+Tell the user plainly: the scope they name here is a **fence** — it permanently bounds what this stream is allowed to learn. A fascinating out-of-scope aside in a future document stays outside the fence by design. And it is *business* scope, not file scope — "what parts of the business I care about," never "what files I'll upload."
+
 **2. What documents will flow through this stream?**
 
 Ask:
@@ -189,11 +191,13 @@ Do NOT ask the user what sections their documents contain or how they're laid ou
 
 This anchors the stream to a real purpose.
 
-**4. Read each sample — the Structural Read.**
+**4. Read each sample — the Structural Read (two parts, in order).**
 
-Read the attached sample in full and map how the document tells its story. Every line must be traceable to the sample — verbatim section titles, verbatim benchmark labels, observed positions. Map: the section inventory in order; what opens and closes the document and how the storyline threads between; how sections reference each other and which metrics reappear across them; how this period's story connects to the recurring structure (prior-period references, carried metrics, recurring framings); where numbers live vs. where commentary lives; footnotes/appendix/definitions; and what is observably absent.
+**Part 1 — the x-ray, stream-blind.** Read the attached sample in full and map its internal logic *as if you had never heard which stream was requested* — the test: could this exact map have been written by someone who never knew the angle? Every line must be traceable to the sample — verbatim section titles, verbatim benchmark labels, observed positions. Map: the section inventory in order; what opens and closes the document and how the storyline threads between; how sections reference each other and which metrics reappear across them; how this period's story connects to the recurring structure (prior-period references, carried metrics, recurring framings); where numbers live vs. where commentary lives; **composed metrics as name-relationships** (no values — test whether each composition reconciles at every cut shown; where it breaks, say which cut and how many of how many, name every candidate explanation the document leaves open, and choose none); **behavioral patterns in non-metric sections** (pattern shape + how often it occurs in this document); footnotes/appendix/definitions; and absences — **actively hunted**, including cross-granularity ones (a component tracked at the whole-business level but never per line means no per-line belief about it can ever form).
 
-The boundary: map how the story is communicated, stitched, and connected — never interpret what the story means. No performance judgment, no causes, no beliefs, no pattern claims (you have one sample; recurrence hasn't been earned yet).
+**Part 2 — the scouting read, stream-aware.** Only after the x-ray: given this skeleton, what can this stream's lens learn from it? This fills the CAN/CANNOT sections, each line citing the x-ray.
+
+Guardrails: zero metric values in the x-ray, even to prove a composition breaks (structural counts are fine). No vocabulary the sample never used. No maturity-gap filler ("cannot confirm from one document" is true of every document ever profiled). Never smooth an inconsistency into an average — "described once as firm policy, once as a temporary exception" IS the signal. And the boundary: map how the story is communicated, stitched, and connected — never interpret what the story means. No performance judgment, no causes, no beliefs, no pattern claims (you have one sample; recurrence hasn't been earned yet).
 
 If the user cannot provide a sample, mark the Structural Map `UNGROUNDED — pending first document` and tell them the profile is provisional until the first real document is read.
 
@@ -256,6 +260,8 @@ Entity, scope, stream name, angle, document types, purpose statement.
 
 **Section 2 — Signal Matrix**
 For each document type: what it CAN and CANNOT give this stream, with every line citing the profile's Structural Map — observed sections, benchmarks, and absences, never type-level intuition ("decks are usually thin" is not evidence). The trigger question for each type. If the Structural Map is marked UNGROUNDED, say so here and mark the whole matrix provisional.
+
+Also declare **cross-stream noise** plainly: raw facts adjacent streams would prize that are noise for *this* lens (e.g., a sequencing habit is prime material for Narrative Understanding and irrelevant noise for Business Dynamics). Stating this explicitly is what guarantees the same raw signal gets radically different treatment per lens by design, not by accident of which pass noticed it first.
 
 **Section 3 — Belief Definition for This Stream**
 - What a strong belief entry looks like: one real worked example using the entity's vocabulary, the foundation context, and the full entry format (Statement / Why it matters / Evolution trail / Normal baseline / Falsification test / Provenance)
@@ -341,10 +347,14 @@ Signal type: [PRIMARY SIGNAL / PATTERN EVIDENCE / BASELINE READING / LEADING IND
 Content: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 Source position: [Where in the document this appeared]
 Comparison basis: [What benchmark or reference point, if applicable]
+Why this could recur: [The narrower condition that would need to hold next document — not "this is a pattern"]
+Next-document check: [What specifically the next comparable document must show]
 Absent signals: [What was expected but not present, if meaningful]
 ```
 
 If no signal for a named candidate: output `CANDIDATE #N — NO SIGNAL IN THIS WINDOW`
+
+**Always close the fact log with a Gaps section** — one line per learning direction with no evidence in this document, so a later reader never wonders whether gaps were simply forgotten. And enforce the banned words: "confirmed," "again," "consistently," "as before," "still," "continues" — this pass has seen one document and structurally cannot know if those are true. Out-of-lens observations are omitted silently, never surfaced with a caveat.
 
 **Success check — Step 6:**
 Show the fact log, starting with any relationship claims found. Ask: Do these relationship claims accurately represent what the document stated? Did the extraction miss any explicit causal statements? Do the named candidate signals look accurate?
@@ -451,18 +461,18 @@ Record `[STRUCTURE_DRIFT]` in the changelog with the resolution. Never absorb dr
 
 ### Step 7 — Evolve the Belief Memory
 
-Using the `belief_reasoning_prompt.md` as your system context, read both the existing belief memory and the new fact log. For each belief, decide and apply one action:
+Using the `belief_reasoning_prompt.md` as your system context, read both the existing belief memory and the new fact log. **Match incoming learnings to existing beliefs by underlying mechanical claim, not exact wording** — "X leads regardless of magnitude" and "X led again despite being smaller" are the same claim, evidenced twice; exact-title matching fractures one real belief into fragments that never mature. For each belief, decide and apply one action:
 
 | Action | When to use |
 |--------|-------------|
 | `[DEEPEN]` | Fact log confirms the pattern — extend the evolution trail, sharpen the normal baseline, advance stage if threshold met |
 | `[CONTRADICT]` | Fact log provides strong contrary evidence — revise the statement, update evolution trail to explain the shift |
-| `[TENSION]` | A contradicting signal appeared but not yet strong enough to revise — note in evolution trail |
+| `[TENSION]` | A contradicting signal appeared but not yet strong enough to revise — rewrite the Statement to hold the tension honestly and name what the next document must show to resolve it |
 | `[NARROW]` | Scope of the belief has become more specific — narrow the claim, explain what it no longer covers |
 | `[SILENCE]` | Document covered this area but showed no signal — note silence, no revision |
-| `[RETIRE]` | Pattern has ended — archive the belief, keep the number, mark RETIRED |
+| `[RETIRE]` | Pattern has ended — archive the belief, keep the number, mark RETIRED. Requires 3 consecutive contradicting comparable documents — never one anomalous period |
 | `[MERGE_BELIEFS]` | Two beliefs are now better stated as one |
-| `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it |
+| `[SPLIT_BELIEF]` | One belief conflates distinct patterns — divide it. The test: if removing one sentence from the heading would change what falsifies the claim, it's two beliefs wearing one title |
 | `[DECAY]` | Established belief has had 4 consecutive silent comparable documents — downgrade to Confirmed |
 | `[STRUCTURE_DRIFT]` | Document-level entry from Step 6.5 — observed structure deviated from the Structural Map; resolution (Recalibrate/Signal/Defer) recorded |
 | `[FOUNDATION_REVIEW]` | This belief just reached Confirmed/Established while bearing on a foundation claim — Foundation Review triggered, resolution recorded |

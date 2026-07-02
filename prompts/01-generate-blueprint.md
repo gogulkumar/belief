@@ -98,6 +98,8 @@ For each document type:
 
 The "cannot give" list matters as much as the "can give" list. Beliefs built on what a document cannot actually carry are wrong from the start.
 
+Close the section with a **cross-stream noise declaration**: name the raw facts that adjacent streams would treat as prime belief material but that are noise for *this* stream's lens (a variance-explanation sequencing habit is prime material for Narrative Understanding and irrelevant to Business Dynamics; a structural ratio is the reverse). The blueprint states this plainly so the belief engine never considers out-of-lens signals — the same raw fact must get radically different treatment depending on which lens reads it, and that difference must be explicit, never an accident of which pass happened to notice the fact first.
+
 ---
 
 ### Section 3 — Belief Definition for This Stream

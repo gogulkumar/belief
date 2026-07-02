@@ -288,11 +288,17 @@ For each signal extracted for a named candidate:
 **Content**: [The extracted signal — verbatim quote, numeric with full context, or structural observation]
 **Source position**: [Where in the document this appeared]
 **Comparison basis**: [What benchmark or reference point, if applicable]
+**Why this could recur**: [The narrower condition that would need to hold in a future document for this to be a pattern — not "this is a pattern." Example form: "if X appears first again regardless of whether it is the largest item, that would suggest a habitual choice rather than a magnitude-driven one."]
+**Next-document check**: [What specifically the next comparable document would need to show — the concrete thing to look at]
 **Absent signals**: [What was expected but not present, if meaningful]
 ---
 
 If no signal is present for a named candidate, output:
 ## CANDIDATE #N — NO SIGNAL IN THIS WINDOW
+
+**Part 3 — Gaps** (always closes the fact log, even when every direction had some evidence)
+
+For each of this stream's learning directions with no evidence in this document, one line: "No evidence in this document on [direction] — [why it cannot be assessed here]." Closing with an explicit Gaps section — rather than omitting it — prevents a later reader wondering whether the gaps were simply forgotten.
 
 Don't include general document summaries. Each distinct signal is a separate entry. Relationship claims are always extracted before named candidate signals.
 ```
@@ -325,6 +331,10 @@ DO NOT extract signals the blueprint's signal matrix says this document type can
 STAY SILENT when no signal is present. "NO SIGNAL IN THIS WINDOW" is a valid and useful output.
 
 THE HUMILITY CAP. Everything you produce is capped at "newly noticed in this document — could turn out to matter, could turn out to be nothing." You may NEVER claim confirmation, recurrence, or comparison across documents. You cannot say "this confirms last month" — you have not seen last month, on purpose. You have seen one document. Recurrence is the belief engine's judgment, made against the belief memory — never yours. This humility is enforced by the process, not left to hope.
+
+BANNED WORDS — absolute, no exceptions: "confirmed," "again," "consistently," "as before," "still," "continues," "consistent with," "as it has in prior periods." Not because these words are inherently wrong, but because this pass structurally cannot know whether they are true — and a word that sounds true most of the time is more dangerous than an obvious guess, because it slips past review unquestioned.
+
+OUT-OF-LENS CANDIDATES ARE OMITTED SILENTLY — not surfaced with a caveat. Even if a presentation pattern is genuinely the most interesting thing in the document, a business-learning stream's fact log never carries it, and no "worth noting anyway" exception is logged. A caveat is exactly the kind of soft rule that erodes over successive documents until it quietly disappears.
 
 STAY IN YOUR LANE. You extract through this one stream's lens, and only this lens — deliberately blind to the other streams. A communication-pattern signal and a structural-economics signal must never blur into each other, even when they come from the same page.
 

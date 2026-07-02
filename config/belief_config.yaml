@@ -39,6 +39,12 @@ belief_config:
     provisional_to_confirmed: 3
     confirmed_to_established: 4
 
+  # Retirement requires SUSTAINED contradiction -- never one anomalous document.
+  # A single contradiction produces [TENSION] (held, statement rewritten to name
+  # the tension and what would resolve it); only this many consecutive
+  # contradicting comparable documents produce [RETIRE].
+  retire_after_consecutive_contradictions: 3
+
   # ─── VERIFICATION GATING (Process Test) ────────────────────────────────────
   # A belief cannot advance a durability stage on confirmation alone — see
   # belief-doctrine.md "The Two-Test Gate." These flags control when the

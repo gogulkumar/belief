@@ -20,7 +20,9 @@ Belief is built in four layers plus an activation surface. Quality flows **forwa
 │  LAYER 1 — CONFIGURATION (once per stream)                    │   │ │
 │  Document Profile: interview (user knows the business)        │   │ │
 │    + mandatory STRUCTURAL READ of sample docs (documents      │   │ │
-│    know themselves) → Structural Map, verbatim + traceable    │◄──┼─┼─┐
+│    know themselves) → Structural Map: a stream-blind x-ray    │   │ │
+│    (identical no matter which stream asks; shared across      │   │ │
+│    streams) + stream-aware scouting, verbatim + traceable     │◄──┼─┼─┐
 │  Strategic Blueprint: signal matrix CITES the Structural      │   │ │ │
 │    Map — type-level inference banned · seed set (8–15)        │   │ │ │
 └──────────────────────────┬───────────────────────────────────┘   │ │ │

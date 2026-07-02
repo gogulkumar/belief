@@ -682,6 +682,10 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Re-interview about the business. The entity foundation already exists and captures business model, metrics, and behavioral patterns. Prompt 00 focuses on documents and angle only.
 - Ask the user to describe document structure. Users know the business, not their documents' anatomy — structure comes from reading the sample, never from the interview.
 - Skip the Structural Read when a sample exists. A profile whose CAN/CANNOT sections were guessed from a document-type label is confident-sounding fiction, and every compiled prompt downstream inherits the fiction.
+- Let the stream's angle shape the x-ray. The structural map is stream-blind — it must come out identical no matter which stream requested it, like an x-ray that doesn't change depending on which doctor ordered it. Stream-awareness enters only in the scouting sections that follow.
+- Put metric values in the x-ray, even to prove a composition breaks. Structural counts ("two of five lines don't reconcile") are structure; dollar figures are facts, and facts in the profile invite the one-document-became-a-belief failure.
+- Write maturity-gap filler ("cannot confirm from one document") — true of every document ever profiled; it drowns the real, document-specific gaps.
+- Smooth an inconsistency into an average. "Described once as firm policy, once as a temporary exception" is the signal; averaging it destroys it.
 - Interpret the story. It maps how the story is communicated, stitched together, and connected — never what the story means, whether the period was good, or what caused what.
 - Claim recurrence from one sample. One document shows its own architecture; patterns across documents are earned at ingestion.
 - Decide what signals matter. That is the blueprint's job.
@@ -714,6 +718,9 @@ Every step in the pipeline has explicit prohibitions. These are not edge-case wa
 - Use category labels as headings. The heading of every belief entry is the claim itself — a complete, specific, falsifiable sentence. Not a topic name.
 - Renumber beliefs. Once a belief is assigned #N, that number is permanent. Retired beliefs keep their number marked RETIRED.
 - Let active belief count fall below 8 without auditing for umbrella beliefs and splitting them.
+- Match incoming learnings to beliefs by title text. Matching is by underlying mechanical claim — real language varies period to period, and exact-wording matching fractures one recurring belief into fragments that never mature.
+- Retire on fewer than 3 consecutive contradicting comparable documents (configurable). One anomalous period is common; a single contradiction produces TENSION with the Statement rewritten to hold the tension honestly and name what would resolve it — and a resolved tension often yields a narrower, more precise belief than the original.
+- Keep a heading that secretly contains two falsifiable claims. The split test: if removing one sentence from the heading would change what falsifies the claim, it is two beliefs wearing one title — split it.
 - Confuse RETIRE with CONTRADICT (perspective shift). RETIRE means the pattern ended — the behavior is no longer occurring. CONTRADICT with a perspective shift means the interpretive lens was wrong — the behavior was occurring but it meant something different than previously understood. When multiple consecutive TENSION signals accumulate, the engine must ask: did the pattern end (RETIRE), or did we misread what the pattern was (CONTRADICT + restatement)?
 
 ### The Silence Default
