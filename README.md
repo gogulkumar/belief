@@ -1,3 +1,5 @@
+> **This repository is archived.** It has been merged into the [Enterprise Institutional Memory Framework](https://github.com/gogulkumar/enterprise-institutional-memory-framework), which carries its full history. All further work happens there.
+
 # Belief — Business Belief Intelligence
 
 > Institutional memory is portable: what is normal, what is template, what is evolving, and what would break — loaded into agents at the moment they draft, validate, or flag — instead of re-teaching the model from raw decks every time.
